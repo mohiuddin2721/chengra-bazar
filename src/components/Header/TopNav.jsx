@@ -4,22 +4,21 @@ import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
 import styles from '../../Styles/TopNav.module.css';
 import { currencies, languages } from '../../Utils/ConstantData';
 
+const topNavItemsLink = ['My Account', 'About Us', 'Blog', 'My wishlist', 'Cart', 'Log In']
+
 function TopNav() {
     const [currentLang, setCurrentLang] = useState(languages[0]);
     const [currentCur, setCurrentCur] = useState(currencies[0]);
     return (
-        <div className='py-2 text-[#777] text-[11px] font-semibold tracking-wide leading-6 top-nav'>
+        <div className='py-2 bg-[#240838] text-[#bab8b8] text-[11px] font-semibold tracking-wide leading-6 top-nav'>
             <div className='max-w-[1200px] mx-auto px-[10px] flex justify-between items-center'>
                 <div className='hidden sm:block'>FREE RETURNS. STANDARD SHIPPING ORDERS $99+</div>
                 <div className='flex gap-[28px] items-center justify-between  w-full sm:w-auto'>
                     <div className='hidden lg:block'>
                         <ul className='flex  tracking-wide leading-4 items-center gap-6'>
-                            <li>My Account</li>
-                            <li>About Us</li>
-                            <li>Blog</li>
-                            <li>My Wishlist</li>
-                            <li>Cart</li>
-                            <li>Log In</li>
+                            {
+                                topNavItemsLink.map((item, i) => <li key={i}>{item}</li>)
+                            }
                         </ul>
                     </div>
                     <div>
@@ -40,13 +39,14 @@ function TopNav() {
                                 <span>{currentCur.name}</span>
                                 <MdKeyboardArrowDown />
                                 <ul className={`absolute z-1 left-0 right-0 shadow-md duration-500 ${styles['lang-dropdown']}`}>
-                                    {currencies.filter(item => item.id !== currentCur.id).map((item, i) => <li onClick={() => {
-                                        setCurrentCur(item);
-                                    }}
-                                        key={i} className='flex gap-[5px] items-center' >
-                                        <span>{item.symbol}</span>
-                                        <span>{item.name}</span>
-                                    </li>)}
+                                    {currencies.filter(item => item.id !== currentCur.id)
+                                        .map((item, i) => <li onClick={() => {
+                                            setCurrentCur(item);
+                                        }}
+                                            key={i} className='flex gap-[5px] items-center' >
+                                            <span>{item.symbol}</span>
+                                            <span>{item.name}</span>
+                                        </li>)}
                                 </ul>
                             </li>
                         </ul>

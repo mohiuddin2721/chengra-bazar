@@ -16,7 +16,7 @@ function Notice() {
     }, [visible]);
 
     return (
-        <div className={`bg-[#240838] duration-500 ${hide && 'hidden'} ${visible ? 'h-auto px-5 py-[10px]' : 'h-0 px-0 py-0'} text-[13px] font-medium tracking-wide leading-[26px] text-white`}>
+        <div style={{borderBottom: '.1px solid #f7f3f3'}} className={`bg-[#240838] duration-500 ${hide && 'hidden'} ${visible ? 'h-auto px-5 py-[10px]' : 'h-0 px-0 py-0'} text-[13px] font-medium tracking-wide leading-[26px] text-white`}>
             <div className='flex justify-center relative'>
                 <div className='flex-wrap flex justify-center items-center gap-2 px-[5px]'>
                     <span>Get Up to <b>50% OFF</b> New-Season Styles</span>
