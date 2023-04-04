@@ -1,8 +1,11 @@
 import React from 'react'
+import Notice from './Notice'
 
 function Header() {
   return (
-    <div>Header</div>
+    <div>
+      <Notice />
+    </div>
   )
 }
 

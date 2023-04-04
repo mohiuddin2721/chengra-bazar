@@ -1,14 +1,40 @@
 import React from "react";
-import Banner from "./components/Banner/Banner";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Route,
+  Link,
+} from "react-router-dom";
+import Layout from "./components/Layout";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Layout />,
+    children: [
+      {
+        path: '/',
+        element: <Home />
+      },
+      {
+        path: 'about',
+        element: <About />
+      },
+      {
+        path: 'contact',
+        element: <Contact />
+      },
+    ]
+  }
+])
 
 export default function App() {
   return (
-    <div>
-      <h1 className="text-center">Header</h1>
-      <button className="mx-auto bg-orange-700 text-white flex align-middle rounded-lg p-2 mt-2">Dark mood</button>
-      <div>
-        {/* <Banner /> */}
-      </div>
-    </div>
+    <RouterProvider router={router}>
+
+    </RouterProvider>
   );
 }
