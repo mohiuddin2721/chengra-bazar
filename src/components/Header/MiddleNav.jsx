@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import logo from '../../assets/transShopHouse.png';
 import { FiPhoneCall } from 'react-icons/fi';
 import { AiOutlineUser, AiOutlineShopping } from 'react-icons/ai';
 import { FiHeart } from 'react-icons/fi';
 import { GiHamburgerMenu } from 'react-icons/gi';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
 import styles from '../../Styles/MiddleNav.module.css';
 import CartProduct from './CartProduct';
@@ -57,7 +57,8 @@ const MiddleNav = () => {
                                     <GiHamburgerMenu className='text-[#0088CC] font-bold text-2xl' />
                                 </button>
                             </div>
-                            <img src={logo} alt="" className='w-[85%] lg:w-full h-full' />
+                            {/* <img src={logo} alt="" className='w-[85%] lg:w-full h-full' /> */}
+                            <AiOutlineShoppingCart className='text-[35px]' />
                         </div>
                         <div className='w-full flex gap-[30px] text-[13px] justify-end lg:justify-start  text-[#8d8d8d]'>
                             <div className='w-full h-[40px] hidden lg:flex items-center rounded-[50px] bg-[#f1f1f1]'>
