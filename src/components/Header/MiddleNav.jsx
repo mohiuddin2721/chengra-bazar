@@ -92,7 +92,7 @@ const MiddleNav = () => {
                                 <FiPhoneCall className='text-[30px] mr-[7px]' />
                                 <div className='flex flex-col'>
                                     <span className='text-[11px] text-[#777] font-semibold'>CALL IS NOW</span>
-                                    <span className='text-[16px] font-bold flex gap-1'><span>+017</span><span>1426</span>9745</span>
+                                    <span className='text-[16px] font-bold flex gap-1'><span>+016</span><span>8010</span>6149</span>
                                 </div>
                             </div>
                             <div className='flex gap-3 sm:gap-5 text-2xl items-center'>
