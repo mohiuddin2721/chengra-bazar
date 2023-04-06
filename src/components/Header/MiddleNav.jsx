@@ -1,82 +1,59 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from '../../assets/transShopHouse.png';
 import { FiPhoneCall } from 'react-icons/fi';
 import { AiOutlineUser, AiOutlineShopping } from 'react-icons/ai';
 import { FiHeart } from 'react-icons/fi';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
-// import { Drawer, DrawerCloseButton, DrawerContent, DrawerOverlay, useDisclosure } from '@chakra-ui/react';
-import styles from '../styles/MiddleNav.module.css';
+import styles from '../../Styles/MiddleNav.module.css';
 import CartProduct from './CartProduct';
 import { BsSearch } from 'react-icons/bs';
 import { MdOutlineClose } from 'react-icons/md';
-import { Sidenav } from 'rsuite';
-import Nav from 'rsuite/esm/Nav';
 import { FaSearch } from 'react-icons/fa';
-import { brands, categories } from '../utils/constants';
-import { Box, Button, Drawer } from '@mui/material';
-import { IconButton } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
+import { Box, Collapse, Drawer, List, ListItemButton, ListItemText } from '@mui/material';
+import { brands, categories } from '../../Utils/ConstantData';
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+import { ExpandLess, ExpandMore } from '@mui/icons-material';
 
 
-function MiddleNav() {
-    const [isOpenDrawer1, setIsOpenDrawer1] = useState(false);
-    const toggleDrawer =
-        (anchor, open) =>
-            (event) => {
-                if (
-                    event.type === 'keydown' &&
-                    ((event).key === 'Tab' ||
-                        (event).key === 'Shift')
-                ) {
-                    return;
-                }
+const MiddleNav = () => {
+    const [isOpenMenuDrawer, setIsOpenMenuDrawer] = useState(false);
+    const [isOpenCartDrawer, setIsOpenCartDrawer] = useState(false);
+    const [openCollapseMenu1, setCollapseMenu1] = useState(false);
+    const [openCollapseMenu2, setCollapseMenu2] = useState(false);
 
-                setState({ ...state, [anchor]: open });
-            };
-    // const btnRef = useRef < HTMLButtonElement > (null);
-    // const btnRef2 = useRef < HTMLButtonElement > (null);
-    // const { isOpen, onOpen, onClose } = useDisclosure();
-    // const { isOpen: isOpen1, onOpen: onOpen1, onClose: onClose1 } = useDisclosure();
-    // const [openSearch, setOpenSearch] = useState(false);
-    // useEffect(() => {
-    //     const hidePopUp = () => setOpenSearch(false);
-    //     window.addEventListener('click', hidePopUp);
-    //     return () => {
-    //         window.removeEventListener('click', hidePopUp);
-    //     };
-    // }, []);
+    const handleCollapseMenu1 = () => {
+        setCollapseMenu1(!openCollapseMenu1);
+    };
+    const handleCollapseMenu2 = () => {
+        setCollapseMenu2(!openCollapseMenu2);
+    };
 
-    // const [isFixed, setIsFixed] = useState(false);
-    // const navRef = useRef < HTMLDivElement > (null);
-    // const [x, setX] = useState(0);
-    // useEffect(() => {
-    //     if (navRef.current) {
-    //         setX(navRef.current.getBoundingClientRect().top);
-    //     }
-    // }, [navRef]);
+    const [openSearch, setOpenSearch] = useState(false);
+    useEffect(() => {
+        const hidePopUp = () => setOpenSearch(false);
+        window.addEventListener('click', hidePopUp);
+        return () => {
+            window.removeEventListener('click', hidePopUp);
+        };
+    }, []);
 
-
-    // useEffect(() => {
-    //     const handleScroll = () => {
-    //         if (navRef.current) {
-    //             setIsFixed(window.scrollY > x + 100);
-    //         }
-    //     };
-    //     window.addEventListener('scroll', handleScroll);
-    //     return () => {
-    //         window.removeEventListener('scroll', handleScroll);
-    //     };
-    // }, [x]);
+    const handleDrawerClose1 = () => {
+        setIsOpenMenuDrawer(false);
+    };
+    const handleDrawerClose2 = () => {
+        setIsOpenCartDrawer(false);
+    };
 
     return (
         <>
-            <div className={`border-t  border-b lg:border-b-0 duration-500 z-20 bg-white left-0 right-0 border-[#E7E7E7]  ${isFixed ? `py-[10px] ${styles.myFixed}` : `${styles.mySticky} py-[27px]`}`} ref={navRef}>
+            <div className={`border-t  border-b lg:border-b-0 duration-500 z-20 bg-white left-0 right-0 border-[#E7E7E7]`}>
                 <div className='max-w-[1200px] mx-auto'>
                     <div className='px-[10px] flex  items-center gap-[40px]'>
                         <div className='flex items-center justify-between w-[300px] gap-3 xs:w-[200px] lg:w-[120px] h-[57px]'>
                             <div className='w-[15%] lg:hidden block'>
-                                <button onClick={onOpen1}>
+                                {/* <button onClick={onOpen1}> */}
+                                <button onClick={() => setIsOpenMenuDrawer(true)}>
                                     <GiHamburgerMenu className='text-[#0088CC] font-bold text-2xl' />
                                 </button>
                             </div>
@@ -156,11 +133,13 @@ function MiddleNav() {
                                             <BsSearch className='text-[#222529] text-lg cursor-pointer' />
                                         </div>
                                     </div>
-
                                 </div>
-                                <AiOutlineUser className='text-[#222529] hidden xs:block' />
-                                <FiHeart className='text-[#222529] hidden xs:block' />
-                                <button className='relative hidden xs:block' onClick={onOpen} ref={btnRef} >
+                                <AiOutlineUser className='text-[#222529] hidden lg:block' />
+                                <FiHeart className='text-[#222529] hidden lg:block' />
+                                <button
+                                    className='relative'
+                                    onClick={() => setIsOpenCartDrawer(true)}
+                                >
                                     <AiOutlineShopping className='text-[#222529]' />
                                     <span className='absolute h-4 w-4 rounded-full bg-[#FF5B5B] z-1 text-white flex justify-center items-center text-[11px] -right-[7px] top-0'>0</span>
                                 </button>
@@ -171,22 +150,18 @@ function MiddleNav() {
             </div>
             <div>
                 <>
-                    <IconButton
-                        size='large'
-                        edge='start'
-                        color='inherit'
-                        area-aria-label='logo'
-                        onClick={() => setIsOpenDrawer1(true)}>
-                        <MenuIcon />
-                    </IconButton>
                     <Drawer
                         anchor='right'
-                        open={isOpenDrawer1}
-                        onClose={() => setIsOpenDrawer1(false)}
+                        open={isOpenCartDrawer}
                     >
-                        <Box css={{ fontFamily: "'Poppins', sans-serif" }} className={`py-[25px] px-[20px] overflow-y-auto ${styles.customScroll}`}>
-                            <p className='mb-[17px] leading-10 font-bold text-[#212529] text-[20px]'>Shopping Cart</p>
-                            <DrawerCloseButton size={'lg'} className='text-black' />
+                        <Box style={{ fontFamily: "'Poppins', sans-serif" }} className={`py-[25px] px-[20px] overflow-y-auto ${styles.customScroll}`}>
+                            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                                <p className='mb-[17px] leading-10 font-bold text-[#212529] text-[20px]'>Shopping Cart</p>
+                                <CloseOutlinedIcon
+                                    className='text-black text-right text-2xl'
+                                    onClick={handleDrawerClose2} />
+                            </Box>
+
                             {new Array(5).fill(0).map((item, i) => <CartProduct key={i} />)}
                             <div className='my-[15px] flex items-center justify-between text-[#212529] font-bold text-[13px]'>
                                 <span>SUBTOTAL:</span>
@@ -200,101 +175,114 @@ function MiddleNav() {
                     </Drawer>
                 </>
             </div>
-            {/* <Drawer
-                isOpen={isOpen}
-                placement='right'
-                onClose={onClose}
-                finalFocusRef={btnRef}
-            >
-                <DrawerOverlay />
-                <DrawerContent css={{ fontFamily: "'Poppins', sans-serif" }} className={`py-[25px] px-[20px] overflow-y-auto ${styles.customScroll}`}>
-                    <p className='mb-[17px] leading-10 font-bold text-[#212529] text-[20px]'>Shopping Cart</p>
-                    <DrawerCloseButton size={'lg'} className='text-black' />
-                    {new Array(5).fill(0).map((item, i) => <CartProduct key={i} />)}
-                    <div className='my-[15px] flex items-center justify-between text-[#212529] font-bold text-[13px]'>
-                        <span>SUBTOTAL:</span>
-                        <span className='text-[15px]'>$134.00</span>
-                    </div>
-                    <div className='mt-[10px] flex flex-col gap-[15px]'>
-                        <button className='bg-[#e7e7e7] hover:bg-[#f1f1f1] duration-500 text-[12px] font-semibold py-[14px] leading-[16px] tracking-wide rounded-sm px-[25px]'>VIEW CART</button>
-                        <button className='bg-[#222529] hover:bg-[#34393F] text-white duration-500 text-[12px] font-semibold py-[14px] leading-[16px] tracking-wide rounded-sm px-[25px]'>CHECKOUT</button>
-                    </div>
-                </DrawerContent>
-            </Drawer> */}
-            <Drawer
-                isOpen={isOpen1}
-                placement='left'
-                onClose={onClose1}
-                finalFocusRef={btnRef2}
-                size='xs'
-            >
-                <DrawerOverlay />
-                <DrawerContent css={{ fontFamily: "'Poppins', sans-serif", overflow: 'auto', backgroundColor: 'black', color: 'white' }}>
-                    <DrawerCloseButton size={'lg'} className='text-white font-bold' />
-                    <div className='mt-[47px] mb-[30px]'>
-                        <div style={{ width: '100%', marginBottom: '20px' }} className='overflow-auto'>
+            <div>
+                <>
+                    <Drawer
+                        anchor='left'
+                        open={isOpenMenuDrawer}
+                        sx={{
+                            '.MuiBox-root': {
+                                width: '300px'
+                            },
+                            '.css-4t3x6l-MuiPaper-root-MuiDrawer-paper': {
+                                backgroundColor: '#240838'
+                            }
+                        }}
+                    >
+                        <Box style={{ fontFamily: "'Poppins', sans-serif", overflow: 'auto', backgroundColor: '#240838', color: 'white', maxWidth: '500px' }}>
+                            <CloseOutlinedIcon sx={{ width: '100%', alignItems: 'end', mt: 2, fontSize: 35 }}
+                                onClick={handleDrawerClose1} />
+                            <div className='mt-[20px] mb-[30px]'>
 
-                            <Sidenav appearance='subtle' expanded={true}  >
-                                <Sidenav.Body>
-                                    <Nav>
-                                        <Nav.Item eventKey="1" className='border-b border-[#242527]'>
-                                            <span className=' relative left-[-35px]'>HOME</span>
-                                        </Nav.Item>
-                                        <Nav.Menu className='relative left-[-35px] border-b border-[#242527] ' placement="rightStart" eventKey="2" title="CATEGORIES" >
-                                            {categories.map((item, i) => <Nav.Item key={i} eventKey={`2-${i + 1}`} className='border-b border-[#242527]'>{item.name}</Nav.Item>)}
-                                        </Nav.Menu>
-                                        <Nav.Menu className='relative left-[-35px] border-b border-[#242527]' placement="rightStart" eventKey="3" title="BRANDS" >
-                                            {brands.map((item, i) => <Nav.Item key={item} eventKey={`3-${i + 1}`} className='border-b border-[#242527]'>{item}</Nav.Item>)}
-                                        </Nav.Menu>
-                                        <Nav.Item eventKey="4" className='border-b border-[#242527]'>
-                                            <span className=' relative left-[-35px]'>SPECIAL OFFERS!</span>
-                                        </Nav.Item>
-                                        <Nav.Item eventKey="5" className='border-b border-[#242527]'>
-                                            <span className=' relative left-[-35px]'>BLOGS</span>
-                                        </Nav.Item>
-                                        <Nav.Item eventKey="6" className='border-b border-[#242527]'>
-                                            <span className=' relative left-[-35px]'>MY ACCOUNT</span>
-                                        </Nav.Item>
-                                        <Nav.Item eventKey="7" className='border-b border-[#242527]'>
-                                            <span className=' relative left-[-35px]'>MY WISHLIST</span>
-                                        </Nav.Item>
-                                        <Nav.Item eventKey="8" className='border-b border-[#242527]'>
-                                            <span className=' relative left-[-35px]'>CART</span>
-                                        </Nav.Item>
-                                        <Nav.Item eventKey="9" className='border-b border-[#242527]'>
-                                            <span className=' relative left-[-35px]'>ABOUT US</span>
-                                        </Nav.Item>
-                                        <Nav.Item eventKey="10" className='border-b border-[#242527]'>
-                                            <span className=' relative left-[-35px]'>CONTACT US</span>
-                                        </Nav.Item>
-                                        <Nav.Item eventKey="11" className='border-b border-[#242527]'>
-                                            <span className=' relative left-[-35px]'>LOG IN</span>
-                                        </Nav.Item>
-                                    </Nav>
-                                </Sidenav.Body>
-                            </Sidenav>
-                        </div>
-                        <div className='px-[15px] mb-[20px] relative'>
-                            <input type="text" placeholder='Search...' className='w-full py-2 px-3 bg-[#282E36] text-[#777777]' />
-                            <FaSearch className='absolute right-[23px] z-20 cursor-pointer top-[9px] font-bold text-lg' />
-                        </div>
-                        <div className='flex justify-center gap-[10px]'>
-                            <div className='w-[32px] h-[32px] flex justify-center items-center hover:opacity-50 opacity-100 bg-[#3b5a9a] cursor-pointer duration-500'>
-                                <FaFacebookF />
+                                <div>
+                                    <List
+                                        component="nav"
+                                        aria-labelledby="nested-list-subheader"
+                                    >
+                                        <ListItemButton sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
+                                            <ListItemText primary="HOME" />
+                                        </ListItemButton>
+                                        <ListItemButton sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
+                                            <ListItemText primary="Drafts" />
+                                        </ListItemButton>
+                                        <ListItemButton onClick={handleCollapseMenu1} sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
+                                            <ListItemText primary="CATEGORIES" />
+                                            {openCollapseMenu1 ? <ExpandLess /> : <ExpandMore />}
+                                        </ListItemButton>
+                                        <Collapse in={openCollapseMenu1} timeout="auto" unmountOnExit>
+                                            <List component="div" disablePadding>
+                                                {
+                                                    categories?.map((item, i) =>
+                                                        <ListItemButton key={i} sx={{ pl: 4, '&:hover': { borderBottom: '1px solid red' } }}>
+                                                            <ListItemText primary={item.name} />
+                                                        </ListItemButton>
+                                                    )
+                                                }
+                                            </List>
+                                        </Collapse>
+                                        <ListItemButton onClick={handleCollapseMenu2} sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
+                                            <ListItemText primary="BRANDS" />
+                                            {openCollapseMenu2 ? <ExpandLess /> : <ExpandMore />}
+                                        </ListItemButton>
+                                        <Collapse in={openCollapseMenu2} timeout="auto" unmountOnExit>
+                                            <List component="div" disablePadding>
+                                                {
+                                                    brands?.map((item, i) =>
+                                                        <ListItemButton key={i} sx={{ pl: 4, '&:hover': { borderBottom: '1px solid red' } }}>
+                                                            <ListItemText primary={item} />
+                                                        </ListItemButton>
+                                                    )
+                                                }
+                                            </List>
+                                        </Collapse>
+                                        <ListItemButton sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
+                                            <ListItemText primary="SPECIAL OFFERS!" />
+                                        </ListItemButton>
+                                        <ListItemButton sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
+                                            <ListItemText primary="BLOGS" />
+                                        </ListItemButton>
+                                        <ListItemButton sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
+                                            <ListItemText primary="MY ACCOUNT" />
+                                        </ListItemButton>
+                                        <ListItemButton sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
+                                            <ListItemText primary="MY WISHLIST" />
+                                        </ListItemButton>
+                                        <ListItemButton sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
+                                            <ListItemText primary="CART" />
+                                        </ListItemButton>
+                                        <ListItemButton sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
+                                            <ListItemText primary="ABOUT US" />
+                                        </ListItemButton>
+                                        <ListItemButton sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
+                                            <ListItemText primary="CONTACT US" />
+                                        </ListItemButton>
+                                        <ListItemButton sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
+                                            <ListItemText primary="LOG IN" />
+                                        </ListItemButton>
+                                    </List>
+                                </div>
+                                <div className='px-[15px] mb-[20px] relative'>
+                                    <input type="text" placeholder='Search...' className='w-full py-2 px-3 bg-[#282E36] text-[#777777]' />
+                                    <FaSearch className='absolute right-[23px] z-20 cursor-pointer top-[9px] font-bold text-lg' />
+                                </div>
+                                <div className='flex justify-center gap-[10px]'>
+                                    <div className='w-[32px] h-[32px] flex justify-center items-center hover:opacity-50 opacity-100 bg-[#3b5a9a] cursor-pointer duration-500'>
+                                        <FaFacebookF />
+                                    </div>
+                                    <div className='w-[32px] h-[32px] flex justify-center items-center hover:opacity-50 opacity-100 bg-[#1aa9e1] cursor-pointer duration-500'>
+                                        <FaTwitter />
+                                    </div>
+                                    <div className='w-[32px] h-[32px] flex justify-center items-center hover:opacity-50 opacity-100 bg-[#7c4a3a] cursor-pointer duration-500'>
+                                        <FaInstagram />
+                                    </div>
+                                </div>
                             </div>
-                            <div className='w-[32px] h-[32px] flex justify-center items-center hover:opacity-50 opacity-100 bg-[#1aa9e1] cursor-pointer duration-500'>
-                                <FaTwitter />
-                            </div>
-                            <div className='w-[32px] h-[32px] flex justify-center items-center hover:opacity-50 opacity-100 bg-[#7c4a3a] cursor-pointer duration-500'>
-                                <FaInstagram />
-                            </div>
-                        </div>
-                    </div>
-
-                </DrawerContent>
-            </Drawer>
+                        </Box>
+                    </Drawer>
+                </>
+            </div>
         </>
     )
 }
 
-export default MiddleNav
+export default MiddleNav;
