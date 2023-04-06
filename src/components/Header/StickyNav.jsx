@@ -20,7 +20,7 @@ const StickyNav = () => {
 
     const [isFixed, setIsFixed] = useState(false);
     let navRef = useRef(null);
-    console.log(navRef)
+    // console.log(navRef)
     const [x, setX] = useState(0);
     useEffect(() => {
         if (navRef.current) {
