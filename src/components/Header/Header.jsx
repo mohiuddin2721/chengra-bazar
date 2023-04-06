@@ -2,6 +2,7 @@ import React from 'react'
 import Notice from './Notice'
 import TopNav from './TopNav'
 import MiddleNav from './MiddleNav'
+import StickyNav from './StickyNav'
 
 function Header() {
   return (
@@ -9,6 +10,7 @@ function Header() {
       <Notice />
       <TopNav />
       <MiddleNav />
+      <StickyNav />
     </div>
   )
 }
