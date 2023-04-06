@@ -1,10 +1,11 @@
 import { Popper, Grow, Paper, ClickAwayListener, MenuList, MenuItem } from '@mui/material';
 import React, { useEffect, useRef, useState } from 'react';
 import { Button } from 'rsuite';
-import { categories } from '../../Utils/ConstantData';
+import { brands } from '../../Utils/ConstantData';
 
 
-function CategoriesStickyNav() {
+function BrandStickyNav() {
+
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
 
@@ -44,7 +45,7 @@ function CategoriesStickyNav() {
                 onClick={handleToggle}
                 style={{fontSize: '12px'}}
             >
-                CATEGORIES
+                BRAND
             </Button>
             <Popper
                 open={open}
@@ -71,8 +72,8 @@ function CategoriesStickyNav() {
                                     onKeyDown={handleListKeyDown}
                                 >
                                     {
-                                        categories?.map((item, i)=>
-                                        <MenuItem key={i} onClick={handleClose}>{item?.name}</MenuItem>
+                                        brands?.map((item, i)=>
+                                        <MenuItem key={i} onClick={handleClose}>{item}</MenuItem>
                                         )
                                     }
                                 </MenuList>
@@ -85,4 +86,4 @@ function CategoriesStickyNav() {
     )
 }
 
-export default CategoriesStickyNav
+export default BrandStickyNav
