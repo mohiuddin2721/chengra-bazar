@@ -1,5 +1,7 @@
-import { Box, Tabs, Tab } from '@mui/material';
-import React, { useState } from 'react';
+import { Box, Tabs, Tab, Popper, Grow, Paper, ClickAwayListener, MenuList, MenuItem } from '@mui/material';
+import React, { useEffect, useRef, useState } from 'react';
+import { Button } from 'rsuite';
+import CategoriesStickyNav from './CategoriesStickyNav';
 
 const stickyNavBoxStyle = {
     width: '80%',
@@ -15,24 +17,17 @@ const stickyNavTabStyle = {
 
 const StickyNav = () => {
     const [value, setValue] = useState(0);
-    const [openCollapseMenu1, setCollapseMenu1] = useState(false);
-    const [openCollapseMenu2, setCollapseMenu2] = useState(false);
-
-    const handleCollapseMenu1 = () => {
-        setCollapseMenu1(!openCollapseMenu1);
-    };
-    const handleCollapseMenu2 = () => {
-        setCollapseMenu2(!openCollapseMenu2);
-    };
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-// onmouseover
+
     return (
         <Box sx={stickyNavBoxStyle}>
             <Box>
-
+                <Box>
+                    <CategoriesStickyNav />
+                </Box>
 
                 <Tabs value={value} onChange={handleChange} aria-label="nav tabs example">
                     <Tab sx={stickyNavTabStyle} label="Categories" href="#" />
