@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Grid, Typography } from '@mui/material';
-import { topSliderNewArrivalData } from '../../Utils/TopSliderNewArrivalData';
+import { topSliderNewArrivalData } from '../../Utils/AllSliderData';
 import Banner from '../../components/Banner/Banner';
 import { boxInMap, component_container } from '../../Styles/ComponentStyle';
 
@@ -29,10 +29,10 @@ function TopSlider() {
                                         <Typography sx={{ position: 'absolute', top: 20, left: 20, color: 'red' }}>
                                             {data?.title}
                                         </Typography>
-                                        <Typography sx={{ position: 'absolute', top: 90, left: 20, fontSize: '25px', fontWeight: 700 }}>
+                                        <Typography sx={{ position: 'absolute', top: 40, left: 20, fontSize: '25px', fontWeight: 700 }}>
                                             {data?.name}
                                         </Typography>
-                                        <Typography sx={{ position: 'absolute', top: 170, left: 20, fontWeight: 400 }}>
+                                        <Typography sx={{ position: 'absolute', top: 70, left: 20, fontWeight: 400 }}>
                                             {data?.price}
                                         </Typography>
                                     </Box>
