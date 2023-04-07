@@ -30,11 +30,11 @@ function Banner() {
                 }}
                 navigation={true}
                 modules={[Autoplay, Pagination, Navigation]}
-                className="mySwiper h-[70vh]"
+                className="mySwiper"
             >
                 {
                     bannerPic?.map(d => <SwiperSlide key={d.key}>
-                        <img src={d?.pic} className='w-full h-[70vh]' alt="" />
+                        <img src={d?.pic} className='w-full' alt="" />
                     </SwiperSlide>)
                 }
             </Swiper>
