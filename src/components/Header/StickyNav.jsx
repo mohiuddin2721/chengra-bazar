@@ -5,7 +5,7 @@ import BrandStickyNav from './BrandStickyNav';
 import styles from '../../Styles/StickyNav.module.css';
 
 const stickyNavBoxStyle = {
-    width: '80%',
+    width: '100%',
     mx: 'auto',
     '.css-1aquho2-MuiTabs-indicator': {
         backgroundColor: '#240838',
@@ -49,7 +49,7 @@ const StickyNav = () => {
 
     return (
         <Box sx={stickyNavBoxStyle} className={`${isFixed ? `${styles.myFixed}` : `${styles.mySticky}`} hidden lg:block duration-500 left-0 right-0 py-[10px]  z-30 bg-white border-b border-b-[#f4f4f4]`} ref={navRef}>
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around' }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-evenly' }}>
                 <Box sx={{ display: 'flex', gap: 2, pb: 1 }}>
                     <CategoriesStickyNav />
                     <BrandStickyNav />
