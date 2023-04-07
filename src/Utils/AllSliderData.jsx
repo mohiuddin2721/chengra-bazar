@@ -67,8 +67,3 @@ export const featureFirstSliderData = [
     },
 ]
 
-export const featureSecondSliderData = [
-    {
-
-    },
-]

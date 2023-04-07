@@ -5,6 +5,7 @@ import f1 from '../../assets/feature-1.jpg';
 import f2 from '../../assets/feature-2.jpg';
 import f3 from '../../assets/feature-3.jpg';
 import { featureFirstSliderData } from '../../Utils/AllSliderData';
+
 const firstSliderBreakpoints = {
     1: {
         slidesPerView: 2,
@@ -14,14 +15,29 @@ const firstSliderBreakpoints = {
         slidesPerView: 3,
     },
     1024: {
-        slidesPerView: 3,
+        slidesPerView: 4,
 
     },
+};
+const secondSliderBreakpoints = {
+    1: {
+        slidesPerView: 1,
+
+    },
+    600: {
+        slidesPerView: 2,
+        spaceBetween: 20
+    },
+    1024: {
+        slidesPerView: 3,
+        spaceBetween: 20
+    },
+
 };
 
 
 function FeatureSlider() {
-    
+
 
     return (
         <div className='my-[40px] bg-[#d4b2cdca]'>
@@ -54,25 +70,16 @@ function FeatureSlider() {
                     }
 
                 </Swiper>
-                <Swiper modules={[Autoplay]} breakpoints={{
-                    1: {
-                        slidesPerView: 1,
-
-                    },
-                    600: {
-                        slidesPerView: 2,
-                        spaceBetween: 20
-                    },
-                    1024: {
-                        slidesPerView: 3,
-                        spaceBetween: 20
-                    },
-
-                }} autoplay={{
-                    delay: 3000,
-                    disableOnInteraction: true,
-                }}
-                    loop={true} className='h-[175px]'>
+                <Swiper
+                    modules={[Autoplay]}
+                    breakpoints={secondSliderBreakpoints}
+                    autoplay={{
+                        delay: 3000,
+                        disableOnInteraction: true,
+                    }}
+                    loop={true}
+                    className='h-[175px]'
+                >
                     <SwiperSlide className=' relative'>
                         <div className='absolute flex flex-col justify-center left-[6.5%] right-[6.5%] items-start inset-0 z-20 cursor-pointer'>
                             <p className='text-[#222529] text-[24px] font-bold '>
@@ -86,6 +93,30 @@ function FeatureSlider() {
                             <button className=' hover:bg-[#34393f] border border-[#222529] text-[11px] py-[6px] px-[11px] bg-[#222529] text-white font-bold'>SHOP NOW</button>
                         </div>
                         <img src={f1} alt="" className='h-full w-full object-cover' />
+                    </SwiperSlide>
+                    <SwiperSlide className='border-[16px] relative border-[#240838]'>
+                        <div className='absolute flex flex-col justify-center left-[6.5%] right-[6.5%] items-center inset-0 z-20 cursor-pointer'>
+                            <p className='text-[#222529] text-[24px] font-bold '>
+                                DEAL PROMOS
+                            </p>
+                            <p className='text-[#777] font-semibold text-[15px] relative -top-[8px]'>
+                                Starting at $99
+                            </p>
+                            <button className=' hover:bg-[#34393f] border border-[#222529] text-[11px] py-[6px] px-[11px] bg-[#222529] text-white font-bold'>SHOP NOW</button>
+                        </div>
+                        <img src={f2} alt="" className='h-full w-full object-cover' />
+                    </SwiperSlide>
+                    <SwiperSlide className=' relative'>
+                        <div className='absolute flex flex-col justify-center left-[6.5%] right-[6.5%] items-end inset-0 z-20 cursor-pointer'>
+                            <p className='text-[#222529] text-[24px] font-bold '>
+                                SH Handbags
+                            </p>
+                            <p className='text-[#FF7272] font-semibold text-[15px] relative -top-[8px]'>
+                                Starting at $99
+                            </p>
+                            <button className=' hover:bg-[#34393f] border border-[#222529] text-[11px] py-[6px] px-[11px] bg-[#222529] text-white font-bold'>SHOP NOW</button>
+                        </div>
+                        <img src={f3} alt="" className='h-full w-full object-cover' />
                     </SwiperSlide>
                     <SwiperSlide className='border-[16px] relative border-[#240838]'>
                         <div className='absolute flex flex-col justify-center left-[6.5%] right-[6.5%] items-center inset-0 z-20 cursor-pointer'>
