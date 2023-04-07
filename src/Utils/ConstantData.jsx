@@ -138,27 +138,27 @@ export const categories = [
     {
         img: 'https://i.ibb.co/ZH6SJpF/category-1.jpg',
         name: 'Dress',
-        quantity: 5
+        quantity: 40,
     },
     {
         img: 'https://i.ibb.co/8X54kLK/category-2.jpg',
         name: 'Shoes',
-        quantity: 8
+        quantity: 80
     },
     {
         img: 'https://i.ibb.co/F5fzD0p/category-3.jpg',
         name: 'Glasses',
-        quantity: 10
+        quantity: 55
     },
     {
         img: 'https://i.ibb.co/c3qdjg7/category-4.jpg',
         name: 'Backpack',
-        quantity: 12
+        quantity: 47
     },
     {
         img: 'https://i.ibb.co/CPW2347/category-5.jpg',
         name: 'Ladies Bag',
-        quantity: 25
+        quantity: 26
     },
     {
         img: 'https://i.ibb.co/Bgz25qh/category-6.jpg',
@@ -168,12 +168,12 @@ export const categories = [
     {
         img: 'https://i.ibb.co/G77m2zT/category-7.jpg',
         name: 'Watches',
-        quantity: 4
+        quantity: 24
     },
     {
         img: 'https://i.ibb.co/wsQ9sqP/category-8.jpg',
         name: 'Machine',
-        quantity: 1
+        quantity: 7
     },
     {
         img: 'https://i.ibb.co/qrbQk2L/category-9.jpg',

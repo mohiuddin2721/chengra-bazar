@@ -57,7 +57,7 @@ function FeatureSlider() {
                             <SwiperSlide >
                                 <div className='border-r-0 sm:border-r border-[#E7E7E7] h-full py-4 flex justify-center items-center cursor-pointer'>
                                     <div className='flex items-center gap-[15px]'>
-                                        <span className='text-4xl mx-[3px]'>{data?.icon}</span>
+                                        <span className='text-4xl mx-[3px] text-green-500'>{data?.icon}</span>
 
                                         <div className='mx-[1px]'>
                                             <p className='text-[#222529] text-[14px] leading-[0.7] font-bold'>{data?.title}</p>

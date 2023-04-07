@@ -1,7 +1,8 @@
 import { FaShippingFast } from 'react-icons/fa';
 import { FcLowPriority } from 'react-icons/fc';
 import { GrSecure } from 'react-icons/gr';
-import { Ri24HoursFill, RiMoneyDollarCircleLine } from 'react-icons/ri';
+import { RiMoneyDollarCircleLine } from 'react-icons/ri';
+import { BiSupport } from 'react-icons/bi';
 
 
 
@@ -61,7 +62,7 @@ export const featureFirstSliderData = [
         des: '100% money back gurantee.'
     },
     {
-        icon: <Ri24HoursFill />,
+        icon: <BiSupport />,
         title: 'ONLINE SUPPORT.',
         des: 'You will get best service from us'
     },
