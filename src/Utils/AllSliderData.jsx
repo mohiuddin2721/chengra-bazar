@@ -1,4 +1,6 @@
 import { FaShippingFast } from 'react-icons/fa';
+import { FcLowPriority } from 'react-icons/fc';
+import { GrSecure } from 'react-icons/gr';
 import { Ri24HoursFill, RiMoneyDollarCircleLine } from 'react-icons/ri';
 
 
@@ -37,30 +39,36 @@ export const topSliderNewArrivalData = [
 export const featureFirstSliderData = [
     {
         icon: <FaShippingFast />,
-        title: 'FREE SHIPPING & RETURN',
+        title: 'FREE SHIPPING',
         des: 'Free shipping on all orders over $99.',
         link: 'null',
     },
     {
-        icon: <FaShippingFast />,
+        icon: <FcLowPriority />,
         title: 'Affordable Prices',
         des: 'Get Factory Default Price',
         link: 'null',
     },
     {
-        icon: <FaShippingFast />,
+        icon: <GrSecure />,
         title: 'Secure Payments',
         des: '100% Protected Payment',
         link: 'null',
     },
     {
         icon: <RiMoneyDollarCircleLine />,
-        title: 'MONEY BACK GUARANTEE',
+        title: 'MONEY BACK',
         des: '100% money back gurantee.'
     },
     {
         icon: <Ri24HoursFill />,
-        title: 'ONLINE SUPPORT 24/7.',
-        des: 'You will get best service from us.'
+        title: 'ONLINE SUPPORT.',
+        des: 'You will get best service from us'
+    },
+]
+
+export const featureSecondSliderData = [
+    {
+
     },
 ]

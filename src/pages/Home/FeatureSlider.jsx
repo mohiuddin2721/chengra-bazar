@@ -5,34 +5,35 @@ import f1 from '../../assets/feature-1.jpg';
 import f2 from '../../assets/feature-2.jpg';
 import f3 from '../../assets/feature-3.jpg';
 import { featureFirstSliderData } from '../../Utils/AllSliderData';
+const firstSliderBreakpoints = {
+    1: {
+        slidesPerView: 2,
+
+    },
+    600: {
+        slidesPerView: 3,
+    },
+    1024: {
+        slidesPerView: 3,
+
+    },
+};
+
 
 function FeatureSlider() {
-
-    const breakpoints = {
-        1: {
-            slidesPerView: 2,
-
-        },
-        600: {
-            slidesPerView: 3,
-        },
-        1024: {
-            slidesPerView: 3,
-
-        },
-    };
+    
 
     return (
-        <div className='mb-[40px]'>
-            <div className='max-w-[1200px] mx-auto px-[10px] bg-white'>
+        <div className='my-[40px] bg-[#d4b2cdca]'>
+            <div className='max-w-[1200px] mx-auto px-[10px] py-8'>
                 <Swiper
-                    modules={[Autoplay, Navigation]}
+                    modules={[Autoplay]}
                     autoplay={{
                         delay: 3000,
                         disableOnInteraction: true,
                     }}
                     loop={true}
-                    breakpoints={breakpoints}
+                    breakpoints={firstSliderBreakpoints}
                     className='h-[70px] mb-[20px]'
                 >
                     {
@@ -40,12 +41,11 @@ function FeatureSlider() {
                             <SwiperSlide >
                                 <div className='border-r-0 sm:border-r border-[#E7E7E7] h-full py-4 flex justify-center items-center cursor-pointer'>
                                     <div className='flex items-center gap-[15px]'>
-                                        {/* <FaShippingFast className='text-4xl mx-[3px]' /> */}
                                         <span className='text-4xl mx-[3px]'>{data?.icon}</span>
 
                                         <div className='mx-[1px]'>
                                             <p className='text-[#222529] text-[14px] leading-[0.7] font-bold'>{data?.title}</p>
-                                            <p className='text-[13px] text-[#777777]'>{data?.des}</p>
+                                            <p className='text-[13px] text-[#222529]'>{data?.des}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -87,7 +87,7 @@ function FeatureSlider() {
                         </div>
                         <img src={f1} alt="" className='h-full w-full object-cover' />
                     </SwiperSlide>
-                    <SwiperSlide className='border-[16px] relative border-[#08c]'>
+                    <SwiperSlide className='border-[16px] relative border-[#240838]'>
                         <div className='absolute flex flex-col justify-center left-[6.5%] right-[6.5%] items-center inset-0 z-20 cursor-pointer'>
                             <p className='text-[#222529] text-[24px] font-bold '>
                                 DEAL PROMOS
