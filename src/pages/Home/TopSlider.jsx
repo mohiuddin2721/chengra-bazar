@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Grid, Typography } from '@mui/material';
 import { topSliderNewArrivalData } from '../../Utils/AllSliderData';
 import Banner from '../../components/Banner/Banner';
-import { boxInMap, component_container } from '../../Styles/ComponentStyle';
+import { component_container, topSliderBoxInMapSx } from '../../Styles/ComponentStyle';
 
 function TopSlider() {
     return (
@@ -23,7 +23,7 @@ function TopSlider() {
                         {
                             topSliderNewArrivalData?.map((data, i) =>
                                 <Grid item xs={6}>
-                                    <Box sx={boxInMap}
+                                    <Box sx={topSliderBoxInMapSx}
                                     >
                                         <img src={data?.imageLink} className='rounded-md' alt="" />
                                         <Typography sx={{ position: 'absolute', top: 20, left: 20, color: 'red' }}>

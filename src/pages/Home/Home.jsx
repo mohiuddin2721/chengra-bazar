@@ -2,6 +2,7 @@ import React from 'react'
 import TopSlider from './TopSlider'
 import FeatureSlider from './FeatureSlider'
 import ShortCart from './ShortCart'
+import Categories from './Categories'
 
 function Home() {
   return (
@@ -9,6 +10,7 @@ function Home() {
       <TopSlider />
       <FeatureSlider />
       <ShortCart />
+      <Categories />
     </div>
   )
 }
