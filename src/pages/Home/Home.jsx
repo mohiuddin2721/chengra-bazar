@@ -3,6 +3,7 @@ import TopSlider from './TopSlider'
 import FeatureSlider from './FeatureSlider'
 import ShortCart from './ShortCart'
 import Categories from './Categories'
+import AllProducts from './AllProducts'
 
 function Home() {
   return (
@@ -11,6 +12,7 @@ function Home() {
       <FeatureSlider />
       <ShortCart />
       <Categories />
+      <AllProducts />
     </div>
   )
 }

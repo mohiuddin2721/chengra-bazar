@@ -136,56 +136,355 @@ export const newArrival = [
 ];
 export const categories = [
     {
-        img: 'https://i.ibb.co/ZH6SJpF/category-1.jpg',
-        name: 'Dress',
+        img: 'https://gcp-img.slatic.net/lazada/e15fbfa1-f7a2-42c2-814c-74d8057c413b_BD-80-80.jpg',
+        name: 'Panjabi',
         quantity: 40,
+        product: [
+            {
+                name: "Luxury Panjabi For Men",
+                price: 1990,
+                des: "Brand: Swapon’s World, Luxury Quality, Herringbone Fabric, Exclusive Design, Best Quality Computer Embroidery, GSM - 150-200",
+                stock: 10,
+                ratting: 5,
+                brand: "Swapon's World",
+                color: 'Black Red Yellow',
+                img: [
+                    'https://static-01.daraz.com.bd/p/a1f305926d21b74a0db9f7c3ce694a82.jpg_720x720.jpg_.webp',
+                    'https://static-01.daraz.com.bd/p/5465840ab09e44245e054ebe4117e43d.jpg_720x720.jpg_.webp',
+                    'https://static-01.daraz.com.bd/p/6bc0fe9a81ace71dd566215e0eee7e45.jpg_720x720.jpg_.webp',
+                ]
+            },
+            {
+                name: "Prince Panjabi",
+                price: 1790,
+                des: "Brand: Prince World, Luxury Quality, Herringbone Fabric, Exclusive Design, Best Quality Computer Embroidery, GSM - 150-200",
+                stock: 8,
+                ratting: 5,
+                brand: "Prince world",
+                color: 'Black Red Yellow',
+                img: [
+                    'https://static-01.daraz.com.bd/p/cca5b806853c96999fb85da199ea9d05.jpg_720x720.jpg_.webp',
+                    'https://static-01.daraz.com.bd/p/8ada0f8655348cce1382113ee8b7c7b3.jpg_720x720.jpg_.webp',
+                    'https://static-01.daraz.com.bd/p/2b5359d9622dadb022880b77f71ba5e7.jpg_720x720.jpg_.webp',
+                ]
+            },
+            {
+                name: "Digital Printed Panjabi",
+                price: 1590,
+                des: "Brand: World Premium, Luxury Quality, Herringbone Fabric, Exclusive Design, Best Quality Computer Embroidery, GSM - 150-200",
+                stock: 12,
+                ratting: 5,
+                brand: "World Premium",
+                color: 'Black Red Yellow',
+                img: [
+                    'https://static-01.daraz.com.bd/p/81f2c4355cfe2ebc208c7bd7e095dde3.jpg_720x720.jpg_.webp',
+                    'https://static-01.daraz.com.bd/p/006a6af5bede64b307f8aa4f328fe440.jpg_720x720.jpg_.webp',
+                    'https://static-01.daraz.com.bd/p/fc15bd484d7893c8912bd6fef1f4a4f0.jpg_720x720.jpg_.webp',
+                ]
+            },
+        ]
     },
     {
-        img: 'https://i.ibb.co/8X54kLK/category-2.jpg',
-        name: 'Shoes',
-        quantity: 80
+        img: 'https://gcp-img.slatic.net/lazada/d34001c7-a4c0-431e-a175-c1adda684587_BD-80-80.jpg',
+        name: 'Shirt',
+        quantity: 80,
+        product: [
+            {
+                name: "Cotton Casual Shirt",
+                price: 1240,
+                des: "Product details of SS World Black Cotton Casual Band Shirt for Men, Product Type: Shirt, Color: As Like Picture , Main Material: Cotton, Stylish and fashionable",
+                stock: 8,
+                ratting: 5,
+                brand: "Ss World",
+                color: 'Black Red Yellow',
+                img: [
+                    'https://static-01.daraz.com.bd/p/c5b51151849c012099348b44ad2e9565.jpg_720x720.jpg_.webp',
+                    'https://static-01.daraz.com.bd/p/1f733ad1189dd92f980bafa3f7cb296a.jpg_720x720.jpg_.webp',
+                    'https://static-01.daraz.com.bd/p/4a8af282723c4610efccd30d4a82308e.jpg_720x720.jpg_.webp',
+                ]
+            },
+            {
+                name: "Trendy Men's Shirt",
+                price: 1790,
+                des: "Type: Katuaw Main Material: Cottonw Gender: Menw Style: Formal¡ Size - M ,L, XLF Medium : Chest - 38 and Length - 28F Large : Chest - 40 and Length - 29F Extra Large : Chest - 42 and Length - 30",
+                stock: 20,
+                ratting: 5,
+                brand: "No Brand",
+                color: 'Black Red Yellow',
+                img: [
+                    'https://static-01.daraz.com.bd/p/3ca92383ae9d5aaa1da75aa6aadec026.jpg_720x720.jpg_.webp',
+                    'https://static-01.daraz.com.bd/p/5534a739f8360bf1ec317d5856c31b66.jpg_720x720.jpg_.webp',
+                    'https://static-01.daraz.com.bd/p/6a5e54f5dc4e3caaa9095069c841edfc.png_720x720.jpg_.webp',
+                ]
+            },
+            {
+                name: "Men's Casual Shirt",
+                price: 750,
+                des: "Product Type: Full Sleeve Shirt, Style: Casual, Main Material: Cotton, Gender: Men, Well Swing and Quality Product",
+                stock: 14,
+                ratting: 5,
+                brand: "Men's Casual",
+                color: 'Black Red Yellow',
+                img: [
+                    'https://static-01.daraz.com.bd/p/b9ecb2150520e58de852d47f48dd80e3.jpg_720x720.jpg_.webp',
+                    'https://static-01.daraz.com.bd/p/7fc72b8eb70b48aab6e4dc5611243256.jpg_720x720.jpg_.webp',
+                    'https://static-01.daraz.com.bd/p/315f582e0d8a2be508b3f5360d128023.jpg_720x720.jpg_.webp',
+                ]
+            },
+        ]
     },
     {
-        img: 'https://i.ibb.co/F5fzD0p/category-3.jpg',
-        name: 'Glasses',
-        quantity: 55
+        img: 'https://gcp-img.slatic.net/lazada/6de08b4e-aa9d-40be-b199-99dafbe3a2f4_BD-80-80.jpg',
+        name: 'Pant',
+        quantity: 55,
+        product: [
+            {
+                name: "Premium Narrow Pant",
+                price: 1240,
+                des: "Color: Dark Blue (Dark to black shade), Stretch Factor: 12%, Fabric Weight: Heavier Medium; 11.5 oz, Fabric Composition: 97% Cotton, 2% Polyester, 1% Elastane, Can be machine washed in cold water inside out. Can be tumble dried or hang dried. Washing often not required.",
+                stock: 8,
+                ratting: 5,
+                brand: "Fit Basic Denim",
+                color: 'Blue Black',
+                img: [
+                    "https://static-01.daraz.com.bd/p/c222c47c60517ceb2caa7c06001adb3a.jpg_720x720.jpg_.webp",
+                    "https://static-01.daraz.com.bd/p/dfaedda41c0f98bbfb3cc3feaa53ff2d.jpg_720x720.jpg_.webp",
+                    "https://static-01.daraz.com.bd/p/dc770877d0acae0fc8432981b30ffa5d.jpg_720x720.jpg_.webp",
+                ]
+            },
+            {
+                name: "Denim Jeans Pant",
+                price: 1200,
+                des: "Color: Dark Blue (Dark to black shade), Stretch Factor: 12%, Fabric Weight: Heavier Medium; 11.5 oz, Fabric Composition: 97% Cotton, 2% Polyester, 1% Elastane, Can be machine washed in cold water inside out. Can be tumble dried or hang dried. Washing often not required.",
+                stock: 7,
+                ratting: 5,
+                brand: "Smart Stylish",
+                color: 'Blue Black',
+                img: [
+                    "https://bd-live-21.slatic.net/kf/S37bd87ea87d644bab911787e67e0207bN.jpg",
+                    "https://static-01.daraz.com.bd/p/11b6a9e3fdc9a3ece534f41b0277c1d6.jpg_720x720.jpg_.webp",
+                    "https://static-01.daraz.com.bd/p/2b0ef2867cce4b8c8b808f0e950c22b3.jpg_720x720.jpg_.webp",
+                ]
+            },
+            {
+                name: "DENIM JEANS PANTS",
+                price: 1520,
+                des: "Material : Denim, Quality : Export, Gender : Men, Colour : As given picture, Fabrics: 96% Cotton, 4% Spandex, Size: 30, 32, 34, 36,38,40 Inch, Long 42 Inch",
+                stock: 12,
+                ratting: 5,
+                brand: "PREMIUM QUALITY",
+                color: 'Black Blue',
+                img: [
+                    "https://static-01.daraz.com.bd/p/b1553c84765a4fc08d3078d960dcb708.jpg_720x720.jpg_.webp",
+                    "https://static-01.daraz.com.bd/p/32fb805882e82ed1aa7eb5725c15b736.jpg_720x720.jpg_.webp",
+                    "https://static-01.daraz.com.bd/p/226976b8dc85c47a8c0fa75c9811ee79.jpg_720x720.jpg_.webp",
+                ]
+            },
+        ]
     },
     {
-        img: 'https://i.ibb.co/c3qdjg7/category-4.jpg',
-        name: 'Backpack',
-        quantity: 47
+        img: 'https://gcp-img.slatic.net/lazada/14e7112f-f4cc-4d0e-b964-d2268622269f_BD-80-80.jpg',
+        name: 'Sarees',
+        quantity: 47,
+        product: [
+            {
+                name: "Soft Silk Katan Saree",
+                price: 850,
+                des: "Brand:No brand, Product name:-Women\'s Saree, Published By: -Kataan Collection, Material:-Silk, Length Size:-12 hand, Wigth Size:-2.5 hand, Colour:-As same As picture, Fashionable and comfortable",
+                stock: 13,
+                ratting: 5,
+                brand: "No brand",
+                color: 'Multi',
+                img: [
+                    "https://static-01.daraz.com.bd/p/04e43915e2550f1ae2cbae7e931a01d7.jpg_720x720.jpg_.webp",
+                    "https://static-01.daraz.com.bd/p/02f36cabb138a28945e5e8f70205da8a.jpg_720x720.jpg_.webp",
+                    "https://static-01.daraz.com.bd/p/ba77ac7b2e3b6b30562f15f4869028e1.jpg_720x720.jpg_.webp",
+                ]
+            },
+            {
+                name: "Print Cotton Saree For Women",
+                price: 799,
+                des: "Brand:No brand, Product name:-Women\'s Saree, Published By: -Kataan Collection, Material:-Silk, Length Size:-12 hand, Wigth Size:-2.5 hand, Colour:-As same As picture, Fashionable and comfortable",
+                stock: 10,
+                ratting: 5,
+                brand: "No brand",
+                color: 'Multi',
+                img: [
+                    "https://static-01.daraz.com.bd/p/2eb5024bf96c9dd2e787cfeb3610c509.jpg_720x720.jpg_.webp",
+                    "https://static-01.daraz.com.bd/p/9b67c107947596b8be44fa1dbbef28db.jpg_720x720.jpg_.webp",
+                    "https://static-01.daraz.com.bd/p/cb5d1f6a066c4535768be82d9d204f96.jpg_720x720.jpg_.webp",
+                ]
+            },
+            {
+                name: "Indian Vichitra Silk Saree",
+                price: 2599,
+                des: "Brand:No brand, Product name:-Women\'s Saree, Published By: -Kataan Collection, Material:-Silk, Length Size:-12 hand, Wigth Size:-2.5 hand, Colour:-As same As picture, Fashionable and comfortable",
+                stock: 9,
+                ratting: 5,
+                brand: "No brand",
+                color: 'Green Golden',
+                img: [
+                    "https://static-01.daraz.com.bd/p/3d472082f65df79c2cc7622dfcbc17f2.jpg_720x720.jpg_.webp",
+                    "https://static-01.daraz.com.bd/p/43c78d989357e593d2b121ff3d655311.jpg_720x720.jpg_.webp",
+                    "https://static-01.daraz.com.bd/p/c81f63d4d44ff2a314d385f8db3def28.jpg_720x720.jpg_.webp",
+                ]
+            },
+        ]
     },
     {
-        img: 'https://i.ibb.co/CPW2347/category-5.jpg',
-        name: 'Ladies Bag',
-        quantity: 26
+        img: 'https://gcp-img.slatic.net/lazada/5d14cf00-beb3-4954-8adb-832cbacc4fd1_BD-80-80.jpg',
+        name: 'Kameez',
+        quantity: 26,
+        product: [
+            {
+                name: "Pakistani Malhar Lawn three piece",
+                price: 2090,
+                des: "Pakistani Malhar lawn in bangladeshHigh quality and luxury Color no change and Bright lookingcolor same as the pictureOver size for all bodyCotton Fabric",
+                stock: 8,
+                ratting: 5,
+                brand: "No brand",
+                color: 'Red Green Blue',
+                img: [
+                    "https://static-01.daraz.com.bd/p/b2041736e324977f24c6bae8b5bf5bf2.jpg_720x720.jpg_.webp",
+                    "https://static-01.daraz.com.bd/p/7eefbc49b30f6daf78e47f9f52396ed9.jpg_720x720.jpg_.webp",
+                    "https://static-01.daraz.com.bd/p/6a0c38b0a1b8fb6589cb9ff447104163.jpg_720x720.jpg_.webp",
+                ]
+            },
+            {
+                name: "Indian Kameez",
+                price: 1670,
+                des: "Product Type: Three Piece, Color: Same As Picture, Main Material: tissue, Clothing - Cotton, orna - goergette",
+                stock: 8,
+                ratting: 5,
+                brand: "No brand",
+                color: 'Green Blue Green Red Golden',
+                img: [
+                    "https://static-01.daraz.com.bd/p/8ad40d42d9c460fd1d3be8feb067cce6.jpg_720x720.jpg_.webp",
+                    "https://static-01.daraz.com.bd/p/a88f3f49557bbc92b90a943bd6c8da28.jpg_720x720.jpg_.webp",
+                    "https://static-01.daraz.com.bd/p/4de86daa68a27992a32f866c2b18ad87.jpg_720x720.jpg_.webp",
+                    "https://static-01.daraz.com.bd/p/10af65e9d573006365ec9897a5f767a2.jpg_720x720.jpg_.webp",
+                    "https://static-01.daraz.com.bd/p/684931cf4955e036fda2779d3d0ae044.jpg_720x720.jpg_.webp",
+                ]
+            },
+            {
+                name: "Indian Three Kameez",
+                price: 799,
+                des: "Product Type: Three Piece, Color: Same As Picture, Main Material: tissue, Clothing - Cotton, orna - goergette",
+                stock: 10,
+                ratting: 5,
+                brand: "No brand",
+                color: 'Black blue green',
+                img: [
+                    "https://static-01.daraz.com.bd/p/a909dde94acb408a4e817877b2f47fb0.jpg_720x720.jpg_.webp",
+                    "https://static-01.daraz.com.bd/p/80c67236104c6d7bd078f59ab975312e.jpg_720x720.jpg_.webp",
+                    "https://static-01.daraz.com.bd/p/2930984ecbd374a4d62f7459c827ce67.jpg_720x720.jpg_.webp",
+                ]
+            },
+        ]
     },
     {
-        img: 'https://i.ibb.co/Bgz25qh/category-6.jpg',
-        name: 'Speaker',
-        quantity: 17
+        img: 'https://gcp-img.slatic.net/lazada/7e000804-8392-4d62-ac89-ebb953d1bb1f_BD-80-80.jpg',
+        name: 'Abaya',
+        quantity: 17,
+        product: [
+            {
+                name: "Dubai Cherry Stylish Abaya Borka",
+                price: 2450,
+                des: "Brand : Style Fix, Main Material : Dubai Cherry Georgette, Borka With Orna Hizab { Same As Pic }, Long Size : 52, 54, 56, Body Size: Free Size, Body Size : Free {Adjustable}, Fashion abaya Borka.",
+                stock: 20,
+                ratting: 5,
+                brand: "Style Fix Dubai Cherry",
+                color: 'Green black blue',
+                img: [
+                    "https://static-01.daraz.com.bd/p/00b884eca7b1da8e8ee29e72c4e1bf0e.jpg_720x720.jpg_.webp",
+                    "https://static-01.daraz.com.bd/p/4fb6f7d29a549f1a68f9bd366beb4398.jpg_720x720.jpg_.webp",
+                    "https://static-01.daraz.com.bd/p/bb9d514fa1c8c4a6fb63a3648046e217.jpg_720x720.jpg_.webp",
+                ]
+            },
+            {
+                name: "Fashionable khimar Lycra borka",
+                price: 1840,
+                des: "Brand : Style Fix, Name : 3 colour Gown Borka With Hijab Orna, Materia; Dubai Cherry Fabric, Borka and Orna Attached, Long Size : 52,54,56, Body Size : 44 +, Color As Picture Shown",
+                stock: 7,
+                ratting: 5,
+                brand: "Stylish Rong Burkha",
+                color: 'Multi',
+                img: [
+                    "https://static-01.daraz.com.bd/p/48f3d1b0e08c2eb0511ed810895d9ea7.jpg_720x720.jpg_.webp",
+                    "https://static-01.daraz.com.bd/p/fcd1a7f62e8d375dda09823f9561a32a.jpg_720x720.jpg_.webp",
+                    "https://static-01.daraz.com.bd/p/4c83048ce2f5f8c7f810041c0bd8d0f4.jpg_720x720.jpg_.webp",
+                ]
+            },
+            {
+                name: "Ready Hijab, Nikab, borka borkha koti set abaya",
+                price: 3190,
+                des: "Brand : Style Fix, Main Material : Dubai Cherry Georgette, Borka With Orna Hizab { Same As Pic }, Long Size : 52, 54, 56, Body Size: Free Size, Body Size : Free {Adjustable}, Fashion abaya Borka.",
+                stock: 15,
+                ratting: 5,
+                brand: "Dubai Charry",
+                color: 'Multi',
+                img: [
+                    "https://static-01.daraz.com.bd/p/dc9578aa5549c491d2f7d9124ef33ae3.jpg_720x720.jpg_.webp",
+                    "https://static-01.daraz.com.bd/p/599f248339feb4f0fffc0306f396bfc5.jpg_720x720.jpg_.webp",
+                    "https://static-01.daraz.com.bd/p/84ea947654bb31f82e747578e51e2c26.jpg_720x720.jpg_.webp",
+                ]
+            },
+        ]
     },
-    {
-        img: 'https://i.ibb.co/G77m2zT/category-7.jpg',
-        name: 'Watches',
-        quantity: 24
-    },
-    {
-        img: 'https://i.ibb.co/wsQ9sqP/category-8.jpg',
-        name: 'Machine',
-        quantity: 7
-    },
-    {
-        img: 'https://i.ibb.co/qrbQk2L/category-9.jpg',
-        name: 'Sofa',
-        quantity: 12
-    },
-    {
-        img: 'https://i.ibb.co/FqMNrtJ/category-10.jpg',
-        name: 'Headphone',
-        quantity: 23
-    }
 ];
+// export const categoriesPrevious = [
+//     {
+//         img: 'https://i.ibb.co/ZH6SJpF/category-1.jpg',
+//         name: 'Dress',
+//         quantity: 40,
+//     },
+//     {
+//         img: 'https://i.ibb.co/8X54kLK/category-2.jpg',
+//         name: 'Shoes',
+//         quantity: 80
+//     },
+//     {
+//         img: 'https://i.ibb.co/F5fzD0p/category-3.jpg',
+//         name: 'Glasses',
+//         quantity: 55
+//     },
+//     {
+//         img: 'https://i.ibb.co/c3qdjg7/category-4.jpg',
+//         name: 'Backpack',
+//         quantity: 47
+//     },
+//     {
+//         img: 'https://i.ibb.co/CPW2347/category-5.jpg',
+//         name: 'Ladies Bag',
+//         quantity: 26
+//     },
+//     {
+//         img: 'https://i.ibb.co/Bgz25qh/category-6.jpg',
+//         name: 'Speaker',
+//         quantity: 17
+//     },
+//     {
+//         img: 'https://i.ibb.co/G77m2zT/category-7.jpg',
+//         name: 'Watches',
+//         quantity: 24
+//     },
+//     {
+//         img: 'https://i.ibb.co/wsQ9sqP/category-8.jpg',
+//         name: 'Machine',
+//         quantity: 7
+//     },
+//     {
+//         img: 'https://i.ibb.co/qrbQk2L/category-9.jpg',
+//         name: 'Sofa',
+//         quantity: 12
+//     },
+//     {
+//         img: 'https://i.ibb.co/FqMNrtJ/category-10.jpg',
+//         name: 'Headphone',
+//         quantity: 23
+//     }
+// ];
+
 export const blogs = [
     {
         comments: [],

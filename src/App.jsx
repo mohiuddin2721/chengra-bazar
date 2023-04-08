@@ -2,8 +2,6 @@ import React from "react";
 import {
   createBrowserRouter,
   RouterProvider,
-  Route,
-  Link,
 } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./pages/Home/Home";

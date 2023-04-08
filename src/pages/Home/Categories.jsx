@@ -12,7 +12,7 @@ const Categories = () => {
             <Grid container  spacing={1}>
                 {
                     categories?.map((data, i) =>
-                        <Grid item key={i} xs={3} sm={4} md={2} lg={2}>
+                        <Grid item key={i} xs={4} sm={4} md={2} lg={2}>
                             <Card sx={{ maxWidth: '147px', maxHeight: '147px'}}>
                                 <CardActionArea>
                                     <img src={data?.img}
