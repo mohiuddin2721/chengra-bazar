@@ -1,35 +1,22 @@
-import { Box, Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material'
-import React from 'react'
+import React from 'react';
+import { Box, Grid, Typography } from '@mui/material';
+import { component_container } from '../../Styles/ComponentStyle';
+import SingleData from '../../components/ReceivAllData/SingleData';
+import { categories } from '../../Utils/ConstantData';
 
 function AllProducts() {
   return (
-    <Box>
-      <Typography>
-        just for you
+    <Box sx={component_container} className='my-10 delay-500'>
+      <Typography className='p-4 font-bold'>
+        Just for you
       </Typography>
-      <Box>
-        <Card sx={{ maxWidth: 345 }}>
-          <CardMedia
-            component="img"
-            alt="green iguana"
-            height="140"
-            image="/static/images/cards/contemplative-reptile.jpg"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              Lizard
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Lizards are a widespread group of squamate reptiles, with over 6,000
-              species, ranging across all continents except Antarctica
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <Button size="small">Share</Button>
-            <Button size="small">Learn More</Button>
-          </CardActions>
-        </Card>
-      </Box>
+      <Grid container spacing={1}>
+        {
+          categories?.map((data, i) =>
+            <SingleData key={i} data={data} />
+          )
+        }
+      </Grid>
     </Box>
   )
 }
