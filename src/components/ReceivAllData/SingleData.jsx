@@ -1,15 +1,15 @@
 import React from 'react';
-import { Box, Button, Card, CardContent, Grid, IconButton, Typography } from '@mui/material';
+import { Box, Button, Card, CardContent, Grid, IconButton } from '@mui/material';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { FiExternalLink } from 'react-icons/fi';
 
 function SingleData({ data }) {
-    console.log(data)
+    // console.log(data)
     return (
         <Grid item xs={6} sm={6} md={3} lg={2}>
             {
                 data?.product.map((d, i) =>
-                    <Box sx={{
+                    <Box key={i} sx={{
                         position: 'relative',
                         mb: 2,
                         '& :hover': {
@@ -26,9 +26,9 @@ function SingleData({ data }) {
                             <img
                                 src={d?.img[0]}
                                 className='w-full h-[200px] mx-auto'
-                                alt="" />
+                                alt={d?.name} />
                             <CardContent sx={{ padding: 0 }}>
-                                <p className='text-center font-bold py-2'>{d?.name.slice(0,20)}</p>
+                                <p className='text-center font-bold py-2'>{d?.name.slice(0, 20)}</p>
                                 <Box className='flex justify-center mb-10'>
                                     <Button variant="contained" size="small">Add to cart</Button>
                                 </Box>

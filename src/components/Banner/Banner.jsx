@@ -33,7 +33,7 @@ function Banner() {
                 className="mySwiper"
             >
                 {
-                    bannerPic?.map(d => <SwiperSlide key={d.key}>
+                    bannerPic?.map(d => <SwiperSlide key={d.id}>
                         <img src={d?.pic} className='w-full' alt="" />
                     </SwiperSlide>)
                 }

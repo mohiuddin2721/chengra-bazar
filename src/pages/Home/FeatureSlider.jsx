@@ -54,7 +54,7 @@ function FeatureSlider() {
                 >
                     {
                         featureFirstSliderData?.map((data, i) =>
-                            <SwiperSlide >
+                            <SwiperSlide key={i}>
                                 <div className='border-r-0 sm:border-r border-[#E7E7E7] h-full py-4 flex justify-center items-center cursor-pointer'>
                                     <div className='flex items-center gap-[15px]'>
                                         <span className='text-4xl mx-[3px] text-green-500'>{data?.icon}</span>

@@ -22,7 +22,7 @@ function TopSlider() {
                     >
                         {
                             topSliderNewArrivalData?.map((data, i) =>
-                                <Grid item xs={6}>
+                                <Grid key={i} item xs={6}>
                                     <Box sx={topSliderBoxInMapSx}
                                     >
                                         <img src={data?.imageLink} className='rounded-md' alt="" />

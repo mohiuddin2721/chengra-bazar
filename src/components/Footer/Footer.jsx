@@ -40,7 +40,7 @@ const Footer = () => {
               <ul className='mb-[22px]'>
                 {
                   footerCustomerServiceData?.map((data, i) =>
-                    <li className='text-[#777] w-fit hover:text-[#08c] cursor-pointer duration-500'>{data}</li>
+                    <li key={i} className='text-[#777] w-fit hover:text-[#08c] cursor-pointer duration-500'>{data}</li>
                   )
                 }
 
@@ -53,7 +53,7 @@ const Footer = () => {
               <div className='flex flex-wrap text-[11px]'>
                 {
                   footerPopularTag?.map((data, i) =>
-                    <span className={footerPopularTagSpanStyle}>{data}</span>
+                    <span key={i} className={footerPopularTagSpanStyle}>{data}</span>
                   )
                 }
               </div>
