@@ -136,11 +136,13 @@ export const newArrival = [
 ];
 export const categories = [
     {
+        id: '01',
         img: 'https://gcp-img.slatic.net/lazada/e15fbfa1-f7a2-42c2-814c-74d8057c413b_BD-80-80.jpg',
         name: 'Panjabi',
         quantity: 40,
         product: [
             {
+                id: '0101',
                 name: "Luxury Panjabi For Men",
                 price: 1990,
                 des: "Brand: Swapon’s World, Luxury Quality, Herringbone Fabric, Exclusive Design, Best Quality Computer Embroidery, GSM - 150-200",
@@ -155,6 +157,7 @@ export const categories = [
                 ]
             },
             {
+                id: '0102',
                 name: "Prince Panjabi",
                 price: 1790,
                 des: "Brand: Prince World, Luxury Quality, Herringbone Fabric, Exclusive Design, Best Quality Computer Embroidery, GSM - 150-200",
@@ -169,6 +172,7 @@ export const categories = [
                 ]
             },
             {
+                id: '0103',
                 name: "Digital Printed Panjabi",
                 price: 1590,
                 des: "Brand: World Premium, Luxury Quality, Herringbone Fabric, Exclusive Design, Best Quality Computer Embroidery, GSM - 150-200",
@@ -185,11 +189,13 @@ export const categories = [
         ]
     },
     {
+        id: '02',
         img: 'https://gcp-img.slatic.net/lazada/d34001c7-a4c0-431e-a175-c1adda684587_BD-80-80.jpg',
         name: 'Shirt',
         quantity: 80,
         product: [
             {
+                id: '0201',
                 name: "Cotton Casual Shirt",
                 price: 1240,
                 des: "Product details of SS World Black Cotton Casual Band Shirt for Men, Product Type: Shirt, Color: As Like Picture , Main Material: Cotton, Stylish and fashionable",
@@ -204,6 +210,7 @@ export const categories = [
                 ]
             },
             {
+                id: '0202',
                 name: "Trendy Men's Shirt",
                 price: 1790,
                 des: "Type: Katuaw Main Material: Cottonw Gender: Menw Style: Formal¡ Size - M ,L, XLF Medium : Chest - 38 and Length - 28F Large : Chest - 40 and Length - 29F Extra Large : Chest - 42 and Length - 30",
@@ -218,6 +225,7 @@ export const categories = [
                 ]
             },
             {
+                id: '0203',
                 name: "Men's Casual Shirt",
                 price: 750,
                 des: "Product Type: Full Sleeve Shirt, Style: Casual, Main Material: Cotton, Gender: Men, Well Swing and Quality Product",
@@ -234,11 +242,13 @@ export const categories = [
         ]
     },
     {
+        id: '03',
         img: 'https://gcp-img.slatic.net/lazada/6de08b4e-aa9d-40be-b199-99dafbe3a2f4_BD-80-80.jpg',
         name: 'Pant',
         quantity: 55,
         product: [
             {
+                id: '0301',
                 name: "Premium Narrow Pant",
                 price: 1240,
                 des: "Color: Dark Blue (Dark to black shade), Stretch Factor: 12%, Fabric Weight: Heavier Medium; 11.5 oz, Fabric Composition: 97% Cotton, 2% Polyester, 1% Elastane, Can be machine washed in cold water inside out. Can be tumble dried or hang dried. Washing often not required.",
@@ -253,6 +263,7 @@ export const categories = [
                 ]
             },
             {
+                id: '0302',
                 name: "Denim Jeans Pant",
                 price: 1200,
                 des: "Color: Dark Blue (Dark to black shade), Stretch Factor: 12%, Fabric Weight: Heavier Medium; 11.5 oz, Fabric Composition: 97% Cotton, 2% Polyester, 1% Elastane, Can be machine washed in cold water inside out. Can be tumble dried or hang dried. Washing often not required.",
@@ -267,6 +278,7 @@ export const categories = [
                 ]
             },
             {
+                id: '0303',
                 name: "DENIM JEANS PANTS",
                 price: 1520,
                 des: "Material : Denim, Quality : Export, Gender : Men, Colour : As given picture, Fabrics: 96% Cotton, 4% Spandex, Size: 30, 32, 34, 36,38,40 Inch, Long 42 Inch",
@@ -283,11 +295,13 @@ export const categories = [
         ]
     },
     {
+        id: '04',
         img: 'https://gcp-img.slatic.net/lazada/14e7112f-f4cc-4d0e-b964-d2268622269f_BD-80-80.jpg',
         name: 'Sarees',
         quantity: 47,
         product: [
             {
+                id: '0401',
                 name: "Soft Silk Katan Saree",
                 price: 850,
                 des: "Brand:No brand, Product name:-Women\'s Saree, Published By: -Kataan Collection, Material:-Silk, Length Size:-12 hand, Wigth Size:-2.5 hand, Colour:-As same As picture, Fashionable and comfortable",
@@ -302,6 +316,7 @@ export const categories = [
                 ]
             },
             {
+                id: '0402',
                 name: "Print Cotton Saree For Women",
                 price: 799,
                 des: "Brand:No brand, Product name:-Women\'s Saree, Published By: -Kataan Collection, Material:-Silk, Length Size:-12 hand, Wigth Size:-2.5 hand, Colour:-As same As picture, Fashionable and comfortable",
@@ -316,6 +331,7 @@ export const categories = [
                 ]
             },
             {
+                id: '0403',
                 name: "Indian Vichitra Silk Saree",
                 price: 2599,
                 des: "Brand:No brand, Product name:-Women\'s Saree, Published By: -Kataan Collection, Material:-Silk, Length Size:-12 hand, Wigth Size:-2.5 hand, Colour:-As same As picture, Fashionable and comfortable",
@@ -332,11 +348,13 @@ export const categories = [
         ]
     },
     {
+        id: '05',
         img: 'https://gcp-img.slatic.net/lazada/5d14cf00-beb3-4954-8adb-832cbacc4fd1_BD-80-80.jpg',
         name: 'Kameez',
         quantity: 26,
         product: [
             {
+                id: '0501',
                 name: "Pakistani Malhar Lawn three piece",
                 price: 2090,
                 des: "Pakistani Malhar lawn in bangladeshHigh quality and luxury Color no change and Bright lookingcolor same as the pictureOver size for all bodyCotton Fabric",
@@ -351,6 +369,7 @@ export const categories = [
                 ]
             },
             {
+                id: '0502',
                 name: "Indian Kameez",
                 price: 1670,
                 des: "Product Type: Three Piece, Color: Same As Picture, Main Material: tissue, Clothing - Cotton, orna - goergette",
@@ -367,6 +386,7 @@ export const categories = [
                 ]
             },
             {
+                id: '0503',
                 name: "Indian Three Kameez",
                 price: 799,
                 des: "Product Type: Three Piece, Color: Same As Picture, Main Material: tissue, Clothing - Cotton, orna - goergette",
@@ -383,11 +403,13 @@ export const categories = [
         ]
     },
     {
+        id: '06',
         img: 'https://gcp-img.slatic.net/lazada/7e000804-8392-4d62-ac89-ebb953d1bb1f_BD-80-80.jpg',
         name: 'Abaya',
         quantity: 17,
         product: [
             {
+                id: '0601',
                 name: "Dubai Cherry Stylish Abaya Borka",
                 price: 2450,
                 des: "Brand : Style Fix, Main Material : Dubai Cherry Georgette, Borka With Orna Hizab { Same As Pic }, Long Size : 52, 54, 56, Body Size: Free Size, Body Size : Free {Adjustable}, Fashion abaya Borka.",
@@ -402,6 +424,7 @@ export const categories = [
                 ]
             },
             {
+                id: '0602',
                 name: "Fashionable khimar Lycra borka",
                 price: 1840,
                 des: "Brand : Style Fix, Name : 3 colour Gown Borka With Hijab Orna, Materia; Dubai Cherry Fabric, Borka and Orna Attached, Long Size : 52,54,56, Body Size : 44 +, Color As Picture Shown",
@@ -416,6 +439,7 @@ export const categories = [
                 ]
             },
             {
+                id: '0603',
                 name: "Ready Hijab, Nikab, borka borkha koti set abaya",
                 price: 3190,
                 des: "Brand : Style Fix, Main Material : Dubai Cherry Georgette, Borka With Orna Hizab { Same As Pic }, Long Size : 52, 54, 56, Body Size: Free Size, Body Size : Free {Adjustable}, Fashion abaya Borka.",

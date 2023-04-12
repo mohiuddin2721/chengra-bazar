@@ -1,7 +1,8 @@
 import React from 'react';
 import { Box, Button, Card, CardContent, Grid, IconButton } from '@mui/material';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import { FiExternalLink } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 
 function SingleData({ data }) {
     // console.log(data)
@@ -23,10 +24,12 @@ function SingleData({ data }) {
                             maxWidth: '190px',
                             height: '280px',
                         }}>
-                            <img
-                                src={d?.img[0]}
-                                className='w-full h-[200px] mx-auto'
-                                alt={d?.name} />
+                            <Link to={`detailsOfTheProduct/:${d?.id}`}>
+                                <img
+                                    src={d?.img[0]}
+                                    className='w-full h-[200px] mx-auto'
+                                    alt={d?.name} />
+                            </Link>
                             <CardContent sx={{ padding: 0 }}>
                                 <p className='text-center font-bold py-2'>{d?.name.slice(0, 20)}</p>
                                 <Box className='flex justify-center mb-10'>
@@ -34,7 +37,7 @@ function SingleData({ data }) {
                                 </Box>
                                 <span className='absolute top-2 right-0 hidden'>
                                     <IconButton>
-                                        <FavoriteBorderIcon className='text-red-600' />
+                                        <FavoriteIcon className='text-red-600' />
                                     </IconButton>
                                 </span>
                                 <span className='absolute top-10 right-0 hidden'>
