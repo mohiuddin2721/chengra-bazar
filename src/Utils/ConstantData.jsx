@@ -555,3 +555,30 @@ export const sortCartData = [
         name: 'beauty glamour',
     },
 ]
+
+export const topNavItemsLink = [
+    {
+        name: 'My Account',
+        to: '/',
+    },
+    {
+        name: 'About Us',
+        to: '/',
+    },
+    {
+        name: 'Blog',
+        to: '/',
+    },
+    {
+        name: 'My wishlist',
+        to: '/',
+    },
+    {
+        name: 'Cart',
+        to: '/',
+    },
+    {
+        name: 'Log In',
+        to: '/signIn',
+    },
+]

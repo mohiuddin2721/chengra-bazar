@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import CategoriesStickyNav from './CategoriesStickyNav';
 import BrandStickyNav from './BrandStickyNav';
 import styles from '../../Styles/StickyNav.module.css';
+import { Link } from 'react-router-dom';
 
 const stickyNavBoxStyle = {
     width: '100%',
@@ -48,20 +49,26 @@ const StickyNav = () => {
     };
 
     return (
-        <Box sx={stickyNavBoxStyle} className={`${isFixed ? `${styles.myFixed}` : `${styles.mySticky}`} hidden lg:block duration-500 left-0 right-0 py-[10px]  z-30 bg-white border-b border-b-[#f4f4f4]`} ref={navRef}>
+        <Box
+            sx={stickyNavBoxStyle}
+            className={`${isFixed ? `${styles.myFixed}` : `${styles.mySticky}`} hidden lg:block duration-500 left-0 right-0 py-[10px]  z-30 bg-white border-b border-b-[#f4f4f4]`}
+            ref={navRef}
+        >
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-evenly' }}>
                 <Box sx={{ display: 'flex', gap: 2, pb: 1 }}>
                     <CategoriesStickyNav />
                     <BrandStickyNav />
                 </Box>
                 <Tabs value={value} onChange={handleChange} aria-label="nav tabs example">
-                    <Tab style={stickyNavTabStyle} label="Home" href="#" />
-                    <Tab style={stickyNavTabStyle} label="Blogs" href="#" />
-                    <Tab style={stickyNavTabStyle} label="About us" href="#" />
-                    <Tab style={stickyNavTabStyle} label="Contact us" href="#" />
+                    <Tab style={stickyNavTabStyle} label="Home" href="/" />
+                    <Tab style={stickyNavTabStyle} label="Blogs" href="blog" />
+                    <Tab style={stickyNavTabStyle} label="About us" href="aboutUs" />
+                    <Tab style={stickyNavTabStyle} label="Contact us" href="contactUs" />
                 </Tabs>
                 <MenuList>
-                    <MenuItem sx={{ fontSize: '12px', color: '#960000', fontWeight: '700' }}>Special offer</MenuItem>
+                    <MenuItem sx={{ fontSize: '12px', color: '#960000', fontWeight: '700' }}>
+                        <Link to='special_offer'>Special offer</Link>
+                    </MenuItem>
                 </MenuList>
             </Box>
         </Box>
