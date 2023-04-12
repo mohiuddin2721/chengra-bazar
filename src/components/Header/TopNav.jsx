@@ -4,6 +4,7 @@ import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
 import styles from '../../Styles/TopNav.module.css';
 import { currencies, languages, topNavItemsLink } from '../../Utils/ConstantData';
 import { Link } from '@mui/material';
+import { topNavSocialButtonStyle } from '../../Styles/ComponentStyle';
 
 
 
@@ -54,9 +55,9 @@ function TopNav() {
                     </div>
                     <div>
                         <ul className='flex items-start text-[13px]'>
-                            <li className='h-[26px] w-[26px] rounded-full bg-transparent duration-500 text-[#777] hover:text-white hover:bg-[#7c4a3a] flex justify-center items-center'><FaFacebookF /></li>
-                            <li className='h-[26px] w-[26px] rounded-full bg-transparent duration-500 text-[#777] hover:text-white hover:bg-[#7c4a3a] flex justify-center items-center'><FaTwitter /></li>
-                            <li className='h-[26px] w-[26px] rounded-full bg-transparent duration-500 text-[#777] hover:text-white hover:bg-[#7c4a3a] flex justify-center items-center'><FaInstagram /></li>
+                            <Link className={topNavSocialButtonStyle}><FaFacebookF /></Link>
+                            <Link className={topNavSocialButtonStyle}><FaTwitter /></Link>
+                            <Link className={topNavSocialButtonStyle}><FaInstagram /></Link>
                         </ul>
                     </div>
                 </div>

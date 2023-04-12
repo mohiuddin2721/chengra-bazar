@@ -8,7 +8,7 @@ import { BiSupport } from 'react-icons/bi';
 
 export const topSliderNewArrivalData = [
     {
-        title: 'BEST SAKE',
+        title: 'BEST SALE',
         imageLink: 'https://dev-ecom-corner.netlify.app/images/catbanner-01.jpg',
         name: 'Laptop',
         price: 'From $999.00',

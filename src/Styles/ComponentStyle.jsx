@@ -10,9 +10,14 @@ export const component_container = {
     mx: 'auto',
 }
 
+// topNav.jsx social button style
+export const topNavSocialButtonStyle = 'h-[26px] w-[26px] rounded-full bg-transparent duration-500 text-[#1976d2] hover:text-white hover:bg-[#7c4a3a] flex justify-center items-center';
+
+
 // TopSlider.jsx component style 
 export const topSliderBoxInMapSx = {
     position: 'relative',
+    width: 'auto',
     height: {
         xs: '150px',
         sm: '150px',
