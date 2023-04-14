@@ -16,6 +16,9 @@ function SingleData({ data }) {
                         '& :hover': {
                             'span': {
                                 display: 'block',
+                            },
+                            'secondImg': {
+                                zIndex: 1,
                             }
                         }
                     }}>
@@ -23,8 +26,9 @@ function SingleData({ data }) {
                             cursor: 'pointer',
                             maxWidth: '190px',
                             height: '280px',
+                            position: 'relative',
                         }}>
-                            <Link to={`detailsOfTheProduct/:${d?.id}`}>
+                            <Link to={`detailsOfTheProduct/${d?.id}`}>
                                 <img
                                     src={d?.img[0]}
                                     className='w-full h-[200px] mx-auto'
@@ -37,12 +41,12 @@ function SingleData({ data }) {
                                 </Box>
                                 <span className='absolute top-2 right-0 hidden'>
                                     <IconButton>
-                                        <FavoriteIcon className='text-red-600' />
+                                        <FavoriteIcon className='text-red-600 bg-slate-200 rounded-md' />
                                     </IconButton>
                                 </span>
                                 <span className='absolute top-10 right-0 hidden'>
                                     <IconButton>
-                                        <FiExternalLink className='text-green-600' />
+                                        <FiExternalLink className='text-green-600 bg-slate-200 rounded-md' />
                                     </IconButton>
                                 </span>
                             </CardContent>
