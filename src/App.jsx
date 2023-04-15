@@ -24,7 +24,7 @@ export default function App() {
         <Route path="contact" element={<Contact />} />
         <Route path="signIn" element={<SignIn />} />
         <Route path="signUp" element={<SignUp />} />
-        <Route path="detailsOfTheProduct/:id" element={<DetailSingleData />} />
+        <Route path="/:id" element={<DetailSingleData />} />
       </Routes>
       <Footer />
     </div>

@@ -28,7 +28,7 @@ function SingleData({ data }) {
                             height: '280px',
                             position: 'relative',
                         }}>
-                            <Link to={`detailsOfTheProduct/${d?.id}`}>
+                            <Link to={`/${d?.id}`}>
                                 <img
                                     src={d?.img[0]}
                                     className='w-full h-[200px] mx-auto'
