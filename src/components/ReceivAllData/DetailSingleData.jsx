@@ -3,12 +3,8 @@ import useGetAllData from '../../Hooks/useGetAllData';
 import { useParams } from 'react-router-dom';
 
 function DetailSingleData() {
-    const allProduct = useGetAllData();
     const [getData, setGetData] = useState([])
-    // console.log(getData)
     const { id } = useParams()
-    // console.log(id)
-    // console.log(allProduct)
     const [upperImage, setUpperImage] = useState("https://static-01.daraz.com.bd/p/a1f305926d21b74a0db9f7c3ce694a82.jpg_720x720.jpg_.webp");
     // console.log(upperImage)
 
