@@ -3,19 +3,21 @@ import useGetAllData from '../../Hooks/useGetAllData';
 import { useParams } from 'react-router-dom';
 
 function DetailSingleData() {
-    const  allProduct  = useGetAllData();
-    const {id} = useParams()
+    const allProduct = useGetAllData();
+    const [getData, setGetData] = useState([])
+    // console.log(getData)
+    const { id } = useParams()
     // console.log(id)
     // console.log(allProduct)
     const [upperImage, setUpperImage] = useState("https://static-01.daraz.com.bd/p/a1f305926d21b74a0db9f7c3ce694a82.jpg_720x720.jpg_.webp");
     // console.log(upperImage)
+
+    // allProduct?.filter((data) => setGetData(data))
     return (
         <section className="text-gray-700 body-font overflow-hidden bg-white mb-10">
             <div className="container px-2 pt-10 pb-20 mx-auto">
                 <div className="lg:w-4/5 mx-auto h-auto flex flex-wrap">
-                    {
-                        allProduct?.filter((data)=>console.log(data))
-                    }
+
                     <div className='lg:w-1/2 w-full h-[70vh] rounded border border-gray-200'>
                         <div className='w-full h-[85%]'>
                             <img
