@@ -26,7 +26,7 @@ function SingleData({ item }) {
                     height: '280px',
                     position: 'relative',
                 }}>
-                    <Link to={`/${item?.id}`}>
+                    <Link to={`/${item?._id}`}>
                         <img
                             src="https://static-01.daraz.com.bd/p/a1f305926d21b74a0db9f7c3ce694a82.jpg_720x720.jpg_.webp"
                             className='w-full h-[200px] mx-auto'

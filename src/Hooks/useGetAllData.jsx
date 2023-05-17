@@ -9,7 +9,8 @@ const useGetAllData = () => {
             return data;
         }
     });
-    return { data, isLoading };
+    const allProduct = data?.data;
+    return { allProduct, isLoading };
     // const [allProduct, setAllProduct] = useState([])
     // const allProduct = [];
     // console.log(allProduct)

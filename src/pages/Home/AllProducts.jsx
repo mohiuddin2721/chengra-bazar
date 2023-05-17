@@ -7,16 +7,8 @@ import useGetAllData from '../../Hooks/useGetAllData';
 import { useQuery } from '@tanstack/react-query';
 
 function AllProducts() {
-  // const { data, isLoading } = useQuery({
-  //   queryKey: ['getAllProducts'],
-  //   queryFn: async () => {
-  //     const res = await fetch('http://localhost:5000/api/v1/products');
-  //     const data = res.json();
-  //     return data;
-  //   }
-  // });
-  const { data, isLoading } = useGetAllData();
-  const allProduct = data?.data;
+  const { allProduct, isLoading } = useGetAllData();
+  // const allProduct = data?.data;
   // console.log(allProduct)
 
   if (isLoading) {
