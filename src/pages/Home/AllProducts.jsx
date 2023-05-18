@@ -2,14 +2,10 @@ import React from 'react';
 import { Box, Grid, Typography } from '@mui/material';
 import { component_container } from '../../Styles/ComponentStyle';
 import SingleData from '../../components/ReceivAllData/SingleData';
-import { categories } from '../../Utils/ConstantData';
 import useGetAllData from '../../Hooks/useGetAllData';
-import { useQuery } from '@tanstack/react-query';
 
 function AllProducts() {
   const { allProduct, isLoading } = useGetAllData();
-  // const allProduct = data?.data;
-  // console.log(allProduct)
 
   if (isLoading) {
     return <h1>Loading.....</h1>;
@@ -23,7 +19,14 @@ function AllProducts() {
       <Grid container spacing={1}>
         {
           allProduct?.map(item =>
-            <SingleData key={item._id} item={item} />
+            <SingleData
+              key={item._id}
+              item={item}
+              xs={6}
+              sm={6}
+              md={3}
+              lg={2}
+            />
           )
         }
       </Grid>

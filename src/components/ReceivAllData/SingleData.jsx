@@ -4,10 +4,10 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import { FiExternalLink } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
-function SingleData({ item }) {
-    // console.log(item)
+function SingleData({ item, xs, sm, md, lg }) {
+    
     return (
-        <Grid item xs={6} sm={6} md={3} lg={2}>
+        <Grid item xs={xs} sm={sm} md={md} lg={lg}>
             <Box sx={{
                 position: 'relative',
                 mb: 2,

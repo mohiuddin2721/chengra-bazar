@@ -7,7 +7,7 @@ import useGetAllCategory from '../../Hooks/useGetAllCategories';
 
 const Categories = () => {
     const { allCategory } = useGetAllCategory();
-    console.log(allCategory)
+    
     return (
         <Box sx={component_container} className='mb-10'>
             <Typography sx={{ m: 4 }}>
