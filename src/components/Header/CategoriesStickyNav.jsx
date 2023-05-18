@@ -1,10 +1,12 @@
 import { Popper, Grow, Paper, ClickAwayListener, MenuList, MenuItem } from '@mui/material';
 import React, { useEffect, useRef, useState } from 'react';
 import { Button } from 'rsuite';
-import { categories } from '../../Utils/ConstantData';
+import useGetAllCategory from '../../Hooks/useGetAllCategories';
+import { Link } from 'react-router-dom';
 
 
 function CategoriesStickyNav() {
+    const { allCategory } = useGetAllCategory()
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
 
@@ -42,7 +44,7 @@ function CategoriesStickyNav() {
                 aria-expanded={open ? 'true' : undefined}
                 aria-haspopup="true"
                 onClick={handleToggle}
-                style={{fontSize: '12px'}}
+                style={{ fontSize: '12px' }}
             >
                 CATEGORIES
             </Button>
@@ -71,8 +73,12 @@ function CategoriesStickyNav() {
                                     onKeyDown={handleListKeyDown}
                                 >
                                     {
-                                        categories?.map((item, i)=>
-                                        <MenuItem key={i} onClick={handleClose}>{item?.name}</MenuItem>
+                                        allCategory?.map(item =>
+                                            <Link to={`/catagories/${item?.name}`}>
+                                                <MenuItem key={item._id} onClick={handleClose}>
+                                                    {item?.name}
+                                                </MenuItem>
+                                            </Link>
                                         )
                                     }
                                 </MenuList>

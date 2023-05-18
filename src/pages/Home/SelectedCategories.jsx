@@ -40,7 +40,9 @@ const SelectedCategories = () => {
                             allCategory?.map(data =>
                                 <Link key={data._id} to={`/catagories/${data?.name}`}>
                                     <Card sx={{ maxWidth: '147px', maxHeight: '147px' }} className='mb-4 mx-auto'>
-                                        <CardActionArea>
+                                        <CardActionArea sx={{
+                                            backgroundColor: id === data?.name ? '#1565c0' : ' ',
+                                        }}>
                                             <img src={data?.photo}
                                                 alt={data?.name}
                                                 className='w-[90px] h-[90px] mx-auto'
