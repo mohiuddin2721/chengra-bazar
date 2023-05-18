@@ -1,16 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 
-const useGetAllData = () => {
+const useGetAllCategory = () => {
     const { data, isLoading } = useQuery({
         queryKey: ['getAllProducts'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/api/v1/products');
+            const res = await fetch('http://localhost:5000/api/v1/category');
             const data = res.json();
             return data;
         }
     });
-    const allProduct = data?.data;
-    return { allProduct, isLoading };
+    const allCategory = data?.data;
+    return { allCategory, isLoading };
 };
 
-export default useGetAllData;
+export default useGetAllCategory;

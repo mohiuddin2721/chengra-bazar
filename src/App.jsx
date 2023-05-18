@@ -12,6 +12,7 @@ import SignUp from "./Authentication/SignUp";
 import DetailSingleData from "./components/ReceivAllData/DetailSingleData";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
+import SelectedCategories from "./pages/Home/SelectedCategories";
 
 
 export default function App() {
@@ -24,7 +25,8 @@ export default function App() {
         <Route path="contact" element={<Contact />} />
         <Route path="signIn" element={<SignIn />} />
         <Route path="signUp" element={<SignUp />} />
-        <Route path="/:id" element={<DetailSingleData />} />
+        <Route path="/products/:id" element={<DetailSingleData />} />
+        <Route path="/catagories/:id" element={<SelectedCategories />} />
       </Routes>
       <Footer />
     </div>

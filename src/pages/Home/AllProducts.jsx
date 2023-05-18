@@ -16,7 +16,7 @@ function AllProducts() {
   }
 
   return (
-    <Box sx={component_container} className='my-10 delay-500'>
+    <Box sx={component_container} className='my-10 delay-500 mx-auto'>
       <Typography className='p-4 font-bold'>
         Just for you
       </Typography>
