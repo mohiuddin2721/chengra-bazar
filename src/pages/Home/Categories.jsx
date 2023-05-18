@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box, Card, CardActionArea, Grid, Typography } from '@mui/material';
 import { component_container } from '../../Styles/ComponentStyle';
-// import { categories } from '../../Utils/ConstantData';
 import { Link } from 'react-router-dom';
 import useGetAllCategory from '../../Hooks/useGetAllCategories';
 

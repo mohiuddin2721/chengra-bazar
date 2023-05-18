@@ -5,7 +5,7 @@ import { FiExternalLink } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
 function SingleData({ item, xs, sm, md, lg }) {
-    
+
     return (
         <Grid item xs={xs} sm={sm} md={md} lg={lg}>
             <Box sx={{
