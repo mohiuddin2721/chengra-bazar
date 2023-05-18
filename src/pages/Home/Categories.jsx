@@ -1,10 +1,13 @@
 import React from 'react';
 import { Box, Card, CardActionArea, Grid, Typography } from '@mui/material';
 import { component_container } from '../../Styles/ComponentStyle';
-import { categories } from '../../Utils/ConstantData';
+// import { categories } from '../../Utils/ConstantData';
 import { Link } from 'react-router-dom';
+import useGetAllCategory from '../../Hooks/useGetAllCategories';
 
 const Categories = () => {
+    const { allCategory } = useGetAllCategory();
+    console.log(allCategory)
     return (
         <Box sx={component_container} className='mb-10'>
             <Typography sx={{ m: 4 }}>
@@ -12,12 +15,12 @@ const Categories = () => {
             </Typography>
             <Grid container spacing={1}>
                 {
-                    categories?.map((data, i) =>
+                    allCategory?.map((data, i) =>
                         <Grid item key={i} xs={4} sm={4} md={2} lg={2}>
                             <Link to={`/catagories/${data?.name}`}>
                                 <Card sx={{ maxWidth: '147px', maxHeight: '147px' }}>
                                     <CardActionArea>
-                                        <img src={data?.img}
+                                        <img src={data?.photo}
                                             alt={data?.name}
                                             className='w-[90px] h-[90px] mx-auto'
                                             style={{ clipPath: 'circle(50%)' }}
