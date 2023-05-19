@@ -10,6 +10,8 @@ function DetailSingleData() {
 
     const selectedProduct = allProduct?.filter(item => item._id === id);
     const { name, description, price, unit, quantity, status, color, brand, ratting } = selectedProduct[0];
+    
+    window.scrollTo(top)
 
     return (
         <section className="text-gray-700 body-font overflow-hidden bg-white mb-10">
