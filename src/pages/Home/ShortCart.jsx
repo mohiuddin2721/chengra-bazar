@@ -5,7 +5,6 @@ import { sortCartData } from '../../Utils/ConstantData'
 import { Link } from 'react-router-dom'
 
 
-
 function ShortCart() {
     // console.log(sortCartData)
     return (

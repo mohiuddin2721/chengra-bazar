@@ -1,15 +1,13 @@
-import { Box, Card, CardActionArea, Grid, Typography } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { component_container } from '../../Styles/ComponentStyle';
 import useGetAllData from '../../Hooks/useGetAllData';
 import SingleData from '../../components/ReceivAllData/SingleData';
-import useGetAllCategory from '../../Hooks/useGetAllCategories';
 import SideCategory from '../../components/ReceivAllData/SideCategory';
 
 const SelectedCategories = () => {
     const { allProduct } = useGetAllData()
-    const { allCategory } = useGetAllCategory();
     const { id } = useParams();
 
     const filteredCategory = allProduct?.filter(item => item?.categories == id)
