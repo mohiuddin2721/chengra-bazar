@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import useGetAllData from '../../Hooks/useGetAllData';
 import { useParams } from 'react-router-dom';
+import ReactImageMagnify from 'react-image-magnify';
 
 function DetailSingleData() {
     const { allProduct } = useGetAllData();
@@ -10,7 +11,7 @@ function DetailSingleData() {
 
     const selectedProduct = allProduct?.filter(item => item._id === id);
     const { name, description, price, unit, quantity, status, color, brand, ratting } = selectedProduct[0];
-    
+
     window.scrollTo(top)
 
     return (
@@ -18,29 +19,41 @@ function DetailSingleData() {
             <div className="container px-2 pt-10 pb-20 mx-auto">
                 <div className="lg:w-4/5 mx-auto h-auto flex flex-wrap">
 
-                    <div className='lg:w-1/2 w-full h-[70vh] rounded border border-gray-200'>
-                        <div className='w-full h-[85%]'>
-                            <img
+                    <div className='lg:w-1/2 w-full h-[80vh] rounded border border-gray-200'>
+                        <div className='w-[80%]'>
+                                <ReactImageMagnify {...{
+                                    smallImage: {
+                                        alt: name,
+                                        isFluidWidth: true,
+                                        src: upperImage,
+                                    },
+                                    largeImage: {
+                                        src: upperImage,
+                                        width: 600,
+                                        height: 800
+                                    }
+                                }} />
+                            {/* <img
                                 alt="ecommerce"
                                 className="w-[100%] h-[100%]"
-                                src={upperImage} />
+                                src={upperImage} /> */}
                         </div>
                         <div className='w-full h-[80px] flex'>
-                            <div className='border border-red-500 cursor-pointer hover:border-green-500'>
+                            <div className='border border-red-500 cursor-pointer hover:border-green-500 mr-2'>
                                 <img
                                     onClick={() => setUpperImage("https://static-01.daraz.com.bd/p/a1f305926d21b74a0db9f7c3ce694a82.jpg_720x720.jpg_.webp")}
                                     alt="ecommerce"
                                     className="w-[100%] h-[100%]"
                                     src="https://static-01.daraz.com.bd/p/a1f305926d21b74a0db9f7c3ce694a82.jpg_720x720.jpg_.webp" />
                             </div>
-                            <div className='border border-red-500 cursor-pointer hover:border-green-500'>
+                            <div className='border border-red-500 cursor-pointer hover:border-green-500 mr-2'>
                                 <img
                                     onClick={() => setUpperImage("https://static-01.daraz.com.bd/p/5465840ab09e44245e054ebe4117e43d.jpg_720x720.jpg_.webp")}
                                     alt="ecommerce"
                                     className="w-[100%] h-[100%]"
                                     src="https://static-01.daraz.com.bd/p/5465840ab09e44245e054ebe4117e43d.jpg_720x720.jpg_.webp" />
                             </div>
-                            <div className='border border-red-500 cursor-pointer hover:border-green-500'>
+                            <div className='border border-red-500 cursor-pointer hover:border-green-500 mr-2'>
                                 <img
                                     onClick={() => setUpperImage("https://static-01.daraz.com.bd/p/6bc0fe9a81ace71dd566215e0eee7e45.jpg_720x720.jpg_.webp")}
                                     alt="ecommerce"

@@ -3,12 +3,13 @@ import { Box, Grid, Typography } from '@mui/material';
 import { component_container } from '../../Styles/ComponentStyle';
 import SingleData from '../../components/ReceivAllData/SingleData';
 import useGetAllData from '../../Hooks/useGetAllData';
+import Loader from '../../components/Loader/Loader';
 
 function AllProducts() {
   const { allProduct, isLoading } = useGetAllData();
 
   if (isLoading) {
-    return <h1>Loading.....</h1>;
+    return <Loader />;
   }
 
   return (
