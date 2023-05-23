@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import useGetAllData from '../../Hooks/useGetAllData';
 import { useParams } from 'react-router-dom';
-import ReactImageMagnify from 'react-image-magnify';
-import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import ImageMagnify from '../../features/ZoomImage/ImageMagnify';
+import ZoomImage from '../../features/ZoomImage/ZoomImage';
 
 function DetailSingleData() {
     const { id } = useParams()
@@ -14,16 +13,14 @@ function DetailSingleData() {
     const selectedProduct = allProduct?.filter(item => item._id === id);
     const { name, description, price, unit, quantity, status, color, brand, ratting } = selectedProduct[0];
 
-    // console.log(selectedProduct[0])
-
-    // window.scrollTo(top)
+    window.scrollTo(top)
 
     return (
         <section className="text-gray-700 body-font overflow-hidden bg-white mb-10">
             <div className="container px-2 pt-10 pb-20 mx-auto">
                 <div className="lg:w-4/5 mx-auto h-auto flex flex-wrap">
 
-                    <div className='lg:w-1/2 w-full max-h-[80vh] rounded border border-gray-200'>
+                    <div className='lg:w-1/2 relative w-full max-h-[80vh] rounded border border-gray-200'>
                         <div className='hidden lg:block'>
                             <ImageMagnify
                                 upperImage={upperImage}
@@ -31,12 +28,10 @@ function DetailSingleData() {
                             />
                         </div>
                         <div className='lg:hidden'>
-                            <TransformWrapper>
-                                <TransformComponent>
-                                    <img src={upperImage} alt="test" />
-                                </TransformComponent>
-                            </TransformWrapper>
-
+                            <ZoomImage
+                                upperImage={upperImage}
+                                name={name}
+                            />
                             {/* <img
                                 alt="ecommerce"
                                 className="w-[100%] h-[100%]"
