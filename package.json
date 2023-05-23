@@ -20,13 +20,16 @@
     "match-sorter": "^6.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.43.9",
     "react-icons": "^4.8.0",
     "react-image-magnify": "^2.7.4",
     "react-loader-spinner": "^5.3.4",
     "react-router-dom": "^6.10.0",
     "react-spinners": "^0.13.8",
+    "react-zoom-pan-pinch": "^3.0.7",
     "rsuite": "^5.30.0",
     "sort-by": "^1.2.0",
+    "sweetalert": "^2.1.2",
     "swiper": "^9.2.0"
   },
   "devDependencies": {

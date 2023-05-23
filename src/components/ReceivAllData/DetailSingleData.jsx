@@ -12,6 +12,8 @@ function DetailSingleData() {
     const selectedProduct = allProduct?.filter(item => item._id === id);
     const { name, description, price, unit, quantity, status, color, brand, ratting } = selectedProduct[0];
 
+    // console.log(upperImage)
+
     window.scrollTo(top)
 
     return (
@@ -20,19 +22,24 @@ function DetailSingleData() {
                 <div className="lg:w-4/5 mx-auto h-auto flex flex-wrap">
 
                     <div className='lg:w-1/2 w-full h-[80vh] rounded border border-gray-200'>
-                        <div className='w-[80%]'>
-                                <ReactImageMagnify {...{
-                                    smallImage: {
-                                        alt: name,
-                                        isFluidWidth: true,
-                                        src: upperImage,
-                                    },
-                                    largeImage: {
-                                        src: upperImage,
-                                        width: 600,
-                                        height: 800
-                                    }
-                                }} />
+                        <div className=''>
+                            <ReactImageMagnify {...{
+                                smallImage: {
+                                    alt: name,
+                                    isFluidWidth: true,
+                                    src: upperImage,
+                                },
+                                largeImage: {
+                                    src: upperImage,
+                                    width: 800,
+                                    height: 1200
+                                },
+                                enlargedImagePosition: 'beside',
+                                isHintEnabled: true,
+                                lensStyle: {
+                                    background: 'hsla(0, 0%, 100%, .3)'
+                                }
+                            }} />
                             {/* <img
                                 alt="ecommerce"
                                 className="w-[100%] h-[100%]"

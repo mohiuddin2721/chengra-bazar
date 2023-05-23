@@ -3,9 +3,14 @@ import { Box, Card, CardActionArea, Grid, Typography } from '@mui/material';
 import { component_container } from '../../Styles/ComponentStyle';
 import { Link } from 'react-router-dom';
 import useGetAllCategory from '../../Hooks/useGetAllCategories';
+import Loader from '../../components/Loader/Loader';
 
 const Categories = () => {
-    const { allCategory } = useGetAllCategory();
+    const { allCategory, isLoading } = useGetAllCategory();
+
+    if(isLoading){
+        return <Loader />
+    }
     
     return (
         <Box sx={component_container} className='mb-10'>
