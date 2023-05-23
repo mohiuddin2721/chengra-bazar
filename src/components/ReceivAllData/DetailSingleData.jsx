@@ -1,45 +1,42 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import useGetAllData from '../../Hooks/useGetAllData';
 import { useParams } from 'react-router-dom';
 import ReactImageMagnify from 'react-image-magnify';
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import ImageMagnify from '../../features/ZoomImage/ImageMagnify';
 
 function DetailSingleData() {
-    const { allProduct } = useGetAllData();
-    const [getData, setGetData] = useState([])
     const { id } = useParams()
+    const { allProduct } = useGetAllData();
     const [upperImage, setUpperImage] = useState("https://static-01.daraz.com.bd/p/a1f305926d21b74a0db9f7c3ce694a82.jpg_720x720.jpg_.webp");
+
 
     const selectedProduct = allProduct?.filter(item => item._id === id);
     const { name, description, price, unit, quantity, status, color, brand, ratting } = selectedProduct[0];
 
-    // console.log(upperImage)
+    // console.log(selectedProduct[0])
 
-    window.scrollTo(top)
+    // window.scrollTo(top)
 
     return (
         <section className="text-gray-700 body-font overflow-hidden bg-white mb-10">
             <div className="container px-2 pt-10 pb-20 mx-auto">
                 <div className="lg:w-4/5 mx-auto h-auto flex flex-wrap">
 
-                    <div className='lg:w-1/2 w-full h-[80vh] rounded border border-gray-200'>
-                        <div className=''>
-                            <ReactImageMagnify {...{
-                                smallImage: {
-                                    alt: name,
-                                    isFluidWidth: true,
-                                    src: upperImage,
-                                },
-                                largeImage: {
-                                    src: upperImage,
-                                    width: 800,
-                                    height: 1200
-                                },
-                                enlargedImagePosition: 'beside',
-                                isHintEnabled: true,
-                                lensStyle: {
-                                    background: 'hsla(0, 0%, 100%, .3)'
-                                }
-                            }} />
+                    <div className='lg:w-1/2 w-full max-h-[80vh] rounded border border-gray-200'>
+                        <div className='hidden lg:block'>
+                            <ImageMagnify
+                                upperImage={upperImage}
+                                name={name}
+                            />
+                        </div>
+                        <div className='lg:hidden'>
+                            <TransformWrapper>
+                                <TransformComponent>
+                                    <img src={upperImage} alt="test" />
+                                </TransformComponent>
+                            </TransformWrapper>
+
                             {/* <img
                                 alt="ecommerce"
                                 className="w-[100%] h-[100%]"
