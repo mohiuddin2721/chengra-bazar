@@ -5,7 +5,7 @@ import SocialLogin from '../components/SocialAuthentication/SocialLogin';
 
 const SignIn = () => {
     const emailRef = useRef('');
-    const handleLogin = async event => {
+    const handleLogin = (event) => {
         event.preventDefault();
         const email = event.target.email.value;
         const password = event.target.password.value;
@@ -13,7 +13,7 @@ const SignIn = () => {
         // console.log(data);
     }
 
-    const passwordReset = async (event) => {
+    const passwordReset =  (event) => {
         const email = emailRef.current.value;
         // console.log(email);
     }

@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import SocialLogin from '../components/SocialAuthentication/SocialLogin';
+import { Button, Checkbox, FormControlLabel } from '@mui/material';
 
 const SignUp = () => {
-    const handleSignUp = async event => {
+    const [isCheck, setIsCheck] = useState(null)
+
+    const handleCheckbox = (e) => {
+        const isChecked = e.target.checked;
+        setIsCheck(isChecked)
+        // console.log(isChecked)
+    }
+    const handleSignUp = event => {
         event.preventDefault();
         const name = event.target.name.value;
         const email = event.target.email.value;
@@ -15,12 +23,26 @@ const SignUp = () => {
             <div className="login-title">SIGN UP</div>
             <form className="login-form" onSubmit={handleSignUp}>
                 <label htmlFor="">Your Name</label>
-                <input type="text" name='name' placeholder="Your Name" />
+                <input type="text" name='name' placeholder="Your Name" required />
                 <label htmlFor="">Your Email</label>
                 <input type="text" name='email' placeholder="Your Email" required />
                 <label htmlFor="">New Password</label>
                 <input type="password" name='password' placeholder="Password" required />
-                <button type='submit'>SIGN UP</button>
+                <FormControlLabel
+                    required
+                    control=
+                    {<Checkbox
+                        onChange={(e) => handleCheckbox(e)} />
+                    }
+                    label="I agree your conditions"
+                />
+                <Button
+                    type='submit'
+                    disabled={!isCheck ? true : false}
+                    variant="contained"
+                >
+                    SIGN UP
+                </Button>
             </form>
             <p
                 className='mt-2'

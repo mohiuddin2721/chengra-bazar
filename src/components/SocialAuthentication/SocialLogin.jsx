@@ -11,9 +11,8 @@ const SocialLogin = () => {
             {/* {massageError} */}
             <div className='flex justify-between'>
                 <div className='w-[48%]'>
-                    <button
-                        style={{ background: '120e43' }}
-                        className='btn'
+                    <button 
+                        className='btn bg-[#120e43] hover:bg-[#120e43cf]'
                         onClick={() => signInWithGoogle()}
                     >
                         <span className='px-2 text-light'><small>Sing-in by</small></span>
@@ -21,9 +20,8 @@ const SocialLogin = () => {
                     </button>
                 </div>
                 <div className='w-[48%]'>
-                    <button
-                        style={{ background: '120e43' }}
-                        className='btn w-[50%] d-block mx-auto my-2'
+                    <button 
+                        className='btn bg-[#120e43] hover:bg-[#120e43cf]'
                         onClick={() => signInWithFacebook()}
                     >
                         <span className='px-2 text-light'><small>Sing-in by</small></span>
