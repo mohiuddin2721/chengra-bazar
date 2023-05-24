@@ -3,15 +3,12 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { useState } from 'react';
 import SocialAuthentication from '../components/SocialAuthentication/SocialAuthentication';
 
 function Copyright(props) {
@@ -28,26 +25,15 @@ function Copyright(props) {
 }
 
 
-function SignUp() {
-  const [isCheck, setIsCheck] = useState(null)
-  // console.log(isCheck)
-
+function SignIn2() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    // console.log(data)
-    console.log({
-      email: data.get('email'),
-      full_name: data.get('full_name'),
-      password: data.get('password'),
-    });
+    // console.log({
+    //   email: data.get('email'),
+    //   password: data.get('password'),
+    // });
   };
-
-  const handleCheckbox = (e) => {
-    const isChecked = e.target.checked;
-    setIsCheck(isChecked)
-    // console.log(isChecked)
-  }
 
   return (
     <Box>
@@ -65,7 +51,7 @@ function SignUp() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign Up
+            Sign in
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
@@ -82,34 +68,15 @@ function SignUp() {
               margin="normal"
               required
               fullWidth
-              name="full_name"
-              label="Full name"
-              type="text"
-              id="text"
-              autoComplete="text"
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
               name="password"
               label="Password"
               type="password"
               id="password"
               autoComplete="current-password"
             />
-            <FormControlLabel
-              required
-              control=
-              {<Checkbox
-                onChange={(e) => handleCheckbox(e)} />
-              }
-              label="I'm agree with your all conditions"
-            />
             <Button
               type="submit"
               fullWidth
-              disabled={!isCheck ? true : false}
               variant="contained"
               sx={{
                 mt: 3,
@@ -117,32 +84,25 @@ function SignUp() {
                 backgroundColor: '#240838'
               }}
             >
-              Sign Up
+              Sign In
             </Button>
-            {/* {isCheck &&
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{
-                  mt: 3,
-                  mb: 2,
-                  backgroundColor: '#240838'
-                }}
-              >
-                Sign Up
-              </Button>
-            } */}
             <Grid container>
-              <Grid item>
-                <Link
-                  href="signIn"
-                  variant="body2"
-                  sx={{
-                    color: '#240838'
-                  }}
+              <Grid item xs>
+                <Link 
+                href="#" 
+                variant="body2"
+                sx={{color: '#240838'}}
                 >
-                  {"Have an account? Sign In"}
+                  Forgot password?
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link 
+                href="signUp" 
+                variant="body2"
+                sx={{color: '#240838'}}
+                >
+                  {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
             </Grid>
@@ -155,4 +115,4 @@ function SignUp() {
   )
 }
 
-export default SignUp
+export default SignIn2

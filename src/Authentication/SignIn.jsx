@@ -1,120 +1,53 @@
-import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import GoogleIcon from '@mui/icons-material/Google';
-import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
-import SocialAuthentication from '../components/SocialAuthentication/SocialAuthentication';
+import React, { useRef } from 'react';
+import { Link } from 'react-router-dom';
+import './SignIn.css';
+import SocialLogin from '../components/SocialAuthentication/SocialLogin';
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+const SignIn = () => {
+    const emailRef = useRef('');
+    const handleLogin = async event => {
+        event.preventDefault();
+        const email = event.target.email.value;
+        const password = event.target.password.value;
+        // console.log(email, password);
+        // console.log(data);
+    }
 
+    const passwordReset = async (event) => {
+        const email = emailRef.current.value;
+        // console.log(email);
+    }
 
-function SignIn() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // console.log({
-    //   email: data.get('email'),
-    //   password: data.get('password'),
-    // });
-  };
-
-  return (
-    <Box>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: '#240838' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{
-                mt: 3,
-                mb: 2,
-                backgroundColor: '#240838'
-              }}
+    return (
+        <div className="login-container">
+            <div className="login-title">LOGIN</div>
+            <form className="login-form" onSubmit={handleLogin}>
+                <label htmlFor="">Your Email</label>
+                <input type="email" ref={emailRef} name='email' placeholder="Your Email" required />
+                <label htmlFor="">Your Password</label>
+                <input type="password" name='password' placeholder="password" required />
+                {/* {messageError} */}
+                <button type='submit'>Login</button>
+            </form>
+            <p className='mt-2'>
+                <small>New to chengra bazar?</small> 
+                <Link to="/signUp"
+                    className='text-[#140267] ml-2 text-sm font-bold'
+                >
+                    Please Sign Up
+                </Link>
+            </p>
+            <p
+                onClick={passwordReset}
+                className='text-[#140267] text-sm font-bold'
             >
-              Sign In
-            </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link 
-                href="#" 
-                variant="body2"
-                sx={{color: '#240838'}}
-                >
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link 
-                href="signUp" 
-                variant="body2"
-                sx={{color: '#240838'}}
-                >
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
-          </Box>
-          <SocialAuthentication />
-        </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
-      </Container>
-    </Box>
-  )
-}
+                Forget Password?
+            </p>
+            <div>
+                <SocialLogin />
+            </div>
+        </div>
+    );
+};
 
-export default SignIn
+export default SignIn;
