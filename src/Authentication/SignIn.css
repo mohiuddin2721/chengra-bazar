@@ -1,7 +1,7 @@
 .login-container {
     position: relative;
     width: 350px;
-    margin: 2rem auto;
+    margin: 25px auto;
     height: auto;
     border-radius: 20px;
     padding: 40px;
@@ -36,7 +36,7 @@
 
 .login-container label {
     margin-bottom: 4px;
-    color: rgb(112, 162, 212);
+    color: #70a2d4;
     margin: 15px 0 5px 5px;
 
 }
@@ -69,5 +69,5 @@
 }
 
 .login-container button:hover {
-    box-shadow: none;
+    box-shadow: 'none';
 }
