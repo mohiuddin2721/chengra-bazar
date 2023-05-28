@@ -9,16 +9,18 @@ import { useForm } from 'react-hook-form';
 const SignUp = () => {
     const [isCheck, setIsCheck] = useState(null)
     const [showPassword, setShowPassword] = useState(false);
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
-
     const handleCheckbox = (e) => {
         const isChecked = e.target.checked;
         setIsCheck(isChecked)
     }
-    
+
+    const onSubmit = data => {
+        console.log(data)
+    };
+
     return (
         <div className="login-container">
             <div className="login-title">SIGN UP</div>
@@ -26,21 +28,32 @@ const SignUp = () => {
                 className="login-form"
                 onSubmit={handleSubmit(onSubmit)}
             >
-                <label htmlFor="">Full Name</label>
+                <label>
+                    Full Name
+                </label>
                 <input
                     type="text"
-                    name='name'
                     placeholder="Your full name"
-                    {...register("full_name", { required: true })}
+                    {...register("full_name", { required: 'Your name is required' })}
                 />
-                <label htmlFor="">Your Email</label>
+                {errors?.full_name && <p role="alert" className='text-red-500'>{errors.full_name?.message}</p>}
+
+                <label>
+                    Age
+                </label>
+                <input
+                    type="number"
+                    placeholder='Your age'
+                    {...register("age")}
+                />
+                <label>Your Email</label>
                 <input
                     type="text"
-                    name='email'
                     placeholder="Your email"
-                    {...register("email", { required: true })}
+                    {...register("email", { required: 'valid email is required' })}
                 />
-                {/* <label htmlFor="">New Password</label> */}
+                {errors?.email && <p role="alert" className='text-red-500'>{errors.email?.message}</p>}
+
                 <label>
                     Your Password
                     <span onClick={handleClickShowPassword}>
@@ -55,10 +68,14 @@ const SignUp = () => {
                 </label>
                 <input
                     type={showPassword ? 'text' : 'password'}
-                    name='password'
                     placeholder="Password"
-                    required
+                    {...register("password", {
+                        required: 'valid password is required',
+                        minLength: { value: 6, message: "password must be 6 characters or longer" }
+                    })}
                 />
+                {errors?.password && <p role="alert" className='text-red-500'>{errors.password?.message}</p>}
+
                 <FormControlLabel
                     required
                     control=
@@ -67,6 +84,7 @@ const SignUp = () => {
                     }
                     label="I agree with your conditions"
                 />
+
                 <button
                     type='submit'
                     disabled={!isCheck ? true : false}
@@ -76,9 +94,7 @@ const SignUp = () => {
                     SIGN UP
                 </button>
             </form>
-            <p
-                className='mt-2'
-            >
+            <p className='mt-2'>
                 <small>Already have an account?</small>
                 <Link
                     to="/signIn"

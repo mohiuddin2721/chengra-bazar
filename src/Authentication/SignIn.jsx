@@ -7,19 +7,15 @@ import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 const SignIn = () => {
-    const { register, handleSubmit } = useForm();
+    const { register, formState: { errors }, handleSubmit } = useForm();
     const [showPassword, setShowPassword] = useState(false);
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     // const emailRef = useRef('');
-    const onSubmit = data => console.log(data);
 
-    const handleLogin = (event) => {
-        event.preventDefault();
-        const email = event.target.email.value;
-        const password = event.target.password.value;
-
-    }
+    const onSubmit = data => {
+        console.log(data)
+    };
 
     const passwordReset = (event) => {
         // const email = emailRef.current.value;
@@ -38,9 +34,9 @@ const SignIn = () => {
                     <input
                         type="email"
                         placeholder="Your Email"
-                        {...register("email", { required: true })}
+                        {...register("email", { required: 'valid email is required' })}
                     />
-
+                    {errors?.email && <p role="alert" className='text-red-500'>{errors.email?.message}</p>}
                     <label>
                         Your Password
                         <span onClick={handleClickShowPassword}>
@@ -56,8 +52,9 @@ const SignIn = () => {
                     <input
                         type={showPassword ? 'text' : 'password'}
                         placeholder="password"
-                        {...register("password", { required: true })}
+                        {...register("password", { required: 'valid password is required' })}
                     />
+                    {errors?.password && <p role="alert" className='text-red-500'>{errors.password?.message}</p>}
                     <p
                         onClick={passwordReset}
                         className='text-[#140267] text-sm font-bold text-end underline cursor-pointer'
