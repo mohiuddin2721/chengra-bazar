@@ -38,7 +38,7 @@ const SignIn = () => {
                     <input
                         type="email"
                         placeholder="Your Email"
-                        {...register("email")}
+                        {...register("email", { required: true })}
                     />
 
                     <label>
@@ -56,7 +56,7 @@ const SignIn = () => {
                     <input
                         type={showPassword ? 'text' : 'password'}
                         placeholder="password"
-                        {...register("password")}
+                        {...register("password", { required: true })}
                     />
                     <p
                         onClick={passwordReset}
@@ -65,7 +65,12 @@ const SignIn = () => {
                         Forget Password
                     </p>
                     {/* {messageError} */}
-                    <button type='submit'>Login</button>
+                    <button
+                        type='submit'
+                        className='bg-[#140267] hover:bg-[#140267b4]'
+                    >
+                        Login
+                    </button>
                 </form>
                 <p className='mt-2'>
                     <small>Don't have an account?</small>
