@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import SocialLogin from '../components/SocialAuthentication/SocialLogin';
 import { Checkbox, FormControlLabel } from '@mui/material';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { useForm } from 'react-hook-form';
+import { AuthContext } from '../contexts/AuthProvider';
 
 const SignUp = () => {
     const [isCheck, setIsCheck] = useState(null)
     const [showPassword, setShowPassword] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const { createUser } = useContext(AuthContext);
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const handleCheckbox = (e) => {
@@ -17,8 +19,14 @@ const SignUp = () => {
         setIsCheck(isChecked)
     }
 
-    const onSubmit = data => {
+    const handleSignUp = (data) => {
         console.log(data)
+        createUser(data.email, data.password)
+            .then((result) => {
+                const user = result?.user;
+                console.log(user)
+            })
+            .catch((error) => console.log(error))
     };
 
     return (
@@ -26,7 +34,7 @@ const SignUp = () => {
             <div className="login-title">SIGN UP</div>
             <form
                 className="login-form"
-                onSubmit={handleSubmit(onSubmit)}
+                onSubmit={handleSubmit(handleSignUp)}
             >
                 <label>
                     Full Name
