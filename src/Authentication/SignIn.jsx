@@ -1,20 +1,33 @@
-import React, { useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './SignIn.css';
 import SocialLogin from '../components/SocialAuthentication/SocialLogin';
 import { useForm } from 'react-hook-form';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { AuthContext } from '../contexts/AuthProvider';
 
 const SignIn = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [showPassword, setShowPassword] = useState(false);
+    const { signIn } = useContext(AuthContext)
+    const [loginError, setLoginError] = useState('');
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     // const emailRef = useRef('');
 
-    const onSubmit = data => {
+    const handleLogin = data => {
+        setLoginError('')
         console.log(data)
+        signIn(data.email, data.password)
+            .then((result) => {
+                const user = result.user;
+                console.log(user)
+            })
+            .catch((error) => {
+                setLoginError(error.message)
+                console.log(error.message)
+            })
     };
 
     const passwordReset = (event) => {
@@ -28,7 +41,7 @@ const SignIn = () => {
                 <div className="login-title">LOGIN</div>
                 <form
                     className="login-form"
-                    onSubmit={handleSubmit(onSubmit)}
+                    onSubmit={handleSubmit(handleLogin)}
                 >
                     <label>Your Email</label>
                     <input
@@ -61,7 +74,9 @@ const SignIn = () => {
                     >
                         Forget Password
                     </p>
-                    {/* {messageError} */}
+                    <div>
+                        {loginError && <p className='text-red-500 text-xs'>{loginError}</p>}
+                    </div>
                     <button
                         type='submit'
                         className='bg-[#140267] hover:bg-[#140267b4]'

@@ -601,8 +601,4 @@ export const topNavItemsLink = [
         name: 'Cart',
         to: '/',
     },
-    {
-        name: 'Log In',
-        to: '/signIn',
-    },
 ]

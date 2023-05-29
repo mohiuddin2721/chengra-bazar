@@ -1,16 +1,27 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
 import styles from '../../Styles/TopNav.module.css';
 import { currencies, languages, topNavItemsLink } from '../../Utils/ConstantData';
 import { Link } from '@mui/material';
 import { topNavSocialButtonStyle } from '../../Styles/ComponentStyle';
+import { AuthContext } from '../../contexts/AuthProvider';
 
 
 
 function TopNav() {
+    const { user, logOut } = useContext(AuthContext)
     const [currentLang, setCurrentLang] = useState(languages[0]);
     const [currentCur, setCurrentCur] = useState(currencies[0]);
+
+    const handleLogout = () => {
+        logOut()
+            .then(() => {
+
+            }).catch((err) => {
+                console.log(err)
+            })
+    }
     return (
         <div className='py-2 bg-[#240838] text-[#bab8b8] text-[11px] font-semibold tracking-wide leading-6 top-nav'>
             <div className='max-w-[1200px] mx-auto px-[10px] flex justify-between items-center'>
@@ -21,6 +32,9 @@ function TopNav() {
                             {
                                 topNavItemsLink?.map((item, i) => <Link key={i} href={item.to}>{item.name}</Link>)
                             }
+                            <li>
+                                {user?.uid ? <span onClick={handleLogout} className='cursor-pointer hover:text-[#1976d2]'>Sign out</span> : <Link href='/signIn'>Login</Link>}
+                            </li>
                         </ul>
                     </div>
                     <div>
