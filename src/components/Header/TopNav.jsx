@@ -7,8 +7,6 @@ import { Link } from '@mui/material';
 import { topNavSocialButtonStyle } from '../../Styles/ComponentStyle';
 import { AuthContext } from '../../contexts/AuthProvider';
 
-
-
 function TopNav() {
     const { user, logOut } = useContext(AuthContext)
     const [currentLang, setCurrentLang] = useState(languages[0]);

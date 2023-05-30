@@ -12,6 +12,7 @@ const SignUp = () => {
     const [showPassword, setShowPassword] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { createUser } = useContext(AuthContext);
+    const [signUpError, setSignUpError] = useState(null);
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const handleCheckbox = (e) => {
@@ -20,13 +21,17 @@ const SignUp = () => {
     }
 
     const handleSignUp = (data) => {
+        setSignUpError('')
         console.log(data)
         createUser(data.email, data.password)
             .then((result) => {
                 const user = result?.user;
                 console.log(user)
             })
-            .catch((error) => console.log(error))
+            .catch((error) => {
+                setSignUpError(error)
+                console.log(error)
+            })
     };
 
     return (
@@ -92,7 +97,7 @@ const SignUp = () => {
                     }
                     label="I agree with your conditions"
                 />
-
+                {signUpError && <p className='text-red-500'>{signUpError}</p>}
                 <button
                     type='submit'
                     disabled={!isCheck ? true : false}
