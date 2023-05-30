@@ -12,9 +12,7 @@ const SignIn = () => {
     const [showPassword, setShowPassword] = useState(false);
     const { signIn } = useContext(AuthContext)
     const [loginError, setLoginError] = useState('');
-
     const handleClickShowPassword = () => setShowPassword((show) => !show);
-    // const emailRef = useRef('');
 
     const handleLogin = data => {
         setLoginError('')
@@ -30,10 +28,6 @@ const SignIn = () => {
             })
     };
 
-    const passwordReset = (event) => {
-        // const email = emailRef.current.value;
-        // console.log(email);
-    }
 
     return (
         <div className="login-page">
@@ -46,6 +40,7 @@ const SignIn = () => {
                     <label>Your Email</label>
                     <input
                         type="email"
+                        name='email'
                         placeholder="Your Email"
                         {...register("email", { required: 'valid email is required' })}
                     />
@@ -68,10 +63,7 @@ const SignIn = () => {
                         {...register("password", { required: 'valid password is required' })}
                     />
                     {errors?.password && <p role="alert" className='text-red-500'>{errors.password?.message}</p>}
-                    <p
-                        onClick={passwordReset}
-                        className='text-[#140267] text-sm font-bold text-end underline cursor-pointer'
-                    >
+                    <p className='text-[#140267] text-sm font-bold text-end underline cursor-pointer'>
                         Forget Password
                     </p>
                     <div>

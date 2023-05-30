@@ -1,17 +1,35 @@
 import React from 'react';
 import GoogleIcon from '@mui/icons-material/Google';
 import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
-import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
+import {
+    FacebookAuthProvider,
+    GoogleAuthProvider,
+    getAuth,
+    signInWithPopup
+} from 'firebase/auth';
 import app from '../../firebase/firebase.config';
 
-const auth = getAuth(app)
 
 const SocialLogin = () => {
+    const auth = getAuth(app)
+    console.log(auth)
+
     // const [googleError, setGoogleError] = useState("");
-    const provider = new GoogleAuthProvider();
+    const googleProvider = new GoogleAuthProvider();
+    const facebookProvider = new FacebookAuthProvider();
 
     const handleGoogleSignIN = () => {
-        signInWithPopup(auth, provider)
+        signInWithPopup(auth, googleProvider)
+            .then((result) => {
+                const user = result.user;
+                console.log(user)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+    const handleFacebookSignIN = () => {
+        signInWithPopup(auth, facebookProvider)
             .then((result) => {
                 const user = result.user;
                 console.log(user)
@@ -40,6 +58,7 @@ const SocialLogin = () => {
                 <div className='w-[48%]'>
                     <button
                         className='btn bg-[#120e43] hover:bg-[#120e43cf]'
+                        onClick={handleFacebookSignIN}
                     >
                         <span className='px-2 text-light'><small>SingIn by</small></span>
                         <FacebookOutlinedIcon sx={{ fontSize: '15px' }} />
