@@ -6,6 +6,8 @@ import { useForm } from 'react-hook-form';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { AuthContext } from '../contexts/AuthProvider';
+import { SignBgImageStyle } from '../Styles/ComponentStyle';
+
 
 const SignIn = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
@@ -28,11 +30,10 @@ const SignIn = () => {
             })
     };
 
-
     return (
-        <div className="login-page">
+        <div style={SignBgImageStyle}>
             <div className="login-container">
-                <div className="login-title">LOGIN</div>
+                <div className="login-title">Chengra Bazar</div>
                 <form
                     className="login-form"
                     onSubmit={handleSubmit(handleLogin)}
