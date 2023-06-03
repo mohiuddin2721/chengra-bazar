@@ -14,6 +14,7 @@ import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import SelectedCategories from "./pages/Home/SelectedCategories";
 import ShortCutDetail from "./components/ReceivAllData/ShortCutDetail";
+import ProductsFilter from "./pages/ProductsFilter/ProductsFilter";
 
 
 export default function App() {
@@ -27,6 +28,7 @@ export default function App() {
         <Route path="signIn" element={<SignIn />} />
         <Route path="signUp" element={<SignUp />} />
         <Route path="/products/:id" element={<DetailSingleData />} />
+        <Route path="/productsFilter" element={<ProductsFilter />} />
         <Route path="/catagories/:id" element={<SelectedCategories />} />
         <Route path="/shortcut/:id" element={<ShortCutDetail />} />
       </Routes>

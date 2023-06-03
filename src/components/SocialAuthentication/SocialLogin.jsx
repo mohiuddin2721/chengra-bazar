@@ -51,7 +51,7 @@ const SocialLogin = () => {
                         className='btn bg-[#120e43] hover:bg-[#120e43cf]'
                         onClick={handleGoogleSignIN}
                     >
-                        <span className='px-2 text-light'><small>SingIn by</small></span>
+                        <span className='px-2 text-light'><small>Google</small></span>
                         <GoogleIcon sx={{ fontSize: '15px' }} />
                     </button>
                 </div>
@@ -60,7 +60,7 @@ const SocialLogin = () => {
                         className='btn bg-[#120e43] hover:bg-[#120e43cf]'
                         onClick={handleFacebookSignIN}
                     >
-                        <span className='px-2 text-light'><small>SingIn by</small></span>
+                        <span className='px-2 text-light'><small>Facebook</small></span>
                         <FacebookOutlinedIcon sx={{ fontSize: '15px' }} />
                     </button>
                 </div>
