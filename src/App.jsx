@@ -15,6 +15,7 @@ import Header from "./components/Header/Header";
 import SelectedCategories from "./pages/Home/SelectedCategories";
 import ShortCutDetail from "./components/ReceivAllData/ShortCutDetail";
 import ProductsFilter from "./pages/ProductsFilter/ProductsFilter";
+import Blogs from "./pages/blogs/Blogs";
 
 
 export default function App() {
@@ -23,6 +24,7 @@ export default function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="blogs" element={<Blogs />} />
         <Route path="aboutUs" element={<About />} />
         <Route path="contact" element={<Contact />} />
         <Route path="signIn" element={<SignIn />} />

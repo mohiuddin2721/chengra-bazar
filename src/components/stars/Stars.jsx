@@ -20,7 +20,7 @@ const Stars = ({ ratting, reviews }) => {
     return (
         <div className='flex'>
             {ratingStar}
-            <p className='ml-2'>{reviews}</p>
+            <p className='ml-2'>({reviews})</p>
         </div>
     )
 };

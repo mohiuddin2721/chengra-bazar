@@ -591,7 +591,7 @@ export const topNavItemsLink = [
     },
     {
         name: 'Blog',
-        to: '/',
+        to: '/blogs',
     },
     {
         name: 'My wishlist',
