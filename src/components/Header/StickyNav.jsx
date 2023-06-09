@@ -64,6 +64,7 @@ const StickyNav = () => {
                     <Tab style={stickyNavTabStyle} label="Blogs" href="blogs" />
                     <Tab style={stickyNavTabStyle} label="About us" href="aboutUs" />
                     <Tab style={stickyNavTabStyle} label="Contact us" href="contactUs" />
+                    <Tab style={stickyNavTabStyle} label="Products Filter" href="productsFilter" />
                 </Tabs>
                 <MenuList>
                     <MenuItem sx={{ fontSize: '12px', color: '#960000', fontWeight: '700' }}>

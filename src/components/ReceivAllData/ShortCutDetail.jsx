@@ -17,7 +17,7 @@ const ShortCutDetail = () => {
     if (id == "boys fashion") defineCategory = "Pant";
     if (id == "girls fashion") defineCategory = "Kameez";
     if (id == "beauty glamour") defineCategory = "Abaya";
-    
+
     const selectedShortcutProduct = allProduct?.filter(item => item?.categories === defineCategory)
 
 
