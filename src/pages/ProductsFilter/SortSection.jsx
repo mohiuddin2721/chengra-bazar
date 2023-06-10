@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { FaFacebookF, FaInstagram, FaList, FaSearch, FaTwitter } from 'react-icons/fa';
+import { FaList, FaSearch } from 'react-icons/fa';
 import { BsFillGridFill } from 'react-icons/bs';
 import { RiFilterLine } from 'react-icons/ri';
 import { Box, Collapse, Drawer, List, ListItemButton, ListItemText } from '@mui/material';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
-import { brands, categories } from '../../Utils/ConstantData';
+import { brands } from '../../Utils/ConstantData';
 import useGetAllCategory from '../../Hooks/useGetAllCategories';
 import FilterBgColor from '../../components/filterBgColor/FilterBgColor';
 
@@ -13,7 +13,7 @@ const SortSection = ({ filterBgColor, handleColor }) => {
     const { allCategory } = useGetAllCategory()
     const [isOpenFilterDrawer, setIsOpenFilterDrawer] = useState(false);
     const [openCollapseFilter1, setCollapseFilter1] = useState(true);
-    const [openCollapseFilter2, setCollapseFilter2] = useState(true);
+    const [openCollapseFilter2, setCollapseFilter2] = useState(false);
 
     const handleCollapseMenu1 = () => {
         setCollapseFilter1(!openCollapseFilter1);
@@ -29,16 +29,15 @@ const SortSection = ({ filterBgColor, handleColor }) => {
     return (
         <>
             <div className={`flex ${filterBgColor} rounded min-h-[40px]`}>
-                {/* <p>Sort section</p> */}
                 <div className='flex items-center w-[30%] text-white'>
                     <RiFilterLine
-                        className='text-xl mx-2 cursor-pointer'
+                        className='text-xl ml-2 cursor-pointer block md:hidden'
                         onClick={() => setIsOpenFilterDrawer(true)}
                     />
-                    <BsFillGridFill className='mr-2' />
+                    <BsFillGridFill className='mx-4' />
                     <FaList />
                 </div>
-                <div className='w-[30%] flex justify-center items-center'>
+                <div className='w-[30%] ml-2 flex justify-center items-center'>
                     <p className='text-center text-white font-bold'>5 products</p>
                 </div>
                 <div className='w-[30%] flex justify-center items-center'>
@@ -55,7 +54,7 @@ const SortSection = ({ filterBgColor, handleColor }) => {
             <div>
                 <>
                     <Drawer
-                        anchor='left'
+                        anchor='right'
                         open={isOpenFilterDrawer}
                         sx={{
                             '.MuiBox-root': {
@@ -64,7 +63,6 @@ const SortSection = ({ filterBgColor, handleColor }) => {
                             },
                             '.css-4t3x6l-MuiPaper-root-MuiDrawer-paper': {
                                 backgroundColor: '#240838',
-                                // backgroundColor: `${filterBgColor}`,
                             }
                         }}
                     >

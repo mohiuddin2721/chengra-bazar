@@ -9,7 +9,6 @@ const ProductsFilter = () => {
     const [filterBgColor, setFilterBgColor] = useState('bg-[#024160]')
 
     const handleColor = (clr) => {
-        // console.log(clr)
         setFilterBgColor(clr)
     }
 
