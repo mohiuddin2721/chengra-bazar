@@ -9,7 +9,7 @@ const ProductsFilter = () => {
     const [filterBgColor, setFilterBgColor] = useState('bg-[#024160]')
 
     const handleColor = (clr) => {
-        console.log(clr)
+        // console.log(clr)
         setFilterBgColor(clr)
     }
 
@@ -28,6 +28,7 @@ const ProductsFilter = () => {
                 <Grid item xs={12} sm={12} md={9} lg={10}>
                     <div>
                         <SortSection
+                            handleColor={handleColor}
                             filterBgColor={filterBgColor}
                         />
                     </div>
