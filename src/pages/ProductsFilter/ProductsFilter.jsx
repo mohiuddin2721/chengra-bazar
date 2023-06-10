@@ -6,6 +6,7 @@ import { Box, Grid } from '@mui/material';
 import { component_container } from '../../Styles/ComponentStyle';
 
 const ProductsFilter = () => {
+    const [isOpenFilterDrawer, setIsOpenFilterDrawer] = useState(false);
     const [filterBgColor, setFilterBgColor] = useState('bg-[#024160]')
 
     const handleColor = (clr) => {
@@ -22,6 +23,8 @@ const ProductsFilter = () => {
                     <FilterSection
                         handleColor={handleColor}
                         filterBgColor={filterBgColor}
+                        setIsOpenFilterDrawer={setIsOpenFilterDrawer}
+                        isOpenFilterDrawer={isOpenFilterDrawer}
                     />
                 </Grid>
                 <Grid item xs={12} sm={12} md={9} lg={10}>
@@ -29,6 +32,8 @@ const ProductsFilter = () => {
                         <SortSection
                             handleColor={handleColor}
                             filterBgColor={filterBgColor}
+                            setIsOpenFilterDrawer={setIsOpenFilterDrawer}
+                            isOpenFilterDrawer={isOpenFilterDrawer}
                         />
                     </div>
                     <div>

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { AiFillHeart, AiTwotoneSetting } from 'react-icons/ai';
 import { filterSectionBgColor } from '../../Utils/ConstantData';
 
+
 const FilterBgColor = ({ handleColor }) => {
     const [open, setOpen] = useState(false);
 

@@ -8,10 +8,10 @@ import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import { brands } from '../../Utils/ConstantData';
 import useGetAllCategory from '../../Hooks/useGetAllCategories';
 import FilterBgColor from '../../components/filterBgColor/FilterBgColor';
+import FilterContent from '../../components/filterContent/FilterContent';
 
-const SortSection = ({ filterBgColor, handleColor }) => {
+const SortSection = ({ filterBgColor, handleColor, setIsOpenFilterDrawer, isOpenFilterDrawer }) => {
     const { allCategory } = useGetAllCategory()
-    const [isOpenFilterDrawer, setIsOpenFilterDrawer] = useState(false);
     const [openCollapseFilter1, setCollapseFilter1] = useState(true);
     const [openCollapseFilter2, setCollapseFilter2] = useState(false);
 
@@ -66,7 +66,13 @@ const SortSection = ({ filterBgColor, handleColor }) => {
                             }
                         }}
                     >
-                        <Box
+                        <FilterContent
+                            filterBgColor={filterBgColor}
+                            handleColor={handleColor}
+                            setIsOpenFilterDrawer={setIsOpenFilterDrawer}
+                            isOpenFilterDrawer={isOpenFilterDrawer}
+                        />
+                        {/* <Box
                             className={`${filterBgColor}`}
                             style={{
                                 fontFamily: "'Poppins', sans-serif",
@@ -121,7 +127,7 @@ const SortSection = ({ filterBgColor, handleColor }) => {
                                 </div>
                                 <FilterBgColor handleColor={handleColor} />
                             </div>
-                        </Box>
+                        </Box> */}
                     </Drawer>
                 </>
             </div>
