@@ -4,8 +4,6 @@ import { GrSecure } from 'react-icons/gr';
 import { RiMoneyDollarCircleLine } from 'react-icons/ri';
 import { BiSupport } from 'react-icons/bi';
 
-
-
 export const topSliderNewArrivalData = [
     {
         title: 'BEST SALE',

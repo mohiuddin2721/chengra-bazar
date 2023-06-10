@@ -602,3 +602,26 @@ export const topNavItemsLink = [
         to: '/',
     },
 ]
+
+export const filterSectionBgColor = [
+    {
+        colorName: 'text-red-500',
+        bgColor: 'bg-[#820303]'
+    },
+    {
+        colorName: 'text-green-500',
+        bgColor: 'bg-[#03820e]'
+    },
+    {
+        colorName: 'text-blue-500',
+        bgColor: 'bg-[#070382]'
+    },
+    {
+        colorName: 'text-yellow-500',
+        bgColor: 'bg-[#827503]'
+    },
+    {
+        colorName: 'text-pink-500',
+        bgColor: 'bg-[#820360]'
+    },
+]
