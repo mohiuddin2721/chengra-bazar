@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { AiOutlineClose } from 'react-icons/ai';
-import { Box, Collapse, List, ListItemButton, ListItemText } from '@mui/material';
+import { Box, Collapse, List, ListItemButton, ListItemText, Rating, Slider } from '@mui/material';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import FilterBgColor from '../filterBgColor/FilterBgColor';
 import useGetAllCategory from '../../Hooks/useGetAllCategories';
@@ -11,6 +11,8 @@ const FilterContent = ({ filterBgColor, handleColor, setIsOpenFilterDrawer }) =>
     const { allCategory } = useGetAllCategory()
     const [openCollapseFilter1, setCollapseFilter1] = useState(true);
     const [openCollapseFilter2, setCollapseFilter2] = useState(false);
+    const [value, setValue] = useState(3);
+    // console.log(value)
 
     const handleCollapseMenu1 = () => {
         setCollapseFilter1(!openCollapseFilter1);
@@ -32,7 +34,7 @@ const FilterContent = ({ filterBgColor, handleColor, setIsOpenFilterDrawer }) =>
                 maxWidth: '500px'
             }}
         >
-            <AiOutlineClose 
+            <AiOutlineClose
                 className='w-full justify-normal text-white mt-2 text-4xl font-semibold md:hidden block'
                 onClick={handleDrawerClose1}
             />
@@ -77,6 +79,30 @@ const FilterContent = ({ filterBgColor, handleColor, setIsOpenFilterDrawer }) =>
                             </List>
                         </Collapse>
                     </List>
+                    <div className='my-2'>
+                        <p className='text-center'>Filter by price</p>
+                        <div className='w-[90%] flex mx-auto justify-center mt-2'>
+                            <Slider
+                                defaultValue={5000}
+                                aria-label="Default"
+                                valueLabelDisplay="auto"
+                                min={300}
+                                max={10000}
+                            />
+                        </div>
+                    </div>
+                    <div className='my-2'>
+                        <p className='text-center'>Filter by rating</p>
+                        <div className='w-full flex justify-center mt-2'>
+                            <Rating
+                                name="simple-controlled"
+                                value={value}
+                                onChange={(event, newValue) => {
+                                    setValue(newValue);
+                                }}
+                            />
+                        </div>
+                    </div>
                 </div>
                 <FilterBgColor handleColor={handleColor} />
             </div>
