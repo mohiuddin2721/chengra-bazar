@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaList } from 'react-icons/fa';
 import { BsFillGridFill } from 'react-icons/bs';
 import { RiFilterLine } from 'react-icons/ri';
@@ -7,8 +7,14 @@ import FilterContent from '../../components/filterContent/FilterContent';
 import SelectSortingPrice from '../../components/selectSortingPrice/selectSortingPrice';
 import InputSearchingValue from '../../components/inputSearchingValue/InputSearchingValue';
 
-const SortSection = ({ filterBgColor, handleColor, setIsOpenFilterDrawer, isOpenFilterDrawer, getInputProductSearchingValue }) => {
+const SortSection = ({ filterBgColor, handleColor, setIsOpenFilterDrawer, isOpenFilterDrawer }) => {
+    const [searchValue, setSearchValue] = useState("");
+    // console.log(searchValue)
 
+    const getInputProductSearchingValue = (e) => {
+        const inputValue = e.target.value;
+        setSearchValue(inputValue)
+    }
     return (
         <>
             <div className={`flex ${filterBgColor} rounded min-h-[40px]`}>

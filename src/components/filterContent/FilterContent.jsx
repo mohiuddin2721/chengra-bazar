@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { AiOutlineClose } from 'react-icons/ai';
-import { Box, Collapse, List, ListItemButton, ListItemText, Rating, Slider } from '@mui/material';
+import { Box, Checkbox, Collapse, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Rating, Slider } from '@mui/material';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import FilterBgColor from '../filterBgColor/FilterBgColor';
 import useGetAllCategory from '../../Hooks/useGetAllCategories';
 import { brands } from '../../Utils/ConstantData';
-import InputSearchingValue from '../inputSearchingValue/InputSearchingValue';
 import SelectSortingPrice from '../selectSortingPrice/selectSortingPrice';
 
 
@@ -16,15 +15,23 @@ const FilterContent = ({ filterBgColor, handleColor, setIsOpenFilterDrawer }) =>
     const { allCategory } = useGetAllCategory()
     const [openCollapseCategoryFilter1, setCollapseCategoryFilter1] = useState(false);
     const [openCollapseCategoryFilter2, setCollapseCategoryFilter2] = useState(false);
-    const [searchValue, setSearchValue] = useState(null);
     const [rattingValue, setRattingValue] = useState(3);
     const [priceSlideValue, setPriceSlideValue] = useState([1000, 2000]);
-    // console.log(searchValue)
+    const [checked, setChecked] = useState([]);
+    // console.log(checked)
 
-    const getInputProductSearchingValue = (e) => {
-        const inputValue = e.target.value;
-        setSearchValue(inputValue)
-    }
+    const handleToggle = (value) => () => {
+        const currentIndex = checked.indexOf(value);
+        const newChecked = [...checked];
+
+        if (currentIndex === -1) {
+            newChecked.push(value);
+        } else {
+            newChecked.splice(currentIndex, 1);
+        }
+
+        setChecked(newChecked);
+    };
 
     const handleChange1 = (event, newValue, activeThumb) => {
         if (!Array.isArray(newValue)) {
@@ -85,11 +92,32 @@ const FilterContent = ({ filterBgColor, handleColor, setIsOpenFilterDrawer }) =>
                             <List component="div" disablePadding>
                                 {
                                     allCategory?.map((item, i) =>
+                                        <ListItem
+                                            key={i}
+                                            disablePadding
+                                        >
+                                            <ListItemButton role={undefined} onClick={handleToggle(item?.name)} dense>
+                                                <ListItemIcon>
+                                                    <Checkbox
+                                                        edge="start"
+                                                        checked={checked.indexOf(item?.name) !== -1}
+                                                        tabIndex={-1}
+                                                        disableRipple
+                                                        inputProps={{ 'aria-labelledby': i }}
+                                                    />
+                                                </ListItemIcon>
+                                                <ListItemText id={i} primary={item?.name} />
+                                            </ListItemButton>
+                                        </ListItem>
+                                    )
+                                }
+                                {/* {
+                                    allCategory?.map((item, i) =>
                                         <ListItemButton key={i} sx={{ pl: 4, '&:hover': { borderBottom: '1px solid red' } }}>
                                             <ListItemText primary={item.name} />
                                         </ListItemButton>
                                     )
-                                }
+                                } */}
                             </List>
                         </Collapse>
                         <ListItemButton onClick={handleCollapseMenu2} sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
