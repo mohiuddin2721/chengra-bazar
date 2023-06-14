@@ -20,6 +20,7 @@ const ProductsFilter = () => {
         >
             <Grid container spacing={1}>
                 <Grid item xs={8} sm={8} md={3} lg={2} className='hidden md:block'>
+                    {/* left side products filter section */}
                     <FilterSection
                         handleColor={handleColor}
                         filterBgColor={filterBgColor}
@@ -29,6 +30,7 @@ const ProductsFilter = () => {
                 </Grid>
                 <Grid item xs={12} sm={12} md={9} lg={10}>
                     <div>
+                        {/* product grid and list view, price sorting section */}
                         <SortSection
                             handleColor={handleColor}
                             filterBgColor={filterBgColor}
@@ -37,6 +39,7 @@ const ProductsFilter = () => {
                         />
                     </div>
                     <div>
+                        {/* all of filtering product appear here */}
                         <ProductList />
                     </div>
                 </Grid>
