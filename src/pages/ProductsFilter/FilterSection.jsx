@@ -5,7 +5,6 @@ const FilterSection = ({ filterBgColor, handleColor, setIsOpenFilterDrawer, isOp
 
     return (
         <div className={`${filterBgColor} rounded min-h-[100vh]`}>
-            <p className='text-white text-center'>search products</p>
             <FilterContent
                 filterBgColor={filterBgColor}
                 handleColor={handleColor}

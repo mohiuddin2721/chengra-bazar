@@ -5,8 +5,9 @@ import { RiFilterLine } from 'react-icons/ri';
 import { Drawer } from '@mui/material';
 import FilterContent from '../../components/filterContent/FilterContent';
 import SelectSortingPrice from '../../components/selectSortingPrice/selectSortingPrice';
+import InputSearchingValue from '../../components/inputSearchingValue/InputSearchingValue';
 
-const SortSection = ({ filterBgColor, handleColor, setIsOpenFilterDrawer, isOpenFilterDrawer }) => {
+const SortSection = ({ filterBgColor, handleColor, setIsOpenFilterDrawer, isOpenFilterDrawer, getInputProductSearchingValue }) => {
 
     return (
         <>
@@ -16,13 +17,13 @@ const SortSection = ({ filterBgColor, handleColor, setIsOpenFilterDrawer, isOpen
                         className='text-xl ml-2 cursor-pointer block md:hidden'
                         onClick={() => setIsOpenFilterDrawer(true)}
                     />
-                    <BsFillGridFill className='mx-4' />
-                    <FaList />
+                    <BsFillGridFill className='mx-4 cursor-pointer' />
+                    <FaList className='cursor-pointer' />
                 </div>
-                <div className='w-[30%] ml-2 flex justify-center items-center'>
-                    <p className='text-center hidden md:flex text-white font-bold'>5 products</p>
+                <div className='w-full lg:w-[40%] px-[15px] my-2 block relative'>
+                    <InputSearchingValue getInputProductSearchingValue={getInputProductSearchingValue} />
                 </div>
-                <div className='w-[30%] flex justify-center items-center'>
+                <div className='w-[30%] hidden md:flex justify-center items-center '>
                     <div className='flex items-center justify-center'>
                         <SelectSortingPrice />
                     </div>

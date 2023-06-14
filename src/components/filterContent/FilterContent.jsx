@@ -6,14 +6,16 @@ import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import FilterBgColor from '../filterBgColor/FilterBgColor';
 import useGetAllCategory from '../../Hooks/useGetAllCategories';
 import { brands } from '../../Utils/ConstantData';
+import InputSearchingValue from '../inputSearchingValue/InputSearchingValue';
+import SelectSortingPrice from '../selectSortingPrice/selectSortingPrice';
 
 
 const minDistance = 1000;
 
 const FilterContent = ({ filterBgColor, handleColor, setIsOpenFilterDrawer }) => {
     const { allCategory } = useGetAllCategory()
-    const [openCollapseFilter1, setCollapseFilter1] = useState(true);
-    const [openCollapseFilter2, setCollapseFilter2] = useState(false);
+    const [openCollapseCategoryFilter1, setCollapseCategoryFilter1] = useState(false);
+    const [openCollapseCategoryFilter2, setCollapseCategoryFilter2] = useState(false);
     const [searchValue, setSearchValue] = useState(null);
     const [rattingValue, setRattingValue] = useState(3);
     const [priceSlideValue, setPriceSlideValue] = useState([1000, 2000]);
@@ -37,10 +39,10 @@ const FilterContent = ({ filterBgColor, handleColor, setIsOpenFilterDrawer }) =>
     };
 
     const handleCollapseMenu1 = () => {
-        setCollapseFilter1(!openCollapseFilter1);
+        setCollapseCategoryFilter1(!openCollapseCategoryFilter1);
     };
     const handleCollapseMenu2 = () => {
-        setCollapseFilter2(!openCollapseFilter2);
+        setCollapseCategoryFilter2(!openCollapseCategoryFilter2);
     };
     const handleDrawerClose1 = () => {
         setIsOpenFilterDrawer(false);
@@ -57,18 +59,18 @@ const FilterContent = ({ filterBgColor, handleColor, setIsOpenFilterDrawer }) =>
             }}
         >
             <AiOutlineClose
-                className='w-full justify-normal text-white mt-2 text-4xl font-semibold md:hidden block'
+                className='w-full justify-normal text-white mt-2 text-4xl font-semibold lg:hidden block'
                 onClick={handleDrawerClose1}
             />
             <div className='mt-[20px] mb-[30px]'>
-                <div className='px-[15px] mb-[20px] relative'>
-                    <input
-                        onChange={getInputProductSearchingValue}
-                        type="text"
-                        placeholder='Search...'
-                        className='w-full py-2 px-3 bg-[#282E36] text-[#777777]'
-                    />
-                    <FaSearch className='absolute right-[23px] z-20 cursor-pointer top-[9px] font-bold text-lg' />
+                {/* <div className='px-[15px] mb-[20px] relative lg:hidden block'>
+                    <InputSearchingValue getInputProductSearchingValue={getInputProductSearchingValue} />
+                </div> */}
+                <div className='w-full flex justify-center md:hidden'>
+                    <div className='text-black'>
+                        <p className='text-white'>Sort by price</p>
+                        <SelectSortingPrice />
+                    </div>
                 </div>
                 <div>
                     <List
@@ -77,9 +79,9 @@ const FilterContent = ({ filterBgColor, handleColor, setIsOpenFilterDrawer }) =>
                     >
                         <ListItemButton onClick={handleCollapseMenu1} sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
                             <ListItemText primary="CATEGORIES" />
-                            {openCollapseFilter1 ? <ExpandLess /> : <ExpandMore />}
+                            {openCollapseCategoryFilter1 ? <ExpandLess /> : <ExpandMore />}
                         </ListItemButton>
-                        <Collapse in={openCollapseFilter1} timeout="auto" unmountOnExit>
+                        <Collapse in={openCollapseCategoryFilter1} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
                                 {
                                     allCategory?.map((item, i) =>
@@ -92,9 +94,9 @@ const FilterContent = ({ filterBgColor, handleColor, setIsOpenFilterDrawer }) =>
                         </Collapse>
                         <ListItemButton onClick={handleCollapseMenu2} sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
                             <ListItemText primary="BRANDS" />
-                            {openCollapseFilter2 ? <ExpandLess /> : <ExpandMore />}
+                            {openCollapseCategoryFilter2 ? <ExpandLess /> : <ExpandMore />}
                         </ListItemButton>
-                        <Collapse in={openCollapseFilter2} timeout="auto" unmountOnExit>
+                        <Collapse in={openCollapseCategoryFilter2} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
                                 {
                                     brands?.map((item, i) =>
