@@ -23,21 +23,13 @@ const ProductsFilter = () => {
     }
 
     const filterFunction = {
-        filterBgColor,
-        handleColor,
-        isOpenFilterDrawer,
-        setIsOpenFilterDrawer,
-        setSearchValue,
-        selectedValue,
-        setSelectedValue,
-        checkedCategory,
-        setCheckedCategory,
-        checkedBrand,
-        setCheckedBrand,
-        priceSlideValue,
-        setPriceSlideValue,
-        rattingValue,
-        setRattingValue,
+        filterBgColor, handleColor, setSearchValue,
+        isOpenFilterDrawer, setIsOpenFilterDrawer,
+        selectedValue, setSelectedValue,
+        checkedCategory, setCheckedCategory,
+        checkedBrand, setCheckedBrand,
+        priceSlideValue, setPriceSlideValue,
+        rattingValue, setRattingValue,
     }
 
     return (
