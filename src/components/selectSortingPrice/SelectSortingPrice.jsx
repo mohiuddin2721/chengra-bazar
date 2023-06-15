@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ProductFilterContext } from '../../pages/ProductsFilter/ProductsFilter';
 
-const SelectSortingPrice = ({ selectedValue, setSelectedValue }) => {
+const SelectSortingPrice = () => {
+    const { selectedValue, setSelectedValue } = useContext(ProductFilterContext)
+
 
     const handleSelectChange = (event) => {
         setSelectedValue(event.target.value);
     };
-    
+
     return (
         <select
             className='w-full'

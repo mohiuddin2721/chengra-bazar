@@ -9,17 +9,35 @@ export const ProductFilterContext = createContext()
 
 const ProductsFilter = () => {
     const [isOpenFilterDrawer, setIsOpenFilterDrawer] = useState(false);
-    const [filterBgColor, setFilterBgColor] = useState('bg-[#024160]')
+    const [filterBgColor, setFilterBgColor] = useState('bg-[#024160]');
+    const [searchValue, setSearchValue] = useState("");
+    const [selectedValue, setSelectedValue] = useState('Highest price');
+    const [checkedCategory, setCheckedCategory] = useState([]);
+    const [checkedBrand, setCheckedBrand] = useState([]);
+    const [priceSlideValue, setPriceSlideValue] = useState([1000, 2000]);
+    const [rattingValue, setRattingValue] = useState(3);
+    // console.log(selectedValue)
 
     const handleColor = (clr) => {
         setFilterBgColor(clr)
     }
 
     const filterFunction = {
-        handleColor,
         filterBgColor,
-        isOpenFilterDrawer, 
+        handleColor,
+        isOpenFilterDrawer,
         setIsOpenFilterDrawer,
+        setSearchValue,
+        selectedValue,
+        setSelectedValue,
+        checkedCategory,
+        setCheckedCategory,
+        checkedBrand,
+        setCheckedBrand,
+        priceSlideValue,
+        setPriceSlideValue,
+        rattingValue,
+        setRattingValue,
     }
 
     return (

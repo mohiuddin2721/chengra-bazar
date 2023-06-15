@@ -12,15 +12,25 @@ import { ProductFilterContext } from '../../pages/ProductsFilter/ProductsFilter'
 const minDistance = 1000;
 
 const FilterContent = () => {
-    const { filterBgColor, setIsOpenFilterDrawer } = useContext(ProductFilterContext)
+    const { filterBgColor,
+        setIsOpenFilterDrawer,
+        checkedCategory,
+        setCheckedCategory,
+        checkedBrand,
+        setCheckedBrand,
+        priceSlideValue,
+        setPriceSlideValue,
+        rattingValue,
+        setRattingValue,
+    } = useContext(ProductFilterContext)
     const { allCategory } = useGetAllCategory()
     const [openCollapseCategoryFilter1, setCollapseCategoryFilter1] = useState(true);
     const [openCollapseCategoryFilter2, setCollapseCategoryFilter2] = useState(false);
-    const [rattingValue, setRattingValue] = useState(3);
-    const [priceSlideValue, setPriceSlideValue] = useState([1000, 2000]);
-    const [checkedCategory, setCheckedCategory] = useState([]);
-    const [checkedBrand, setCheckedBrand] = useState([]);
-    const [selectedValue, setSelectedValue] = useState('Highest price');
+    // const [selectedValue, setSelectedValue] = useState('Highest price');
+    // const [checkedCategory, setCheckedCategory] = useState([]);
+    // const [checkedBrand, setCheckedBrand] = useState([]);
+    // const [priceSlideValue, setPriceSlideValue] = useState([1000, 2000]);
+    // const [rattingValue, setRattingValue] = useState(3);
     // console.log(selectedValue)
 
     const handleCategoryToggle = (value) => () => {
@@ -86,10 +96,7 @@ const FilterContent = () => {
                 <div className='w-full flex justify-center md:hidden'>
                     <div className='text-black'>
                         <p className='text-white'>Sort by price</p>
-                        <SelectSortingPrice
-                            setSelectedValue={setSelectedValue}
-                            selectedValue={selectedValue}
-                        />
+                        <SelectSortingPrice />
                     </div>
                 </div>
                 <div>

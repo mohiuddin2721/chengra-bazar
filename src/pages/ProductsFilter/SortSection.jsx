@@ -8,16 +8,17 @@ import SelectSortingPrice from '../../components/selectSortingPrice/SelectSortin
 import { ProductFilterContext } from './ProductsFilter';
 
 const SortSection = () => {
-    const { filterBgColor, setIsOpenFilterDrawer, isOpenFilterDrawer } = useContext(ProductFilterContext)
-    const [searchValue, setSearchValue] = useState("");
-    const [selectedValue, setSelectedValue] = useState('Highest price');
+    const { filterBgColor,
+        setIsOpenFilterDrawer,
+        isOpenFilterDrawer,
+        setSearchValue,
+    } = useContext(ProductFilterContext)
     // console.log(selectedValue)
 
     const getInputProductSearchingValue = (e) => {
         const inputValue = e.target.value;
         setSearchValue(inputValue)
     }
-
 
     return (
         <>
@@ -43,10 +44,7 @@ const SortSection = () => {
                 </div>
                 <div className='w-[30%] hidden md:flex justify-center items-center '>
                     <div className='flex items-center justify-center'>
-                        <SelectSortingPrice
-                            setSelectedValue={setSelectedValue}
-                            selectedValue={selectedValue}
-                        />
+                        <SelectSortingPrice />
                     </div>
                 </div>
             </div>
