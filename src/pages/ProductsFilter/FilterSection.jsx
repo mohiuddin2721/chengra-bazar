@@ -1,16 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import FilterContent from '../../components/filterContent/FilterContent';
+import { ProductFilterContext } from './ProductsFilter';
 
-const FilterSection = ({ filterBgColor, handleColor, setIsOpenFilterDrawer, isOpenFilterDrawer }) => {
+const FilterSection = () => {
+    const { filterBgColor } = useContext(ProductFilterContext)
 
     return (
         <div className={`${filterBgColor} rounded min-h-[100vh]`}>
-            <FilterContent
-                filterBgColor={filterBgColor}
-                handleColor={handleColor}
-                setIsOpenFilterDrawer={setIsOpenFilterDrawer}
-                isOpenFilterDrawer={isOpenFilterDrawer}
-            />
+            <FilterContent />
         </div>
     );
 };

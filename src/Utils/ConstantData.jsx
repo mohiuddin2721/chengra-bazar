@@ -21,7 +21,7 @@ export const currencies = [
     { name: 'JPY', symbol: '¥', id: 5 }
 ];
 // const categories: string[] = ['Category1', 'Category2', 'Category2', 'Category2', 'Category2', 'Category2', 'Category2', 'Category2', 'Category2'];
-export const brands = ['Brand1', 'Brand2', 'Brand2', 'Brand2', 'Brand2', 'Brand2', 'Brand2', 'Brand2', 'Brand2'];
+export const brands = ['Brand1', 'Brand2', 'Brand3', 'Brand4', 'Brand5', 'Brand6', 'Brand7', 'Brand8', 'Brand9'];
 export const homeProductsFeatured = [
     {
         name: 'Ultimate 3D Bluetooth Speaker',

@@ -1,28 +1,31 @@
-import React, { useState } from 'react';
-import { FaSearch } from 'react-icons/fa';
+import React, { useContext, useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
-import { Box, Checkbox, Collapse, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Rating, Slider } from '@mui/material';
+import { Box, Checkbox, Collapse, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Rating, Slider } from '@mui/material';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import FilterBgColor from '../filterBgColor/FilterBgColor';
 import useGetAllCategory from '../../Hooks/useGetAllCategories';
 import { brands } from '../../Utils/ConstantData';
-import SelectSortingPrice from '../selectSortingPrice/selectSortingPrice';
+import SelectSortingPrice from '../selectSortingPrice/SelectSortingPrice';
+import { ProductFilterContext } from '../../pages/ProductsFilter/ProductsFilter';
 
 
 const minDistance = 1000;
 
-const FilterContent = ({ filterBgColor, handleColor, setIsOpenFilterDrawer }) => {
+const FilterContent = () => {
+    const { filterBgColor, setIsOpenFilterDrawer } = useContext(ProductFilterContext)
     const { allCategory } = useGetAllCategory()
-    const [openCollapseCategoryFilter1, setCollapseCategoryFilter1] = useState(false);
+    const [openCollapseCategoryFilter1, setCollapseCategoryFilter1] = useState(true);
     const [openCollapseCategoryFilter2, setCollapseCategoryFilter2] = useState(false);
     const [rattingValue, setRattingValue] = useState(3);
     const [priceSlideValue, setPriceSlideValue] = useState([1000, 2000]);
-    const [checked, setChecked] = useState([]);
-    // console.log(checked)
+    const [checkedCategory, setCheckedCategory] = useState([]);
+    const [checkedBrand, setCheckedBrand] = useState([]);
+    const [selectedValue, setSelectedValue] = useState('Highest price');
+    // console.log(selectedValue)
 
-    const handleToggle = (value) => () => {
-        const currentIndex = checked.indexOf(value);
-        const newChecked = [...checked];
+    const handleCategoryToggle = (value) => () => {
+        const currentIndex = checkedCategory.indexOf(value);
+        const newChecked = [...checkedCategory];
 
         if (currentIndex === -1) {
             newChecked.push(value);
@@ -30,9 +33,20 @@ const FilterContent = ({ filterBgColor, handleColor, setIsOpenFilterDrawer }) =>
             newChecked.splice(currentIndex, 1);
         }
 
-        setChecked(newChecked);
+        setCheckedCategory(newChecked);
     };
+    const handleBrandToggle = (value) => () => {
+        const currentIndex = checkedBrand.indexOf(value);
+        const newChecked = [...checkedBrand];
 
+        if (currentIndex === -1) {
+            newChecked.push(value);
+        } else {
+            newChecked.splice(currentIndex, 1);
+        }
+
+        setCheckedBrand(newChecked);
+    };
     const handleChange1 = (event, newValue, activeThumb) => {
         if (!Array.isArray(newValue)) {
             return;
@@ -44,7 +58,6 @@ const FilterContent = ({ filterBgColor, handleColor, setIsOpenFilterDrawer }) =>
             setPriceSlideValue([priceSlideValue[0], Math.max(newValue[1], priceSlideValue[0] + minDistance)]);
         }
     };
-
     const handleCollapseMenu1 = () => {
         setCollapseCategoryFilter1(!openCollapseCategoryFilter1);
     };
@@ -70,13 +83,13 @@ const FilterContent = ({ filterBgColor, handleColor, setIsOpenFilterDrawer }) =>
                 onClick={handleDrawerClose1}
             />
             <div className='mt-[20px] mb-[30px]'>
-                {/* <div className='px-[15px] mb-[20px] relative lg:hidden block'>
-                    <InputSearchingValue getInputProductSearchingValue={getInputProductSearchingValue} />
-                </div> */}
                 <div className='w-full flex justify-center md:hidden'>
                     <div className='text-black'>
                         <p className='text-white'>Sort by price</p>
-                        <SelectSortingPrice />
+                        <SelectSortingPrice
+                            setSelectedValue={setSelectedValue}
+                            selectedValue={selectedValue}
+                        />
                     </div>
                 </div>
                 <div>
@@ -94,13 +107,14 @@ const FilterContent = ({ filterBgColor, handleColor, setIsOpenFilterDrawer }) =>
                                     allCategory?.map((item, i) =>
                                         <ListItem
                                             key={i}
+                                            sx={{ '&:hover': { borderBottom: '1px solid red' } }}
                                             disablePadding
                                         >
-                                            <ListItemButton role={undefined} onClick={handleToggle(item?.name)} dense>
+                                            <ListItemButton role={undefined} onClick={handleCategoryToggle(item?.name)} dense>
                                                 <ListItemIcon>
                                                     <Checkbox
                                                         edge="start"
-                                                        checked={checked.indexOf(item?.name) !== -1}
+                                                        checked={checkedCategory.indexOf(item?.name) !== -1}
                                                         tabIndex={-1}
                                                         disableRipple
                                                         inputProps={{ 'aria-labelledby': i }}
@@ -111,13 +125,6 @@ const FilterContent = ({ filterBgColor, handleColor, setIsOpenFilterDrawer }) =>
                                         </ListItem>
                                     )
                                 }
-                                {/* {
-                                    allCategory?.map((item, i) =>
-                                        <ListItemButton key={i} sx={{ pl: 4, '&:hover': { borderBottom: '1px solid red' } }}>
-                                            <ListItemText primary={item.name} />
-                                        </ListItemButton>
-                                    )
-                                } */}
                             </List>
                         </Collapse>
                         <ListItemButton onClick={handleCollapseMenu2} sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
@@ -128,9 +135,24 @@ const FilterContent = ({ filterBgColor, handleColor, setIsOpenFilterDrawer }) =>
                             <List component="div" disablePadding>
                                 {
                                     brands?.map((item, i) =>
-                                        <ListItemButton key={i} sx={{ pl: 4, '&:hover': { borderBottom: '1px solid red' } }}>
-                                            <ListItemText primary={item} />
-                                        </ListItemButton>
+                                        <ListItem
+                                            key={i}
+                                            sx={{ '&:hover': { borderBottom: '1px solid red' } }}
+                                            disablePadding
+                                        >
+                                            <ListItemButton role={undefined} onClick={handleBrandToggle(item)} dense>
+                                                <ListItemIcon>
+                                                    <Checkbox
+                                                        edge="start"
+                                                        checked={checkedBrand.indexOf(item) !== -1}
+                                                        tabIndex={-1}
+                                                        disableRipple
+                                                        inputProps={{ 'aria-labelledby': i }}
+                                                    />
+                                                </ListItemIcon>
+                                                <ListItemText id={i} primary={item} />
+                                            </ListItemButton>
+                                        </ListItem>
                                     )
                                 }
                             </List>
@@ -164,7 +186,7 @@ const FilterContent = ({ filterBgColor, handleColor, setIsOpenFilterDrawer }) =>
                         </div>
                     </div>
                 </div>
-                <FilterBgColor handleColor={handleColor} />
+                <FilterBgColor />
             </div>
         </Box>
     );

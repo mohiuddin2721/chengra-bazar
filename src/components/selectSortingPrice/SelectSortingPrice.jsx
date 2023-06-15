@@ -1,12 +1,21 @@
 import React from 'react';
 
-const SelectSortingPrice = () => {
+const SelectSortingPrice = ({ selectedValue, setSelectedValue }) => {
+
+    const handleSelectChange = (event) => {
+        setSelectedValue(event.target.value);
+    };
+    
     return (
-        <select name="" id="">
-            <option>price(lowest)</option>
-            <option>price(highest)</option>
-            <option>price-(a-z)</option>
-            <option>price-(z-a)</option>
+        <select
+            className='w-full'
+            value={selectedValue}
+            onChange={handleSelectChange}
+        >
+            <option value="Highest price">Highest price</option>
+            <option value="Lowest price">Lowest price</option>
+            <option value="Price (A-Z)">Price (A-Z)</option>
+            <option value="Price (Z-A">Price (Z-A)</option>
         </select>
     );
 };

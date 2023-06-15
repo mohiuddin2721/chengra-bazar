@@ -1,10 +1,12 @@
 import { Collapse, LinearProgress } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { AiFillHeart, AiTwotoneSetting } from 'react-icons/ai';
 import { filterSectionBgColor } from '../../Utils/ConstantData';
+import { ProductFilterContext } from '../../pages/ProductsFilter/ProductsFilter';
 
 
-const FilterBgColor = ({ handleColor }) => {
+const FilterBgColor = () => {
+    const { handleColor } = useContext(ProductFilterContext)
     const [open, setOpen] = useState(false);
 
     const handleClick = () => {
@@ -38,22 +40,3 @@ const FilterBgColor = ({ handleColor }) => {
 };
 
 export default FilterBgColor;
-
-
-
-
-
-
-// import React from 'react';
-// import { AiFillHeart } from 'react-icons/ai';
-
-// const FilterBgColor = ({ data, handleColor }) => {
-//     return (
-//         <AiFillHeart
-//             onMouseOver={() => handleColor(data.bgColor)}
-//             className={`text-2xl ${data.colorName} cursor-pointer`}
-//         />
-//     );
-// };
-
-// export default FilterBgColor;

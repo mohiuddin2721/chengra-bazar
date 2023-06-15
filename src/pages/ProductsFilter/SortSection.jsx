@@ -1,20 +1,24 @@
-import React, { useState } from 'react';
-import { FaList } from 'react-icons/fa';
+import React, { useContext, useState } from 'react';
+import { FaList, FaSearch } from 'react-icons/fa';
 import { BsFillGridFill } from 'react-icons/bs';
 import { RiFilterLine } from 'react-icons/ri';
 import { Drawer } from '@mui/material';
 import FilterContent from '../../components/filterContent/FilterContent';
-import SelectSortingPrice from '../../components/selectSortingPrice/selectSortingPrice';
-import InputSearchingValue from '../../components/inputSearchingValue/InputSearchingValue';
+import SelectSortingPrice from '../../components/selectSortingPrice/SelectSortingPrice';
+import { ProductFilterContext } from './ProductsFilter';
 
-const SortSection = ({ filterBgColor, handleColor, setIsOpenFilterDrawer, isOpenFilterDrawer }) => {
+const SortSection = () => {
+    const { filterBgColor, setIsOpenFilterDrawer, isOpenFilterDrawer } = useContext(ProductFilterContext)
     const [searchValue, setSearchValue] = useState("");
-    // console.log(searchValue)
+    const [selectedValue, setSelectedValue] = useState('Highest price');
+    // console.log(selectedValue)
 
     const getInputProductSearchingValue = (e) => {
         const inputValue = e.target.value;
         setSearchValue(inputValue)
     }
+
+
     return (
         <>
             <div className={`flex ${filterBgColor} rounded min-h-[40px]`}>
@@ -27,11 +31,22 @@ const SortSection = ({ filterBgColor, handleColor, setIsOpenFilterDrawer, isOpen
                     <FaList className='cursor-pointer' />
                 </div>
                 <div className='w-full lg:w-[40%] px-[15px] my-2 block relative'>
-                    <InputSearchingValue getInputProductSearchingValue={getInputProductSearchingValue} />
+                    <div>
+                        <input
+                            onChange={getInputProductSearchingValue}
+                            type="text"
+                            placeholder='Search...'
+                            className='w-full py-2 px-3 bg-white text-[#ce3cb8]'
+                        />
+                        <FaSearch className='absolute right-[23px] z-20 cursor-pointer top-[9px] font-bold text-lg' />
+                    </div>
                 </div>
                 <div className='w-[30%] hidden md:flex justify-center items-center '>
                     <div className='flex items-center justify-center'>
-                        <SelectSortingPrice />
+                        <SelectSortingPrice
+                            setSelectedValue={setSelectedValue}
+                            selectedValue={selectedValue}
+                        />
                     </div>
                 </div>
             </div>
@@ -50,12 +65,7 @@ const SortSection = ({ filterBgColor, handleColor, setIsOpenFilterDrawer, isOpen
                             }
                         }}
                     >
-                        <FilterContent
-                            filterBgColor={filterBgColor}
-                            handleColor={handleColor}
-                            setIsOpenFilterDrawer={setIsOpenFilterDrawer}
-                            isOpenFilterDrawer={isOpenFilterDrawer}
-                        />
+                        <FilterContent />
                     </Drawer>
                 </>
             </div>
