@@ -11,19 +11,22 @@ const ProductsFilter = () => {
     const [isOpenFilterDrawer, setIsOpenFilterDrawer] = useState(false);
     const [filterBgColor, setFilterBgColor] = useState('bg-[#024160]');
     const [searchValue, setSearchValue] = useState("");
+    const [searchResults, setSearchResults] = useState([]);
     const [selectedValue, setSelectedValue] = useState('Highest price');
     const [checkedCategory, setCheckedCategory] = useState([]);
     const [checkedBrand, setCheckedBrand] = useState([]);
     const [priceSlideValue, setPriceSlideValue] = useState([1000, 2000]);
     const [rattingValue, setRattingValue] = useState(3);
-    // console.log(selectedValue)
+    // console.log(searchResults)
 
     const handleColor = (clr) => {
         setFilterBgColor(clr)
     }
 
     const filterFunction = {
-        filterBgColor, handleColor, setSearchValue,
+        filterBgColor, handleColor, 
+        searchResults, setSearchResults,
+        searchValue, setSearchValue,
         isOpenFilterDrawer, setIsOpenFilterDrawer,
         selectedValue, setSelectedValue,
         checkedCategory, setCheckedCategory,
@@ -50,7 +53,7 @@ const ProductsFilter = () => {
                         </div>
                         <div>
                             {/* all of filtering product appear here */}
-                            <ProductList />
+                            <ProductList searchResults={searchResults} />
                         </div>
                     </Grid>
                 </Grid>

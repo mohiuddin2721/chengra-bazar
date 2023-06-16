@@ -7,6 +7,7 @@ import Loader from '../../components/Loader/Loader';
 
 function AllProducts() {
   const { allProduct, isLoading } = useGetAllData();
+  // console.log(allProduct)
 
   if (isLoading) {
     return <Loader />;

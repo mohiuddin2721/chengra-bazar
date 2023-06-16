@@ -1,9 +1,25 @@
 import React from 'react';
+import SingleData from '../../components/ReceivAllData/SingleData';
+import { Grid } from '@mui/material';
 
-const ProductList = () => {
+const ProductList = ({ searchResults }) => {
     return (
         <div>
-            <p>Product section</p>
+            <p className={`text-center`}>total searching product {searchResults.length}</p>
+            <Grid container spacing={1}>
+                {
+                    searchResults?.map((item, index) =>
+                        <SingleData
+                            key={item._id}
+                            item={item}
+                            xs={6}
+                            sm={6}
+                            md={3}
+                            lg={3}
+                        />
+                    )
+                }
+            </Grid>
         </div>
     );
 };

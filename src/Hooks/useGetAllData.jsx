@@ -9,7 +9,7 @@ const useGetAllData = () => {
             return data;
         }
     });
-    const allProduct = data?.data;
+    const allProduct = data?.data?.products;
     return { allProduct, isLoading };
 };
 

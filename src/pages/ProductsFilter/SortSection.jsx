@@ -6,19 +6,31 @@ import { Drawer } from '@mui/material';
 import FilterContent from '../../components/filterContent/FilterContent';
 import SelectSortingPrice from '../../components/selectSortingPrice/SelectSortingPrice';
 import { ProductFilterContext } from './ProductsFilter';
+import useGetAllData from '../../Hooks/useGetAllData';
 
 const SortSection = () => {
+    const { allProduct } = useGetAllData();
     const { filterBgColor,
         setIsOpenFilterDrawer,
         isOpenFilterDrawer,
         setSearchValue,
+        searchValue,
+        setSearchResults,
     } = useContext(ProductFilterContext)
     // console.log(selectedValue)
 
     const getInputProductSearchingValue = (e) => {
         const inputValue = e.target.value;
         setSearchValue(inputValue)
+        const results = searchFunction(inputValue);
+        setSearchResults(results);
     }
+    const searchFunction = (inputValue) => {
+        const filteredResults = allProduct.filter((products) =>
+            products?.name.toLowerCase().includes(inputValue.toLowerCase())
+        );
+        return filteredResults;
+    };
 
     return (
         <>
@@ -36,6 +48,7 @@ const SortSection = () => {
                         <input
                             onChange={getInputProductSearchingValue}
                             type="text"
+                            value={searchValue}
                             placeholder='Search...'
                             className='w-full py-2 px-3 bg-white text-[#ce3cb8]'
                         />
