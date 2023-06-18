@@ -26,12 +26,6 @@ const FilterContent = () => {
     const { allCategory } = useGetAllCategory()
     const [openCollapseCategoryFilter1, setCollapseCategoryFilter1] = useState(true);
     const [openCollapseCategoryFilter2, setCollapseCategoryFilter2] = useState(false);
-    // const [selectedValue, setSelectedValue] = useState('Highest price');
-    // const [checkedCategory, setCheckedCategory] = useState([]);
-    // const [checkedBrand, setCheckedBrand] = useState([]);
-    // const [priceSlideValue, setPriceSlideValue] = useState([1000, 2000]);
-    // const [rattingValue, setRattingValue] = useState(3);
-    // console.log(selectedValue)
 
     const handleCategoryToggle = (value) => () => {
         const currentIndex = checkedCategory.indexOf(value);
@@ -174,7 +168,7 @@ const FilterContent = () => {
                                 value={priceSlideValue}
                                 onChange={handleChange1}
                                 min={500}
-                                max={3000}
+                                max={5000}
                                 valueLabelDisplay="on"
                                 disableSwap
                             />

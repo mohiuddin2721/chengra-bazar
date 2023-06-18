@@ -17,9 +17,10 @@ const SortSection = () => {
         searchValue,
         setSearchResults,
     } = useContext(ProductFilterContext)
-    // console.log(selectedValue)
+    // console.log(selectedPriceValue)
 
     const getInputProductSearchingValue = (e) => {
+        setSearchResults([])
         const inputValue = e.target.value;
         setSearchValue(inputValue)
         const results = searchFunction(inputValue);

@@ -11,6 +11,7 @@ const ProductList = ({ searchResults }) => {
                     searchResults?.map((item, index) =>
                         <SingleData
                             key={item._id}
+                            index={index}
                             item={item}
                             xs={6}
                             sm={6}
