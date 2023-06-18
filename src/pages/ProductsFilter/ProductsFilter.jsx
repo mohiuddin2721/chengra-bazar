@@ -16,17 +16,25 @@ const ProductsFilter = () => {
     const [selectedPriceValue, setSelectedPriceValue] = useState('');
     const [checkedCategory, setCheckedCategory] = useState([]);
     const [checkedBrand, setCheckedBrand] = useState([]);
-    const [priceSlideValue, setPriceSlideValue] = useState([500,4000]);
+    const [priceSlideValue, setPriceSlideValue] = useState([500, 4000]);
     const [rattingValue, setRattingValue] = useState();
-    // const [filteredProduct, setFilteredProduct] = useState([])
+    const [grid_listView, setGrid_listView] = useState('grid')
     // console.log(checkedCategory)
     // console.log(checkedBrand)
+    const gridView = () => {
+        setGrid_listView("grid")
+    }
+    const listView = () => {
+        setGrid_listView("list")
+    }
 
     const handleColor = (clr) => {
         setFilterBgColor(clr)
     }
+    // console.log(grid_listView)
 
     const filterFunction = {
+        gridView, listView,
         filterBgColor, handleColor,
         searchResults, setSearchResults,
         searchValue, setSearchValue,
@@ -62,21 +70,12 @@ const ProductsFilter = () => {
                 const results = await fetch(url);
                 const data = await results.json();
                 // console.log(data.data.products)
-                setSearchResults(data.data.products)
+                setSearchResults(data?.data?.products)
             } catch (error) {
                 console.error(error);
             }
         };
         fetchData();
-        // console.log(url)
-        // const { data, isLoading } = useQuery({
-        //     queryKey: ['filteredProducts'],
-        //     queryFn: async () => {
-        //         const res = await fetch(url);
-        //         const data = res.json();
-        //         return data;
-        //     }
-        // });
     }, [checkedCategory, checkedBrand, priceSlideValue, selectedPriceValue, rattingValue])
 
 
@@ -98,8 +97,11 @@ const ProductsFilter = () => {
                         </div>
                         <div>
                             {/* all of filtering product appear here */}
-                            <ProductList searchResults={searchResults} /> 
-                            
+                            <ProductList
+                                grid_listView={grid_listView}
+                                searchResults={searchResults}
+                            />
+
                         </div>
                     </Grid>
                 </Grid>

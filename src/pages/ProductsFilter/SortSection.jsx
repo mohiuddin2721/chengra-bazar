@@ -16,6 +16,8 @@ const SortSection = () => {
         setSearchValue,
         searchValue,
         setSearchResults,
+        gridView,
+        listView,
     } = useContext(ProductFilterContext)
     // console.log(selectedPriceValue)
 
@@ -41,8 +43,14 @@ const SortSection = () => {
                         className='text-xl ml-2 cursor-pointer block md:hidden'
                         onClick={() => setIsOpenFilterDrawer(true)}
                     />
-                    <BsFillGridFill className='mx-4 cursor-pointer' />
-                    <FaList className='cursor-pointer' />
+                    <BsFillGridFill
+                        className='mx-4 cursor-pointer'
+                        onClick={gridView}
+                    />
+                    <FaList
+                        className='cursor-pointer'
+                        onClick={listView}
+                    />
                 </div>
                 <div className='w-full lg:w-[40%] px-[15px] my-2 block relative'>
                     <div>
