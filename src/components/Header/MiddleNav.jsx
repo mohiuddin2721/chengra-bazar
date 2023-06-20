@@ -14,6 +14,7 @@ import { Box, Collapse, Drawer, List, ListItemButton, ListItemText } from '@mui/
 import { brands, categories } from '../../Utils/ConstantData';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 
 
 const MiddleNav = () => {
@@ -58,7 +59,9 @@ const MiddleNav = () => {
                                 </button>
                             </div>
                             {/* <img src={logo} alt="" className='w-[85%] lg:w-full h-full' /> */}
-                            <AiOutlineShoppingCart className='text-[35px]' />
+                            <Link to='/'>
+                                <AiOutlineShoppingCart className='text-[35px]' />
+                            </Link>
                         </div>
                         <div className='w-full flex gap-[30px] text-[13px] justify-end lg:justify-start  text-[#8d8d8d]'>
                             <div className='w-full h-[40px] hidden lg:flex items-center rounded-[50px] bg-[#f1f1f1]'>

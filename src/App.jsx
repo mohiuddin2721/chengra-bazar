@@ -2,7 +2,6 @@ import React from "react";
 import { Route,  Routes } from "react-router-dom";
 // import Layout from "./components/Layout";
 import Home from "./pages/Home/Home";
-import About from "./pages/About";
 import SignIn from "./Authentication/SignIn";
 import SignUp from "./Authentication/SignUp";
 import DetailSingleData from "./components/ReceivAllData/DetailSingleData";
@@ -21,7 +20,6 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="best_products" element={<BestProducts />} />
-        <Route path="Our_Story" element={<About />} />
         <Route path="Customer_care" element={<CustomerCare />} />
         <Route path="signIn" element={<SignIn />} />
         <Route path="signUp" element={<SignUp />} />

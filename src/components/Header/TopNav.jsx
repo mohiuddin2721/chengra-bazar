@@ -67,9 +67,9 @@ function TopNav() {
                     </div>
                     <div>
                         <ul className='flex items-start text-[13px]'>
-                            <Link className={topNavSocialButtonStyle}><FaFacebookF /></Link>
-                            <Link className={topNavSocialButtonStyle}><FaTwitter /></Link>
-                            <Link className={topNavSocialButtonStyle}><FaInstagram /></Link>
+                            <Link href='https://www.facebook.com/' target='_blank' className={topNavSocialButtonStyle}><FaFacebookF /></Link>
+                            <Link href='https://twitter.com/' target='_blank' className={topNavSocialButtonStyle}><FaTwitter /></Link>
+                            <Link href='https://www.instagram.com/' target='_blank' className={topNavSocialButtonStyle}><FaInstagram /></Link>
                         </ul>
                     </div>
                 </div>
