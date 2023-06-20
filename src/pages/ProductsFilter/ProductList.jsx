@@ -38,9 +38,6 @@ const ProductList = ({ searchResults, grid_listView }) => {
             }
 
         </div>
-        // border: 5px outset #3665A4;
-        // border-radius: 40px 0px 40px 0px;
-        // hover
     );
 };
 

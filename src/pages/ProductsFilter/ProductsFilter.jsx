@@ -4,7 +4,6 @@ import SortSection from './SortSection';
 import ProductList from './ProductList';
 import { Box, Grid } from '@mui/material';
 import { component_container } from '../../Styles/ComponentStyle';
-import { useQuery } from '@tanstack/react-query';
 
 export const ProductFilterContext = createContext()
 
@@ -19,7 +18,6 @@ const ProductsFilter = () => {
     const [priceSlideValue, setPriceSlideValue] = useState([500, 4000]);
     const [rattingValue, setRattingValue] = useState();
     const [grid_listView, setGrid_listView] = useState('grid')
-    // console.log(checkedCategory)
     // console.log(checkedBrand)
     const gridView = () => {
         setGrid_listView("grid")

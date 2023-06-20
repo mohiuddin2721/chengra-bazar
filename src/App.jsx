@@ -1,12 +1,8 @@
 import React from "react";
-import {
-  Route,
-  Routes,
-} from "react-router-dom";
+import { Route,  Routes } from "react-router-dom";
 // import Layout from "./components/Layout";
 import Home from "./pages/Home/Home";
 import About from "./pages/About";
-import Contact from "./pages/Contact";
 import SignIn from "./Authentication/SignIn";
 import SignUp from "./Authentication/SignUp";
 import DetailSingleData from "./components/ReceivAllData/DetailSingleData";
@@ -15,8 +11,8 @@ import Header from "./components/Header/Header";
 import SelectedCategories from "./pages/Home/SelectedCategories";
 import ShortCutDetail from "./components/ReceivAllData/ShortCutDetail";
 import ProductsFilter from "./pages/ProductsFilter/ProductsFilter";
-import Blogs from "./pages/blogs/Blogs";
-
+import BestProducts from "./components/bestProducts/BestProducts";
+import CustomerCare from "./components/customerCare/CustomerCare";
 
 export default function App() {
   return (
@@ -24,9 +20,9 @@ export default function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="blogs" element={<Blogs />} />
-        <Route path="aboutUs" element={<About />} />
-        <Route path="contact" element={<Contact />} />
+        <Route path="best_products" element={<BestProducts />} />
+        <Route path="Our_Story" element={<About />} />
+        <Route path="Customer_care" element={<CustomerCare />} />
         <Route path="signIn" element={<SignIn />} />
         <Route path="signUp" element={<SignUp />} />
         <Route path="/products/:id" element={<DetailSingleData />} />
