@@ -15,9 +15,11 @@ import { brands, categories } from '../../Utils/ConstantData';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
+import useGetAllCategory from '../../Hooks/useGetAllCategories';
 
 
 const MiddleNav = () => {
+    const { allCategory } = useGetAllCategory();
     const [isOpenMenuDrawer, setIsOpenMenuDrawer] = useState(false);
     const [isOpenCartDrawer, setIsOpenCartDrawer] = useState(false);
     const [openCollapseMenu1, setCollapseMenu1] = useState(false);
@@ -68,23 +70,9 @@ const MiddleNav = () => {
                                 <input placeholder='Search...' type="text" className='h-full w-[70%] outline-none px-[20px] py-[10px]  bg-transparent rounded-tl-[50px] rounded-bl-[50px]' />
                                 <div className='font-normal flex items-center w-[23%] px-[14px] border-l border-r h-[40px] border-white'>
                                     <select name="" id="" className={`bg-transparent w-full cursor-pointer outline-none ${styles.select}`}>
-                                        <option value="">All Categories</option>
-                                        <option value="4">Fashion</option>
-                                        <option value="12">- Women</option>
-                                        <option value="13">- Men</option>
-                                        <option value="66">- Jewellery</option>
-                                        <option value="67">- Kids Fashion</option>
-                                        <option value="5">Electronics</option>
-                                        <option value="21">- Smart TVs</option>
-                                        <option value="22">- Cameras</option>
-                                        <option value="63">- Games</option>
-                                        <option value="7">Home &amp; Garden</option>
-                                        <option value="11">Motors</option>
-                                        <option value="31">- Cars and Trucks</option>
-                                        <option value="32">- Motorcycles &amp; Powersports</option>
-                                        <option value="33">- Parts &amp; Accessories</option>
-                                        <option value="34">- Boats</option>
-                                        <option value="57">- Auto Tools &amp; Supplies</option>
+                                        {
+                                            allCategory?.map((item, i)=><option key={i} value="">{item.name}</option>)
+                                        }
                                     </select>
                                 </div>
                                 <div className='w-[7%] h-[40px] flex justify-center items-center'>

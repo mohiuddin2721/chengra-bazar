@@ -1,13 +1,17 @@
 import { Popper, Grow, Paper, ClickAwayListener, MenuList, MenuItem } from '@mui/material';
 import React, { useEffect, useRef, useState } from 'react';
 import { Button } from 'rsuite';
-import { brands } from '../../Utils/ConstantData';
+import useGetAllData from '../../Hooks/useGetAllData';
 
 
 function BrandStickyNav() {
-
+    const { allProduct } = useGetAllData();
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
+    // console.log(allProduct)
+    const getBrand = allProduct?.map((data) => data?.brand)
+    const allBrand = Array.from(new Set(getBrand));
+    console.log(allBrand)
 
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
@@ -43,7 +47,7 @@ function BrandStickyNav() {
                 aria-expanded={open ? 'true' : undefined}
                 aria-haspopup="true"
                 onClick={handleToggle}
-                style={{fontSize: '12px'}}
+                style={{ fontSize: '12px' }}
             >
                 BRAND
             </Button>
@@ -72,8 +76,9 @@ function BrandStickyNav() {
                                     onKeyDown={handleListKeyDown}
                                 >
                                     {
-                                        brands?.map((item, i)=>
-                                        <MenuItem key={i} onClick={handleClose}>{item}</MenuItem>
+                                        // allProduct?.map((item, i)=>
+                                        allBrand?.map((item, i) =>
+                                            <MenuItem key={i} onClick={handleClose}>{item}</MenuItem>
                                         )
                                     }
                                 </MenuList>

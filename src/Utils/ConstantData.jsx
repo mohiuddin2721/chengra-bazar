@@ -582,6 +582,10 @@ export const sortCartData = [
 
 export const topNavItemsLink = [
     {
+        name: 'Customer care',
+        to: 'Customer_care',
+    },
+    {
         name: 'Track My Order',
         to: '/',
     },
