@@ -8,10 +8,10 @@ function BrandStickyNav() {
     const { allProduct } = useGetAllData();
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
-    // console.log(allProduct)
+    
     const getBrand = allProduct?.map((data) => data?.brand)
     const allBrand = Array.from(new Set(getBrand));
-    console.log(allBrand)
+    // console.log(allBrand)
 
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
@@ -38,6 +38,7 @@ function BrandStickyNav() {
 
         prevOpen.current = open;
     }, [open]);
+
     return (
         <div>
             <Button

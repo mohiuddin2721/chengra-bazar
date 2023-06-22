@@ -1,5 +1,5 @@
 import React, { useContext, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './SignIn.css';
 import SocialLogin from '../components/SocialAuthentication/SocialLogin';
 import { useForm } from 'react-hook-form';
@@ -15,6 +15,10 @@ const SignIn = () => {
     const { signIn } = useContext(AuthContext)
     const [loginError, setLoginError] = useState('');
     const handleClickShowPassword = () => setShowPassword((show) => !show);
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const from = location?.state?.from?.pathname || '/';
 
     const handleLogin = data => {
         setLoginError('')
@@ -22,7 +26,8 @@ const SignIn = () => {
         signIn(data.email, data.password)
             .then((result) => {
                 const user = result.user;
-                console.log(user)
+                console.log(user);
+                navigate(from, { replace: true })
             })
             .catch((error) => {
                 setLoginError(error.message)

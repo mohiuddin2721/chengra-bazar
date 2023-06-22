@@ -593,6 +593,10 @@ export const topNavItemsLink = [
         name: 'Cart',
         to: '/',
     },
+    {
+        name: 'Dashboard',
+        to: '/dashboard',
+    },
 ]
 
 export const filterSectionBgColor = [

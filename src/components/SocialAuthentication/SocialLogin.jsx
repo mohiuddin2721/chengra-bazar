@@ -8,6 +8,7 @@ import {
     signInWithPopup
 } from 'firebase/auth';
 import app from '../../firebase/firebase.config';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 
 
 const SocialLogin = () => {
@@ -16,11 +17,16 @@ const SocialLogin = () => {
     // const [googleError, setGoogleError] = useState("");
     const googleProvider = new GoogleAuthProvider();
     const facebookProvider = new FacebookAuthProvider();
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const from = location?.state?.from?.pathname || '/';
 
     const handleGoogleSignIN = () => {
         signInWithPopup(auth, googleProvider)
             .then((result) => {
                 const user = result.user;
+                navigate(from, { replace: true })
                 console.log(user)
             })
             .catch((error) => {
@@ -31,6 +37,7 @@ const SocialLogin = () => {
         signInWithPopup(auth, facebookProvider)
             .then((result) => {
                 const user = result.user;
+                navigate(from, { replace: true })
                 console.log(user)
             })
             .catch((error) => {

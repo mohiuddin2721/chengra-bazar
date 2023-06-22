@@ -11,11 +11,12 @@ import { BsSearch } from 'react-icons/bs';
 import { MdOutlineClose } from 'react-icons/md';
 import { FaSearch } from 'react-icons/fa';
 import { Box, Collapse, Drawer, List, ListItemButton, ListItemText } from '@mui/material';
-import { brands, categories } from '../../Utils/ConstantData';
+import { categories } from '../../Utils/ConstantData';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import useGetAllCategory from '../../Hooks/useGetAllCategories';
+import useGetAllData from '../../Hooks/useGetAllData';
 
 
 const MiddleNav = () => {
@@ -24,6 +25,11 @@ const MiddleNav = () => {
     const [isOpenCartDrawer, setIsOpenCartDrawer] = useState(false);
     const [openCollapseMenu1, setCollapseMenu1] = useState(false);
     const [openCollapseMenu2, setCollapseMenu2] = useState(false);
+    const { allProduct } = useGetAllData();
+
+    const getBrand = allProduct?.map((data) => data?.brand)
+    const allBrand = Array.from(new Set(getBrand));
+    // console.log(allBrand)
 
     const handleCollapseMenu1 = () => {
         setCollapseMenu1(!openCollapseMenu1);
@@ -70,8 +76,9 @@ const MiddleNav = () => {
                                 <input placeholder='Search...' type="text" className='h-full w-[70%] outline-none px-[20px] py-[10px]  bg-transparent rounded-tl-[50px] rounded-bl-[50px]' />
                                 <div className='font-normal flex items-center w-[23%] px-[14px] border-l border-r h-[40px] border-white'>
                                     <select name="" id="" className={`bg-transparent w-full cursor-pointer outline-none ${styles.select}`}>
+                                        <option value="">select category</option>
                                         {
-                                            allCategory?.map((item, i)=><option key={i} value="">{item.name}</option>)
+                                            allCategory?.map((item, i) => <option key={i} value="">{item.name}</option>)
                                         }
                                     </select>
                                 </div>
@@ -102,23 +109,10 @@ const MiddleNav = () => {
                                         <input placeholder='Search...' type="text" className='h-full w-[45%] outline-none px-[20px] py-[10px]  bg-transparent rounded-tl-[50px] rounded-bl-[50px]' />
                                         <div className='font-normal flex items-center w-[43%] px-[14px] border-l border-r h-[40px] border-white'>
                                             <select name="" id="" className={`bg-transparent w-full cursor-pointer outline-none ${styles.select}`}>
-                                                <option value="">All Categories</option>
-                                                <option value="4">Fashion</option>
-                                                <option value="12">- Women</option>
-                                                <option value="13">- Men</option>
-                                                <option value="66">- Jewellery</option>
-                                                <option value="67">- Kids Fashion</option>
-                                                <option value="5">Electronics</option>
-                                                <option value="21">- Smart TVs</option>
-                                                <option value="22">- Cameras</option>
-                                                <option value="63">- Games</option>
-                                                <option value="7">Home &amp; Garden</option>
-                                                <option value="11">Motors</option>
-                                                <option value="31">- Cars and Trucks</option>
-                                                <option value="32">- Motorcycles &amp; Powersports</option>
-                                                <option value="33">- Parts &amp; Accessories</option>
-                                                <option value="34">- Boats</option>
-                                                <option value="57">- Auto Tools &amp; Supplies</option>
+                                                <option value="">select category</option>
+                                                {
+                                                    allCategory?.map((item, i) => <option key={i} value="">{item.name}</option>)
+                                                }
                                             </select>
                                         </div>
                                         <div className='w-[12%] h-[40px] flex justify-center items-center'>
@@ -194,9 +188,6 @@ const MiddleNav = () => {
                                         <ListItemButton sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
                                             <ListItemText primary="HOME" />
                                         </ListItemButton>
-                                        <ListItemButton sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
-                                            <ListItemText primary="Drafts" />
-                                        </ListItemButton>
                                         <ListItemButton onClick={handleCollapseMenu1} sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
                                             <ListItemText primary="CATEGORIES" />
                                             {openCollapseMenu1 ? <ExpandLess /> : <ExpandMore />}
@@ -219,7 +210,7 @@ const MiddleNav = () => {
                                         <Collapse in={openCollapseMenu2} timeout="auto" unmountOnExit>
                                             <List component="div" disablePadding>
                                                 {
-                                                    brands?.map((item, i) =>
+                                                    allBrand?.map((item, i) =>
                                                         <ListItemButton key={i} sx={{ pl: 4, '&:hover': { borderBottom: '1px solid red' } }}>
                                                             <ListItemText primary={item} />
                                                         </ListItemButton>
@@ -231,22 +222,16 @@ const MiddleNav = () => {
                                             <ListItemText primary="SPECIAL OFFERS!" />
                                         </ListItemButton>
                                         <ListItemButton sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
-                                            <ListItemText primary="BLOGS" />
-                                        </ListItemButton>
-                                        <ListItemButton sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
                                             <ListItemText primary="MY ACCOUNT" />
-                                        </ListItemButton>
-                                        <ListItemButton sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
-                                            <ListItemText primary="MY WISHLIST" />
                                         </ListItemButton>
                                         <ListItemButton sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
                                             <ListItemText primary="CART" />
                                         </ListItemButton>
                                         <ListItemButton sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
-                                            <ListItemText primary="ABOUT US" />
+                                            <ListItemText primary="Customer care" />
                                         </ListItemButton>
                                         <ListItemButton sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
-                                            <ListItemText primary="CONTACT US" />
+                                            <ListItemText primary="Track My Order" />
                                         </ListItemButton>
                                         <ListItemButton sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
                                             <ListItemText primary="LOG IN" />
