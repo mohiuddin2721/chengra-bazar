@@ -12,6 +12,7 @@ import SignIn from "../Authentication/SignIn";
 import CustomerCare from "../components/customerCare/CustomerCare";
 import PrivateRoute from "../routes/PrivateRoute";
 import DisplayError from "../pages/displayError/DisplayError";
+import DashboardLayout from "../pages/dashboard/DashboardLayout";
 
 
 const router = createBrowserRouter([
@@ -40,10 +41,11 @@ const router = createBrowserRouter([
                 path: '/signUp',
                 element: <SignUp></SignUp>
             },
-            {
-                path: '/dashboard',
-                element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>
-            },
+            // {
+            //     path: '/dashboard',
+            //     // element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>
+            //     element: <DashboardLayout></DashboardLayout>
+            // },
             {
                 path: '/products/:id',
                 element: <DetailSingleData></DetailSingleData>
@@ -59,6 +61,17 @@ const router = createBrowserRouter([
             {
                 path: '/shortcut/:id',
                 element: <ShortCutDetail></ShortCutDetail>
+            },
+        ]
+    },
+    {
+        path: '/dashboard',
+        element: <DashboardLayout />,
+        errorElement: <DisplayError></DisplayError>,
+        children: [
+            {
+                path: '/dashboard',
+                element: <Dashboard></Dashboard>
             },
         ]
     }
