@@ -11,12 +11,14 @@ import SignUp from "../Authentication/SignUp";
 import SignIn from "../Authentication/SignIn";
 import CustomerCare from "../components/customerCare/CustomerCare";
 import PrivateRoute from "../routes/PrivateRoute";
+import DisplayError from "../pages/displayError/DisplayError";
 
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
+        errorElement: <DisplayError></DisplayError>,
         children: [
             {
                 path: '/',
