@@ -13,6 +13,13 @@ import CustomerCare from "../components/customerCare/CustomerCare";
 import PrivateRoute from "../routes/PrivateRoute";
 import DisplayError from "../pages/displayError/DisplayError";
 import DashboardLayout from "../pages/dashboard/DashboardLayout";
+import ManageAccount from "../pages/dashboard/ManageAccount";
+import MyOrder from "../pages/dashboard/MyOrder";
+import MyCart from "../pages/dashboard/MyCart";
+import Upload_Update from "../pages/dashboard/Upload_Update";
+import Administration from "../pages/dashboard/Administration";
+import Management from "../pages/dashboard/Management";
+import SendMail from "../pages/dashboard/SendMail";
 
 
 const router = createBrowserRouter([
@@ -67,6 +74,34 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard',
                 element: <Dashboard></Dashboard>
+            },
+            {
+                path: '/dashboard/Manage_account',
+                element: <ManageAccount></ManageAccount>
+            },
+            {
+                path: '/dashboard/My_order',
+                element: <MyOrder></MyOrder>
+            },
+            {
+                path: '/dashboard/My_cart',
+                element: <MyCart></MyCart>
+            },
+            {
+                path: '/dashboard/Upload_&_Update',
+                element: <Upload_Update></Upload_Update>
+            },
+            {
+                path: '/dashboard/Administration',
+                element: <Administration></Administration>
+            },
+            {
+                path: '/dashboard/Management',
+                element: <Management></Management>
+            },
+            {
+                path: '/dashboard/Send_mail',
+                element: <SendMail></SendMail>
             },
         ]
     }

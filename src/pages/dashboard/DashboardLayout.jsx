@@ -26,14 +26,14 @@ import { GrDocumentUpdate, GrUserManager } from 'react-icons/gr';
 import { AiTwotoneSetting } from 'react-icons/ai';
 
 const dashboardLink = [
-    { name: 'Manage account', icon: <i><MdManageAccounts /></i> },
-    { name: 'My order', icon: <i><InboxIcon /></i> },
-    { name: 'My cart', icon: <i><FaCartArrowDown /></i> },
-    { name: 'Dashboard', icon: <i><MdDashboard /></i> },
-    { name: 'Upload & Update', icon: <i><GrDocumentUpdate /></i> },
-    { name: 'Administration', icon: <i><MdAdminPanelSettings /></i> },
-    { name: 'Management', icon: <i><GrUserManager /></i> },
-    { name: 'Send mail', icon: <i><BiMailSend /></i> },
+    { name: 'Manage account', to: '/dashboard/Manage_account', icon: <i><MdManageAccounts /></i> },
+    { name: 'My order', to: '/dashboard/My_order', icon: <i><InboxIcon /></i> },
+    { name: 'My cart', to: '/dashboard/My_cart', icon: <i><FaCartArrowDown /></i> },
+    { name: 'Dashboard', to: '/dashboard', icon: <i><MdDashboard /></i> },
+    { name: 'Upload & Update', to: '/dashboard/Upload_&_Update', icon: <i><GrDocumentUpdate /></i> },
+    { name: 'Administration', to: '/dashboard/Administration', icon: <i><MdAdminPanelSettings /></i> },
+    { name: 'Management', to: '/dashboard/Management', icon: <i><GrUserManager /></i> },
+    { name: 'Send mail', to: '/dashboard/Send_mail', icon: <i><BiMailSend /></i> },
 ]
 
 const drawerWidth = 240;
@@ -139,7 +139,7 @@ export default function DashboardLayout() {
                                 onClick={handleDrawerOpen}
                                 edge="start"
                                 sx={{
-                                    marginRight: 2,
+                                    marginRight: 1,
                                     ...(open && { display: 'none' }),
                                 }}
                             >
