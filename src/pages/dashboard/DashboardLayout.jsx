@@ -109,6 +109,8 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 export default function DashboardLayout() {
     const theme = useTheme();
     const [open, setOpen] = useState(false);
+    const [isOpenDashboardSetting, setIsOpenDashboardSetting] = useState(false)
+    // console.log(isOpenDashboardSetting)
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -164,7 +166,9 @@ export default function DashboardLayout() {
                         >
                             <Link to='/' className='underline'> Home </Link>
                             <p className='mx-4'>
-                                <AiTwotoneSetting className='cursor-pointer' />
+                                <AiTwotoneSetting
+                                    onClick={() => setIsOpenDashboardSetting(true)}
+                                    className='cursor-pointer' />
                             </p>
                             <p>
                                 <MdNotifications className='cursor-pointer' />
@@ -271,6 +275,16 @@ export default function DashboardLayout() {
                             <span className="pyramid_shadow"></span>
                         </div>
                     </div>
+                </Drawer>
+                <Drawer
+                    anchor='right'
+                    open={isOpenDashboardSetting}
+                // onClose={toggleDrawer(anchor, false)}
+                >
+                    <p>setting</p>
+                    <p>setting</p>
+                    <p>setting</p>
+                    <p>setting</p>
                 </Drawer>
                 <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                     <DrawerHeader />
