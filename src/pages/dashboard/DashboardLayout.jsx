@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../../Styles/Dashboard.css'
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
@@ -18,22 +19,23 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import BackupIcon from '@mui/icons-material/Backup';
 import { Link, Outlet } from 'react-router-dom';
-import { MdDashboard, MdManageAccounts, MdAdminPanelSettings, MdNotifications } from 'react-icons/md';
+import { MdTipsAndUpdates, MdDashboard, MdManageAccounts, MdAdminPanelSettings, MdNotifications } from 'react-icons/md';
 import { BiMailSend } from 'react-icons/bi';
 import { FaCartArrowDown } from 'react-icons/fa';
 import { TbSlash } from 'react-icons/tb';
-import { GrDocumentUpdate, GrUserManager } from 'react-icons/gr';
+import { FcManager } from 'react-icons/fc';
+import { GrDocumentUpdate } from 'react-icons/gr';
 import { AiTwotoneSetting } from 'react-icons/ai';
 
 const dashboardLink = [
-    { name: 'Manage account', to: '/dashboard/Manage_account', icon: <i><MdManageAccounts /></i> },
-    { name: 'My order', to: '/dashboard/My_order', icon: <i><InboxIcon /></i> },
-    { name: 'My cart', to: '/dashboard/My_cart', icon: <i><FaCartArrowDown /></i> },
-    { name: 'Dashboard', to: '/dashboard', icon: <i><MdDashboard /></i> },
-    { name: 'Upload & Update', to: '/dashboard/Upload_&_Update', icon: <i><GrDocumentUpdate /></i> },
-    { name: 'Administration', to: '/dashboard/Administration', icon: <i><MdAdminPanelSettings /></i> },
-    { name: 'Management', to: '/dashboard/Management', icon: <i><GrUserManager /></i> },
-    { name: 'Send mail', to: '/dashboard/Send_mail', icon: <i><BiMailSend /></i> },
+    { name: 'Manage account', to: '/dashboard/Manage_account', icon: <MdManageAccounts /> },
+    { name: 'My order', to: '/dashboard/My_order', icon: <InboxIcon /> },
+    { name: 'My cart', to: '/dashboard/My_cart', icon: <FaCartArrowDown /> },
+    { name: 'Dashboard', to: '/dashboard', icon: <MdDashboard /> },
+    { name: 'Upload & Update', to: '/dashboard/Upload_&_Update', icon: <MdTipsAndUpdates /> },
+    { name: 'Administration', to: '/dashboard/Administration', icon: <MdAdminPanelSettings /> },
+    { name: 'Management', to: '/dashboard/Management', icon: <FcManager /> },
+    { name: 'Send mail', to: '/dashboard/Send_mail', icon: <BiMailSend /> },
 ]
 
 const drawerWidth = 240;
@@ -117,11 +119,14 @@ export default function DashboardLayout() {
     };
 
     return (
-        <div>
+        <div
+            style={{ background: "linear-gradient(180deg, rgba(1,10,79,1) 0%, rgba(11,11,207,1) 45%, rgba(6,1,95,1) 100%)" }}
+            className='min-h-[120vh]'
+        >
             <Box sx={{ display: 'flex' }}>
                 <CssBaseline />
                 <AppBar
-                    sx={{ height: '50px' }}
+                    sx={{ height: '50px', backgroundColor: '#06015f' }}
                     position="fixed"
                     open={open}
                 >
@@ -168,12 +173,24 @@ export default function DashboardLayout() {
                     </Box>
                 </AppBar>
 
-                <Drawer variant="permanent" open={open}>
+                <Drawer
+                    variant="permanent"
+                    open={open}
+                    sx={{
+                        '.MuiDrawer-paper': {
+                            backgroundColor: '#041389',
+                            color: 'white',
+                        },
+                    }}
+                >
                     <DrawerHeader>
                         <Typography variant="h6" noWrap component="div">
                             Chengra Bazar
                         </Typography>
-                        <IconButton onClick={handleDrawerClose}>
+                        <IconButton
+                            onClick={handleDrawerClose}
+                            sx={{ color: 'white' }}
+                        >
                             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
                         </IconButton>
                     </DrawerHeader>
@@ -191,25 +208,27 @@ export default function DashboardLayout() {
                         {
                             dashboardLink?.slice(0, 3).map((link, index) => (
                                 <ListItem key={index} disablePadding sx={{ display: 'block' }}>
-                                    <ListItemButton
-                                        sx={{
-                                            minHeight: 48,
-                                            justifyContent: open ? 'initial' : 'center',
-                                            px: 2.5,
-                                        }}
-                                    >
-                                        <ListItemIcon
-
+                                    <Link to={`${link?.to}`}>
+                                        <ListItemButton
                                             sx={{
-                                                minWidth: 0,
-                                                mr: open ? 3 : 'auto',
-                                                justifyContent: 'center',
+                                                minHeight: 48,
+                                                justifyContent: open ? 'initial' : 'center',
+                                                px: 2.5,
                                             }}
                                         >
-                                            {link.icon}
-                                        </ListItemIcon>
-                                        <ListItemText primary={link.name} sx={{ opacity: open ? 1 : 0 }} />
-                                    </ListItemButton>
+                                            <ListItemIcon
+
+                                                sx={{
+                                                    minWidth: 0,
+                                                    mr: open ? 3 : 'auto',
+                                                    justifyContent: 'center',
+                                                }}
+                                            >
+                                                <i className='text-2xl text-white'>{link?.icon}</i>
+                                            </ListItemIcon>
+                                            <ListItemText primary={link.name} sx={{ opacity: open ? 1 : 0 }} />
+                                        </ListItemButton>
+                                    </Link>
                                 </ListItem>
                             ))
                         }
@@ -219,28 +238,39 @@ export default function DashboardLayout() {
                         {
                             dashboardLink?.slice(3).map((link, index) => (
                                 <ListItem key={index} disablePadding sx={{ display: 'block' }}>
-                                    <ListItemButton
-                                        sx={{
-                                            minHeight: 48,
-                                            justifyContent: open ? 'initial' : 'center',
-                                            px: 2.5,
-                                        }}
-                                    >
-                                        <ListItemIcon
+                                    <Link to={`${link?.to}`}>
+                                        <ListItemButton
                                             sx={{
-                                                minWidth: 0,
-                                                mr: open ? 3 : 'auto',
-                                                justifyContent: 'center',
+                                                minHeight: 48,
+                                                justifyContent: open ? 'initial' : 'center',
+                                                px: 2.5,
                                             }}
                                         >
-                                            {link?.icon}
-                                        </ListItemIcon>
-                                        <ListItemText primary={link?.name} sx={{ opacity: open ? 1 : 0 }} />
-                                    </ListItemButton>
+                                            <ListItemIcon
+                                                sx={{
+                                                    minWidth: 0,
+                                                    mr: open ? 3 : 'auto',
+                                                    justifyContent: 'center',
+                                                }}
+                                            >
+                                                <i className='text-2xl text-white'>{link?.icon}</i>
+                                            </ListItemIcon>
+                                            <ListItemText primary={link?.name} sx={{ opacity: open ? 1 : 0 }} />
+                                        </ListItemButton>
+                                    </Link>
                                 </ListItem>
                             ))
                         }
                     </List>
+                    <div className="pyramid-loader mb-[20px]">
+                        <div className="pyramid_wrapper">
+                            <span className="pyramid_side pyramid_side1"></span>
+                            <span className="pyramid_side pyramid_side2"></span>
+                            <span className="pyramid_side pyramid_side3"></span>
+                            <span className="pyramid_side pyramid_side4"></span>
+                            <span className="pyramid_shadow"></span>
+                        </div>
+                    </div>
                 </Drawer>
                 <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                     <DrawerHeader />
