@@ -2,8 +2,11 @@ import { Box, Grid } from '@mui/material';
 import React from 'react';
 import { AiOutlineUsergroupAdd } from 'react-icons/ai';
 import { BiMoney } from 'react-icons/bi';
+import { BsArrowRightShort } from 'react-icons/bs';
 import { FaFirstOrder } from 'react-icons/fa';
+// import { IoHappy } from 'react-icons/lo';
 import { FcSalesPerformance } from 'react-icons/fc';
+import DashboardColor from '../../assets/colors/DashboardColor';
 
 const dashMiniCardData = [
     {
@@ -33,11 +36,12 @@ const dashMiniCardData = [
 ]
 
 export default function Dashboard() {
+    const { gradients } = DashboardColor;
+    const cardContent = gradients;
 
     return (
         <div className='text-white'>
-            <section>
-
+            <section className='mb-8'>
                 <Grid container spacing={2}>
                     {
                         dashMiniCardData?.map((data, index) =>
@@ -70,13 +74,35 @@ export default function Dashboard() {
                 </Grid>
             </section>
             <section>
-                <p>Welcome chengra bazar</p>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={12} md={4.5} lg={4.5}>
-                        <p></p>
+                        <Box sx={{
+                            backgroundImage: "url('https://demos.creative-tim.com/vision-ui-dashboard-react/static/media/cardimgfree.5771cbbb.png')",
+                            padding: '40px', borderRadius: '20px',
+                            maxHeight: '340px',
+                            backgroundPosition: 'center',
+                        }}
+                        >
+                            <div className='flex flex-col space-y-12'>
+                                <div>
+                                    <p>Welcome back,</p>
+                                    <p className='text-2xl font-extrabold'>Mark Johnson</p>
+                                </div>
+                                <div className='mt-6'>
+                                    <p>Glad to see you again!</p>
+                                    <p>Enjoy the work.</p>
+                                </div>
+                                <div className='mr-0 hover:mr-3'>
+                                    <p>Tap to record <BsArrowRightShort className='inline-block text-2xl' /> </p>
+                                </div>
+                            </div>
+                        </Box>
                     </Grid>
                     <Grid item xs={12} sm={12} md={3} lg={3}>
-                        <p></p>
+                        {/* bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb */}
+                        
+                        {/* bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb */}
+
                     </Grid>
                     <Grid item xs={12} sm={12} md={4.5} lg={4.5}>
                         <p></p>
