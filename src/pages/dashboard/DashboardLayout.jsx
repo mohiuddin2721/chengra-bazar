@@ -18,7 +18,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import BackupIcon from '@mui/icons-material/Backup';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import { MdTipsAndUpdates, MdDashboard, MdManageAccounts, MdAdminPanelSettings, MdNotifications } from 'react-icons/md';
 import { BiMailSend } from 'react-icons/bi';
 import { FaCartArrowDown } from 'react-icons/fa';
@@ -107,6 +107,8 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 export default function DashboardLayout() {
+    let location = useLocation();
+    const path = (location?.pathname?.split('/')[2])
     const theme = useTheme();
     const [open, setOpen] = useState(false);
     const [isOpenDashboardSetting, setIsOpenDashboardSetting] = useState(false)
@@ -156,7 +158,7 @@ export default function DashboardLayout() {
                             <Link to='/dashboard'>
                                 <BackupIcon /> <TbSlash className='inline text-xl font-bold' />
                             </Link>
-                            <Typography variant='h8' sx={{ display: 'block' }}>Dashboard</Typography>
+                            <Typography variant='h8' sx={{ display: 'block' }}>{path ? path : 'Dashboard'}</Typography>
                         </Box>
                         <Box
                             sx={{

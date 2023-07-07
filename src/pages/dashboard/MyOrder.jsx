@@ -1,25 +1,23 @@
 import React from 'react';
 
+
+const tableHeadline = ['Name', 'Date of Birth', 'Role', 'Salary', 'Action']
+
 const MyOrder = () => {
+    
     return (
         <div>
             <div className="overflow-x-auto">
                 <table className="min-w-full divide-y-2 divide-red-500 bg-transparent text-sm">
                     <thead className="ltr:text-left rtl:text-right">
                         <tr className='text-white'>
-                            <th className="whitespace-nowrap px-4 py-2 font-medium">
-                                Name
-                            </th>
-                            <th className="whitespace-nowrap px-4 py-2 font-medium">
-                                Date of Birth
-                            </th>
-                            <th className="whitespace-nowrap px-4 py-2 font-medium">
-                                Role
-                            </th>
-                            <th className="whitespace-nowrap px-4 py-2 font-medium">
-                                Salary
-                            </th>
-                            <th className="px-4 py-2">Action</th>
+                            {
+                                tableHeadline?.map((data, i) =>
+                                    <th className="whitespace-nowrap px-4 py-2 font-medium">
+                                        {data}
+                                    </th>
+                                )
+                            }
                         </tr>
                     </thead>
 
@@ -47,19 +45,13 @@ const MyOrder = () => {
                     </tbody>
                     <thead className="ltr:text-left rtl:text-right">
                         <tr className='text-white'>
-                            <th className="whitespace-nowrap px-4 py-2 font-medium">
-                                Name
-                            </th>
-                            <th className="whitespace-nowrap px-4 py-2 font-medium">
-                                Date of Birth
-                            </th>
-                            <th className="whitespace-nowrap px-4 py-2 font-medium">
-                                Role
-                            </th>
-                            <th className="whitespace-nowrap px-4 py-2 font-medium">
-                                Salary
-                            </th>
-                            <th className="px-4 py-2">Action</th>
+                            {
+                                tableHeadline?.map((data, i) =>
+                                    <th className="whitespace-nowrap px-4 py-2 font-medium">
+                                        {data}
+                                    </th>
+                                )
+                            }
                         </tr>
                     </thead>
                 </table>
