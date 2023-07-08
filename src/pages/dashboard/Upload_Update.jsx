@@ -106,7 +106,31 @@ const Upload_Update = () => {
             imageUrl: images,
         }
         console.log(formData)
+        e.target.reset();
+        setImages([])
     };
+
+    const [selectedCategoryImage, setSelectedCategoryImage] = useState(null);
+    function handleFileChange(event) {
+        setSelectedCategoryImage(URL.createObjectURL(event.target.files[0]))
+    }
+
+    const handleCategory = (e) => {
+        e.preventDefault();
+        const categoryData = {
+            name: e.target.name?.value,
+            quantity: e.target.quantity?.value,
+            categoryPhoto: selectedCategoryImage,
+        }
+        console.log(categoryData)
+        e.target.reset();
+        setSelectedCategoryImage(null)
+    };
+    function deleteCategoryImage() {
+        setSelectedCategoryImage(null)
+    }
+
+
 
     return (
         <div>
@@ -123,7 +147,6 @@ const Upload_Update = () => {
                             <label className="text-white ">Product name</label>
                             <input
                                 required
-                                id='name'
                                 name='name'
                                 type="text"
                                 placeholder="Product name"
@@ -134,7 +157,6 @@ const Upload_Update = () => {
                             <label className="text-white ">Quantity</label>
                             <input
                                 required
-                                id='quantity'
                                 name='quantity'
                                 min={1}
                                 type="number"
@@ -146,7 +168,6 @@ const Upload_Update = () => {
                             <label className="text-white">Color</label>
                             <input
                                 required
-                                id='color'
                                 name='color'
                                 type="text"
                                 placeholder="Type ...color"
@@ -157,7 +178,6 @@ const Upload_Update = () => {
                             <label className="text-white ">Select unit</label>
                             <select
                                 required
-                                id='unit'
                                 name='unit'
                                 className="w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:border-blue-500 focus:outline-none focus:ring"
                             >
@@ -171,7 +191,6 @@ const Upload_Update = () => {
                             <label className="text-white ">Product status</label>
                             <select
                                 required
-                                id='status'
                                 name='status'
                                 className="w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:border-blue-500 focus:outline-none focus:ring"
                             >
@@ -184,7 +203,6 @@ const Upload_Update = () => {
                             <label className="text-white ">Product categories</label>
                             <select
                                 required
-                                id='categories'
                                 name='categories'
                                 className="w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:border-blue-500 focus:outline-none focus:ring"
                             >
@@ -202,7 +220,6 @@ const Upload_Update = () => {
                             <input
                                 required
                                 type="number"
-                                id='price'
                                 name='price'
                                 className="w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:border-blue-500 focus:outline-none focus:ring"
                             />
@@ -213,7 +230,6 @@ const Upload_Update = () => {
                                 required
                                 type="text"
                                 name='brand'
-                                id='brand'
                                 className="w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:border-blue-500 focus:outline-none focus:ring"
                             />
                         </div>
@@ -222,7 +238,6 @@ const Upload_Update = () => {
                             <input
                                 required
                                 type="number"
-                                id='ratting'
                                 name='ratting'
                                 max={5}
                                 min={1}
@@ -235,7 +250,6 @@ const Upload_Update = () => {
                             <textarea
                                 required
                                 name='description'
-                                id="description"
                                 type="textarea"
                                 className="w-full min-h-[100px] h-auto px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:border-blue-500 focus:outline-none focus:ring"
                             ></textarea>
@@ -274,7 +288,6 @@ const Upload_Update = () => {
                                                 </>
                                             )}
                                             <input
-                                                id='imageUrl'
                                                 name='imageUrl'
                                                 type="file"
                                                 style={{ display: 'none' }}
@@ -330,7 +343,6 @@ const Upload_Update = () => {
                     </div>
                 </form>
             </section>
-
             <section
                 style={isHovered_2 ? glassStyle_1 : glassStyle_2}
                 className="max-w-4xl p-6 mx-auto my-20"
@@ -338,15 +350,15 @@ const Upload_Update = () => {
                 onMouseLeave={handleUploadMouseLeave_2}
             >
                 <h2 className="text-lg font-semibold text-white capitalize">Add category</h2>
-
-                <form>
+                <form onSubmit={handleCategory}>
                     <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
                         <div>
                             <label className="text-white ">Product category</label>
                             <input
                                 required
-                                id="username"
+                                name='name'
                                 type="text"
+                                placeholder="category name"
                                 className="w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:border-blue-500 focus:outline-none focus:ring"
                             />
                         </div>
@@ -354,38 +366,46 @@ const Upload_Update = () => {
                             <label className="text-white ">Quantity</label>
                             <input
                                 required
-                                id="quantity"
-                                type="number"
-                                min="1"
+                                name='quantity'
+                                type="text"
+                                placeholder="Product quantity"
                                 className="w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:border-blue-500 focus:outline-none focus:ring"
                             />
                         </div>
-                        {/* <div>
-                            <label className="text-sm font-medium text-white">
-                                Upload one photo
-                            </label>
-                            <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2  border-dashed rounded-md">
-                                <div className="space-y-1 text-center">
-                                    <svg className="mx-auto h-12 w-12 text-white" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
-                                        <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>
-                                    <div className="flex text-sm text-gray-600">
-                                        <label for="file-upload" className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                                            <span className="">Upload Photo</span>
-                                            <input required id="file-upload" name="imageUrl" type="file" className="sr-only" />
-                                        </label>
-                                        <p className="pl-1 text-white">or drag and drop</p>
+                        <div>
+                            <label className="text-white ">Upload just 1 photo</label>
+                            <input
+                                name='categoryPhoto'
+                                type="file"
+                                required
+                                onChange={handleFileChange}
+                                className="w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:border-blue-500 focus:outline-none focus:ring"
+                            />
+                        </div>
+                        <div>
+                            {
+                                selectedCategoryImage ?
+                                    <div className='h-auto relative'>
+                                        <span
+                                            className='absolute left-1 top-0 text-2xl text-red-500 cursor-pointer'
+                                            onClick={deleteCategoryImage}
+                                        >
+                                            &times;
+                                        </span>
+                                        <img
+                                            className='w-[150px] max-h-[150px]'
+                                            src={selectedCategoryImage}
+                                            alt="Category Image" />
                                     </div>
-                                    <p className="text-xs text-white">
-                                        PNG, JPG, GIF up to 10MB
-                                    </p>
-                                </div>
-                            </div>
-                        </div> */}
+                                    :
+                                    " "
+                            }
+                        </div>
                     </div>
 
                     <div className="flex justify-end mt-6">
                         <button
+                            type='submit'
                             className="px-6 py-2 text-white rounded-md transition-colors duration-200 transform bg-pink-500 hover:bg-pink-700"
                         >
                             Add category
