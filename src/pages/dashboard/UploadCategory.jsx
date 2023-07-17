@@ -3,24 +3,17 @@ import Swal from 'sweetalert2';
 
 const UploadCategory = () => {
     const [selectedCategoryImage, setSelectedCategoryImage] = useState(null);
-
     const imageHostKey = import.meta.env.VITE_REACT_APP_imageBBApiKey
 
     function handleFileChange(event) {
         setSelectedCategoryImage(event.target.files[0])
     }
 
-    // console.log(selectedCategoryImage)
-
     const handleCategory = (e) => {
         e.preventDefault();
         const formData = new FormData();
-
-        // formData.append('name', e.target.name?.value)
         formData.append('image', selectedCategoryImage)
-        // Object.keys(categoryData).forEach(prop => {
-        //     formData.append(`${prop}`, formData[prop])
-        // })
+
         const imageUploadUrl = `https://api.imgbb.com/1/upload?expiration=600&key=${imageHostKey}`
         fetch(imageUploadUrl, {
             method: "POST",
@@ -34,34 +27,41 @@ const UploadCategory = () => {
                         name: e.target.name?.value,
                         photo: imgUrl?.data?.url,
                     }
-                    const url = "http://localhost:5000/api/v1/products";
-                    fetch(imageUploadUrl, {
+                    // console.log(categoryData)
+                    fetch("http://localhost:5000/api/v1/category", {
                         method: "POST",
-                        body: formData
+                        headers: {
+                            'content-type': 'application/json',
+                        },
+                        body: JSON.stringify(categoryData)
                     })
                         .then(res => res.json())
+                        .then(data => {
+                            // console.log(data)
+                            if (data.status === 'fail') {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error',
+                                    text: 'Category is not inserted. please try again',
+                                })
+                            } else {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Successful',
+                                    text: 'Category data Successfully updated',
+                                })
+                                setSelectedCategoryImage(null)
+                                e.target.reset();
+                            }
+                        })
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Image Error',
+                        text: 'Image is not inserted. please try again',
+                    })
                 }
-                // if (posted.status === 'fail') {
-                //     Swal.fire({
-                //         icon: 'error',
-                //         title: 'Error',
-                //         text: 'Category is not inserted. please try again',
-                //     })
-                // } else {
-                //     Swal.fire({
-                //         icon: 'success',
-                //         title: 'Successful',
-                //         text: 'Category data Successfully updated',
-                //     })
-                // }
-                // setSelectedCategoryImage(null)
-                //         e.target.reset();
             })
-
-        // console.log(selectedImg)
-        // console.log(categoryData)
-        // e.target.reset();
-        // setSelectedCategoryImage(null)
     };
 
     function deleteCategoryImage() {
@@ -86,7 +86,7 @@ const UploadCategory = () => {
                     <div>
                         <label className="text-white ">Upload just 1 photo</label>
                         <input
-                            name='categoryPhoto'
+                            name='photo'
                             type="file"
                             required
                             onChange={handleFileChange}
