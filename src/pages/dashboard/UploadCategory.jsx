@@ -3,63 +3,54 @@ import Swal from 'sweetalert2';
 
 const UploadCategory = () => {
     const [selectedCategoryImage, setSelectedCategoryImage] = useState(null);
-    const imageHostKey = import.meta.env.VITE_REACT_APP_imageBBApiKey
+    // console.log(imageHostKey)
 
     function handleFileChange(event) {
         setSelectedCategoryImage(event.target.files[0])
     }
-
-    const handleCategory = (e) => {
-        e.preventDefault();
+    const handleCategory = (event) => {
+        event.preventDefault();
         const formData = new FormData();
+
+        if (!selectedCategoryImage) {
+            // return window.alert("Must upload maximum 4 photos")
+            return Swal.fire({
+                icon: 'error',
+                title: 'Image',
+                text: 'Must upload a photos',
+            })
+        }
+
+        const data = {
+            name: event.target.name.value,
+        }
+        Object.keys(data).forEach(prop => {
+            formData.append(`${prop}`, data[prop])
+        })
+
         formData.append('image', selectedCategoryImage)
 
-        const imageUploadUrl = `https://api.imgbb.com/1/upload?expiration=600&key=${imageHostKey}`
-        fetch(imageUploadUrl, {
+        fetch("http://localhost:5000/api/v1/category", {
             method: "POST",
             body: formData
         })
             .then(res => res.json())
-            .then(imgUrl => {
-                // console.log("imgData", imgUrl?.data?.url)
-                if (imgUrl.success) {
-                    const categoryData = {
-                        name: e.target.name?.value,
-                        photo: imgUrl?.data?.url,
-                    }
-                    // console.log(categoryData)
-                    fetch("http://localhost:5000/api/v1/category", {
-                        method: "POST",
-                        headers: {
-                            'content-type': 'application/json',
-                        },
-                        body: JSON.stringify(categoryData)
-                    })
-                        .then(res => res.json())
-                        .then(data => {
-                            // console.log(data)
-                            if (data.status === 'fail') {
-                                Swal.fire({
-                                    icon: 'error',
-                                    title: 'Error',
-                                    text: 'Category is not inserted. please try again',
-                                })
-                            } else {
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: 'Successful',
-                                    text: 'Category data Successfully updated',
-                                })
-                                setSelectedCategoryImage(null)
-                                e.target.reset();
-                            }
-                        })
-                } else {
+            .then(data => {
+                // console.log(data)
+                if (data.status === 'fail') {
                     Swal.fire({
                         icon: 'error',
-                        title: 'Image Error',
-                        text: 'Image is not inserted. please try again',
+                        title: 'Error',
+                        text: 'Category is not inserted. please try again',
                     })
+                } else {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Successful',
+                        text: 'Category data Successfully updated',
+                    })
+                    setSelectedCategoryImage(null)
+                    event.target.reset();
                 }
             })
     };
@@ -71,7 +62,9 @@ const UploadCategory = () => {
     return (
         <div>
             <h2 className="text-lg font-semibold text-white capitalize">Add category</h2>
-            <form onSubmit={handleCategory}>
+            <form
+                onSubmit={handleCategory}
+            >
                 <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
                     <div>
                         <label className="text-white ">Product category</label>
@@ -81,14 +74,15 @@ const UploadCategory = () => {
                             type="text"
                             placeholder="category name"
                             className="w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:border-blue-500 focus:outline-none focus:ring"
+
                         />
                     </div>
                     <div>
                         <label className="text-white ">Upload just 1 photo</label>
                         <input
+                            required
                             name='photo'
                             type="file"
-                            required
                             onChange={handleFileChange}
                             className="w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:border-blue-500 focus:outline-none focus:ring"
                         />

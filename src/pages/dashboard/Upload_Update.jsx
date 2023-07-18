@@ -135,7 +135,7 @@ const Upload_Update = () => {
         })
             .then(res => res.json())
             .then(posted => {
-                console.log("posted", posted)
+                // console.log("posted", posted)
                 if (posted.status === 'fail') {
                     Swal.fire({
                         icon: 'error',

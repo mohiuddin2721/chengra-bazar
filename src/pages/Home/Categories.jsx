@@ -8,10 +8,10 @@ import Loader from '../../components/Loader/Loader';
 const Categories = () => {
     const { allCategory, isLoading } = useGetAllCategory();
 
-    if(isLoading){
+    if (isLoading) {
         return <Loader />
     }
-    
+
     return (
         <Box sx={component_container} className='mb-10'>
             <Typography sx={{ m: 4 }}>
@@ -24,7 +24,8 @@ const Categories = () => {
                             <Link to={`/catagories/${data?.name}`}>
                                 <Card sx={{ maxWidth: '147px', maxHeight: '147px' }}>
                                     <CardActionArea>
-                                        <img src={data?.photo}
+                                        {/* <img src={${data?.photo}} */}
+                                        <img src={data?.photo.startsWith('images') ? `http://localhost:5000/${data?.photo}` : data?.photo}
                                             alt={data?.name}
                                             className='w-[90px] h-[90px] mx-auto'
                                             style={{ clipPath: 'circle(50%)' }}
