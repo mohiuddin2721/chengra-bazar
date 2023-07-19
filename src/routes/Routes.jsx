@@ -85,7 +85,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/My_cart',
-                element: <PrivateRoute><MyCart></MyCart></PrivateRoute>
+                element: <MyCart></MyCart>
             },
             {
                 path: '/dashboard/Upload_&_Update',

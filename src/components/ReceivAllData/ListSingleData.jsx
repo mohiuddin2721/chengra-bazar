@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 
 export const ListSingleData = ({ item }) => {
-    const [isHovered, setIsHovered] = useState(false);
+    const [isHovered, setIsHovered] = useState(false); 
 
     const handleMouseEnter = () => {
         setIsHovered(true);

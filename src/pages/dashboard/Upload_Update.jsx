@@ -101,14 +101,14 @@ const Upload_Update = () => {
 
         const data = {
             name: e.target.name.value,
-            quantity: e.target.quantity.value,
+            quantity: +e.target.quantity.value,
             color: e.target.color.value,
             unit: e.target.unit.value,
             status: e.target.status.value,
             categories: e.target.categories.value,
-            price: e.target.price.value,
+            price: +e.target.price.value,
             brand: e.target.brand.value,
-            ratting: e.target.ratting.value,
+            ratting: +e.target.ratting.value,
             description: e.target.description.value,
         }
 
@@ -122,9 +122,6 @@ const Upload_Update = () => {
 
         fetch("http://localhost:5000/api/v1/products", {
             method: "POST",
-            headers: {
-                'content-type': 'application/json',
-            },
             body: formData
         })
             .then(res => res.json())
@@ -146,7 +143,7 @@ const Upload_Update = () => {
                 setImages([])
                 e.target.reset();
             })
-        console.log("formdata", formData)
+        // console.log("formdata", formData)
     };
 
     return (

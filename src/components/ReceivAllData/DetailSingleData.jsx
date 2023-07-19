@@ -10,6 +10,8 @@ import SingleData from './SingleData';
 import { component_container } from '../../Styles/ComponentStyle';
 import { TbReplace, TbTruckDelivery } from 'react-icons/tb';
 import Swal from 'sweetalert2';
+import { BiMinus, BiPlus } from 'react-icons/bi';
+import { AiFillHeart } from 'react-icons/ai';
 
 
 const delivery_replacement_data = [
@@ -36,15 +38,16 @@ const delivery_replacement_data = [
 function DetailSingleData() {
     const { id } = useParams()
     const { allProduct } = useGetAllData();
+    const [quantityOrder, setQuantityOrder] = useState(1)
     const [upperImage, setUpperImage] = useState("https://static-01.daraz.com.bd/p/a1f305926d21b74a0db9f7c3ce694a82.jpg_720x720.jpg_.webp");
 
     const selectedProduct = allProduct?.filter(item => item._id === id);
-    const { name, description, price, unit, quantity, status, color, brand, ratting, categories } = selectedProduct[0];
+    const { _id: selectedId, name, description, price, unit, quantity, status, color, brand, ratting, categories } = selectedProduct[0];
     // console.log(selectedProduct[0])
 
     const relatedProduct = allProduct?.filter(item => item?.categories == categories)
 
-    window.scrollTo(top)
+    // window.scrollTo(top)
 
     const handle_delivery_replacement = (d) => {
         // console.log(d)
@@ -55,6 +58,10 @@ function DetailSingleData() {
         Swal.fire({
             title: text,
         })
+    }
+
+    const handleAddToCart = (data) => {
+        console.log(data)
     }
 
     return (
@@ -137,7 +144,7 @@ function DetailSingleData() {
                             }
                         </div>
                         <hr />
-                        <p>Available: {status}</p>
+                        <p>Available: {status} <span className='text-xs'>({quantity}{unit})</span></p>
                         <h2 className="text-sm title-font text-gray-500 tracking-widest">Brand: {brand}</h2>
                         <hr className='my-2' />
                         <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5">
@@ -148,19 +155,60 @@ function DetailSingleData() {
                                 <button className="border-2 border-gray-300 ml-1 bg-red-500 rounded-full w-6 h-6 focus:outline-none"></button>
                             </div>
                         </div>
+                        <div className='my-2'>
+                            <p className='flex'>
+                                Quantity:
+                                <span>
+                                    <button
+                                        onClick={() => setQuantityOrder(quantityOrder - 1)}
+                                        className={`ml-4 cursor-pointer text-2xl ${quantityOrder <= 1 ? 'text-gray-400' : 'text-green-500'}`}
+                                        disabled={quantityOrder <= 1}
+                                    >
+                                        <BiMinus />
+                                    </button>
+                                </span>
+                                <span className='mx-6'>
+                                    {quantityOrder}
+                                </span>
+                                <span>
+                                    <button
+                                        onClick={() => setQuantityOrder(quantityOrder + 1)}
+                                        className={`ml-4 cursor-pointer text-2xl ${quantityOrder >= quantity ? 'text-gray-400' : 'text-green-500'}`}
+                                        disabled={quantityOrder >= quantity}
+                                    >
+                                        <BiPlus />
+                                    </button>
+                                </span>
+                            </p>
+                        </div>
+                        <hr className='my-4' />
                         <div className="flex">
-                            <button className="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded"
-                            >
-                                Purchase
-                            </button>
-                            <button className="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded"
-                            >
-                                Add to cart
-                            </button>
+                            {
+                                quantity === 0 ?
+                                    <button className="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded"
+                                    >
+                                        add to wishlist <AiFillHeart />
+                                    </button>
+                                    :
+                                    <>
+                                        <button className="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded"
+                                        >
+                                            Purchase
+                                        </button>
+                                        <button
+                                            onClick={() => handleAddToCart({ selectedId, name, description, price, unit, quantity, status, color, brand, ratting, categories, quantityOrder })}
+                                            className="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded"
+                                        >
+                                            Add to cart
+                                        </button>
+                                    </>
+                            }
                         </div>
                     </div>
                 </div>
             </div>
+
+            {/* related products bellow */}
             <div className='mt-4'>
                 <p className='text-2xl text-center font-bold text-green-500 my-2'>Related Products</p>
                 <div>

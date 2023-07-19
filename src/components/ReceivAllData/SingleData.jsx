@@ -1,25 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Button, Card, CardContent, Grid, IconButton } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { FiExternalLink } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
 function SingleData({ item, xs, sm, md, lg }) {
+    const [isHovered, setIsHovered] = useState(false);
+    const firstImage = item?.imageURL[0][0];
+    const secondImage = item?.imageURL[0][1];
+    // console.log(firstImage)
+
+    const handleMouseEnter = () => {
+        setIsHovered(true);
+    };
+
+    const handleMouseLeave = () => {
+        setIsHovered(false);
+    };
+
 
     return (
         <Grid item xs={xs} sm={sm} md={md} lg={lg}>
-            <Box sx={{
-                position: 'relative',
-                mb: 2,
-                '& :hover': {
-                    'span': {
-                        display: 'block',
-                    },
-                    'secondImg': {
-                        zIndex: 1,
+            <Box
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                sx={{
+                    position: 'relative',
+                    mb: 2,
+                    '& :hover': {
+                        'span': {
+                            display: 'block',
+                        },
+                        'secondImg': {
+                            zIndex: 1,
+                        }
                     }
-                }
-            }}>
+                }}>
                 <Card sx={{
                     cursor: 'pointer',
                     maxWidth: '190px',
@@ -28,7 +44,7 @@ function SingleData({ item, xs, sm, md, lg }) {
                 }}>
                     <Link to={`/products/${item?._id}`}>
                         <img
-                            src="https://static-01.daraz.com.bd/p/a1f305926d21b74a0db9f7c3ce694a82.jpg_720x720.jpg_.webp"
+                            src={isHovered ? `http://localhost:5000/${secondImage}` : `http://localhost:5000/${firstImage}`}
                             className='w-full h-[200px] mx-auto'
                             alt={item?.name} />
                     </Link>

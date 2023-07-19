@@ -372,7 +372,7 @@ export const categories = [
                 id: '0502',
                 name: "Indian Kameez",
                 price: 1670,
-                des: "Product Type: Three Piece, Color: Same As Picture, Main Material: tissue, Clothing - Cotton, orna - goergette",
+                des: "Product type: Three Piece, Color: Same As Picture, Main Material: tissue, Clothing - Cotton, orna - goergette",
                 stock: 8,
                 ratting: 5,
                 brand: "No brand",
@@ -382,7 +382,6 @@ export const categories = [
                     "https://static-01.daraz.com.bd/p/a88f3f49557bbc92b90a943bd6c8da28.jpg_720x720.jpg_.webp",
                     "https://static-01.daraz.com.bd/p/4de86daa68a27992a32f866c2b18ad87.jpg_720x720.jpg_.webp",
                     "https://static-01.daraz.com.bd/p/10af65e9d573006365ec9897a5f767a2.jpg_720x720.jpg_.webp",
-                    "https://static-01.daraz.com.bd/p/684931cf4955e036fda2779d3d0ae044.jpg_720x720.jpg_.webp",
                 ]
             },
             {
@@ -398,6 +397,7 @@ export const categories = [
                     "https://static-01.daraz.com.bd/p/a909dde94acb408a4e817877b2f47fb0.jpg_720x720.jpg_.webp",
                     "https://static-01.daraz.com.bd/p/80c67236104c6d7bd078f59ab975312e.jpg_720x720.jpg_.webp",
                     "https://static-01.daraz.com.bd/p/2930984ecbd374a4d62f7459c827ce67.jpg_720x720.jpg_.webp",
+                    "https://static-01.daraz.com.bd/p/684931cf4955e036fda2779d3d0ae044.jpg_720x720.jpg_.webp",
                 ]
             },
         ]
