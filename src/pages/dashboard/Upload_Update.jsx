@@ -91,13 +91,7 @@ const Upload_Update = () => {
         e.preventDefault();
         const formData = new FormData();
 
-        // Update the formData object
-        // formData.append(
-        //     "image"
-        // );
-
         if (!images.length) {
-            // return window.alert("Must upload maximum 4 photos")
             return Swal.fire({
                 icon: 'error',
                 title: 'Image',
