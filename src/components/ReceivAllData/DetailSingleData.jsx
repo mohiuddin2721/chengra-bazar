@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import useGetAllData from '../../Hooks/useGetAllData';
-import { useParams } from 'react-router-dom';
+import { redirect, useNavigate, useParams } from 'react-router-dom';
 // import ImageMagnify from '../../features/ZoomImage/ImageMagnify';
 import ZoomImage from '../../features/ZoomImage/ZoomImage';
 import PriceFormate from '../../features/priceFormate/PriceFormate';
@@ -12,10 +12,13 @@ import Swal from 'sweetalert2';
 import { BiMinus, BiPlus } from 'react-icons/bi';
 import { AiFillHeart } from 'react-icons/ai';
 import { delivery_replacement_data } from '../../Utils/ConstantData';
+import { AuthContext } from '../../contexts/AuthProvider';
 
 
 function DetailSingleData() {
     const { id } = useParams()
+    const { user } = useContext(AuthContext)
+    const navigate = useNavigate();
     const { allProduct } = useGetAllData();
     const [quantityOrder, setQuantityOrder] = useState(1)
     const [upperImage, setUpperImage] = useState("");
@@ -46,7 +49,23 @@ function DetailSingleData() {
         })
     }
     const handleAddToCart = (data) => {
-        console.log(data)
+        if (!user) {
+            return navigate("/signIn");
+        }
+        if(!selectedProductImg){
+            return Swal.fire({
+                icon: 'error',
+                title: 'Chose one image',
+                text: 'Which one do you want to purchase, just click on the phone',
+            })
+        }
+        const userEmail = user.email;
+        const cartData = {
+            ...data,
+            userEmail,
+            selectedProductImg,
+        }
+        console.log(cartData)
     }
 
     return (
@@ -60,7 +79,7 @@ function DetailSingleData() {
                                 name={name}
                             />
                         </div> */}
-                        <div style={{overflow: 'hidden'}}>
+                        <div style={{ overflow: 'hidden' }}>
                             <ZoomImage
                                 upperImage={upperImage}
                                 name={name}
