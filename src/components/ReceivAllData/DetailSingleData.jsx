@@ -1,53 +1,39 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import useGetAllData from '../../Hooks/useGetAllData';
 import { useParams } from 'react-router-dom';
-import ImageMagnify from '../../features/ZoomImage/ImageMagnify';
+// import ImageMagnify from '../../features/ZoomImage/ImageMagnify';
 import ZoomImage from '../../features/ZoomImage/ZoomImage';
 import PriceFormate from '../../features/priceFormate/PriceFormate';
 import Stars from '../stars/Stars';
-import { Box, Grid } from '@mui/material';
+import { Box, FormControl, FormControlLabel, FormLabel, Grid, Radio, RadioGroup } from '@mui/material';
 import SingleData from './SingleData';
 import { component_container } from '../../Styles/ComponentStyle';
-import { TbReplace, TbTruckDelivery } from 'react-icons/tb';
 import Swal from 'sweetalert2';
 import { BiMinus, BiPlus } from 'react-icons/bi';
 import { AiFillHeart } from 'react-icons/ai';
+import { delivery_replacement_data } from '../../Utils/ConstantData';
 
-
-const delivery_replacement_data = [
-    {
-        id: 1,
-        icon: <TbTruckDelivery className='w-full' />,
-        name: "Free delivery",
-        textColor: 'text-green-500'
-    },
-    {
-        id: 2,
-        icon: <TbReplace className='w-full' />,
-        name: "30 day replacement",
-        textColor: 'text-purple-500'
-    },
-    {
-        id: 3,
-        icon: <TbTruckDelivery className='w-full' />,
-        name: "Chengra fast delivery",
-        textColor: 'text-green-700'
-    },
-]
 
 function DetailSingleData() {
     const { id } = useParams()
     const { allProduct } = useGetAllData();
     const [quantityOrder, setQuantityOrder] = useState(1)
-    const [upperImage, setUpperImage] = useState("https://static-01.daraz.com.bd/p/a1f305926d21b74a0db9f7c3ce694a82.jpg_720x720.jpg_.webp");
+    const [upperImage, setUpperImage] = useState("");
+    const [selectedProductImg, setSelectedProductImg] = useState("");
 
     const selectedProduct = allProduct?.filter(item => item._id === id);
-    const { _id: selectedId, name, description, price, unit, quantity, status, color, brand, ratting, categories } = selectedProduct[0];
-    // console.log(selectedProduct[0])
-
+    const { _id: selectedId, name, imageURL, description, price, unit, quantity, status, brand, ratting, categories } = selectedProduct[0];
     const relatedProduct = allProduct?.filter(item => item?.categories == categories)
 
-    // window.scrollTo(top)
+    useEffect(() => {
+        window.scrollTo(top)
+        setUpperImage(`http://localhost:5000/${imageURL[0][0]}`)
+    }, [id])
+
+    const handleSelectProductImg = (event) => {
+        setSelectedProductImg(event.target.value);
+        setUpperImage(`http://localhost:5000/${event.target.value}`)
+    };
 
     const handle_delivery_replacement = (d) => {
         // console.log(d)
@@ -59,7 +45,6 @@ function DetailSingleData() {
             title: text,
         })
     }
-
     const handleAddToCart = (data) => {
         console.log(data)
     }
@@ -69,44 +54,31 @@ function DetailSingleData() {
             <div className="container px-2 pt-10 pb-20 mx-auto">
                 <div className="lg:w-4/5 mx-auto h-auto flex flex-wrap">
                     <div className='lg:w-1/2 relative w-full max-h-[80vh] rounded border border-gray-200'>
-                        <div className='hidden lg:block'>
+                        {/* <div className='hidden lg:block'>
                             <ImageMagnify
                                 upperImage={upperImage}
                                 name={name}
                             />
-                        </div>
-                        <div className='lg:hidden'>
+                        </div> */}
+                        <div style={{overflow: 'hidden'}}>
                             <ZoomImage
                                 upperImage={upperImage}
                                 name={name}
                             />
-                            {/* <img
-                                alt="ecommerce"
-                                className="w-[100%] h-[100%]"
-                                src={upperImage} /> */}
+                            {/* <img alt="ecommerce" className="w-[100%] h-[100%]" src={upperImage} /> */}
                         </div>
                         <div className='w-full h-[80px] flex'>
-                            <div className='border border-red-500 hover:border-green-500 mr-2'>
-                                <img
-                                    onClick={() => setUpperImage("https://static-01.daraz.com.bd/p/a1f305926d21b74a0db9f7c3ce694a82.jpg_720x720.jpg_.webp")}
-                                    alt="ecommerce"
-                                    className="w-[100%] h-[100%]"
-                                    src="https://static-01.daraz.com.bd/p/a1f305926d21b74a0db9f7c3ce694a82.jpg_720x720.jpg_.webp" />
-                            </div>
-                            <div className='border border-red-500 hover:border-green-500 mr-2'>
-                                <img
-                                    onClick={() => setUpperImage("https://static-01.daraz.com.bd/p/5465840ab09e44245e054ebe4117e43d.jpg_720x720.jpg_.webp")}
-                                    alt="ecommerce"
-                                    className="w-[100%] h-[100%]"
-                                    src="https://static-01.daraz.com.bd/p/5465840ab09e44245e054ebe4117e43d.jpg_720x720.jpg_.webp" />
-                            </div>
-                            <div className='border border-red-500 hover:border-green-500 mr-2'>
-                                <img
-                                    onClick={() => setUpperImage("https://static-01.daraz.com.bd/p/6bc0fe9a81ace71dd566215e0eee7e45.jpg_720x720.jpg_.webp")}
-                                    alt="ecommerce"
-                                    className="w-[100%] h-[100%]"
-                                    src="https://static-01.daraz.com.bd/p/6bc0fe9a81ace71dd566215e0eee7e45.jpg_720x720.jpg_.webp" />
-                            </div>
+                            {
+                                imageURL[0]?.map((pic, index) =>
+                                    <div key={index} className='border border-red-500 hover:border-green-500 mr-2'>
+                                        <img
+                                            onClick={() => setUpperImage(`http://localhost:5000/${pic}`)}
+                                            alt="ecommerce"
+                                            className="w-[100%] h-[100%]"
+                                            src={`http://localhost:5000/${pic}`} />
+                                    </div>
+                                )
+                            }
                         </div>
                     </div>
 
@@ -148,12 +120,27 @@ function DetailSingleData() {
                         <h2 className="text-sm title-font text-gray-500 tracking-widest">Brand: {brand}</h2>
                         <hr className='my-2' />
                         <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5">
-                            <div className="flex">
-                                <span className="mr-3">{color}</span>
-                                <button className="border-2 border-gray-300 rounded-full w-6 h-6 focus:outline-none"></button>
-                                <button className="border-2 border-gray-300 ml-1 bg-gray-700 rounded-full w-6 h-6 focus:outline-none"></button>
-                                <button className="border-2 border-gray-300 ml-1 bg-red-500 rounded-full w-6 h-6 focus:outline-none"></button>
-                            </div>
+                            <FormControl sx={{ zIndex: 0 }}>
+                                <FormLabel id="demo-row-radio-buttons-group-label">Choose one</FormLabel>
+                                <RadioGroup
+                                    row
+                                    value={selectedProductImg}
+                                    onChange={handleSelectProductImg}
+                                    aria-labelledby="demo-row-radio-buttons-group-label"
+                                    name="row-radio-buttons-group"
+                                >
+                                    {
+                                        imageURL[0]?.map((data, index) =>
+                                            <FormControlLabel
+                                                key={index}
+                                                value={data}
+                                                control={<Radio />}
+                                                label={<img src={`http://localhost:5000/${data}`} alt={`Image`} width="100" />}
+                                            />
+                                        )
+                                    }
+                                </RadioGroup>
+                            </FormControl>
                         </div>
                         <div className='my-2'>
                             <p className='flex'>
@@ -185,10 +172,13 @@ function DetailSingleData() {
                         <div className="flex">
                             {
                                 quantity === 0 ?
-                                    <button className="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded"
-                                    >
-                                        add to wishlist <AiFillHeart />
-                                    </button>
+                                    <>
+                                        <p className='text-red-500 font-bold text-xl'>Sorry, Out of stock</p>
+                                        <button className="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded"
+                                        >
+                                            add to wishlist <AiFillHeart />
+                                        </button>
+                                    </>
                                     :
                                     <>
                                         <button className="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded"
@@ -196,7 +186,7 @@ function DetailSingleData() {
                                             Purchase
                                         </button>
                                         <button
-                                            onClick={() => handleAddToCart({ selectedId, name, description, price, unit, quantity, status, color, brand, ratting, categories, quantityOrder })}
+                                            onClick={() => handleAddToCart({ selectedId, name, imageURL, description, price, unit, quantity, status, brand, ratting, categories, quantityOrder })}
                                             className="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded"
                                         >
                                             Add to cart

@@ -10,9 +10,9 @@ const ZoomImage = ({ upperImage, name }) => {
             {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
                 <>
                     <TransformComponent>
-                        <img src={upperImage} alt={name} />
+                        <img className='max-h-100px' src={upperImage} alt={name} />
                     </TransformComponent>
-                    <span className="tools absolute top-0">
+                    <span className="tools absolute top-5 right-0">
                         <button
                             className='btn bg-[#240838] text-[#fff] px-1 rounded ml-2 text-sm'
                             onClick={() => zoomIn()}

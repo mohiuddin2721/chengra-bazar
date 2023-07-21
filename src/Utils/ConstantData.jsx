@@ -4,6 +4,7 @@ import fra from '../assets/FRA.svg';
 import por from '../assets/POR.svg';
 import ger from '../assets/GER.svg';
 import { format } from 'date-fns';
+import { TbReplace, TbTruckDelivery } from 'react-icons/tb';
 const today = format(new Date(), 'MMM dd').split(' ');
 
 export const languages = [
@@ -619,5 +620,26 @@ export const filterSectionBgColor = [
     {
         colorName: 'text-pink-500',
         bgColor: 'bg-[#820360]'
+    },
+]
+
+export const delivery_replacement_data = [
+    {
+        id: 1,
+        icon: <TbTruckDelivery className='w-full' />,
+        name: "Free delivery",
+        textColor: 'text-green-500'
+    },
+    {
+        id: 2,
+        icon: <TbReplace className='w-full' />,
+        name: "30 day replacement",
+        textColor: 'text-purple-500'
+    },
+    {
+        id: 3,
+        icon: <TbTruckDelivery className='w-full' />,
+        name: "Chengra fast delivery",
+        textColor: 'text-green-700'
     },
 ]
