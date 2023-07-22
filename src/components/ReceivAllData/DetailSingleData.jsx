@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import useGetAllData from '../../Hooks/useGetAllData';
-import { redirect, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 // import ImageMagnify from '../../features/ZoomImage/ImageMagnify';
 import ZoomImage from '../../features/ZoomImage/ZoomImage';
 import PriceFormate from '../../features/priceFormate/PriceFormate';
@@ -13,6 +13,7 @@ import { BiMinus, BiPlus } from 'react-icons/bi';
 import { AiFillHeart } from 'react-icons/ai';
 import { delivery_replacement_data } from '../../Utils/ConstantData';
 import { AuthContext } from '../../contexts/AuthProvider';
+import { toast } from 'react-toastify';
 
 
 function DetailSingleData() {
@@ -25,7 +26,7 @@ function DetailSingleData() {
     const [selectedProductImg, setSelectedProductImg] = useState("");
 
     const selectedProduct = allProduct?.filter(item => item._id === id);
-    const { _id: selectedId, name, imageURL, description, price, unit, quantity, status, brand, ratting, categories } = selectedProduct[0];
+    const { _id, name, imageURL, description, price, unit, quantity, status, brand, ratting, categories } = selectedProduct[0];
     const relatedProduct = allProduct?.filter(item => item?.categories == categories)
 
     useEffect(() => {
@@ -48,11 +49,13 @@ function DetailSingleData() {
             title: text,
         })
     }
-    const handleAddToCart = (data) => {
+    const handleAddToCart = async () => {
+        const formData = new FormData();
+
         if (!user) {
             return navigate("/signIn");
         }
-        if(!selectedProductImg){
+        if (!selectedProductImg) {
             return Swal.fire({
                 icon: 'error',
                 title: 'Chose one image',
@@ -61,12 +64,41 @@ function DetailSingleData() {
         }
         const userEmail = user.email;
         const cartData = {
-            ...data,
-            userEmail,
-            selectedProductImg,
+            brand: brand,
+            categories: categories,
+            selectedId: _id,
+            name: name,
+            price: price,
+            selectedProductImg: selectedProductImg,
+            quantity: quantity,
+            quantityOrder: quantityOrder,
+            unit: unit,
+            status: status,
+            userEmail: userEmail,
         }
+
+        Object.keys(cartData).forEach(prop => {
+            formData.append(`${prop}`, cartData[prop])
+        })
         console.log(cartData)
+        try {
+            const response = await fetch("http://localhost:5000/api/v1/addCart", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                // Convert data to JSON string
+                body: JSON.stringify(cartData), 
+            });
+
+            const responseData = await response.json();
+            if(responseData.status === 'success') toast("Product stored in your cart")
+            console.log(responseData.status)
+        } catch (error) {
+            console.error(error.message);
+        }
     }
+
 
     return (
         <section className="text-gray-700 body-font overflow-hidden bg-white mb-10">
@@ -205,7 +237,8 @@ function DetailSingleData() {
                                             Purchase
                                         </button>
                                         <button
-                                            onClick={() => handleAddToCart({ selectedId, name, imageURL, description, price, unit, quantity, status, brand, ratting, categories, quantityOrder })}
+                                            // onClick={() => handleAddToCart({ selectedId, name, description, price, unit, quantity, status, categories, quantityOrder })}
+                                            onClick={handleAddToCart}
                                             className="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded"
                                         >
                                             Add to cart
