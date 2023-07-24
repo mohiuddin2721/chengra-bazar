@@ -3,7 +3,7 @@ import { CardContent, Grid } from '@mui/material';
 import { BiMinus, BiPlus } from 'react-icons/bi';
 import { glassStyle_1, glassStyle_2 } from '../../Styles/DashboardStyle';
 
-const CartProduct = ({ item, quantity }) => {
+const CartProduct = ({ item }) => {
     const [isHovered, setIsHovered] = useState(false);
     const [quantityOrder, setQuantityOrder] = useState(1)
 
@@ -67,8 +67,8 @@ const CartProduct = ({ item, quantity }) => {
                             <span>
                                 <button
                                     onClick={() => setQuantityOrder(quantityOrder + 1)}
-                                    className={`ml-1 cursor-pointer text-2xl ${quantityOrder >= quantity ? 'text-gray-400' : 'text-white'}`}
-                                    disabled={quantityOrder >= quantity}
+                                    className={`ml-1 cursor-pointer text-2xl ${quantityOrder >= item.quantity ? 'text-gray-400' : 'text-white'}`}
+                                    disabled={quantityOrder >= item.quantity}
                                 >
                                     <BiPlus />
                                 </button>

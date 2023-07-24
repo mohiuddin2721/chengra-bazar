@@ -14,7 +14,9 @@ const MyCart = () => {
             return data;
         }
     });
-    // console.log(user)
+    // console.log(data?.data)
+    const cartProduct = data?.data?.map(item => <CartProduct key={item._id} item={item} />)
+    const noCartData = <p className='text-white font-bold flex h-full justify-center items-center'>No data here yet, select your product</p>
 
     return (
         <div>
@@ -23,9 +25,7 @@ const MyCart = () => {
             <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mt-4">
                 <div className="col-span-5 md:col-span-4 mb-4 md:mb-0 md:mr-2">
                     {
-                        data?.data?.map(item =>
-                            <CartProduct key={item._id} item={item} />
-                        )
+                        data?.data?.length === 0 ? <div className='h-[60vh]'>{noCartData}</div> : cartProduct
                     }
                 </div>
                 <div className="col-span-5 md:col-span-1 md:sticky top-0 relative">
