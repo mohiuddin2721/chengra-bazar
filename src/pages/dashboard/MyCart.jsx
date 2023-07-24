@@ -2,11 +2,13 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthProvider';
 import { useQuery } from '@tanstack/react-query';
 import CartProduct from './CartProduct';
+import Loader from '../../components/Loader/Loader';
 
 const MyCart = () => {
     const { user } = useContext(AuthContext)
+    // console.log(user?.email)
 
-    const { data, isLoading } = useQuery({
+    const { data, isLoading, refetch } = useQuery({
         queryKey: ['getAllCategory'],
         queryFn: async () => {
             const res = await fetch(`http://localhost:5000/api/v1/addCart?userEmail=${user?.email}`);
@@ -14,8 +16,11 @@ const MyCart = () => {
             return data;
         }
     });
+    // if(isLoading){
+    //     return <Loader />
+    // }
     // console.log(data?.data)
-    const cartProduct = data?.data?.map(item => <CartProduct key={item._id} item={item} />)
+    const cartProduct = data?.data?.map(item => <CartProduct key={item._id} item={item} isLoading={isLoading} refetch={refetch} />)
     const noCartData = <p className='text-white font-bold flex h-full justify-center items-center'>No data here yet, select your product</p>
 
     return (

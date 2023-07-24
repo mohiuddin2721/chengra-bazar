@@ -56,7 +56,7 @@ function DetailSingleData() {
         if (!user) {
             return navigate("/signIn");
         }
-        console.log(selectedProductImg)
+        // console.log(selectedProductImg)
         if (!selectedProductImg) {
             return Swal.fire({
                 icon: 'error',
