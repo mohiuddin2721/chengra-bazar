@@ -32,6 +32,7 @@ function DetailSingleData() {
     useEffect(() => {
         window.scrollTo(top)
         setUpperImage(`http://localhost:5000/${imageURL[0][0]}`)
+        setSelectedProductImg("")
     }, [id])
 
     const handleSelectProductImg = (event) => {
@@ -55,6 +56,7 @@ function DetailSingleData() {
         if (!user) {
             return navigate("/signIn");
         }
+        console.log(selectedProductImg)
         if (!selectedProductImg) {
             return Swal.fire({
                 icon: 'error',
@@ -80,7 +82,7 @@ function DetailSingleData() {
         Object.keys(cartData).forEach(prop => {
             formData.append(`${prop}`, cartData[prop])
         })
-        console.log(cartData)
+        // console.log(cartData)
         try {
             const response = await fetch("http://localhost:5000/api/v1/addCart", {
                 method: "POST",
@@ -93,7 +95,7 @@ function DetailSingleData() {
 
             const responseData = await response.json();
             if(responseData.status === 'success') toast("Product stored in your cart")
-            console.log(responseData.status)
+            // console.log(responseData.status)
         } catch (error) {
             console.error(error.message);
         }

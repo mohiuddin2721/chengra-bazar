@@ -27,7 +27,7 @@ const SocialLogin = () => {
             .then((result) => {
                 const user = result.user;
                 navigate(from, { replace: true })
-                console.log(user)
+                // console.log(user)
             })
             .catch((error) => {
                 console.log(error)

@@ -25,7 +25,9 @@ export const ListSingleData = ({ item }) => {
             <Grid
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
-                container direction="row-reverse" spacing={1}>
+                container
+                direction="row-reverse"
+                spacing={1}>
                 <Grid item xs={12} sm={12} md={5} lg={4}>
                     <div className='w-[70%] mx-auto'>
                         <Link to={`/products/${item?._id}`}>
