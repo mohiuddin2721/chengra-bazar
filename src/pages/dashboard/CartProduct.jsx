@@ -25,22 +25,21 @@ const CartProduct = ({ item, refetch }) => {
     const handleMouseLeave = () => {
         setIsHovered(false);
     };
-    const id = item?._id;
 
-    const increaseQuantity = (quantityOrder, id, refetch) => {
+    const increaseQuantity = (quantityOrder, id, price, refetch) => {
         const updatedQuantity = quantityOrder + 1;
-        console.log(id)
-        console.log(updatedQuantity)
+        // console.log("updatedQuantity", updatedQuantity)
         fetch(`http://localhost:5000/api/v1/addCart/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ quantityOrder: updatedQuantity }),
+            body: JSON.stringify({ quantityOrder: updatedQuantity, price: price }),
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data?.data?.quantityOrder)
+                // console.log(data)
+                // console.log(data?.data?.quantityOrder)
                 if (data?.status === 'success') {
                     setQuantityOrder(data?.data?.quantityOrder)
                     refetch()
@@ -50,20 +49,20 @@ const CartProduct = ({ item, refetch }) => {
                 }
             })
     }
-    const decreaseQuantity = (quantityOrder, id, refetch) => {
+    const decreaseQuantity = async (quantityOrder, id, price, refetch) => {
         const updatedQuantity = quantityOrder - 1;
-        console.log(id)
-        console.log(updatedQuantity)
+        // console.log("updatedQuantity", updatedQuantity)
         fetch(`http://localhost:5000/api/v1/addCart/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ quantityOrder: updatedQuantity }),
+            body: JSON.stringify({ quantityOrder: updatedQuantity, price: price }),
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data?.data?.quantityOrder)
+                // console.log(data)
+                // console.log(data?.data?.quantityOrder)
                 if (data?.status === 'success') {
                     setQuantityOrder(data?.data?.quantityOrder)
                     refetch()
@@ -73,7 +72,6 @@ const CartProduct = ({ item, refetch }) => {
                 }
             })
     }
-
     const deleteCartProduct = (id) => {
         // console.log(id)
         fetch(`http://localhost:5000/api/v1/addCart/${id}`, {
@@ -119,19 +117,22 @@ const CartProduct = ({ item, refetch }) => {
                 <CardContent sx={{ paddingLeft: 4, color: '#ffff' }}>
                     <p className='font-bold pt-2'>Name: {item?.name}</p>
                     <p className='text-xs text-green-300 pb-2'>{item?.status}in-stock</p>
-                    <p className='text-sm flex pb-2'>
-                        Price: <span className='text-green-300 font-bold ml-2'>{item?.price}</span>
-                        <BiPlus className='text-xl mx-2' />
-                        Shifting cost: <span className='text-green-300 font-bold ml-2'>20</span>
+                    <p className='mb-2'>
+                        Price:<span className='text-green-300 font-bold ml-2'>{item?.price}</span> <span className='text-xs'>BDT</span>
                     </p>
-                    <p className='text-green-300 text-2xl font-bold mb-2'> {item.price + 20} <span className='text-xs'>BDT</span> </p>
+                    <p className='flex items-center mb-2'>
+                        Total: <span className='text-green-300 font-bold ml-2'>{item?.price * quantityOrder}</span> <span className='text-xs ml-1'>BDT</span>
+                        <BiPlus className='text-xl mx-2' />
+                        Shifting: <span className='text-green-300 font-bold mx-1'>{quantityOrder * 20}</span> <span className='text-xs ml-1'>BDT</span>
+                    </p>
+                    {/* <p className='text-green-300 text-2xl font-bold mb-2'> {item.price * quantityOrder} <span className='text-xs'>BDT</span> </p> */}
                     <p className='text-xs'>Brand: {item?.brand}Ss World</p>
                     <div className='my-2'>
                         <p className='flex'>
                             Quantity:
                             <span>
                                 <button
-                                    onClick={() => decreaseQuantity(quantityOrder, id, refetch)}
+                                    onClick={() => decreaseQuantity(quantityOrder, item?._id, item?.price, refetch)}
                                     className={`ml-4 cursor-pointer text-2xl ${quantityOrder <= 1 ? 'text-gray-400' : 'text-white'}`}
                                     disabled={quantityOrder <= 1}
                                 >
@@ -143,7 +144,7 @@ const CartProduct = ({ item, refetch }) => {
                             </span>
                             <span>
                                 <button
-                                    onClick={() => increaseQuantity(quantityOrder, id, refetch)}
+                                    onClick={() => increaseQuantity(quantityOrder, item?._id, item?.price, refetch)}
                                     className={`ml-1 cursor-pointer text-2xl ${quantityOrder >= item.quantity ? 'text-gray-400' : 'text-white'}`}
                                     disabled={quantityOrder >= item.quantity}
                                 >

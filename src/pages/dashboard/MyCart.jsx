@@ -20,8 +20,17 @@ const MyCart = () => {
     //     return <Loader />
     // }
     // console.log(data?.data)
-    const cartProduct = data?.data?.map(item => <CartProduct key={item._id} item={item} isLoading={isLoading} refetch={refetch} />)
-    const noCartData = <p className='text-white font-bold flex h-full justify-center items-center'>No data here yet, select your product</p>
+    const cartProduct = data?.data?.map(item =>
+        <CartProduct
+            key={item._id}
+            item={item}
+            isLoading={isLoading}
+            refetch={refetch}
+        />)
+    const noCartData = <p
+        className='text-white font-bold flex h-full justify-center items-center'>
+        No data here yet, select your product
+    </p>
 
     return (
         <div>
