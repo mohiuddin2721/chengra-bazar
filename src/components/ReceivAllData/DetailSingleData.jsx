@@ -77,12 +77,14 @@ function DetailSingleData() {
             unit: unit,
             status: status,
             userEmail: userEmail,
+            shifting: quantityOrder * 20,
+            total: price * quantityOrder,
         }
 
         Object.keys(cartData).forEach(prop => {
             formData.append(`${prop}`, cartData[prop])
         })
-        // console.log(cartData)
+        console.log(cartData)
         try {
             const response = await fetch("http://localhost:5000/api/v1/addCart", {
                 method: "POST",
@@ -90,12 +92,12 @@ function DetailSingleData() {
                     "Content-Type": "application/json",
                 },
                 // Convert data to JSON string
-                body: JSON.stringify(cartData), 
+                body: JSON.stringify(cartData),
             });
 
             const responseData = await response.json();
-            if(responseData.status === 'success') toast("Product stored in your cart")
-            // console.log(responseData.status)
+            if (responseData.status === 'success') toast("Product stored in your cart")
+            console.log(responseData)
         } catch (error) {
             console.error(error.message);
         }

@@ -2,12 +2,10 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthProvider';
 import { useQuery } from '@tanstack/react-query';
 import CartProduct from './CartProduct';
-import Loader from '../../components/Loader/Loader';
 
 const MyCart = () => {
     const { user } = useContext(AuthContext)
     // console.log(user?.email)
-
     const { data, isLoading, refetch } = useQuery({
         queryKey: ['getAllCategory'],
         queryFn: async () => {
@@ -16,10 +14,9 @@ const MyCart = () => {
             return data;
         }
     });
-    // if(isLoading){
-    //     return <Loader />
-    // }
-    // console.log(data?.data)
+
+    // const totalPrice = await data?.reduce((total, item) => total + item.total, 0);
+    // console.log(totalPrice)
     const cartProduct = data?.data?.map(item =>
         <CartProduct
             key={item._id}
