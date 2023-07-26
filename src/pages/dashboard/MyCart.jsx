@@ -1,21 +1,11 @@
-import React, { useContext } from 'react';
-import { AuthContext } from '../../contexts/AuthProvider';
-import { useQuery } from '@tanstack/react-query';
+import React from 'react';
 import CartProduct from './CartProduct';
+import useCart from '../../Hooks/useCart';
 
 const MyCart = () => {
-    const { user } = useContext(AuthContext)
-    // console.log(user?.email)
-    const { data, isLoading, refetch } = useQuery({
-        queryKey: ['getAllCategory'],
-        queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/api/v1/addCart?userEmail=${user?.email}`);
-            const data = res.json();
-            return data;
-        }
-    });
+    const [data, isLoading, refetch] = useCart()
+    // console.log(data.data)
 
-    // const totalPrice = await data?.reduce((total, item) => total + item.total, 0);
     const totalPrice = data?.data?.reduce((total, item) => total + item.total, 0);
     const totalQuantityOrder = data?.data?.reduce((total, item) => total + item.quantityOrder, 0);
     // console.log(totalPrice)
@@ -43,49 +33,56 @@ const MyCart = () => {
                     }
                 </div>
                 <div className="col-span-5 md:col-span-1 md:sticky top-0 relative">
-                    <div className='relative md:fixed text-white text-center'>
-                        <div>
-                            <p>Items:</p>
-                            <p className='my-2 font-bold text-green-400'>{totalQuantityOrder}</p>
+                    {
+                        data?.data?.length > 0 && <div className='relative md:fixed text-white text-center'>
+                            <div>
+                                <p>Items:</p>
+                                <p className='my-2 font-bold text-green-400'>{totalQuantityOrder}</p>
+                            </div>
+                            <div>
+                                <p>Subtotal:</p>
+                                <p className='my-2 font-bold text-green-400'>{totalPrice} <span className='text-xs'>BDT</span></p>
+                            </div>
+                            <div>
+                                <p>Shifting:</p>
+                                <p className='my-2 font-bold text-green-400'>{totalQuantityOrder * 20} <span className='text-xs'>BDT</span></p>
+                            </div>
+                            <div>
+                                <p>Total:</p>
+                                <p className='my-2 font-bold text-green-400'>{(totalQuantityOrder * 20) + totalPrice} <span className='text-xs'>BDT</span></p>
+                            </div>
+                            <button className='w-full text-white font-bold my-4 px-3 bg-green-500 hover:bg-green-700 rounded'>Proceed to buy</button>
                         </div>
-                        <div>
-                            <p>Subtotal:</p>
-                            <p className='my-2 font-bold text-green-400'>{totalPrice} <span className='text-xs'>BDT</span></p>
-                        </div>
-                        <div>
-                            <p>Shifting:</p>
-                            <p className='my-2 font-bold text-green-400'>{totalQuantityOrder * 20} <span className='text-xs'>BDT</span></p>
-                        </div>
-                        <div>
-                            <p>Total:</p>
-                            <p className='my-2 font-bold text-green-400'>{(totalQuantityOrder * 20) + totalPrice} <span className='text-xs'>BDT</span></p>
-                        </div>
-                        {/* <p className='text-white'>Subtotal ({totalQuantityOrder} items): <span className='font-bold'>BDT {totalPrice}</span></p>
-                        <p className='text-white'>Shifting: <span className='font-bold'>BDT {totalQuantityOrder * 20}</span></p>
-                        <p className='text-white'>Total: <span className='font-bold'>BDT {(totalQuantityOrder * 20) + totalPrice}</span></p> */}
-                        <button className='w-full text-white font-bold my-4 px-3 bg-green-500 hover:bg-green-700 rounded'>Proceed to buy</button>
-                    </div>
+                    }
                 </div>
             </div>
             <hr />
             <div className='hidden md:block mt-6'>
-                <table className="table-auto text-white mx-auto">
-                    <tbody>
-                        <tr>
-                            <td>Subtotal:</td>
-                            <td><span className='text-xs mx-2'>BDT.</span> {totalPrice}</td>
-                        </tr>
-                        <tr>
-                            <td>Shifting:</td>
-                            <td><span className='text-xs mx-2'>BDT.</span> {totalQuantityOrder * 20}</td>
-                        </tr>
-                        <tr>
-                            <td>total:</td>
-                            <td><span className='text-xs mx-2'>BDT.</span> {(totalQuantityOrder * 20) + totalPrice}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <button className='text-white font-bold my-4 mx-auto flex px-3 bg-green-500 hover:bg-green-700 rounded'>Proceed to buy</button>
+                {
+                    data?.data?.length > 0 && <div>
+                        <table className="table-auto text-white mx-auto">
+                            <tbody>
+                                <tr>
+                                    <td>Item:</td>
+                                    <td>{totalQuantityOrder}</td>
+                                </tr>
+                                <tr>
+                                    <td>Subtotal:</td>
+                                    <td><span className='text-xs mx-2'>BDT.</span> {totalPrice}</td>
+                                </tr>
+                                <tr>
+                                    <td>Shifting:</td>
+                                    <td><span className='text-xs mx-2'>BDT.</span> {totalQuantityOrder * 20}</td>
+                                </tr>
+                                <tr>
+                                    <td>total:</td>
+                                    <td><span className='text-xs mx-2'>BDT.</span> {(totalQuantityOrder * 20) + totalPrice}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button className='text-white font-bold my-4 mx-auto flex px-3 bg-green-500 hover:bg-green-700 rounded'>Proceed to buy</button>
+                    </div>
+                }
             </div>
         </div>
     );

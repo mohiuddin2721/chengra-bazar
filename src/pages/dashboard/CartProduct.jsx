@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { CardContent, Grid } from '@mui/material';
 import { BiMinus, BiPlus } from 'react-icons/bi';
 import { glassStyle_1, glassStyle_2 } from '../../Styles/DashboardStyle';
-import Loader from '../../components/Loader/Loader';
 import { toast } from 'react-toastify';
 
 const CartProduct = ({ item, refetch }) => {
@@ -125,7 +124,6 @@ const CartProduct = ({ item, refetch }) => {
                         <BiPlus className='text-xl mx-2' />
                         Shifting: <span className='text-green-300 font-bold mx-1'>{quantityOrder * 20}</span> <span className='text-xs ml-1'>BDT</span>
                     </p>
-                    {/* <p className='text-green-300 text-2xl font-bold mb-2'> {item.price * quantityOrder} <span className='text-xs'>BDT</span> </p> */}
                     <p className='text-xs'>Brand: {item?.brand}Ss World</p>
                     <div className='my-2'>
                         <p className='flex'>
