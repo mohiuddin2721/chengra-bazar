@@ -2,21 +2,14 @@ import React, { useState } from 'react';
 import { CardContent, Grid } from '@mui/material';
 import { BiMinus, BiPlus } from 'react-icons/bi';
 import { glassStyle_1, glassStyle_2 } from '../../Styles/DashboardStyle';
-import { toast } from 'react-toastify';
+import { useContext } from 'react';
+import { CartContext } from '../../contexts/CartProvider';
 
 const CartProduct = ({ item, refetch }) => {
     const [isHovered, setIsHovered] = useState(false);
+    const { increaseQuantity, decreaseQuantity, deleteCartProduct } = useContext(CartContext)
     const [quantityOrder, setQuantityOrder] = useState(item?.quantityOrder)
-
-    const toastConfig = {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-    }
+    // console.log(quantityOrder)
 
     const handleMouseEnter = () => {
         setIsHovered(true);
@@ -24,70 +17,6 @@ const CartProduct = ({ item, refetch }) => {
     const handleMouseLeave = () => {
         setIsHovered(false);
     };
-
-    const increaseQuantity = (quantityOrder, id, price, refetch) => {
-        const updatedQuantity = quantityOrder + 1;
-        // console.log("updatedQuantity", updatedQuantity)
-        fetch(`http://localhost:5000/api/v1/addCart/${id}`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ quantityOrder: updatedQuantity, price: price }),
-        })
-            .then(res => res.json())
-            .then(data => {
-                // console.log(data)
-                // console.log(data?.data?.quantityOrder)
-                if (data?.status === 'success') {
-                    setQuantityOrder(data?.data?.quantityOrder)
-                    refetch()
-                }
-                else {
-                    toast.error('Something went wrong', toastConfig)
-                }
-            })
-    }
-    const decreaseQuantity = async (quantityOrder, id, price, refetch) => {
-        const updatedQuantity = quantityOrder - 1;
-        // console.log("updatedQuantity", updatedQuantity)
-        fetch(`http://localhost:5000/api/v1/addCart/${id}`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ quantityOrder: updatedQuantity, price: price }),
-        })
-            .then(res => res.json())
-            .then(data => {
-                // console.log(data)
-                // console.log(data?.data?.quantityOrder)
-                if (data?.status === 'success') {
-                    setQuantityOrder(data?.data?.quantityOrder)
-                    refetch()
-                }
-                else {
-                    toast.error('Something went wrong', toastConfig)
-                }
-            })
-    }
-    const deleteCartProduct = (id) => {
-        // console.log(id)
-        fetch(`http://localhost:5000/api/v1/addCart/${id}`, {
-            method: 'DELETE',
-        })
-            .then(res => res.json())
-            .then(data => {
-                // console.log("data.acknowledged", data.data.acknowledged);
-                if (data?.data?.acknowledged) {
-                    toast.success('Cart product cancelled successfully', toastConfig)
-                    refetch()
-                }
-                else {
-                    toast.error('Something went wrong', toastConfig)
-                }
-            })
-    }
 
     return (
         <Grid
@@ -130,7 +59,7 @@ const CartProduct = ({ item, refetch }) => {
                             Quantity:
                             <span>
                                 <button
-                                    onClick={() => decreaseQuantity(quantityOrder, item?._id, item?.price, refetch)}
+                                    onClick={() => decreaseQuantity(quantityOrder, setQuantityOrder, item?._id, item?.price, refetch)}
                                     className={`ml-4 cursor-pointer text-2xl ${quantityOrder <= 1 ? 'text-gray-400' : 'text-white'}`}
                                     disabled={quantityOrder <= 1}
                                 >
@@ -142,7 +71,7 @@ const CartProduct = ({ item, refetch }) => {
                             </span>
                             <span>
                                 <button
-                                    onClick={() => increaseQuantity(quantityOrder, item?._id, item?.price, refetch)}
+                                    onClick={() => increaseQuantity(quantityOrder, setQuantityOrder, item?._id, item?.price, refetch)}
                                     className={`ml-1 cursor-pointer text-2xl ${quantityOrder >= item.quantity ? 'text-gray-400' : 'text-white'}`}
                                     disabled={quantityOrder >= item.quantity}
                                 >
@@ -151,7 +80,7 @@ const CartProduct = ({ item, refetch }) => {
                             </span>
                         </p>
                         <p
-                            onClick={() => deleteCartProduct(item._id)}
+                            onClick={() => deleteCartProduct(item._id, refetch)}
                             className='cursor-pointer text-white font-bold ml-4'>
                             | <span className='text-green-400 hover:text-green-600 mx-2'>Delete</span> |
                         </p>

@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import CartProduct from './CartProduct';
 import useCart from '../../Hooks/useCart';
+import { CartContext } from '../../contexts/CartProvider';
 
 const MyCart = () => {
-    const [data, isLoading, refetch] = useCart()
-    // console.log(data.data)
+    const [cart, isLoading, refetch] = useCart()
+    const { totalPrice, totalQuantityOrder } = useContext(CartContext)
 
-    const totalPrice = data?.data?.reduce((total, item) => total + item.total, 0);
-    const totalQuantityOrder = data?.data?.reduce((total, item) => total + item.quantityOrder, 0);
-    // console.log(totalPrice)
-    const cartProduct = data?.data?.map(item =>
+    // console.log(cart.data)
+    
+    const cartProduct = cart?.data?.map(item =>
         <CartProduct
             key={item._id}
             item={item}
@@ -20,8 +20,7 @@ const MyCart = () => {
         className='text-white font-bold flex h-full justify-center items-center'>
         No data here yet, select your product
     </p>
-    // console.log(totalPrice)
-    // console.log(totalQuantityOrder)
+    
     return (
         <div>
             <p className='text-white text-xl'>Shopping Cart</p>
@@ -29,12 +28,12 @@ const MyCart = () => {
             <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mt-4">
                 <div className="col-span-5 md:col-span-4 mb-4 md:mb-0 md:mr-2">
                     {
-                        data?.data?.length === 0 ? <div className='h-[60vh]'>{noCartData}</div> : cartProduct
+                        cart?.data?.length === 0 ? <div className='h-[60vh]'>{noCartData}</div> : cartProduct
                     }
                 </div>
                 <div className="col-span-5 md:col-span-1 md:sticky top-0 relative">
                     {
-                        data?.data?.length > 0 && <div className='relative md:fixed text-white text-center'>
+                        cart?.data?.length > 0 && <div className='relative md:fixed text-white text-center'>
                             <div>
                                 <p>Items:</p>
                                 <p className='my-2 font-bold text-green-400'>{totalQuantityOrder}</p>
@@ -59,7 +58,7 @@ const MyCart = () => {
             <hr />
             <div className='hidden md:block mt-6'>
                 {
-                    data?.data?.length > 0 && <div>
+                    cart?.data?.length > 0 && <div>
                         <table className="table-auto text-white mx-auto">
                             <tbody>
                                 <tr>

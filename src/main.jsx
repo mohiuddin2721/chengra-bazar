@@ -7,6 +7,7 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query';
 import AuthProvider from './contexts/AuthProvider';
+import CartProvider from './contexts/CartProvider';
 
 const queryClient = new QueryClient()
 
@@ -17,7 +18,9 @@ root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <App />
+        <CartProvider>
+          <App />
+        </CartProvider>
       </AuthProvider>
     </QueryClientProvider>
   </React.StrictMode>

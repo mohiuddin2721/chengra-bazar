@@ -2,7 +2,7 @@ import React from 'react';
 import pic from '../../assets/istockphoto-1305489264-612x612.jpg';
 import { MdClose } from 'react-icons/md';
 
-function CartProduct() {
+function SideCartProduct() {
     return (
         <div className='py-[20px] flex gap-[15px] border-b border-[#E6EBEE]'>
             <div className='w-[70%] mb-[3px] flex flex-col gap-[11px]'>
@@ -17,4 +17,4 @@ function CartProduct() {
     )
 }
 
-export default CartProduct;
+export default SideCartProduct;

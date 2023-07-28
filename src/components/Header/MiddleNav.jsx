@@ -6,7 +6,6 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
 import styles from '../../Styles/MiddleNav.module.css';
-import CartProduct from './CartProduct';
 import { BsSearch } from 'react-icons/bs';
 import { MdOutlineClose } from 'react-icons/md';
 import { FaSearch } from 'react-icons/fa';
@@ -17,6 +16,8 @@ import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import useGetAllCategory from '../../Hooks/useGetAllCategories';
 import useGetAllData from '../../Hooks/useGetAllData';
+import SideCartProduct from './SideCartProduct';
+import useCart from '../../Hooks/useCart';
 
 
 const MiddleNav = () => {
@@ -26,6 +27,7 @@ const MiddleNav = () => {
     const [openCollapseMenu1, setCollapseMenu1] = useState(false);
     const [openCollapseMenu2, setCollapseMenu2] = useState(false);
     const { allProduct } = useGetAllData();
+    const [cart, refetch] = useCart()
 
     const getBrand = allProduct?.map((data) => data?.brand)
     const allBrand = Array.from(new Set(getBrand));
@@ -127,7 +129,7 @@ const MiddleNav = () => {
                                     onClick={() => setIsOpenCartDrawer(true)}
                                 >
                                     <AiOutlineShopping className='text-[#222529]' />
-                                    <span className='absolute h-4 w-4 rounded-full bg-[#FF5B5B] z-1 text-white flex justify-center items-center text-[11px] -right-[7px] top-0'>0</span>
+                                    <span className='absolute h-4 w-4 rounded-full bg-[#FF5B5B] z-1 text-white flex justify-center items-center text-[11px] -right-[7px] top-0'>{cart?.data?.length}</span>
                                 </button>
                             </div>
                         </div>
@@ -144,11 +146,11 @@ const MiddleNav = () => {
                             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <p className='mb-[17px] leading-10 font-bold text-[#212529] text-[20px]'>Shopping Cart</p>
                                 <CloseOutlinedIcon
-                                    className='text-black text-right text-2xl'
+                                    className='text-black cursor-pointer text-right text-2xl'
                                     onClick={handleDrawerClose2} />
                             </Box>
 
-                            {new Array(5).fill(0).map((item, i) => <CartProduct key={i} />)}
+                            {cart?.data?.map((item, i) => <SideCartProduct key={i} />)}
                             <div className='my-[15px] flex items-center justify-between text-[#212529] font-bold text-[13px]'>
                                 <span>SUBTOTAL:</span>
                                 <span className='text-[15px]'>$134.00</span>
