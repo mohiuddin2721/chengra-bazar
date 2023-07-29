@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { FiPhoneCall } from 'react-icons/fi';
 import { AiOutlineUser, AiOutlineShopping } from 'react-icons/ai';
 import { FiHeart } from 'react-icons/fi';
@@ -8,7 +8,6 @@ import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
 import styles from '../../Styles/MiddleNav.module.css';
 import { BsSearch } from 'react-icons/bs';
 import { MdOutlineClose } from 'react-icons/md';
-import { FaSearch } from 'react-icons/fa';
 import { Box, Collapse, Drawer, List, ListItemButton, ListItemText } from '@mui/material';
 import { categories } from '../../Utils/ConstantData';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
@@ -18,16 +17,17 @@ import useGetAllCategory from '../../Hooks/useGetAllCategories';
 import useGetAllData from '../../Hooks/useGetAllData';
 import SideCartProduct from './SideCartProduct';
 import useCart from '../../Hooks/useCart';
+import { CartContext } from '../../contexts/CartProvider';
 
 
 const MiddleNav = () => {
-    const { allCategory } = useGetAllCategory();
     const [isOpenMenuDrawer, setIsOpenMenuDrawer] = useState(false);
     const [isOpenCartDrawer, setIsOpenCartDrawer] = useState(false);
     const [openCollapseMenu1, setCollapseMenu1] = useState(false);
     const [openCollapseMenu2, setCollapseMenu2] = useState(false);
     const { allProduct } = useGetAllData();
-    const [cart, refetch] = useCart()
+    const [cart, isLoading, refetch] = useCart()
+    const { totalQuantityOrder, totalPrice } = useContext(CartContext)
 
     const getBrand = allProduct?.map((data) => data?.brand)
     const allBrand = Array.from(new Set(getBrand));
@@ -75,16 +75,8 @@ const MiddleNav = () => {
                         </div>
                         <div className='w-full flex gap-[30px] text-[13px] justify-end lg:justify-start  text-[#8d8d8d]'>
                             <div className='w-full h-[40px] hidden lg:flex items-center rounded-[50px] bg-[#f1f1f1]'>
-                                <input placeholder='Search...' type="text" className='h-full w-[70%] outline-none px-[20px] py-[10px]  bg-transparent rounded-tl-[50px] rounded-bl-[50px]' />
-                                <div className='font-normal flex items-center w-[23%] px-[14px] border-l border-r h-[40px] border-white'>
-                                    <select name="" id="" className={`bg-transparent w-full cursor-pointer outline-none ${styles.select}`}>
-                                        <option value="">select category</option>
-                                        {
-                                            allCategory?.map((item, i) => <option key={i} value="">{item.name}</option>)
-                                        }
-                                    </select>
-                                </div>
-                                <div className='w-[7%] h-[40px] flex justify-center items-center'>
+                                <input placeholder='Search...' type="text" className='h-full w-[95%] outline-none px-[20px] py-[10px]  bg-transparent rounded-tl-[50px] rounded-bl-[50px]' />
+                                <div className='w-[5%] flex items-center'>
                                     <BsSearch className='text-[#222529] text-lg cursor-pointer' />
                                 </div>
                             </div>
@@ -108,15 +100,7 @@ const MiddleNav = () => {
                                     }} className='text-[#222529] relative right-6 xs:right-0 hover:text-[#08c] duration-500  cursor-pointer' />}
                                     <div onClick={(e) => e.stopPropagation()} className={`w-[320px] xs:w-[360px]  xs:-left-[305px] -left-[289px] duration-500   text-[13px]  flex ${openSearch ? ' top-[45px] opacity-100  z-20' : 'opacity-0 top-[0px] -z-50'} absolute items-center h-[50px] rounded-[50px] bg-[#f1f1f1] border-[5px] border-[#08C]`}>
                                         <span className={`${styles['custom-arrow']} duration-500 right-[23px]`}></span>
-                                        <input placeholder='Search...' type="text" className='h-full w-[45%] outline-none px-[20px] py-[10px]  bg-transparent rounded-tl-[50px] rounded-bl-[50px]' />
-                                        <div className='font-normal flex items-center w-[43%] px-[14px] border-l border-r h-[40px] border-white'>
-                                            <select name="" id="" className={`bg-transparent w-full cursor-pointer outline-none ${styles.select}`}>
-                                                <option value="">select category</option>
-                                                {
-                                                    allCategory?.map((item, i) => <option key={i} value="">{item.name}</option>)
-                                                }
-                                            </select>
-                                        </div>
+                                        <input placeholder='Search...' type="text" className='h-full w-[88%] outline-none px-[20px] py-[10px]  bg-transparent rounded-tl-[50px] rounded-bl-[50px]' />
                                         <div className='w-[12%] h-[40px] flex justify-center items-center'>
                                             <BsSearch className='text-[#222529] text-lg cursor-pointer' />
                                         </div>
@@ -129,7 +113,10 @@ const MiddleNav = () => {
                                     onClick={() => setIsOpenCartDrawer(true)}
                                 >
                                     <AiOutlineShopping className='text-[#222529]' />
-                                    <span className='absolute h-4 w-4 rounded-full bg-[#FF5B5B] z-1 text-white flex justify-center items-center text-[11px] -right-[7px] top-0'>{cart?.data?.length}</span>
+                                    <span
+                                        className='absolute h-4 w-4 rounded-full bg-[#FF5B5B] z-1 text-white flex justify-center items-center text-[11px] -right-[7px] top-0'>
+                                        {cart?.data?.length}
+                                    </span>
                                 </button>
                             </div>
                         </div>
@@ -146,18 +133,33 @@ const MiddleNav = () => {
                             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <p className='mb-[17px] leading-10 font-bold text-[#212529] text-[20px]'>Shopping Cart</p>
                                 <CloseOutlinedIcon
-                                    className='text-black cursor-pointer text-right text-2xl'
+                                    className='text-black cursor-pointer text-right text-2xl ml-10'
                                     onClick={handleDrawerClose2} />
                             </Box>
 
-                            {cart?.data?.map((item, i) => <SideCartProduct key={i} />)}
+                            {cart?.data?.map((item, i) => <SideCartProduct key={i} item={item} refetch={refetch} />)}
+                            <div className='my-[15px] flex items-center justify-between text-[#212529] font-bold text-[13px]'>
+                                <span>ITEM:</span>
+                                <span className='text-[15px]'>{totalQuantityOrder}</span>
+                            </div>
                             <div className='my-[15px] flex items-center justify-between text-[#212529] font-bold text-[13px]'>
                                 <span>SUBTOTAL:</span>
-                                <span className='text-[15px]'>$134.00</span>
+                                <span className='text-[15px]'>{totalPrice}</span>
+                            </div>
+                            <div className='my-[15px] flex items-center justify-between text-[#212529] font-bold text-[13px]'>
+                                <span>DELIVERY CHARGE:</span>
+                                <span className='text-[15px]'>{totalQuantityOrder * 20}</span>
+                            </div>
+                            <div className='my-[15px] flex items-center justify-between text-[#212529] font-bold text-[13px]'>
+                                <span>TOTAL:</span>
+                                <span className='text-[15px]'>{(totalQuantityOrder * 20) + totalPrice}</span>
                             </div>
                             <div className='mt-[10px] flex flex-col gap-[15px]'>
-                                <button className='bg-[#e7e7e7] hover:bg-[#f1f1f1] duration-500 text-[12px] font-semibold py-[14px] leading-[16px] tracking-wide rounded-sm px-[25px]'>VIEW CART</button>
-                                <button className='bg-[#222529] hover:bg-[#34393F] text-white duration-500 text-[12px] font-semibold py-[14px] leading-[16px] tracking-wide rounded-sm px-[25px]'>CHECKOUT</button>
+                                <Link to='/dashboard/My_cart'>
+                                    <button className='bg-[#e7e7e7] hover:bg-[#f1f1f1] duration-500 text-[12px] font-semibold py-[14px] leading-[16px] tracking-wide rounded-sm px-[25px]'>VIEW CART</button>
+                                </Link>
+                                <button
+                                    className='bg-[#222529] hover:bg-[#34393F] text-white duration-500 text-[12px] font-semibold py-[14px] leading-[16px] tracking-wide rounded-sm px-[25px]'>CHECKOUT</button>
                             </div>
                         </Box>
                     </Drawer>
@@ -239,10 +241,6 @@ const MiddleNav = () => {
                                             <ListItemText primary="LOG IN" />
                                         </ListItemButton>
                                     </List>
-                                </div>
-                                <div className='px-[15px] mb-[20px] relative'>
-                                    <input type="text" placeholder='Search...' className='w-full py-2 px-3 bg-[#282E36] text-[#777777]' />
-                                    <FaSearch className='absolute right-[23px] z-20 cursor-pointer top-[9px] font-bold text-lg' />
                                 </div>
                                 <div className='flex justify-center gap-[10px]'>
                                     <div className='w-[32px] h-[32px] flex justify-center items-center hover:opacity-50 opacity-100 bg-[#3b5a9a] cursor-pointer duration-500'>

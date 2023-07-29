@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import useGetAllData from '../../Hooks/useGetAllData';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 // import ImageMagnify from '../../features/ZoomImage/ImageMagnify';
 import ZoomImage from '../../features/ZoomImage/ZoomImage';
 import PriceFormate from '../../features/priceFormate/PriceFormate';
@@ -14,16 +14,18 @@ import { AiFillHeart } from 'react-icons/ai';
 import { delivery_replacement_data } from '../../Utils/ConstantData';
 import { AuthContext } from '../../contexts/AuthProvider';
 import { toast } from 'react-toastify';
+import { useQueryClient } from '@tanstack/react-query';
 
 
 function DetailSingleData() {
+    const navigate = useNavigate();
     const { id } = useParams()
     const { user } = useContext(AuthContext)
-    const navigate = useNavigate();
     const { allProduct } = useGetAllData();
     const [quantityOrder, setQuantityOrder] = useState(1)
     const [upperImage, setUpperImage] = useState("");
     const [selectedProductImg, setSelectedProductImg] = useState("");
+    const queryClient = useQueryClient()
 
     const selectedProduct = allProduct?.filter(item => item._id === id);
     const { _id, name, imageURL, description, price, unit, quantity, status, brand, ratting, categories } = selectedProduct[0];
@@ -84,7 +86,7 @@ function DetailSingleData() {
         Object.keys(cartData).forEach(prop => {
             formData.append(`${prop}`, cartData[prop])
         })
-        console.log(cartData)
+        // console.log(cartData)
         try {
             const response = await fetch("http://localhost:5000/api/v1/addCart", {
                 method: "POST",
@@ -97,7 +99,8 @@ function DetailSingleData() {
 
             const responseData = await response.json();
             if (responseData.status === 'success') toast("Product stored in your cart")
-            console.log(responseData)
+            queryClient.invalidateQueries({ queryKey: ['cart'] })
+            // console.log(responseData)
         } catch (error) {
             console.error(error.message);
         }
@@ -236,10 +239,9 @@ function DetailSingleData() {
                                     </>
                                     :
                                     <>
-                                        <button className="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded"
-                                        >
-                                            Purchase
-                                        </button>
+                                        <Link to='/dashboard/My_cart'>
+                                            <button className='flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded'>VIEW CART</button>
+                                        </Link>
                                         <button
                                             // onClick={() => handleAddToCart({ selectedId, name, description, price, unit, quantity, status, categories, quantityOrder })}
                                             onClick={handleAddToCart}
