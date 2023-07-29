@@ -20,6 +20,7 @@ import Upload_Update from "../pages/dashboard/Upload_Update";
 import Administration from "../pages/dashboard/Administration";
 import Management from "../pages/dashboard/Management";
 import SendMail from "../pages/dashboard/SendMail";
+import CheckOut from "../pages/payment/CheckOut";
 
 
 const router = createBrowserRouter([
@@ -86,6 +87,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/My_cart',
                 element: <MyCart></MyCart>
+            },
+            {
+                path: '/dashboard/Check_Out_Route',
+                element: <CheckOut></CheckOut>
             },
             {
                 path: '/dashboard/Upload_&_Update',
