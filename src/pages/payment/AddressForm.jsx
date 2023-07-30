@@ -1,15 +1,40 @@
 import React, { useState } from 'react';
 import { AiFillCloseCircle } from 'react-icons/ai';
+import { Country } from 'country-state-city';
 import PhoneInput from 'react-phone-input-2'
+import Select from 'react-select';
 import 'react-phone-input-2/lib/style.css'
 
 const AddressForm = ({ closeAddress }) => {
     const [phoneNumber, setPhoneNumber] = useState('');
+    const countryData = Country.getAllCountries();
+    const [country, setCountry] = useState(countryData[230]);
 
+    const handleFormSubmit = (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+
+        const data = {
+            name: e.target.name.value,
+            phone: phoneNumber,
+            country: country?.name,
+            address: e.target.address.value,
+            state: e.target.state.value,
+            city: e.target.city.value,
+            zipCode: e.target.zipCode.value,
+        }
+
+        Object.keys(data).forEach(prop => {
+            formData.append(`${prop}`, data[prop])
+        })
+        
+        console.log(data);
+    }
     const handleChange = (value) => {
         setPhoneNumber(value)
     }
-    console.log(phoneNumber)
+    // console.log(phoneNumber)
+    // console.log(country.name)
 
     return (
         <div className="flex items-center justify-center rounded-sm">
@@ -29,81 +54,119 @@ const AddressForm = ({ closeAddress }) => {
                             </div>
 
                             <div className="lg:col-span-2">
-                                <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
-                                    <div className="md:col-span-5">
-                                        <label htmlFor="full_name">Full Name</label>
-                                        <input type="text" name="full_name" id="full_name" className="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
-                                    </div>
+                                <form onSubmit={handleFormSubmit}>
+                                    <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
 
-                                    <div className="md:col-span-5">
-                                        <label htmlFor="phone">Phone:</label>
-                                        <PhoneInput
-                                            country={'ae'}
-                                            value={phoneNumber}
-                                            onChange={handleChange}
-                                            countryCodeEditable={false}
-                                            inputProps={{
-                                                required: true
-                                            }}
-                                        />
-                                        {/* <label htmlFor="email">Phone:</label>
-                                        <input type="text" name="email" id="email" className="h-10 border mt-1 rounded px-4 w-full bg-gray-50" placeholder="email@domain.com" /> */}
-                                    </div>
-
-                                    <div className="md:col-span-3">
-                                        <label htmlFor="address">Address / Street</label>
-                                        <input type="text" name="address" id="address" className="h-10 border mt-1 rounded px-4 w-full bg-gray-50" placeholder="" />
-                                    </div>
-
-                                    <div className="md:col-span-2">
-                                        <label htmlFor="city">City</label>
-                                        <input type="text" name="city" id="city" className="h-10 border mt-1 rounded px-4 w-full bg-gray-50" placeholder="" />
-                                    </div>
-
-                                    <div className="md:col-span-2">
-                                        <label htmlFor="country">Country / region</label>
-                                        <div className="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
-                                            <input name="country" id="country" placeholder="Country" className="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent" />
-                                            <button tabIndex="-1" className="cursor-pointer outline-none focus:outline-none transition-all text-gray-300 hover:text-red-600">
-                                                <svg className="w-4 h-4 mx-2 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                                                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                                                </svg>
-                                            </button>
-                                            <button tabIndex="-1" htmlFor="show_more" className="cursor-pointer outline-none focus:outline-none border-l border-gray-200 transition-all text-gray-300 hover:text-blue-600">
-                                                <svg className="w-4 h-4 mx-2 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
-                                            </button>
+                                        <div className="md:col-span-5">
+                                            <label>Full Name *</label>
+                                            <input
+                                                required
+                                                type="text"
+                                                name="name"
+                                                className="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
                                         </div>
-                                    </div>
 
-                                    <div className="md:col-span-2">
-                                        <label htmlFor="state">State / province</label>
-                                        <div className="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
-                                            <input name="state" id="state" placeholder="State" className="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent" />
-                                            <button tabIndex="-1" className="cursor-pointer outline-none focus:outline-none transition-all text-gray-300 hover:text-red-600">
-                                                <svg className="w-4 h-4 mx-2 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                                                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                                                </svg>
-                                            </button>
-                                            <button tabIndex="-1" htmlFor="show_more" className="cursor-pointer outline-none focus:outline-none border-l border-gray-200 transition-all text-gray-300 hover:text-blue-600">
-                                                <svg className="w-4 h-4 mx-2 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
-                                            </button>
+                                        <div className="md:col-span-5">
+                                            <label>Phone *</label>
+                                            <PhoneInput
+                                                country={'ae'}
+                                                value={phoneNumber}
+                                                onChange={handleChange}
+                                                // countryCodeEditable={false}
+                                                inputProps={{
+                                                    required: true
+                                                }}
+                                            />
                                         </div>
-                                    </div>
 
-                                    <div className="md:col-span-1">
-                                        <label htmlFor="zipcode">Zipcode</label>
-                                        <input type="text" name="zipcode" id="zipcode" className="transition-all flex items-center h-10 border mt-1 rounded px-4 w-full bg-gray-50" placeholder="" />
-                                    </div>
-
-                                    <div className="md:col-span-5 text-right">
-                                        <div className="inline-flex items-end">
-                                            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
+                                        <div className="md:col-span-3">
+                                            <label>Address / Street *</label>
+                                            <input
+                                                required
+                                                type="text"
+                                                name="address"
+                                                className="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
                                         </div>
-                                    </div>
 
-                                </div>
+                                        <div className="md:col-span-2">
+                                            <label htmlFor="country">Country * </label>
+                                            <div className="h-10 bg-gray-50 w-full flex border border-gray-200 rounded items-center mt-1">
+                                                <Select
+                                                    options={countryData.map((country) => ({
+                                                        value: country.isoCode,
+                                                        label: country.name,
+                                                    }))}
+                                                    value={{
+                                                        value: country.isoCode,
+                                                        label: country.name,
+                                                    }}
+                                                    onChange={(selectedOption) =>
+                                                        setCountry(
+                                                            Country.getCountryByCode(selectedOption.value)
+                                                        )
+                                                    }
+                                                    styles={{
+                                                        container: (provided) => ({
+                                                            ...provided,
+                                                            width: '100%',
+                                                        }),
+                                                        control: (provided) => ({
+                                                            ...provided,
+                                                            minHeight: '2.5rem',
+                                                        }),
+                                                        menu: (provided) => ({
+                                                            ...provided,
+                                                            width: '100%',
+                                                        }),
+                                                    }}
+                                                    isRequired
+                                                />
+
+                                            </div>
+                                        </div>
+                                        <div className="md:col-span-2">
+                                            <label htmlFor="state">State / province *</label>
+                                            <div className="h-10 bg-gray-50 w-full flex border border-gray-200 rounded items-center mt-1">
+                                                <input
+                                                    required
+                                                    type='text'
+                                                    name="state"
+                                                    className="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent" />
+                                            </div>
+                                        </div>
+                                        <div className="md:col-span-2">
+                                            <label>City * </label>
+                                            <div className='h-10 bg-gray-50 w-full flex border border-gray-200 rounded items-center mt-1'>
+                                                <input
+                                                    required
+                                                    type="text"
+                                                    name="city"
+                                                    className="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
+                                            </div>
+                                        </div>
+
+                                        <div className="md:col-span-1">
+                                            <label>Zipcode *</label>
+                                            <input
+                                                required
+                                                type="text"
+                                                name="zipCode"
+                                                className="transition-all flex items-center h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
+                                        </div>
+
+                                        <div className="md:col-span-5 text-right">
+                                            <div className="inline-flex items-end">
+                                                <button
+                                                    type='submit'
+                                                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                                >
+                                                    Submit
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>

@@ -43,8 +43,8 @@ const CartProduct = ({ item, refetch }) => {
             </Grid>
             <Grid item xs={12} sm={12} md={7} lg={8}>
                 <CardContent sx={{ paddingLeft: 4, color: '#ffff' }}>
-                    <p className='font-bold pt-2'>Name: {item?.name}</p>
-                    <p className='text-xs text-green-300 pb-2'>{item?.status}in-stock</p>
+                    <p className='font-bold pt-2'>{item?.name}</p>
+                    <p className='text-xs text-green-300 pb-2'>{item?.status}</p>
                     <p className='mb-2'>
                         Price:<span className='text-green-300 font-bold ml-2'>{item?.price}</span> <span className='text-xs'>BDT</span>
                     </p>
