@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import AddressForm from './AddressForm';
 import { BsFillPencilFill } from 'react-icons/bs';
+import { AuthContext } from '../../contexts/AuthProvider';
+import Address from './Address';
+import UpdateAddressForm from './UpdateAddressForm';
 
 const CheckOut = () => {
+    const { user } = useContext(AuthContext)
+    const [address, setAddress] = useState(true)
+    const [updateForm, setUpdateForm] = useState(false)
     const [zip, setZip] = useState(null)
 
     const handleAddress = () => {
@@ -18,7 +24,10 @@ const CheckOut = () => {
                 <p className='text-white font-bold'>Checkout</p>
             </div>
             <hr className='my-4' />
-            <div className='text-white w-full md:w-[60%] mx-auto block md:flex relative border-dashed hover:border-solid border-2 border-[#ffffffab] hover:border-green-400 rounded-lg p-8'>
+            {
+                address ? <Address handleAddress={handleAddress} zip={zip} /> : <AddressForm />
+            }
+            {/* <div className='text-white w-full md:w-[60%] mx-auto block md:flex relative border-dashed hover:border-solid border-b-2 border-[#ffffffab] hover:border-green-400 rounded-lg p-8'>
                 <div className='w-full md:w-2/4 p-2'>
                     <p className='font-bold text-xl'>1. Shipping address:</p>
                 </div>
@@ -33,9 +42,9 @@ const CheckOut = () => {
                     className='absolute top-4 right-4 flex cursor-pointer text-green-500 hover:text-green-300 underline'>
                     Change <BsFillPencilFill className='ml-2' />
                 </span>
-            </div>
+            </div> */}
             <div className={zip ? 'block my-3 duration-300 ease-in-out opacity-100 transition-transform transform translate-y-0' : 'hidden'}>
-                <AddressForm closeAddress={closeAddress} />
+                <UpdateAddressForm closeAddress={closeAddress} />
             </div>
             <div>
                 <p className='text-white'>payment</p>

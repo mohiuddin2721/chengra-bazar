@@ -6,7 +6,7 @@ import Select from 'react-select';
 import 'react-phone-input-2/lib/style.css'
 import { AuthContext } from '../../contexts/AuthProvider';
 
-const AddressForm = () => {
+const UpdateAddressForm = ({ closeAddress }) => {
     const { user } = useContext(AuthContext)
     const [phoneNumber, setPhoneNumber] = useState('');
     const countryData = Country.getAllCountries();
@@ -44,6 +44,12 @@ const AddressForm = () => {
             <div className="container max-w-screen-lg mx-auto">
                 <div>
                     <div className="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6 relative">
+                        <span
+                            onClick={closeAddress}
+                            className='absolute top-4 right-4 flex cursor-pointer text-green-500 hover:text-green-300 underline'
+                        >
+                            Close <AiFillCloseCircle className='ml-1 text-xl' />
+                        </span>
                         <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
                             <div className="text-gray-600">
                                 <p className="font-medium text-lg">Address details for shipping</p>
@@ -157,7 +163,7 @@ const AddressForm = () => {
                                                     type='submit'
                                                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                                                 >
-                                                    Submit
+                                                    update current address
                                                 </button>
                                             </div>
                                         </div>
@@ -173,4 +179,4 @@ const AddressForm = () => {
     );
 };
 
-export default AddressForm;
+export default UpdateAddressForm;
