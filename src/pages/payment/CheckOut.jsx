@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react';
 import AddressForm from './AddressForm';
-import { BsFillPencilFill } from 'react-icons/bs';
 import { AuthContext } from '../../contexts/AuthProvider';
 import Address from './Address';
 import UpdateAddressForm from './UpdateAddressForm';

@@ -30,7 +30,7 @@ const AddressForm = () => {
         Object.keys(data).forEach(prop => {
             formData.append(`${prop}`, data[prop])
         })
-        
+
         console.log(user.email);
     }
     const handleChange = (value) => {
@@ -43,6 +43,9 @@ const AddressForm = () => {
         <div className="flex items-center justify-center rounded-sm">
             <div className="container max-w-screen-lg mx-auto">
                 <div>
+                    <div className='w-full p-2 text-white'>
+                        <p className='font-bold text-xl'>1. Add your shipping address:</p>
+                    </div>
                     <div className="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6 relative">
                         <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
                             <div className="text-gray-600">
@@ -157,7 +160,7 @@ const AddressForm = () => {
                                                     type='submit'
                                                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                                                 >
-                                                    Submit
+                                                    Add address
                                                 </button>
                                             </div>
                                         </div>
