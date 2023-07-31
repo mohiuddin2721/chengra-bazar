@@ -1,20 +1,48 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import { Country } from 'country-state-city';
 import PhoneInput from 'react-phone-input-2'
 import Select from 'react-select';
 import 'react-phone-input-2/lib/style.css'
 import { AuthContext } from '../../contexts/AuthProvider';
+import useAddress from '../../Hooks/useAddress';
+import Loader from '../../components/Loader/Loader';
+import { toast } from 'react-toastify';
+import { useQueryClient } from '@tanstack/react-query';
 
-const UpdateAddressForm = ({ closeAddress }) => {
+const UpdateAddressForm = ({ closeAddress, setZip }) => {
     const { user } = useContext(AuthContext)
+    const [userAddress, isLoading] = useAddress();
     const [phoneNumber, setPhoneNumber] = useState('');
     const countryData = Country.getAllCountries();
     const [country, setCountry] = useState(countryData[230]);
+    const [id, setId] = useState(userAddress?.data[0]?._id)
+    const queryClient = useQueryClient()
 
-    const handleFormSubmit = (e) => {
+    const toastConfig = {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    }
+
+    if (isLoading) {
+        return <Loader />
+    }
+
+    useEffect(() => {
+        setId(userAddress?.data[0]?._id)
+    }, [])
+
+    const handleChange = (value) => {
+        setPhoneNumber(value)
+    }
+
+    const handleUpdateAddress = (e) => {
         e.preventDefault();
-        const formData = new FormData();
 
         const data = {
             name: e.target.name.value,
@@ -27,17 +55,28 @@ const UpdateAddressForm = ({ closeAddress }) => {
             email: user?.email,
         }
 
-        Object.keys(data).forEach(prop => {
-            formData.append(`${prop}`, data[prop])
+        fetch(`http://localhost:5000/api/v1/address/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
         })
-        
-        console.log(user.email);
+            .then(res => res.json())
+            .then(result => {
+                // console.log(result?.status)
+                if (result?.status === 'success') {
+                    queryClient.invalidateQueries({ queryKey: ['address'] })
+                    toast.success('Your address successfully updated', toastConfig)
+                    e.target.reset();
+                    setZip(false);
+                }
+                else {
+                    toast.error('Something went wrong', toastConfig)
+                }
+            })
+        // console.log(data);
     }
-    const handleChange = (value) => {
-        setPhoneNumber(value)
-    }
-    // console.log(phoneNumber)
-    // console.log(country.name)
 
     return (
         <div className="flex items-center justify-center rounded-sm">
@@ -52,12 +91,12 @@ const UpdateAddressForm = ({ closeAddress }) => {
                         </span>
                         <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
                             <div className="text-gray-600">
-                                <p className="font-medium text-lg">Address details for shipping</p>
+                                <p className="font-medium text-lg">Update your address</p>
                                 <p>Please fill out all the fields.</p>
                             </div>
 
                             <div className="lg:col-span-2">
-                                <form onSubmit={handleFormSubmit}>
+                                <form onSubmit={handleUpdateAddress}>
                                     <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
 
                                         <div className="md:col-span-5">

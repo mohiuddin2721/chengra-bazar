@@ -155,10 +155,15 @@ const MiddleNav = () => {
                             </div>
                             <div className='mt-[10px] flex flex-col gap-[15px]'>
                                 <Link to='/dashboard/My_cart'>
-                                    <button className='bg-[#e7e7e7] hover:bg-[#f1f1f1] duration-500 text-[12px] font-semibold py-[14px] leading-[16px] tracking-wide rounded-sm px-[25px]'>VIEW CART</button>
+                                    <button className='bg-[#e7e7e7] hover:bg-[#f1f1f1] duration-500 text-[12px] font-semibold py-[14px] leading-[16px] tracking-wide rounded-sm px-[25px]'>
+                                        VIEW CART
+                                    </button>
                                 </Link>
-                                <button
-                                    className='bg-[#222529] hover:bg-[#34393F] text-white duration-500 text-[12px] font-semibold py-[14px] leading-[16px] tracking-wide rounded-sm px-[25px]'>CHECKOUT</button>
+                                <Link to='/dashboard/Check_Out_Route'>
+                                    <button className='bg-[#222529] hover:bg-[#34393F] text-white duration-500 text-[12px] font-semibold py-[14px] leading-[16px] tracking-wide rounded-sm px-[25px]'>
+                                        CHECKOUT
+                                    </button>
+                                </Link>
                             </div>
                         </Box>
                     </Drawer>

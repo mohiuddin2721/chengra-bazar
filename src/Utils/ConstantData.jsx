@@ -592,7 +592,7 @@ export const topNavItemsLink = [
     },
     {
         name: 'Cart',
-        to: '/',
+        to: '/dashboard/My_cart',
     },
     {
         name: 'Dashboard',

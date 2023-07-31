@@ -6,7 +6,6 @@ import 'react-phone-input-2/lib/style.css'
 import { AuthContext } from '../../contexts/AuthProvider';
 import Swal from 'sweetalert2';
 import { useQueryClient } from '@tanstack/react-query';
-import { toast } from 'react-toastify';
 
 const AddressForm = () => {
     const { user } = useContext(AuthContext)
