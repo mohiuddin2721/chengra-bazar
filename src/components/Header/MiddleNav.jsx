@@ -13,7 +13,6 @@ import { categories } from '../../Utils/ConstantData';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
-import useGetAllCategory from '../../Hooks/useGetAllCategories';
 import useGetAllData from '../../Hooks/useGetAllData';
 import SideCartProduct from './SideCartProduct';
 import useCart from '../../Hooks/useCart';

@@ -5,9 +5,9 @@ import { AuthContext } from "../contexts/AuthProvider";
 const useAddress = () => {
     const { user } = useContext(AuthContext)
     const { isLoading, data: userAddress = [], refetch } = useQuery({
-        queryKey: ['cart', user?.email],
+        queryKey: ['address', user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/api/v1/shipping_address?email=${user?.email}`);
+            const res = await fetch(`http://localhost:5000/api/v1/address?email=${user?.email}`);
             return res.json();
         }
     });

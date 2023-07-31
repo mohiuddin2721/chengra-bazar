@@ -1,20 +1,26 @@
 import React, { useContext, useState } from 'react';
-import { AiFillCloseCircle } from 'react-icons/ai';
 import { Country } from 'country-state-city';
 import PhoneInput from 'react-phone-input-2'
 import Select from 'react-select';
 import 'react-phone-input-2/lib/style.css'
 import { AuthContext } from '../../contexts/AuthProvider';
+import Swal from 'sweetalert2';
+import { useQueryClient } from '@tanstack/react-query';
+import { toast } from 'react-toastify';
 
 const AddressForm = () => {
     const { user } = useContext(AuthContext)
     const [phoneNumber, setPhoneNumber] = useState('');
     const countryData = Country.getAllCountries();
     const [country, setCountry] = useState(countryData[230]);
+    const queryClient = useQueryClient()
+
+    const handleChange = (value) => {
+        setPhoneNumber(value)
+    }
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
-        const formData = new FormData();
 
         const data = {
             name: e.target.name.value,
@@ -27,14 +33,33 @@ const AddressForm = () => {
             email: user?.email,
         }
 
-        Object.keys(data).forEach(prop => {
-            formData.append(`${prop}`, data[prop])
+        fetch("http://localhost:5000/api/v1/address", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
         })
-
-        console.log(user.email);
-    }
-    const handleChange = (value) => {
-        setPhoneNumber(value)
+            .then(res => res.json())
+            .then(posted => {
+                console.log("posted", posted)
+                if (posted.status === 'fail') {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Address is not inserted. please try again',
+                    })
+                } else {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Successful',
+                        text: 'Address Successfully inserted',
+                    })
+                    e.target.reset();
+                    queryClient.invalidateQueries({ queryKey: ['address'] })
+                }
+            })
+        // console.log(data);
     }
     // console.log(phoneNumber)
     // console.log(country.name)

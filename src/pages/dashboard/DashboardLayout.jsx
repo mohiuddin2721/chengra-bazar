@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import '../../Styles/Dashboard.css'
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -24,8 +24,8 @@ import { BiMailSend } from 'react-icons/bi';
 import { FaCartArrowDown } from 'react-icons/fa';
 import { TbSlash } from 'react-icons/tb';
 import { FcManager } from 'react-icons/fc';
-import { GrDocumentUpdate } from 'react-icons/gr';
 import { AiTwotoneSetting } from 'react-icons/ai';
+import { AuthContext } from '../../contexts/AuthProvider';
 
 const dashboardLink = [
     { name: 'Manage account', to: '/dashboard/Manage_account', icon: <MdManageAccounts /> },
@@ -107,12 +107,13 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 export default function DashboardLayout() {
+    const { user } = useContext(AuthContext)
     let location = useLocation();
     const path = (location?.pathname?.split('/')[2])
     const theme = useTheme();
     const [open, setOpen] = useState(false);
     const [isOpenDashboardSetting, setIsOpenDashboardSetting] = useState(false)
-    // console.log(isOpenDashboardSetting)
+    // console.log(user)
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -205,7 +206,8 @@ export default function DashboardLayout() {
                     <Box sx={{ marginTop: '10px' }}>
                         <img
                             alt="Remy Sharp"
-                            src="https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg?w=1060&t=st=1687550957~exp=1687551557~hmac=c9a037492cac003c0d33ce479cf2a7bf740ae39e41af8628f4cefaa1776aad1e"
+                            src={user?.photoURL}
+                            // src="https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg?w=1060&t=st=1687550957~exp=1687551557~hmac=c9a037492cac003c0d33ce479cf2a7bf740ae39e41af8628f4cefaa1776aad1e"
                             className='w-full'
                             style={{ borderRadius: "159px 159px 0px 0px" }}
                         />
