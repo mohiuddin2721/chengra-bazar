@@ -4,17 +4,15 @@ import Address from './Address';
 import UpdateAddressForm from './UpdateAddressForm';
 import useAddress from '../../Hooks/useAddress';
 import Loader from '../../components/Loader/Loader';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
+import mastercard from "../../assets/payment-mastercard.png";
+import bkash from "../../assets/bkash.png";
 
 const CheckOut = () => {
     const [userAddress, isLoading] = useAddress();
     const [zip, setZip] = useState(null)
+    const [selectedPaymentOption, setSelectedPaymentOption] = useState(null);
 
-    // console.log(userAddress?.data)
+    console.log(selectedPaymentOption)
     if (isLoading) {
         return <Loader />
     }
@@ -41,30 +39,43 @@ const CheckOut = () => {
                 <UpdateAddressForm closeAddress={closeAddress} setZip={setZip} />
             </div>
             <div className='text-white w-full md:w-[60%] mx-auto block md:flex relative border-dashed hover:border-solid border-b-2 border-[#ffffffab] hover:border-green-400 rounded-lg p-8'>
-                <div className='w-full md:w-2/4 p-2'>
-                    <p className='font-bold text-xl'>1. Payment option:</p>
+                <div className='w-full md:w-[40%]'>
+                    <p className='font-bold text-xl'>2. Payment option:</p>
                 </div>
-                <div>
-                    <FormControl>
-                        <FormLabel id="demo-row-radio-buttons-group-label">Gender</FormLabel>
-                        <RadioGroup
-                            row
-                            aria-labelledby="demo-row-radio-buttons-group-label"
-                            name="row-radio-buttons-group"
+                <div className='w-full md:w-[60%] flex mt-3 md:mt-0'>
+                    <div className='w-[40%] md:w-[30%] mx-auto'>
+                        <div
+                            className='cursor-pointer'
+                            onClick={() => setSelectedPaymentOption("mastercard")}
                         >
-                            <FormControlLabel value="female" control={<Radio />} label="Female" />
-                            <FormControlLabel value="male" control={<Radio />} label="Male" />
-                            <FormControlLabel value="other" control={<Radio />} label="Other" />
-                            <FormControlLabel
-                                value="disabled"
-                                disabled
-                                control={<Radio />}
-                                label="other"
-                            />
-                        </RadioGroup>
-                    </FormControl>
+                            <img src={mastercard} alt="Mastercard" />
+                            <span>Mastercard</span>
+                        </div>
+                    </div>
+                    <div className='w-[40%] md:w-[30%] mx-auto'>
+                        <div
+                            className='cursor-pointer'
+                            onClick={() => setSelectedPaymentOption('bkash')}
+                        >
+                            <img src={bkash} alt="Bkash" />
+                            <span>Bkash</span>
+                        </div>
+                    </div>
                 </div>
             </div>
+            {selectedPaymentOption === "mastercard" &&
+                <div className='h-[40vh] mt-4 bg-gray-900 text-white w-full md:w-[60%] mx-auto block md:flex relative border-dashed hover:border-solid border-b-2 border-[#ffffffab] hover:border-green-400 rounded-lg p-8'>
+                    <p className="text-center text-white">mastercard</p>
+                </div>
+            }
+            {selectedPaymentOption === "bkash" &&
+                <div className='h-[40vh] mt-4 bg-gray-900 text-white w-full md:w-[60%] mx-auto block md:flex relative border-dashed hover:border-solid border-b-2 border-[#ffffffab] hover:border-green-400 rounded-lg p-8'>
+                    <p className="text-center text-white">bkash</p>
+                </div>
+            }
+
+
+
         </div>
     );
 };

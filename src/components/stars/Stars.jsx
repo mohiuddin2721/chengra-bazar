@@ -2,7 +2,7 @@ import React from 'react';
 import { FaStar, FaStarHalfAlt } from 'react-icons/fa';
 import { AiOutlineStar } from 'react-icons/ai';
 
-const Stars = ({ ratting, reviews }) => {
+const Stars = ({ ratting }) => {
     
     const ratingStar = Array.from({ length: 5 }, (elem, index) => {
         let number = index + 0.5;
@@ -20,7 +20,7 @@ const Stars = ({ ratting, reviews }) => {
     return (
         <div className='flex'>
             {ratingStar}
-            <p className='ml-2'>({reviews})</p>
+            <p className='ml-2'>({ratting})</p>
         </div>
     )
 };

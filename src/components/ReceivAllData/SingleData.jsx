@@ -3,6 +3,7 @@ import { Box, Button, Card, CardContent, Grid, IconButton } from '@mui/material'
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { FiExternalLink } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
+import Stars from '../stars/Stars';
 
 function SingleData({ item, xs, sm, md, lg }) {
     const [isHovered, setIsHovered] = useState(false);
@@ -25,7 +26,6 @@ function SingleData({ item, xs, sm, md, lg }) {
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
                 sx={{
-                    position: 'relative',
                     mb: 2,
                     '& :hover': {
                         'span': {
@@ -38,9 +38,6 @@ function SingleData({ item, xs, sm, md, lg }) {
                 }}>
                 <Card sx={{
                     cursor: 'pointer',
-                    maxWidth: '190px',
-                    height: '280px',
-                    position: 'relative',
                 }}>
                     <Link to={`/products/${item?._id}`}>
                         <img
@@ -49,20 +46,18 @@ function SingleData({ item, xs, sm, md, lg }) {
                             alt={item?.name} />
                     </Link>
                     <CardContent sx={{ padding: 0 }}>
-                        <p className='text-center font-bold py-2'>{item?.name?.slice(0, 20)}</p>
-                        <Box className='flex justify-center mb-10'>
-                            <Button variant="contained" size="small">Add to cart</Button>
-                        </Box>
-                        <span className='absolute top-2 right-0 hidden'>
-                            <IconButton>
-                                <FavoriteIcon className='text-red-600 bg-slate-200 rounded-md' />
-                            </IconButton>
-                        </span>
-                        <span className='absolute top-10 right-0 hidden'>
-                            <IconButton>
-                                <FiExternalLink className='text-green-600 bg-slate-200 rounded-md' />
-                            </IconButton>
-                        </span>
+                        <p className='text-center font-bold py-2'>{item?.name}</p>
+                        <div className='flex ml-2'>
+                            <p className='text-xs font-thin flex'>
+                                BDT
+                                <span className='font-bold text-xl ml-1'>{item?.price}</span>
+                            </p>
+                            {/* {item?.prePrice && <p className='text-xs line-through'>List: BDT {item?.prePrice}</p>} */}
+                            <p className='text-xs line-through inline-block align-bottom ml-2'>List: BDT 1500</p>
+                        </div>
+                        <div className="flex mb-1 ml-2">
+                            <Stars ratting={item?.ratting} />
+                        </div>
                     </CardContent>
                 </Card>
             </Box>
