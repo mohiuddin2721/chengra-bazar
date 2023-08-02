@@ -8,12 +8,11 @@ import {
     signInWithPopup
 } from 'firebase/auth';
 import app from '../../firebase/firebase.config';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 
 const SocialLogin = () => {
     const auth = getAuth(app)
-
     // const [googleError, setGoogleError] = useState("");
     const googleProvider = new GoogleAuthProvider();
     const facebookProvider = new FacebookAuthProvider();
@@ -25,20 +24,34 @@ const SocialLogin = () => {
     const handleGoogleSignIN = () => {
         signInWithPopup(auth, googleProvider)
             .then((result) => {
-                const user = result.user;
-                navigate(from, { replace: true })
-                // console.log(user)
+                const loggedUser = result.user;
+                // console.log(loggedUser)
+                const userData = { name: loggedUser?.displayName, email: loggedUser?.email }
+                fetch("http://localhost:5000/api/v1/users", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(userData)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        // console.log("data",data)
+                        if (data?.status === "success") {
+                            navigate(from, { replace: true })
+                        }
+                    })
+
             })
             .catch((error) => {
                 console.log(error)
             })
     }
+
     const handleFacebookSignIN = () => {
         signInWithPopup(auth, facebookProvider)
             .then((result) => {
                 const user = result.user;
-                navigate(from, { replace: true })
                 console.log(user)
+                navigate(from, { replace: true })
             })
             .catch((error) => {
                 console.log(error)

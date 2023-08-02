@@ -75,14 +75,14 @@ const SignUp = () => {
                         placeholder="Your full name"
                         {...register("full_name", { required: 'Your name is required' })}
                     />
-                    {errors?.full_name && <p role="alert" className='text-red-500'>{errors.full_name?.message}</p>}
+                    {errors?.full_name && <p className='text-red-500'>{errors.full_name?.message}</p>}
                     <label>Your Email</label>
                     <input
                         type="email"
                         placeholder="Your email"
                         {...register("email", { required: 'valid email is required' })}
                     />
-                    {errors?.email && <p role="alert" className='text-red-500'>{errors.email?.message}</p>}
+                    {errors?.email && <p className='text-red-500'>{errors.email?.message}</p>}
 
                     <label>
                         Your Password
@@ -104,7 +104,7 @@ const SignUp = () => {
                             minLength: { value: 6, message: "password must be 6 characters or longer" }
                         })}
                     />
-                    {errors?.password && <p role="alert" className='text-red-500'>{errors.password?.message}</p>}
+                    {errors?.password && <p className='text-red-500'>{errors.password?.message}</p>}
 
                     <FormControlLabel
                         required

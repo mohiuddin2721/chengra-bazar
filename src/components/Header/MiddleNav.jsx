@@ -12,14 +12,17 @@ import { Box, Collapse, Drawer, List, ListItemButton, ListItemText } from '@mui/
 import { categories } from '../../Utils/ConstantData';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useGetAllData from '../../Hooks/useGetAllData';
 import SideCartProduct from './SideCartProduct';
 import useCart from '../../Hooks/useCart';
 import { CartContext } from '../../contexts/CartProvider';
+import { AuthContext } from '../../contexts/AuthProvider';
+import { toast } from 'react-toastify';
 
 
 const MiddleNav = () => {
+    const { user } = useContext(AuthContext)
     const [isOpenMenuDrawer, setIsOpenMenuDrawer] = useState(false);
     const [isOpenCartDrawer, setIsOpenCartDrawer] = useState(false);
     const [openCollapseMenu1, setCollapseMenu1] = useState(false);
@@ -27,6 +30,7 @@ const MiddleNav = () => {
     const { allProduct } = useGetAllData();
     const [cart, isLoading, refetch] = useCart()
     const { totalQuantityOrder, totalPrice } = useContext(CartContext)
+    const navigate = useNavigate();
 
     const getBrand = allProduct?.map((data) => data?.brand)
     const allBrand = Array.from(new Set(getBrand));
@@ -51,6 +55,18 @@ const MiddleNav = () => {
     const handleDrawerClose1 = () => {
         setIsOpenMenuDrawer(false);
     };
+
+
+    const handleDrawerOpen2 = () => {
+        if (user) {
+            setIsOpenCartDrawer(true);
+        } else {
+            toast.error("Must need to be logged in")
+            navigate("/signUp")
+        }
+
+    };
+
     const handleDrawerClose2 = () => {
         setIsOpenCartDrawer(false);
     };
@@ -109,7 +125,7 @@ const MiddleNav = () => {
                                 <FiHeart className='text-[#222529] hidden lg:block' />
                                 <button
                                     className='relative'
-                                    onClick={() => setIsOpenCartDrawer(true)}
+                                    onClick={handleDrawerOpen2}
                                 >
                                     <AiOutlineShopping className='text-[#222529]' />
                                     <span
