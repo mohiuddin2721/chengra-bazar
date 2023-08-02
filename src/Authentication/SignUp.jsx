@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SocialLogin from '../components/SocialAuthentication/SocialLogin';
 import { Checkbox, FormControlLabel } from '@mui/material';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
@@ -7,13 +7,15 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../contexts/AuthProvider';
 import { SignBgImageStyle } from '../Styles/ComponentStyle';
+import Swal from 'sweetalert2';
 
 const SignUp = () => {
     const [isCheck, setIsCheck] = useState(null)
     const [showPassword, setShowPassword] = useState(false);
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    const { createUser } = useContext(AuthContext);
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const { createUser, updateUserProfile } = useContext(AuthContext);
     const [signUpError, setSignUpError] = useState(null);
+    const navigate = useNavigate()
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const handleCheckbox = (e) => {
@@ -23,15 +25,37 @@ const SignUp = () => {
 
     const handleSignUp = (data) => {
         setSignUpError('')
-        console.log(data)
+        // console.log(data)
         createUser(data.email, data.password)
-            .then((result) => {
-                const user = result?.user;
-                console.log(user)
-            })
-            .catch((error) => {
-                setSignUpError(error)
-                console.log(error)
+            .then(result => {
+                const loggedUser = result.user;
+                // console.log("loggedUser",loggedUser);
+                updateUserProfile(data.full_name, "https://drive.google.com/file/d/11dmGbBab_Wvd5BgaHHEA59yVVzgutkhX/view?usp=sharing")
+                    .then(() => {
+                        const userData = { name: data.full_name, email: data.email }
+                        fetch("http://localhost:5000/api/v1/users", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify(userData)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                // console.log(data)
+                                if (data?.status === "success") {
+                                    Swal.fire({
+                                        position: 'top-end',
+                                        icon: 'success',
+                                        title: 'User created successfully.',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                    reset();
+                                    navigate('/');
+                                }
+                            })
+
+                    })
+                    .catch(error => setSignUpError(error))
             })
     };
 
@@ -52,18 +76,9 @@ const SignUp = () => {
                         {...register("full_name", { required: 'Your name is required' })}
                     />
                     {errors?.full_name && <p role="alert" className='text-red-500'>{errors.full_name?.message}</p>}
-
-                    <label>
-                        Age
-                    </label>
-                    <input
-                        type="number"
-                        placeholder='Your age'
-                        {...register("age")}
-                    />
                     <label>Your Email</label>
                     <input
-                        type="text"
+                        type="email"
                         placeholder="Your email"
                         {...register("email", { required: 'valid email is required' })}
                     />

@@ -51,7 +51,6 @@ const SocialLogin = () => {
                 <p className='mt-2 px-2 text-center font-bold'>or</p>
             </div>
             {/* {googleError && <p className='text-red-500 text-xs'>{googleError}</p>} */}
-            <p className='text-center'>Sign in with</p>
             <div className='flex justify-between'>
                 <div className='w-[48%]'>
                     <button
