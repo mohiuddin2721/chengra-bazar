@@ -13,7 +13,7 @@ const MyOrder = () => {
                         <tr className='text-white'>
                             {
                                 tableHeadline?.map((data, i) =>
-                                    <th className="whitespace-nowrap px-4 py-2 font-medium">
+                                    <th key={i} className="whitespace-nowrap px-4 py-2 font-medium">
                                         {data}
                                     </th>
                                 )
@@ -47,7 +47,7 @@ const MyOrder = () => {
                         <tr className='text-white'>
                             {
                                 tableHeadline?.map((data, i) =>
-                                    <th className="whitespace-nowrap px-4 py-2 font-medium">
+                                    <th key={i} className="whitespace-nowrap px-4 py-2 font-medium">
                                         {data}
                                     </th>
                                 )

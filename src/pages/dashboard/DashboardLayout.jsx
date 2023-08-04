@@ -112,21 +112,23 @@ export default function DashboardLayout() {
     const path = (location?.pathname?.split('/')[2])
     const theme = useTheme();
     const [open, setOpen] = useState(false);
-    const [isOpenDashboardSetting, setIsOpenDashboardSetting] = useState(false)
+    const [outletMargin, setOutletMargin] = useState(false)
     // console.log(user)
 
     const handleDrawerOpen = () => {
         setOpen(true);
+        setOutletMargin(true)
     };
 
     const handleDrawerClose = () => {
         setOpen(false);
+        setOutletMargin(false)
     };
 
     return (
-        <div
+        <Box
             style={{ background: "linear-gradient(180deg, rgba(1,10,79,1) 0%, rgba(11,11,207,1) 45%, rgba(6,1,95,1) 100%)" }}
-            className='min-h-[120vh]'
+            sx={{ minHeight: '120vh' }}
         >
             <Box sx={{ display: 'flex' }}>
                 <CssBaseline />
@@ -169,9 +171,7 @@ export default function DashboardLayout() {
                         >
                             <Link to='/' className='underline'> Home </Link>
                             <p className='mx-4'>
-                                <AiTwotoneSetting
-                                    onClick={() => setIsOpenDashboardSetting(true)}
-                                    className='cursor-pointer' />
+                                <AiTwotoneSetting className='cursor-pointer' />
                             </p>
                             <p>
                                 <MdNotifications className='cursor-pointer' />
@@ -280,24 +280,16 @@ export default function DashboardLayout() {
                         </div>
                     </div>
                 </Drawer>
-                <Drawer
-                    anchor='right'
-                    open={isOpenDashboardSetting}
-                // onClose={toggleDrawer(anchor, false)}
-                >
-                    <p>setting</p>
-                    <p>setting</p>
-                    <p>setting</p>
-                    <p>setting</p>
-                </Drawer>
-                <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-                    <DrawerHeader />
-                    <Outlet />
-                </Box>
             </Box>
+            {/* <div className={outletMargin ? 'ml-[260px] transition-all duration-300 ease-in-out' : 'ml-[90px]'}> */}
+            {/* <div className={`ml-${!outletMargin ? '[90px]' : '[260px]'} transition-all duration-300 ease-in-out`}> */}
+            <div className={outletMargin ? 'ml-[0px] md:ml-[260px] transition-all duration-300 ease-in-out' : 'ml-[0px] md:ml-[90px] transition-all duration-300 ease-in-out'}>
+                <DrawerHeader />
+                <Outlet />
+            </div>
             <div>
                 {/* <Footer /> */}
             </div>
-        </div>
+        </Box>
     );
 }

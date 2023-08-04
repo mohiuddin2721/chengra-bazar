@@ -14,7 +14,6 @@
     "@material-ui/icons": "^4.11.3",
     "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.11.16",
-    "@reduxjs/toolkit": "^1.9.3",
     "@tanstack/react-query": "^4.29.7",
     "apexcharts": "^3.41.0",
     "country-state-city": "^3.1.4",
@@ -24,6 +23,7 @@
     "match-sorter": "^6.3.1",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.0",
+    "react-data-table-component": "^7.5.3",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.9",
     "react-icons": "^4.8.0",
@@ -37,6 +37,7 @@
     "react-zoom-pan-pinch": "^3.0.7",
     "rsuite": "^5.30.0",
     "sort-by": "^1.2.0",
+    "styled-components": "^6.0.7",
     "sweetalert2": "^11.7.12",
     "swiper": "^9.2.0"
   },

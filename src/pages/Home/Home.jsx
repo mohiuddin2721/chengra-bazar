@@ -5,6 +5,7 @@ import ShortCart from './ShortCart'
 import Categories from './Categories'
 import AllProducts from './AllProducts'
 import { PuffLoader } from 'react-spinners'
+import ManageAccount from '../dashboard/ManageAccount'
 
 function Home() {
   return (
