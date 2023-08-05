@@ -7,7 +7,6 @@ const ManageAccount = () => {
     const [search, setSearch] = useState("")
     const [users, setUsers] = useState([])
     const [filteredUsers, setFilteredUsers] = useState([])
-
     // console.log(filteredUsers)
 
     const getUsers = async () => {
@@ -44,6 +43,7 @@ const ManageAccount = () => {
             name: "Role",
             selector: row => row.role,
             sortable: true,
+            center: true,
         },
         {
             name: "Action",
@@ -53,7 +53,7 @@ const ManageAccount = () => {
                     {
                         row.role != "admin" &&
                         <button
-                            className="flex mx-1 text-white p-1 rounded-md bg-blue-700 hover:bg-blue-500"
+                            className="block mr-1 text-white p-1 rounded-md bg-blue-700 hover:bg-blue-500"
                             onClick={() => handleRole("admin", row._id)}
                         >
                             Admin
@@ -63,7 +63,7 @@ const ManageAccount = () => {
                     {
                         row.role != "buyer" &&
                         <button
-                            className='ml-1 text-white p-1 rounded-md bg-blue-700 hover:bg-blue-500'
+                            className='block mx-1 text-white p-1 rounded-md bg-blue-700 hover:bg-blue-500'
                             onClick={() => handleRole("buyer", row._id)}
                         >
                             Buyer
@@ -73,7 +73,7 @@ const ManageAccount = () => {
                     {
                         row.role != "store-manager" &&
                         <button
-                            className='mx-1 text-white p-1 rounded-md bg-blue-700 hover:bg-blue-500'
+                            className='block ml-1 text-white p-1 rounded-md bg-blue-700 hover:bg-blue-500'
                             onClick={() => handleRole("store-manager", row._id)}
                         >
                             Store-manager
@@ -81,8 +81,9 @@ const ManageAccount = () => {
                     }
 
                 </div>
-
-            )
+            ),
+            // center: true,
+            width: '200px',
         },
         {
             name: "Remove",
@@ -93,7 +94,7 @@ const ManageAccount = () => {
                 >
                     <AiFillDelete className='text-red-500 text-2xl' />
                 </button>
-            )
+            ),
         },
     ];
 
@@ -110,8 +111,8 @@ const ManageAccount = () => {
 
     return (
         <div className='text-white'>
-            <p>management Account span</p>
-            <div className='w-[98%] overflow-hidden mx-auto mt-4 rounded'>
+            <p>management Account <span>(users {users.length})</span></p>
+            <div className='w-[98%] md:w-[70%] overflow-hidden mx-auto mt-4 rounded'>
 
                 <DataTable
                     title="User list"
