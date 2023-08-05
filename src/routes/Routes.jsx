@@ -21,6 +21,7 @@ import Administration from "../pages/dashboard/Administration";
 import Management from "../pages/dashboard/Management";
 import SendMail from "../pages/dashboard/SendMail";
 import CheckOut from "../pages/payment/CheckOut";
+import PaymentHistory from "../pages/dashboard/PaymentHistory";
 
 
 const router = createBrowserRouter([
@@ -107,6 +108,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/Send_mail',
                 element: <SendMail></SendMail>
+            },
+            {
+                path: '/dashboard/history_of_payment',
+                element: <PaymentHistory></PaymentHistory>
             },
         ]
     }

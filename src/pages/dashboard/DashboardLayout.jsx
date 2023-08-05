@@ -21,7 +21,7 @@ import BackupIcon from '@mui/icons-material/Backup';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { MdTipsAndUpdates, MdDashboard, MdManageAccounts, MdAdminPanelSettings, MdNotifications } from 'react-icons/md';
 import { BiMailSend } from 'react-icons/bi';
-import { FaCartArrowDown } from 'react-icons/fa';
+import { FaCartArrowDown, FaPaypal } from 'react-icons/fa';
 import { TbSlash } from 'react-icons/tb';
 import { FcManager } from 'react-icons/fc';
 import { AiTwotoneSetting } from 'react-icons/ai';
@@ -35,6 +35,7 @@ const dashboardLink = [
     { name: 'Upload & Update', to: '/dashboard/Upload_&_Update', icon: <MdTipsAndUpdates /> },
     { name: 'Administration', to: '/dashboard/Administration', icon: <MdAdminPanelSettings /> },
     { name: 'Management', to: '/dashboard/Management', icon: <FcManager /> },
+    { name: 'Payment history', to: '/dashboard/history_of_payment', icon: <FaPaypal /> },
     { name: 'Send mail', to: '/dashboard/Send_mail', icon: <BiMailSend /> },
 ]
 
@@ -281,8 +282,6 @@ export default function DashboardLayout() {
                     </div>
                 </Drawer>
             </Box>
-            {/* <div className={outletMargin ? 'ml-[260px] transition-all duration-300 ease-in-out' : 'ml-[90px]'}> */}
-            {/* <div className={`ml-${!outletMargin ? '[90px]' : '[260px]'} transition-all duration-300 ease-in-out`}> */}
             <div className={outletMargin ? 'ml-[0px] md:ml-[260px] transition-all duration-300 ease-in-out' : 'ml-[0px] md:ml-[90px] transition-all duration-300 ease-in-out'}>
                 <DrawerHeader />
                 <Outlet />
