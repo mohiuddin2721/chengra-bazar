@@ -53,7 +53,7 @@ const ManageAccount = () => {
                     {
                         row.role != "admin" &&
                         <button
-                            className="block mr-1 text-white p-1 rounded-md bg-blue-700 hover:bg-blue-500"
+                            className="block mr-1 text-white p-1 rounded-md bg-green-500 hover:bg-green-300"
                             onClick={() => handleRole("admin", row._id)}
                         >
                             Admin
@@ -63,7 +63,7 @@ const ManageAccount = () => {
                     {
                         row.role != "buyer" &&
                         <button
-                            className='block mx-1 text-white p-1 rounded-md bg-blue-700 hover:bg-blue-500'
+                            className='block mx-1 text-white p-1 rounded-md bg-green-500 hover:bg-green-300'
                             onClick={() => handleRole("buyer", row._id)}
                         >
                             Buyer
@@ -73,7 +73,7 @@ const ManageAccount = () => {
                     {
                         row.role != "store-manager" &&
                         <button
-                            className='block ml-1 text-white p-1 rounded-md bg-blue-700 hover:bg-blue-500'
+                            className='block ml-1 text-white p-1 rounded-md bg-green-500 hover:bg-green-300'
                             onClick={() => handleRole("store-manager", row._id)}
                         >
                             Store-manager
@@ -92,11 +92,26 @@ const ManageAccount = () => {
                     className='mr-1'
                     onClick={() => handleDelete(row._id)}
                 >
-                    <AiFillDelete className='text-red-500 text-2xl' />
+                    <AiFillDelete className='text-red-500 hover:text-red-300 text-2xl' />
                 </button>
             ),
         },
     ];
+
+    const customStyles = {
+        rows: {
+            style: {
+                minHeight: '72px',
+            },
+        },
+        headCells: {
+            style: {
+                color: 'white',
+                backgroundColor: '#6DAAD7',
+                fontWeight: "bold",
+            },
+        },
+    };
 
     useEffect(() => {
         getUsers()
@@ -110,6 +125,7 @@ const ManageAccount = () => {
     }, [search])
 
     return (
+
         <div className='text-white'>
             <p>management Account <span>(users {users.length})</span></p>
             <div className='w-[98%] md:w-[70%] overflow-hidden mx-auto mt-4 rounded'>
@@ -132,6 +148,7 @@ const ManageAccount = () => {
                             onChange={(e) => setSearch(e.target.value)}
                         />
                     }
+                    customStyles={customStyles}
                     subHeaderAlign='left'
                     striped="true"
                     dense="false"
