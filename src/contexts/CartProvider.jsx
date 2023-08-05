@@ -1,6 +1,7 @@
 import { createContext } from "react";
 import useCart from "../Hooks/useCart";
 import { toast } from "react-toastify";
+import { toastConfig } from "../Utils/ConstantData";
 
 export const CartContext = createContext();
 
@@ -10,16 +11,6 @@ const CartProvider = ({ children }) => {
 
     const totalPrice = cart?.data?.reduce((total, item) => total + item.total, 0);
     const totalQuantityOrder = cart?.data?.reduce((total, item) => total + item.quantityOrder, 0);
-
-    const toastConfig = {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-    }
 
     const increaseQuantity = (quantityOrder, setQuantityOrder, id, price, refetch) => {
         const updatedQuantity = quantityOrder + 1;

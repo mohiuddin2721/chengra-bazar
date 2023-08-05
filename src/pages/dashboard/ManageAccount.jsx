@@ -3,6 +3,8 @@ import DataTable from 'react-data-table-component';
 import { AiFillDelete } from 'react-icons/ai';
 import axios from 'axios';
 import Headline from '../../components/Headline/Headline';
+import { toast } from 'react-toastify';
+import { toastConfig } from '../../Utils/ConstantData';
 
 const ManageAccount = () => {
     const [search, setSearch] = useState("")
@@ -21,12 +23,88 @@ const ManageAccount = () => {
         }
     };
 
-    const handleDelete = (data) => {
-        console.log(data)
+    const handleDeleteUser = (id) => {
+        // console.log(id)
+        fetch(`http://localhost:5000/api/v1/users/${id}`, {
+            method: 'DELETE',
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log("data.acknowledged", data.data.acknowledged);
+                if (data?.data?.acknowledged) {
+                    getUsers()
+                    toast.success('User deleted successfully', toastConfig)
+                }
+                else {
+                    toast.error('Something went wrong', toastConfig)
+                }
+            })
     }
-    const handleRole = (data, id) => {
-        console.log(data)
-        console.log(id)
+
+    const giveAdminRole = (data, id) => {
+        const UpdatedRole = {
+            role: data
+        }
+        fetch(`http://localhost:5000/api/v1/users/${id}`, {
+            method: "PATCH",
+            headers: { 'Content-Type': "application/json" },
+            body: JSON.stringify(UpdatedRole)
+        })
+            .then((res) => res.json())
+            .then(result => {
+                if (result?.status === 'success') {
+                    getUsers()
+                    toast.success('successfully make update', toastConfig)
+                }
+                else {
+                    toast.error('Something went wrong', toastConfig)
+                }
+            })
+        // console.log(UpdatedRole)
+    }
+
+    const giveBuyerRole = (data, id) => {
+        const UpdatedRole = {
+            role: data
+        }
+        fetch(`http://localhost:5000/api/v1/users/${id}`, {
+            method: "PATCH",
+            headers: { 'Content-Type': "application/json" },
+            body: JSON.stringify(UpdatedRole)
+        })
+            .then((res) => res.json())
+            .then(result => {
+                if (result?.status === 'success') {
+                    getUsers()
+                    toast.success('successfully make update', toastConfig)
+                }
+                else {
+                    toast.error('Something went wrong', toastConfig)
+                }
+            })
+        // console.log(UpdatedRole)
+    }
+
+    const giveStoreManagerRole = (data, id) => {
+        const UpdatedRole = {
+            role: data
+        }
+        fetch(`http://localhost:5000/api/v1/users/${id}`, {
+            method: "PATCH",
+            headers: { 'Content-Type': "application/json" },
+            body: JSON.stringify(UpdatedRole)
+        })
+            .then((res) => res.json())
+            .then(result => {
+                if (result?.status === 'success') {
+                    getUsers()
+                    toast.success('successfully make update', toastConfig)
+                }
+                else {
+                    toast.error('Something went wrong', toastConfig)
+                }
+            })
+        // console.log(UpdatedRole)
     }
 
     const columns = [
@@ -55,7 +133,7 @@ const ManageAccount = () => {
                         row.role != "admin" &&
                         <button
                             className="block mr-1 text-white p-1 rounded-md bg-green-500 hover:bg-green-300"
-                            onClick={() => handleRole("admin", row._id)}
+                            onClick={() => giveAdminRole("admin", row._id)}
                         >
                             Admin
                         </button>
@@ -65,7 +143,7 @@ const ManageAccount = () => {
                         row.role != "buyer" &&
                         <button
                             className='block mx-1 text-white p-1 rounded-md bg-green-500 hover:bg-green-300'
-                            onClick={() => handleRole("buyer", row._id)}
+                            onClick={() => giveBuyerRole("buyer", row._id)}
                         >
                             Buyer
                         </button>
@@ -75,7 +153,7 @@ const ManageAccount = () => {
                         row.role != "store-manager" &&
                         <button
                             className='block ml-1 text-white p-1 rounded-md bg-green-500 hover:bg-green-300'
-                            onClick={() => handleRole("store-manager", row._id)}
+                            onClick={() => giveStoreManagerRole("store-manager", row._id)}
                         >
                             Store-manager
                         </button>
@@ -91,7 +169,7 @@ const ManageAccount = () => {
             selector: row => (
                 <button
                     className='mr-1'
-                    onClick={() => handleDelete(row._id)}
+                    onClick={() => handleDeleteUser(row._id)}
                 >
                     <AiFillDelete className='text-red-500 hover:text-red-300 text-2xl' />
                 </button>
@@ -126,15 +204,13 @@ const ManageAccount = () => {
     }, [search])
 
     return (
-
         <div className='text-white'>
             <div className='flex justify-center'>
                 <Headline headline={"User management"} margin_Y={"4"} />
             </div>
             <div className='w-[98%] md:w-[70%] overflow-hidden mx-auto mt-4 rounded'>
-
                 <DataTable
-                    title={`Total User ${users.length}`}
+                    title={`Total user ${users.length}`}
                     columns={columns}
                     data={filteredUsers}
                     pagination
