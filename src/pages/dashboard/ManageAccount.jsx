@@ -5,21 +5,25 @@ import axios from 'axios';
 import Headline from '../../components/Headline/Headline';
 import { toast } from 'react-toastify';
 import { toastConfig } from '../../Utils/ConstantData';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 const ManageAccount = () => {
     const [search, setSearch] = useState("")
     const [users, setUsers] = useState([])
     const [filteredUsers, setFilteredUsers] = useState([])
     const token = localStorage.getItem("access-token")
+    const [axiosSecure] = useAxiosSecure()
     // console.log(filteredUsers)
 
     const getUsers = async () => {
+
         try {
-            const response = await axios.get("http://localhost:5000/api/v1/users", {
-                headers: {
-                    authorization: `bearer ${token}`
-                }
-            });
+            // const response = await axios.get("http://localhost:5000/api/v1/users", {
+            //     headers: {
+            //         authorization: `bearer ${token}`
+            //     }
+            // });
+            const response = await axiosSecure("/users");
             setUsers(response.data.data);
             setFilteredUsers(response.data.data);
             // console.log(response)
