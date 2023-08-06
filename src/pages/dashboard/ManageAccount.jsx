@@ -10,11 +10,16 @@ const ManageAccount = () => {
     const [search, setSearch] = useState("")
     const [users, setUsers] = useState([])
     const [filteredUsers, setFilteredUsers] = useState([])
+    const token = localStorage.getItem("access-token")
     // console.log(filteredUsers)
 
     const getUsers = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/api/v1/users");
+            const response = await axios.get("http://localhost:5000/api/v1/users", {
+                headers: {
+                    authorization: `bearer ${token}`
+                }
+            });
             setUsers(response.data.data);
             setFilteredUsers(response.data.data);
             // console.log(response)
