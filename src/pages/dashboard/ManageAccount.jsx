@@ -6,6 +6,7 @@ import Headline from '../../components/Headline/Headline';
 import { toast } from 'react-toastify';
 import { toastConfig } from '../../Utils/ConstantData';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import { useQueryClient } from '@tanstack/react-query';
 
 const ManageAccount = () => {
     const [search, setSearch] = useState("")
@@ -13,10 +14,10 @@ const ManageAccount = () => {
     const [filteredUsers, setFilteredUsers] = useState([])
     // const token = localStorage.getItem("access-token")
     const [axiosSecure] = useAxiosSecure()
+    const queryClient = useQueryClient()
     // console.log(filteredUsers)
 
     const getUsers = async () => {
-
         try {
             // const response = await axios.get("http://localhost:5000/api/v1/users", {
             //     headers: {
@@ -28,7 +29,7 @@ const ManageAccount = () => {
             const response = await axiosSecure.get("/users");
             setUsers(response.data.data);
             setFilteredUsers(response.data.data);
-            // console.log(response)
+            // console.log(response.data.data)
         } catch (error) {
             console.log(error);
         }
@@ -66,6 +67,7 @@ const ManageAccount = () => {
                 if (result?.status === 'success') {
                     getUsers()
                     toast.success('successfully make update', toastConfig)
+                    queryClient.invalidateQueries('isAdmin')
                 }
                 else {
                     toast.error('Something went wrong', toastConfig)
@@ -110,6 +112,7 @@ const ManageAccount = () => {
                 if (result?.status === 'success') {
                     getUsers()
                     toast.success('successfully make update', toastConfig)
+                    queryClient.invalidateQueries('isStoreManager')
                 }
                 else {
                     toast.error('Something went wrong', toastConfig)
