@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import DataTable from 'react-data-table-component';
 import { AiFillDelete } from 'react-icons/ai';
-import axios from 'axios';
+// import axios from 'axios';
 import Headline from '../../components/Headline/Headline';
 import { toast } from 'react-toastify';
 import { toastConfig } from '../../Utils/ConstantData';
@@ -11,7 +11,7 @@ const ManageAccount = () => {
     const [search, setSearch] = useState("")
     const [users, setUsers] = useState([])
     const [filteredUsers, setFilteredUsers] = useState([])
-    const token = localStorage.getItem("access-token")
+    // const token = localStorage.getItem("access-token")
     const [axiosSecure] = useAxiosSecure()
     // console.log(filteredUsers)
 
@@ -23,7 +23,9 @@ const ManageAccount = () => {
             //         authorization: `bearer ${token}`
             //     }
             // });
-            const response = await axiosSecure("/users");
+
+            // used axios interceptor named useAxiosSecure
+            const response = await axiosSecure.get("/users");
             setUsers(response.data.data);
             setFilteredUsers(response.data.data);
             // console.log(response)
