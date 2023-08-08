@@ -8,16 +8,19 @@ import mastercard from "../../assets/payment-mastercard.png";
 import bkash from "../../assets/bkash.png";
 import { Elements } from '@stripe/react-stripe-js';
 import CheckOutForm from './CheckOutForm';
+import { loadStripe } from '@stripe/stripe-js';
+import { FaCcMastercard, FaCcPaypal, FaCcVisa } from 'react-icons/fa';
+import { SiAmericanexpress, SiPayoneer } from 'react-icons/si';
 
 
-const stripePromise = loadStripe('');
+const stripePromise = loadStripe(import.meta.env.VITE_REACT_STRIPE_KEY);
 
 const CheckOut = () => {
     const [userAddress, isLoading] = useAddress();
     const [zip, setZip] = useState(null)
     const [selectedPaymentOption, setSelectedPaymentOption] = useState(null);
 
-    console.log(selectedPaymentOption)
+    // console.log(selectedPaymentOption)
     if (isLoading) {
         return <Loader />
     }
@@ -72,9 +75,18 @@ const CheckOut = () => {
                 }
             </div>
             {selectedPaymentOption === "mastercard" &&
-                <div className='min-h-[40vh] mt-4 bg-white w-full md:w-[60%] mx-auto block md:flex relative border-dashed hover:border-solid border-b-2 border-[rgb(169,51,94)] hover:border-green-400 rounded-lg p-8'>
-                    <p className="text-center text-blue-500 font-bold">master / visa card</p>
+                <div className='min-h-[40vh] mt-4 bg-white w-full md:w-[60%] mx-auto relative border-dashed hover:border-solid border-b-2 border-[rgb(169,51,94)] hover:border-green-400 rounded-lg p-8'>
                     <div>
+                        <p className="text-center text-blue-500 font-bold">master / visa card</p>
+                        <div className='flex w-full md:w-[60%] justify-evenly mx-auto my-2'>
+                            <FaCcMastercard className='text-red-500 text-xl' />
+                            <FaCcVisa className='text-blue-500 text-xl' />
+                            <FaCcPaypal className='text-green-500 text-xl' />
+                            <SiAmericanexpress className='text-blue-500 text-xl' />
+                            <SiPayoneer className='text-purple-500 text-xl' />
+                        </div>
+                    </div>
+                    <div className='mt-[20px] ml-[10px] w-full'>
                         <Elements stripe={stripePromise}>
                             <CheckOutForm />
                         </Elements>
