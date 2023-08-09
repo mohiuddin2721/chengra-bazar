@@ -15,7 +15,7 @@ const ProductsFilter = () => {
     const [selectedPriceValue, setSelectedPriceValue] = useState('');
     const [checkedCategory, setCheckedCategory] = useState([]);
     const [checkedBrand, setCheckedBrand] = useState([]);
-    const [priceSlideValue, setPriceSlideValue] = useState([500, 4000]);
+    const [priceSlideValue, setPriceSlideValue] = useState([5, 60]);
     const [rattingValue, setRattingValue] = useState();
     const [grid_listView, setGrid_listView] = useState('grid')
     // console.log(checkedBrand)

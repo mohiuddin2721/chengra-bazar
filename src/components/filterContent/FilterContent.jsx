@@ -9,7 +9,7 @@ import SelectSortingPrice from '../selectSortingPrice/SelectSortingPrice';
 import { ProductFilterContext } from '../../pages/ProductsFilter/ProductsFilter';
 
 
-const minDistance = 1000;
+const minDistance = 10;
 
 const FilterContent = () => {
     const { filterBgColor,
@@ -167,8 +167,8 @@ const FilterContent = () => {
                                 getAriaLabel={() => 'Minimum distance'}
                                 value={priceSlideValue}
                                 onChange={handleChange1}
-                                min={500}
-                                max={5000}
+                                min={5}
+                                max={200}
                                 valueLabelDisplay="on"
                                 disableSwap
                             />

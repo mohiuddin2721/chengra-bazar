@@ -15,10 +15,10 @@ const SelectSortingPrice = () => {
             value={selectedPriceValue}
             onChange={handleSelectChange}
         >
-            <option value="price">Highest price</option>
-            <option value="-price">Lowest price</option>
-            <option value="price">Price (A-Z)</option>
-            <option value="-price">Price (Z-A)</option>
+            <option value="-price">Highest price</option>
+            <option value="price">Lowest price</option>
+            <option value="-price">Price (A-Z)</option>
+            <option value="price">Price (Z-A)</option>
         </select>
     );
 };
