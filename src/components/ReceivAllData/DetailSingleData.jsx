@@ -15,6 +15,7 @@ import { delivery_replacement_data } from '../../Utils/ConstantData';
 import { AuthContext } from '../../contexts/AuthProvider';
 import { toast } from 'react-toastify';
 import { useQueryClient } from '@tanstack/react-query';
+import { FaDollarSign } from 'react-icons/fa';
 
 
 function DetailSingleData() {
@@ -28,7 +29,7 @@ function DetailSingleData() {
     const queryClient = useQueryClient()
 
     const selectedProduct = allProduct?.filter(item => item._id === id);
-    const { _id, name, imageURL, description, price, unit, quantity, status, brand, ratting, categories } = selectedProduct[0];
+    const { _id, name, imageURL, description, price, unit, quantity, status, brand, ratting, categories, prePrice } = selectedProduct[0];
     const relatedProduct = allProduct?.filter(item => item?.categories == categories)
 
     useEffect(() => {
@@ -147,7 +148,8 @@ function DetailSingleData() {
                         </div>
 
                         <div className='mb-4'>
-                            <p className='text-gray-500'>USD <span className='line-through'>{price + 10}</span></p>
+                            {prePrice && <p className='text-xs line-through ml-3'> {prePrice} <FaDollarSign className='inline text-xs' /></p>}
+                            {/* <p className='text-gray-500'>USD <span className='line-through'>{price + 10}</span></p> */}
                             <p className='text-green-500'
                             >
                                 Deal of the day:

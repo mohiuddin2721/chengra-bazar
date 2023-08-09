@@ -4,6 +4,8 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import { FiExternalLink } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import Stars from '../stars/Stars';
+import { FaDollarSign } from 'react-icons/fa';
+import PriceFormate from '../../features/priceFormate/PriceFormate';
 
 function SingleData({ item, xs, sm, md, lg }) {
     const [isHovered, setIsHovered] = useState(false);
@@ -49,11 +51,9 @@ function SingleData({ item, xs, sm, md, lg }) {
                         <p className='text-center font-bold py-2'>{item?.name}</p>
                         <div className='flex ml-2'>
                             <p className='text-xs font-thin flex'>
-                                USD
-                                <span className='font-bold text-xl ml-1'>{item?.price}</span>
+                                <span className='font-bold text-xl ml-1'><PriceFormate price={item?.price} /></span>
                             </p>
-                            {item?.prePrice && <p className='text-xs line-through'>List: BDT {item?.prePrice}</p>}
-                            {/* <p className='text-xs line-through inline-block align-bottom ml-2'>List: USD 15</p> */}
+                            {item?.prePrice && <p className='text-xs line-through ml-3'> {item?.prePrice} <FaDollarSign className='inline text-xs' /></p>}
                         </div>
                         <div className="flex mb-1 ml-2">
                             <Stars ratting={item?.ratting} />

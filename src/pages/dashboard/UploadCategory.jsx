@@ -67,7 +67,7 @@ const UploadCategory = () => {
             >
                 <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
                     <div>
-                        <label className="text-white ">Product category</label>
+                        <label className="text-white ">Product category <span className='text-red-500 text-2xl'>*</span></label>
                         <input
                             required
                             name='name'
@@ -78,7 +78,7 @@ const UploadCategory = () => {
                         />
                     </div>
                     <div>
-                        <label className="text-white ">Upload just 1 photo</label>
+                        <label className="text-white ">Upload just 1 photo <span className='text-red-500 text-2xl'>*</span></label>
                         <input
                             required
                             name='photo'
