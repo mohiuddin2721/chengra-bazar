@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import AddressForm from './AddressForm';
 import Address from './Address';
 import UpdateAddressForm from './UpdateAddressForm';
@@ -11,6 +11,8 @@ import CheckOutForm from './CheckOutForm';
 import { loadStripe } from '@stripe/stripe-js';
 import { FaCcMastercard, FaCcPaypal, FaCcVisa } from 'react-icons/fa';
 import { SiAmericanexpress, SiPayoneer } from 'react-icons/si';
+import { CartContext } from '../../contexts/CartProvider';
+import Headline from '../../components/Headline/Headline';
 
 
 const stripePromise = loadStripe(import.meta.env.VITE_REACT_STRIPE_KEY);
@@ -19,8 +21,16 @@ const CheckOut = () => {
     const [userAddress, isLoading] = useAddress();
     const [zip, setZip] = useState(null)
     const [selectedPaymentOption, setSelectedPaymentOption] = useState(null);
+    const { totalPrice, totalQuantityOrder } = useContext(CartContext)
+    const [priceToPay, setPriceToPay] = useState(0)
 
-    // console.log(selectedPaymentOption)
+    useEffect(() => {
+        const total = (totalQuantityOrder * 20) + totalPrice;
+        const price = parseFloat(total.toFixed(2))
+        setPriceToPay(price)
+    }, [])
+
+    // console.log(priceToPay)
     if (isLoading) {
         return <Loader />
     }
@@ -34,8 +44,8 @@ const CheckOut = () => {
 
     return (
         <div>
-            <div>
-                <p className='text-white font-bold'>Checkout</p>
+            <div className='flex justify-center'>
+                <Headline headline={"Payment"} margin_Y={"4"} />
             </div>
             <hr className='my-4' />
             {userAddress?.data?.length != 0 ? (
@@ -77,7 +87,7 @@ const CheckOut = () => {
             {selectedPaymentOption === "mastercard" &&
                 <div className='min-h-[40vh] mt-4 bg-white w-full md:w-[60%] mx-auto relative border-dashed hover:border-solid border-b-2 border-[rgb(169,51,94)] hover:border-green-400 rounded-lg p-8'>
                     <div>
-                        <p className="text-center text-blue-500 font-bold">master / visa card</p>
+                        <p className="text-center text-blue-500 font-bold">International master / visa card</p>
                         <div className='flex w-full md:w-[60%] justify-evenly mx-auto my-2'>
                             <FaCcMastercard className='text-red-500 text-xl' />
                             <FaCcVisa className='text-blue-500 text-xl' />
@@ -88,7 +98,7 @@ const CheckOut = () => {
                     </div>
                     <div className='mt-[20px] ml-[10px] w-full'>
                         <Elements stripe={stripePromise}>
-                            <CheckOutForm />
+                            <CheckOutForm price={priceToPay} />
                         </Elements>
                     </div>
                 </div>

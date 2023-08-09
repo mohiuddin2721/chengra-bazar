@@ -147,7 +147,7 @@ function DetailSingleData() {
                         </div>
 
                         <div className='mb-4'>
-                            <p className='text-gray-500'>BDT <span className='line-through'>{price + 1000}</span></p>
+                            <p className='text-gray-500'>USD <span className='line-through'>{price + 10}</span></p>
                             <p className='text-green-500'
                             >
                                 Deal of the day:

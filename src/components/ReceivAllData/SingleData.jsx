@@ -49,11 +49,11 @@ function SingleData({ item, xs, sm, md, lg }) {
                         <p className='text-center font-bold py-2'>{item?.name}</p>
                         <div className='flex ml-2'>
                             <p className='text-xs font-thin flex'>
-                                BDT
+                                USD
                                 <span className='font-bold text-xl ml-1'>{item?.price}</span>
                             </p>
-                            {/* {item?.prePrice && <p className='text-xs line-through'>List: BDT {item?.prePrice}</p>} */}
-                            <p className='text-xs line-through inline-block align-bottom ml-2'>List: BDT 1500</p>
+                            {item?.prePrice && <p className='text-xs line-through'>List: BDT {item?.prePrice}</p>}
+                            {/* <p className='text-xs line-through inline-block align-bottom ml-2'>List: USD 15</p> */}
                         </div>
                         <div className="flex mb-1 ml-2">
                             <Stars ratting={item?.ratting} />

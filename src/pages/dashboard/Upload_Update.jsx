@@ -102,10 +102,11 @@ const Upload_Update = () => {
         const data = {
             name: e.target.name.value,
             quantity: +e.target.quantity.value,
-            color: e.target.color.value,
+            // color: e.target.color.value,
             unit: e.target.unit.value,
             status: e.target.status.value,
             categories: e.target.categories.value,
+            prePrice: +e.target.prePrice.value,
             price: +e.target.price.value,
             brand: e.target.brand.value,
             ratting: +e.target.ratting.value,
@@ -158,7 +159,7 @@ const Upload_Update = () => {
                 <form onSubmit={handleProductSubmit}>
                     <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
                         <div>
-                            <label className="text-white ">Product name</label>
+                            <label className="text-white">Product name <span className='text-red-500 text-2xl'>*</span></label>
                             <input
                                 required
                                 name='name'
@@ -168,7 +169,7 @@ const Upload_Update = () => {
                             />
                         </div>
                         <div>
-                            <label className="text-white ">Quantity</label>
+                            <label className="text-white ">Quantity <span className='text-red-500 text-2xl'>*</span></label>
                             <input
                                 required
                                 name='quantity'
@@ -178,7 +179,7 @@ const Upload_Update = () => {
                                 className="w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:border-blue-500 focus:outline-none focus:ring"
                             />
                         </div>
-                        <div>
+                        {/* <div>
                             <label className="text-white">Color</label>
                             <input
                                 required
@@ -187,9 +188,9 @@ const Upload_Update = () => {
                                 placeholder="Type ...color"
                                 className="w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:border-blue-500 focus:outline-none focus:ring"
                             />
-                        </div>
+                        </div> */}
                         <div>
-                            <label className="text-white ">Select unit</label>
+                            <label className="text-white ">Select unit <span className='text-red-500 text-2xl'>*</span></label>
                             <select
                                 required
                                 name='unit'
@@ -202,7 +203,7 @@ const Upload_Update = () => {
                             </select>
                         </div>
                         <div>
-                            <label className="text-white ">Product status</label>
+                            <label className="text-white ">Product status <span className='text-red-500 text-2xl'>*</span></label>
                             <select
                                 required
                                 name='status'
@@ -214,7 +215,7 @@ const Upload_Update = () => {
                             </select>
                         </div>
                         <div>
-                            <label className="text-white ">Product categories</label>
+                            <label className="text-white ">Product categories <span className='text-red-500 text-2xl'>*</span></label>
                             <select
                                 required
                                 name='categories'
@@ -230,7 +231,7 @@ const Upload_Update = () => {
                             </select>
                         </div>
                         <div>
-                            <label className="text-white ">Price $</label>
+                            <label className="text-white ">Price $ <span className='text-red-500 text-2xl'>*</span></label>
                             <input
                                 required
                                 type="number"
@@ -239,7 +240,15 @@ const Upload_Update = () => {
                             />
                         </div>
                         <div>
-                            <label className="text-white ">Brand name</label>
+                            <label className="text-white">Previous price $</label>
+                            <input
+                                type="number"
+                                name='prePrice'
+                                className="w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:border-blue-500 focus:outline-none focus:ring"
+                            />
+                        </div>
+                        <div>
+                            <label className="text-white ">Brand name <span className='text-red-500 text-2xl'>*</span></label>
                             <input
                                 required
                                 type="text"
@@ -248,7 +257,7 @@ const Upload_Update = () => {
                             />
                         </div>
                         <div>
-                            <label className="text-white ">Ratting</label>
+                            <label className="text-white ">Ratting <span className='text-red-500 text-2xl'>*</span></label>
                             <input
                                 required
                                 type="number"
@@ -260,7 +269,7 @@ const Upload_Update = () => {
                             />
                         </div>
                         <div>
-                            <label className="text-white ">Description</label>
+                            <label className="text-white ">Description <span className='text-red-500 text-2xl'>*</span></label>
                             <textarea
                                 required
                                 name='description'
@@ -271,7 +280,7 @@ const Upload_Update = () => {
                         <div>
                             <div>
                                 <label className="text-sm font-medium text-white">
-                                    Upload Image <span className='text-xs'>maximum 4 photo</span>
+                                    Upload Image <span className='text-xs'>maximum 4 photo <span className='text-red-500 text-2xl'>*</span></span>
                                 </label>
                                 <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2  border-dashed rounded-md">
                                     <div
