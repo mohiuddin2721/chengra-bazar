@@ -6,7 +6,6 @@ import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../contexts/AuthProvider';
-import { SignBgImageStyle } from '../Styles/ComponentStyle';
 import Swal from 'sweetalert2';
 
 const SignUp = () => {
@@ -60,7 +59,7 @@ const SignUp = () => {
     };
 
     return (
-        <div style={SignBgImageStyle}>
+        <div>
             <div className="login-container">
                 <div className="login-title">Chengra Bazar</div>
                 <form

@@ -42,12 +42,4 @@ export const shortCartSecondBoxSx = {
     cursor: 'pointer',
 }
 
-// SignIn.jsx and SignUp.jsx background image
-const backgroundImage = 'url("https://i.ibb.co/sJz0sMK/chengra-login-background.jpg")';
-export const SignBgImageStyle = {
-    backgroundImage: backgroundImage,
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    padding: '40px 0px',
-}
 

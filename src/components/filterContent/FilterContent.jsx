@@ -25,7 +25,7 @@ const FilterContent = () => {
     } = useContext(ProductFilterContext)
     const { allCategory } = useGetAllCategory()
     const [openCollapseCategoryFilter1, setCollapseCategoryFilter1] = useState(true);
-    const [openCollapseCategoryFilter2, setCollapseCategoryFilter2] = useState(false);
+    // const [openCollapseCategoryFilter2, setCollapseCategoryFilter2] = useState(false);
 
     const handleCategoryToggle = (value) => () => {
         const currentIndex = checkedCategory.indexOf(value);
@@ -39,18 +39,18 @@ const FilterContent = () => {
 
         setCheckedCategory(newChecked);
     };
-    const handleBrandToggle = (value) => () => {
-        const currentIndex = checkedBrand.indexOf(value);
-        const newChecked = [...checkedBrand];
+    // const handleBrandToggle = (value) => () => {
+    //     const currentIndex = checkedBrand.indexOf(value);
+    //     const newChecked = [...checkedBrand];
 
-        if (currentIndex === -1) {
-            newChecked.push(value);
-        } else {
-            newChecked.splice(currentIndex, 1);
-        }
+    //     if (currentIndex === -1) {
+    //         newChecked.push(value);
+    //     } else {
+    //         newChecked.splice(currentIndex, 1);
+    //     }
 
-        setCheckedBrand(newChecked);
-    };
+    //     setCheckedBrand(newChecked);
+    // };
     const handleChange1 = (event, newValue, activeThumb) => {
         if (!Array.isArray(newValue)) {
             return;
@@ -65,9 +65,9 @@ const FilterContent = () => {
     const handleCollapseMenu1 = () => {
         setCollapseCategoryFilter1(!openCollapseCategoryFilter1);
     };
-    const handleCollapseMenu2 = () => {
-        setCollapseCategoryFilter2(!openCollapseCategoryFilter2);
-    };
+    // const handleCollapseMenu2 = () => {
+    //     setCollapseCategoryFilter2(!openCollapseCategoryFilter2);
+    // };
     const handleDrawerClose1 = () => {
         setIsOpenFilterDrawer(false);
     };
@@ -128,11 +128,11 @@ const FilterContent = () => {
                                 }
                             </List>
                         </Collapse>
-                        <ListItemButton onClick={handleCollapseMenu2} sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
+                        {/* <ListItemButton onClick={handleCollapseMenu2} sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
                             <ListItemText primary="BRANDS" />
                             {openCollapseCategoryFilter2 ? <ExpandLess /> : <ExpandMore />}
-                        </ListItemButton>
-                        <Collapse in={openCollapseCategoryFilter2} timeout="auto" unmountOnExit>
+                        </ListItemButton> */}
+                        {/* <Collapse in={openCollapseCategoryFilter2} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
                                 {
                                     brands?.map((item, i) =>
@@ -157,7 +157,7 @@ const FilterContent = () => {
                                     )
                                 }
                             </List>
-                        </Collapse>
+                        </Collapse> */}
                     </List>
                     <div className='my-2'>
                         <p className='text-center'>Filter by price</p>

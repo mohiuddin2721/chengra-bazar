@@ -75,43 +75,43 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/dashboard',
-                element: <Dashboard></Dashboard>
+                element: <PrivateRoute><Dashboard /></PrivateRoute>
             },
             {
                 path: '/dashboard/Manage_account',
-                element: <ManageAccount></ManageAccount>
+                element: <PrivateRoute><ManageAccount /></PrivateRoute>
             },
             {
                 path: '/dashboard/My_order',
-                element: <MyOrder></MyOrder>
+                element: <PrivateRoute><MyOrder /></PrivateRoute>
             },
             {
                 path: '/dashboard/My_cart',
-                element: <MyCart></MyCart>
+                element: <PrivateRoute><MyCart /></PrivateRoute>
             },
             {
                 path: '/dashboard/Check_Out_Route',
-                element: <CheckOut></CheckOut>
+                element: <PrivateRoute><CheckOut /></PrivateRoute>
             },
             {
                 path: '/dashboard/Upload_&_Update',
-                element: <Upload_Update></Upload_Update>
+                element: <PrivateRoute><Upload_Update /></PrivateRoute>
             },
             {
                 path: '/dashboard/Administration',
-                element: <Administration></Administration>
+                element: <PrivateRoute><Administration /></PrivateRoute>
             },
             {
                 path: '/dashboard/Management',
-                element: <Management></Management>
+                element: <PrivateRoute><Management /></PrivateRoute>
             },
             {
                 path: '/dashboard/Send_mail',
-                element: <SendMail></SendMail>
+                element: <PrivateRoute><SendMail /></PrivateRoute>
             },
             {
                 path: '/dashboard/history_of_payment',
-                element: <PaymentHistory></PaymentHistory>
+                element: <PrivateRoute><PaymentHistory /></PrivateRoute>
             },
         ]
     }

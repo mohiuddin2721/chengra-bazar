@@ -57,7 +57,7 @@ const StickyNav = () => {
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-evenly' }}>
                 <Box sx={{ display: 'flex', gap: 2, pb: 1 }}>
                     <CategoriesStickyNav />
-                    <BrandStickyNav />
+                    {/* <BrandStickyNav /> */}
                 </Box>
                 <Tabs value={value} onChange={handleChange} aria-label="nav tabs example">
                     <Tab style={stickyNavTabStyle} label="Home" href="/" />

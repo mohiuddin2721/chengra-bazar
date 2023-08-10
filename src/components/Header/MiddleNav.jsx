@@ -19,6 +19,7 @@ import useCart from '../../Hooks/useCart';
 import { CartContext } from '../../contexts/CartProvider';
 import { AuthContext } from '../../contexts/AuthProvider';
 import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
 
 
 const MiddleNav = () => {
@@ -61,8 +62,25 @@ const MiddleNav = () => {
         if (user) {
             setIsOpenCartDrawer(true);
         } else {
+            Swal.fire({
+                position: 'top-middle',
+                icon: 'error',
+                title: 'Must need to login',
+                showCloseButton: true,
+                focusConfirm: false,
+                confirmButtonText: `<Link to='/signIn'>Login</Link>`,
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                showCancelButton: true,
+                cancelButtonText: 'Cancel',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '/signIn';
+                }
+            });
             toast.error("Must need to be logged in")
-            navigate("/signUp")
+            // navigate("/signUp")
         }
 
     };
