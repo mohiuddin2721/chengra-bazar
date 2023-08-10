@@ -57,7 +57,25 @@ function DetailSingleData() {
         const formData = new FormData();
 
         if (!user) {
-            return navigate("/signIn");
+            return Swal.fire({
+                position: 'top-middle',
+                icon: 'error',
+                title: 'Must need to login',
+                showCloseButton: true,
+                focusConfirm: false,
+                confirmButtonText: `<Link to='/signIn'>Login</Link>`,
+                // Prevent the alert from closing when clicking outside or pressing Esc
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                showCancelButton: true,
+                cancelButtonText: 'Cancel',
+            }).then((result) => {
+                // Redirect to sign-in page when the "Login" button is clicked
+                if (result.isConfirmed) {
+                    window.location.href = '/signIn'; // Change this to your actual sign-in route
+                }
+            });
         }
         // console.log(selectedProductImg)
         if (!selectedProductImg) {

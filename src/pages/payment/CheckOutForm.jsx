@@ -100,7 +100,7 @@ const CheckOutForm = ({ price }) => {
                     if (res.data.status === "success") {
                         toast('payment successfully completed')
                         Swal.fire({
-                            position: 'top-end',
+                            position: 'top-middle',
                             icon: 'success',
                             title: 'payment successfully completed',
                             showConfirmButton: false,

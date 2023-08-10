@@ -57,9 +57,6 @@ export const ListSingleData = ({ item }) => {
                                 value={item?.ratting}
                             />
                         </p>
-                        <Box className='flex justify-center mb-10'>
-                            <Button variant="contained" size="small">Add to cart</Button>
-                        </Box>
                         <span className='absolute top-2 right-0 hidden'>
                             <IconButton>
                                 <FavoriteIcon className='text-red-600 bg-slate-200 rounded-md' />
