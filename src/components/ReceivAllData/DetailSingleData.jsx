@@ -80,7 +80,7 @@ function DetailSingleData() {
             unit: unit,
             status: status,
             userEmail: userEmail,
-            shifting: quantityOrder * 20,
+            shifting: quantityOrder * 5,
             total: price * quantityOrder,
         }
 

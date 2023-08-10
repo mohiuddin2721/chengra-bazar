@@ -13,6 +13,7 @@ import { FaCcMastercard, FaCcPaypal, FaCcVisa } from 'react-icons/fa';
 import { SiAmericanexpress, SiPayoneer } from 'react-icons/si';
 import { CartContext } from '../../contexts/CartProvider';
 import Headline from '../../components/Headline/Headline';
+import PriceFormate from '../../features/priceFormate/PriceFormate';
 
 
 const stripePromise = loadStripe(import.meta.env.VITE_REACT_STRIPE_KEY);
@@ -25,7 +26,7 @@ const CheckOut = () => {
     const [priceToPay, setPriceToPay] = useState(0)
 
     useEffect(() => {
-        const total = (totalQuantityOrder * 20) + totalPrice;
+        const total = (totalQuantityOrder * 5) + totalPrice;
         const price = parseFloat(total.toFixed(2))
         setPriceToPay(price)
     }, [])
@@ -95,6 +96,9 @@ const CheckOut = () => {
                             <SiAmericanexpress className='text-blue-500 text-xl' />
                             <SiPayoneer className='text-purple-500 text-xl' />
                         </div>
+                        <div className='w-full flex justify-center text-blue-500'>
+                            <PriceFormate price={priceToPay} />
+                        </div>
                     </div>
                     <div className='mt-[20px] ml-[10px] w-full'>
                         <Elements stripe={stripePromise}>
@@ -108,7 +112,9 @@ const CheckOut = () => {
                     <p className="text-center text-white font-bold">bkash</p>
                 </div>
             }
+            <div className='h-[20vh]'>
 
+            </div>
 
 
         </div>

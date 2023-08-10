@@ -46,14 +46,14 @@ const CartProduct = ({ item, refetch }) => {
                     <p className='font-bold pt-2'>{item?.name}</p>
                     <p className='text-xs text-green-300 pb-2'>{item?.status}</p>
                     <p className='mb-2'>
-                        Price:<span className='text-green-300 font-bold ml-2'>{item?.price}</span> <span className='text-xs'>BDT</span>
+                        Price:<span className='text-green-300 font-bold ml-2'>{item?.price}</span> <span className='text-xs'>USD</span>
                     </p>
                     <p className='flex items-center mb-2'>
-                        Total: <span className='text-green-300 font-bold ml-2'>{item?.price * quantityOrder}</span> <span className='text-xs ml-1'>BDT</span>
+                        Total: <span className='text-green-300 font-bold ml-2'>{item?.price * quantityOrder}</span> <span className='text-xs ml-1'>USD</span>
                         <BiPlus className='text-xl mx-2' />
-                        Shifting: <span className='text-green-300 font-bold mx-1'>{quantityOrder * 20}</span> <span className='text-xs ml-1'>BDT</span>
+                        Shifting: <span className='text-green-300 font-bold mx-1'>{quantityOrder * 5}</span> <span className='text-xs ml-1'>USD</span>
                     </p>
-                    <p className='text-xs'>Brand: {item?.brand}Ss World</p>
+                    <p className='text-xs'>Brand: {item?.brand}</p>
                     <div className='my-2'>
                         <p className='flex'>
                             Quantity:
