@@ -5,6 +5,7 @@ import useAuth from '../../Hooks/useAuth';
 import useCart from '../../Hooks/useCart';
 import { CartContext } from '../../contexts/CartProvider';
 import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
 
 const CheckOutForm = ({ price }) => {
     const [cart] = useCart()
@@ -81,23 +82,30 @@ const CheckOutForm = ({ price }) => {
         if (paymentIntent.status === "succeeded") {
             setTransactionId(paymentIntent.id)
             // save payment information to the server 
-
             const paymentData = {
                 email: user?.email,
                 transactionId: paymentIntent.id,
                 totalPrice: price,
                 quantity: totalQuantityOrder,
                 item: cart?.data?.length,
+                itemId: cart?.data?.map(item => item?._id),
                 itemNames: cart?.data?.map(item => item?.name),
                 itemImages: cart?.data?.map(item => item?.selectedProductImg),
                 itemPrices: cart?.data?.map(item => item.price)
             }
-            console.log("paymentData", paymentData)
+            // console.log("paymentData", paymentData)
             axiosSecure.post('/payment', paymentData)
                 .then(res => {
-                    console.log("res", res)
-                    if (res.data.insertedId) {
+                    console.log("res", res.data)
+                    if (res.data.status === "success") {
                         toast('payment successfully completed')
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'payment successfully completed',
+                            showConfirmButton: false,
+                            timer: 1500
+                          })
                     }
                 })
         }

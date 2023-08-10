@@ -73,8 +73,8 @@ function CategoriesStickyNav() {
                                     onKeyDown={handleListKeyDown}
                                 >
                                     {
-                                        allCategory?.map(item =>
-                                            <Link to={`/catagories/${item?.name}`}>
+                                        allCategory?.map((item, index) =>
+                                            <Link key={index} to={`/catagories/${item?.name}`}>
                                                 <MenuItem key={item._id} onClick={handleClose}>
                                                     {item?.name}
                                                 </MenuItem>
