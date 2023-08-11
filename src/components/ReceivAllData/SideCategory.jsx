@@ -18,7 +18,7 @@ const SideCategory = ({id}) => {
                             <CardActionArea sx={{
                                 backgroundColor: id === data?.name ? '#1565c0' : ' ',
                             }}>
-                                <img src={data?.photo}
+                                <img src={`http://localhost:5000/${data?.photo}`}
                                     alt={data?.name}
                                     className='w-[90px] h-[90px] mx-auto'
                                     style={{ clipPath: 'circle(50%)' }}

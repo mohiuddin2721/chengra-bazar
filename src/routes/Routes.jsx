@@ -22,6 +22,7 @@ import Management from "../pages/dashboard/Management";
 import SendMail from "../pages/dashboard/SendMail";
 import CheckOut from "../pages/payment/CheckOut";
 import PaymentHistory from "../pages/dashboard/PaymentHistory";
+import SpecialOffer from "../components/specialOffer/SpecialOffer";
 
 
 const router = createBrowserRouter([
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
             {
                 path: '/best_products',
                 element: <BestProducts></BestProducts>
+            },
+            {
+                path: '/special_offer',
+                element: <SpecialOffer></SpecialOffer>
             },
             {
                 path: '/Customer_care',
@@ -70,48 +75,48 @@ const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <DashboardLayout />,
+        element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
         errorElement: <DisplayError></DisplayError>,
         children: [
             {
                 path: '/dashboard',
-                element: <PrivateRoute><Dashboard /></PrivateRoute>
+                element: <Dashboard />
             },
             {
                 path: '/dashboard/Manage_account',
-                element: <PrivateRoute><ManageAccount /></PrivateRoute>
+                element: <ManageAccount />
             },
             {
                 path: '/dashboard/My_order',
-                element: <PrivateRoute><MyOrder /></PrivateRoute>
+                element: <MyOrder />
             },
             {
                 path: '/dashboard/My_cart',
-                element: <PrivateRoute><MyCart /></PrivateRoute>
+                element: <MyCart />
             },
             {
                 path: '/dashboard/Check_Out_Route',
-                element: <PrivateRoute><CheckOut /></PrivateRoute>
+                element: <CheckOut />
             },
             {
                 path: '/dashboard/Upload_&_Update',
-                element: <PrivateRoute><Upload_Update /></PrivateRoute>
+                element: <Upload_Update />
             },
             {
                 path: '/dashboard/Administration',
-                element: <PrivateRoute><Administration /></PrivateRoute>
+                element: <Administration />
             },
             {
                 path: '/dashboard/Management',
-                element: <PrivateRoute><Management /></PrivateRoute>
+                element: <Management />
             },
             {
                 path: '/dashboard/Send_mail',
-                element: <PrivateRoute><SendMail /></PrivateRoute>
+                element: <SendMail />
             },
             {
                 path: '/dashboard/history_of_payment',
-                element: <PrivateRoute><PaymentHistory /></PrivateRoute>
+                element: <PaymentHistory />
             },
         ]
     }

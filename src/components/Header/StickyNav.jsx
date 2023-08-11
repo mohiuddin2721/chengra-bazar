@@ -1,7 +1,6 @@
 import { Box, Tabs, Tab, MenuList, MenuItem } from '@mui/material';
 import React, { useEffect, useRef, useState } from 'react';
 import CategoriesStickyNav from './CategoriesStickyNav';
-import BrandStickyNav from './BrandStickyNav';
 import styles from '../../Styles/StickyNav.module.css';
 import { Link } from 'react-router-dom';
 

@@ -8,12 +8,11 @@ import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
 import styles from '../../Styles/MiddleNav.module.css';
 import { BsSearch } from 'react-icons/bs';
 import { MdOutlineClose } from 'react-icons/md';
-import { Box, Collapse, Drawer, List, ListItemButton, ListItemText } from '@mui/material';
+import { Box, Collapse, Drawer, List, ListItemButton, ListItemText, MenuItem } from '@mui/material';
 import { categories } from '../../Utils/ConstantData';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
-import { Link, useNavigate } from 'react-router-dom';
-import useGetAllData from '../../Hooks/useGetAllData';
+import { Link } from 'react-router-dom';
 import SideCartProduct from './SideCartProduct';
 import useCart from '../../Hooks/useCart';
 import { CartContext } from '../../contexts/CartProvider';
@@ -27,21 +26,11 @@ const MiddleNav = () => {
     const [isOpenMenuDrawer, setIsOpenMenuDrawer] = useState(false);
     const [isOpenCartDrawer, setIsOpenCartDrawer] = useState(false);
     const [openCollapseMenu1, setCollapseMenu1] = useState(false);
-    const [openCollapseMenu2, setCollapseMenu2] = useState(false);
-    const { allProduct } = useGetAllData();
     const [cart, isLoading, refetch] = useCart()
     const { totalQuantityOrder, totalPrice } = useContext(CartContext)
-    const navigate = useNavigate();
-
-    const getBrand = allProduct?.map((data) => data?.brand)
-    const allBrand = Array.from(new Set(getBrand));
-    // console.log(allBrand)
 
     const handleCollapseMenu1 = () => {
         setCollapseMenu1(!openCollapseMenu1);
-    };
-    const handleCollapseMenu2 = () => {
-        setCollapseMenu2(!openCollapseMenu2);
     };
 
     const [openSearch, setOpenSearch] = useState(false);
@@ -80,7 +69,6 @@ const MiddleNav = () => {
                 }
             });
             toast.error("Must need to be logged in")
-            // navigate("/signUp")
         }
 
     };
@@ -96,7 +84,6 @@ const MiddleNav = () => {
                     <div className='px-[10px] flex  items-center gap-[40px]'>
                         <div className='flex items-center justify-between w-[300px] gap-3 xs:w-[200px] lg:w-[120px] h-[57px]'>
                             <div className='w-[15%] lg:hidden block'>
-                                {/* <button onClick={onOpen1}> */}
                                 <button onClick={() => setIsOpenMenuDrawer(true)}>
                                     <GiHamburgerMenu className='text-[#0088CC] font-bold text-2xl' />
                                 </button>
@@ -228,55 +215,56 @@ const MiddleNav = () => {
                                         aria-labelledby="nested-list-subheader"
                                     >
                                         <ListItemButton sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
-                                            <ListItemText primary="HOME" />
+                                            <Link to="/">
+                                                <ListItemText primary="Home" />
+                                            </Link>
                                         </ListItemButton>
                                         <ListItemButton onClick={handleCollapseMenu1} sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
-                                            <ListItemText primary="CATEGORIES" />
+                                            <ListItemText primary="Categories" />
                                             {openCollapseMenu1 ? <ExpandLess /> : <ExpandMore />}
                                         </ListItemButton>
                                         <Collapse in={openCollapseMenu1} timeout="auto" unmountOnExit>
                                             <List component="div" disablePadding>
                                                 {
                                                     categories?.map((item, i) =>
-                                                        <ListItemButton key={i} sx={{ pl: 4, '&:hover': { borderBottom: '1px solid red' } }}>
-                                                            <ListItemText primary={item.name} />
-                                                        </ListItemButton>
-                                                    )
-                                                }
-                                            </List>
-                                        </Collapse>
-                                        <ListItemButton onClick={handleCollapseMenu2} sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
-                                            <ListItemText primary="BRANDS" />
-                                            {openCollapseMenu2 ? <ExpandLess /> : <ExpandMore />}
-                                        </ListItemButton>
-                                        <Collapse in={openCollapseMenu2} timeout="auto" unmountOnExit>
-                                            <List component="div" disablePadding>
-                                                {
-                                                    allBrand?.map((item, i) =>
-                                                        <ListItemButton key={i} sx={{ pl: 4, '&:hover': { borderBottom: '1px solid red' } }}>
-                                                            <ListItemText primary={item} />
-                                                        </ListItemButton>
+                                                        <Link key={i} to={`/catagories/${item?.name}`}>
+                                                            <MenuItem sx={{ pl: 4, '&:hover': { borderBottom: '1px solid red' } }}>
+                                                                {item?.name}
+                                                            </MenuItem>
+                                                        </Link>
                                                     )
                                                 }
                                             </List>
                                         </Collapse>
                                         <ListItemButton sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
-                                            <ListItemText primary="SPECIAL OFFERS!" />
+                                            <Link to="/">
+                                                <ListItemText primary="Special offer!" />
+                                            </Link>
                                         </ListItemButton>
                                         <ListItemButton sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
-                                            <ListItemText primary="MY ACCOUNT" />
+                                            <Link to="/">
+                                                <ListItemText primary="My account" />
+                                            </Link>
                                         </ListItemButton>
                                         <ListItemButton sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
-                                            <ListItemText primary="CART" />
+                                            <Link to="/productsFilter">
+                                                <ListItemText primary="Filter product" />
+                                            </Link>
                                         </ListItemButton>
                                         <ListItemButton sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
-                                            <ListItemText primary="Customer care" />
+                                            <Link to="/Customer_care">
+                                                <ListItemText primary="Customer care" />
+                                            </Link>
                                         </ListItemButton>
                                         <ListItemButton sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
-                                            <ListItemText primary="Track My Order" />
+                                            <Link to="/">
+                                                <ListItemText primary="Track My Order" />
+                                            </Link>
                                         </ListItemButton>
                                         <ListItemButton sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
-                                            <ListItemText primary="LOG IN" />
+                                            <Link to="/signIn">
+                                                <ListItemText primary="Log in" />
+                                            </Link>
                                         </ListItemButton>
                                     </List>
                                 </div>
