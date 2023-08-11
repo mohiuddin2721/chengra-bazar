@@ -60,7 +60,6 @@ const StickyNav = () => {
                 </Box>
                 <Tabs value={value} onChange={handleChange} aria-label="nav tabs example">
                     <Tab style={stickyNavTabStyle} label="Home" href="/" />
-                    <Tab style={stickyNavTabStyle} label="Best Products" href="best_products" />
                     <Tab style={stickyNavTabStyle} label="Choose Products" href="productsFilter" />
                 </Tabs>
                 <MenuList>

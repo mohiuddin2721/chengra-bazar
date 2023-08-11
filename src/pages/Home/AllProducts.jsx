@@ -1,17 +1,32 @@
-import React from 'react';
-import { Box, Grid, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { Box, Grid, Pagination, Typography } from '@mui/material';
 import { component_container } from '../../Styles/ComponentStyle';
 import SingleData from '../../components/ReceivAllData/SingleData';
-import useGetAllData from '../../Hooks/useGetAllData';
-import Loader from '../../components/Loader/Loader';
+import axios from 'axios';
 
 function AllProducts() {
-  const { allProduct, isLoading } = useGetAllData();
-  // console.log(allProduct)
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageCount, setPageCount] = useState(5);
+  const [products, setProducts] = useState([]);
 
-  if (isLoading) {
-    return <Loader />;
+  const handlePaginationChange = (event, page) => {
+    setCurrentPage(Number(page));
+  };
+  // console.log("products:", products)
+
+  const getAllProducts = async () => {
+    try {
+      const result = await axios.get(`http://localhost:5000/api/v1/products?page=${currentPage}&limit=8`)
+      setPageCount(result.data.data.pageCount);
+      setProducts(result.data.data.products);
+    } catch (error) {
+      console.log(error)
+    }
   }
+
+  useEffect(() => {
+    getAllProducts()
+  }, [currentPage])
 
   return (
     <Box sx={component_container} className='my-10 delay-500 mx-auto'>
@@ -20,18 +35,27 @@ function AllProducts() {
       </Typography>
       <Grid container spacing={1}>
         {
-          allProduct?.map(item =>
+          products?.map(item =>
             <SingleData
               key={item._id}
               item={item}
               xs={6}
               sm={6}
               md={3}
-              lg={2}
+              lg={3}
             />
           )
         }
       </Grid>
+      <Box sx={{ marginTop: '10px' }}>
+        <Pagination
+          count={pageCount}
+          color="secondary"
+          page={currentPage}
+          onChange={handlePaginationChange}
+          sx={{ w: 'full', display: 'flex', justifyContent: 'center' }}
+        />
+      </Box>
     </Box>
   )
 }

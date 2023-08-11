@@ -4,7 +4,6 @@ import { Box, Checkbox, Collapse, List, ListItem, ListItemButton, ListItemIcon, 
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import FilterBgColor from '../filterBgColor/FilterBgColor';
 import useGetAllCategory from '../../Hooks/useGetAllCategories';
-import { brands } from '../../Utils/ConstantData';
 import SelectSortingPrice from '../selectSortingPrice/SelectSortingPrice';
 import { ProductFilterContext } from '../../pages/ProductsFilter/ProductsFilter';
 

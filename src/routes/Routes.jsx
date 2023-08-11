@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../layout/Main";
 import Home from "../pages/Home/Home";
-import BestProducts from "../components/bestProducts/BestProducts";
 import ShortCutDetail from "../components/ReceivAllData/ShortCutDetail";
 import SelectedCategories from "../pages/Home/SelectedCategories";
 import ProductsFilter from "../pages/ProductsFilter/ProductsFilter";
@@ -34,10 +33,6 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>
-            },
-            {
-                path: '/best_products',
-                element: <BestProducts></BestProducts>
             },
             {
                 path: '/special_offer',
