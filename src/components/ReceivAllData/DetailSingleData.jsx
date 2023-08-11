@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import useGetAllData from '../../Hooks/useGetAllData';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 // import ImageMagnify from '../../features/ZoomImage/ImageMagnify';
 import ZoomImage from '../../features/ZoomImage/ZoomImage';
 import PriceFormate from '../../features/priceFormate/PriceFormate';
@@ -19,7 +19,6 @@ import { FaDollarSign } from 'react-icons/fa';
 
 
 function DetailSingleData() {
-    const navigate = useNavigate();
     const { id } = useParams()
     const { user } = useContext(AuthContext)
     const { allProduct } = useGetAllData();

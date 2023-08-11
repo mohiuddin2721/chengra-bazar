@@ -3,8 +3,10 @@ import { Box, Grid, Pagination, Typography } from '@mui/material';
 import { component_container } from '../../Styles/ComponentStyle';
 import SingleData from '../../components/ReceivAllData/SingleData';
 import axios from 'axios';
+import useGetAllData from '../../Hooks/useGetAllData';
 
 function AllProducts() {
+  const { allProduct } = useGetAllData();
   const [currentPage, setCurrentPage] = useState(1);
   const [pageCount, setPageCount] = useState(5);
   const [products, setProducts] = useState([]);
@@ -14,7 +16,7 @@ function AllProducts() {
   };
   // console.log("products:", products)
 
-  const getAllProducts = async () => {
+  const getProducts = async () => {
     try {
       const result = await axios.get(`http://localhost:5000/api/v1/products?page=${currentPage}&limit=8`)
       setPageCount(result.data.data.pageCount);
@@ -25,7 +27,7 @@ function AllProducts() {
   }
 
   useEffect(() => {
-    getAllProducts()
+    getProducts()
   }, [currentPage])
 
   return (
@@ -43,6 +45,7 @@ function AllProducts() {
               sm={6}
               md={3}
               lg={3}
+              allProduct={allProduct}
             />
           )
         }
