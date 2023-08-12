@@ -45,7 +45,6 @@ function AllProducts() {
               sm={6}
               md={3}
               lg={3}
-              allProduct={allProduct}
             />
           )
         }

@@ -8,7 +8,7 @@ import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
 import styles from '../../Styles/MiddleNav.module.css';
 import { BsSearch } from 'react-icons/bs';
 import { MdOutlineClose } from 'react-icons/md';
-import { Box, Collapse, Drawer, List, ListItemButton, ListItemText, MenuItem } from '@mui/material';
+import { Avatar, Badge, Box, ListItemIcon, Divider, IconButton, Tooltip, Collapse, Drawer, List, ListItemButton, ListItemText, MenuItem, Menu } from '@mui/material';
 import { categories } from '../../Utils/ConstantData';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
@@ -20,15 +20,32 @@ import { AuthContext } from '../../contexts/AuthProvider';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 
+// import ListItemIcon from '@mui/material/ListItemIcon';
+// import Divider from '@mui/material/Divider';
+// import IconButton from '@mui/material/IconButton';
+// import Tooltip from '@mui/material/Tooltip';
+import PersonAdd from '@mui/icons-material/PersonAdd';
+import Settings from '@mui/icons-material/Settings';
+import Logout from '@mui/icons-material/Logout';
+
 
 const MiddleNav = () => {
-    const { user } = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
     const [isOpenMenuDrawer, setIsOpenMenuDrawer] = useState(false);
     const [isOpenCartDrawer, setIsOpenCartDrawer] = useState(false);
     const [openCollapseMenu1, setCollapseMenu1] = useState(false);
     const [cart, isLoading, refetch] = useCart()
     const { totalQuantityOrder, totalPrice } = useContext(CartContext)
+    // console.log(user?.photoURL)
 
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
     const handleCollapseMenu1 = () => {
         setCollapseMenu1(!openCollapseMenu1);
     };
@@ -76,6 +93,34 @@ const MiddleNav = () => {
     const handleDrawerClose2 = () => {
         setIsOpenCartDrawer(false);
     };
+    const handleLogout = () => {
+        logOut()
+            .then(() => {
+
+            }).catch((err) => {
+                console.log(err)
+            })
+    }
+    const handleNoUserPic = () => {
+        Swal.fire({
+            position: 'top-middle',
+            icon: 'error',
+            title: 'Must need to login',
+            showCloseButton: true,
+            focusConfirm: false,
+            confirmButtonText: `<Link to='/signIn'>Login</Link>`,
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            allowEnterKey: false,
+            showCancelButton: true,
+            cancelButtonText: 'Cancel',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/signIn';
+            }
+        });
+        toast.error("Must need to be logged in")
+    }
 
     return (
         <>
@@ -118,7 +163,9 @@ const MiddleNav = () => {
                                         e.stopPropagation();
                                         setOpenSearch(true);
                                     }} className='text-[#222529] relative right-6 xs:right-0 hover:text-[#08c] duration-500  cursor-pointer' />}
-                                    <div onClick={(e) => e.stopPropagation()} className={`w-[320px] xs:w-[360px]  xs:-left-[305px] -left-[289px] duration-500   text-[13px]  flex ${openSearch ? ' top-[45px] opacity-100  z-20' : 'opacity-0 top-[0px] -z-50'} absolute items-center h-[50px] rounded-[50px] bg-[#f1f1f1] border-[5px] border-[#08C]`}>
+                                    <div
+                                        onClick={(e) => e.stopPropagation()}
+                                        className={`w-[320px] xs:w-[360px]  xs:-left-[305px] -left-[289px] duration-500 text-[13px] flex ${openSearch ? ' top-[45px] opacity-100 z-20' : 'opacity-0 top-[0px] -z-50'} absolute items-center h-[50px] rounded-[50px] bg-[#f1f1f1] border-[5px] border-[#08C]`}>
                                         <span className={`${styles['custom-arrow']} duration-500 right-[23px]`}></span>
                                         <input placeholder='Search...' type="text" className='h-full w-[88%] outline-none px-[20px] py-[10px]  bg-transparent rounded-tl-[50px] rounded-bl-[50px]' />
                                         <div className='w-[12%] h-[40px] flex justify-center items-center'>
@@ -126,17 +173,86 @@ const MiddleNav = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <AiOutlineUser className='text-[#222529] hidden lg:block' />
+                                {
+                                    user?.photoURL ?
+                                        <>
+                                            <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
+                                                <Tooltip title="Account">
+                                                    <IconButton
+                                                        onClick={handleClick}
+                                                        size="small"
+                                                        sx={{ ml: 2 }}
+                                                        aria-controls={open ? 'account-menu' : undefined}
+                                                        aria-haspopup="true"
+                                                        aria-expanded={open ? 'true' : undefined}
+                                                    >
+                                                        <Avatar alt="pic" src={user?.photoURL} />
+                                                    </IconButton>
+                                                </Tooltip>
+                                            </Box>
+                                            <Menu
+                                                anchorEl={anchorEl}
+                                                id="account-menu"
+                                                open={open}
+                                                onClose={handleClose}
+                                                onClick={handleClose}
+                                                PaperProps={{
+                                                    elevation: 0,
+                                                    sx: {
+                                                        overflow: 'visible',
+                                                        filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                                                        mt: 1.5,
+                                                        '& .MuiAvatar-root': {
+                                                            width: 32,
+                                                            height: 32,
+                                                            ml: -0.5,
+                                                            mr: 1,
+                                                        },
+                                                        '&:before': {
+                                                            content: '""',
+                                                            display: 'block',
+                                                            position: 'absolute',
+                                                            top: 0,
+                                                            right: 14,
+                                                            width: 10,
+                                                            height: 10,
+                                                            bgcolor: 'background.paper',
+                                                            transform: 'translateY(-50%) rotate(45deg)',
+                                                            zIndex: 0,
+                                                        },
+                                                    },
+                                                }}
+                                                transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                                                anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+                                            >
+                                                <MenuItem onClick={handleClose}>
+                                                    <Link to='/dashboard'>Profile</Link>
+                                                </MenuItem>
+                                                <MenuItem onClick={handleClose}>
+                                                    <Link to='/dashboard/My_cart'>My cart</Link>
+                                                </MenuItem>
+                                                <Divider />
+                                                <MenuItem onClick={handleClose}>
+                                                    <Box onClick={handleLogout} sx={{ display: 'flex' }}>
+                                                        <ListItemIcon>
+                                                            <Logout fontSize="small" />
+                                                        </ListItemIcon>
+                                                        Logout
+                                                    </Box>
+                                                </MenuItem>
+                                            </Menu>
+                                        </>
+                                        :
+                                        <AiOutlineUser onClick={handleNoUserPic} className='text-[#222529] hidden lg:block' />
+                                }
                                 <FiHeart className='text-[#222529] hidden lg:block' />
                                 <button
                                     className='relative'
                                     onClick={handleDrawerOpen2}
                                 >
-                                    <AiOutlineShopping className='text-[#222529]' />
-                                    <span
-                                        className='absolute h-4 w-4 rounded-full bg-[#FF5B5B] z-1 text-white flex justify-center items-center text-[11px] -right-[7px] top-0'>
-                                        {cart?.data?.length}
-                                    </span>
+                                    <Badge color="secondary" badgeContent={cart?.data?.length}>
+                                        <AiOutlineShopping className='text-[#222529]' />
+                                    </Badge>
                                 </button>
                             </div>
                         </div>
