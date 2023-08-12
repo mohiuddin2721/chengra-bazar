@@ -1,12 +1,10 @@
-import React, { useContext } from 'react';
-import { AuthContext } from '../contexts/AuthProvider';
+import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
-
 const PrivateRoute = ({ children }) => {
-    const { user } = useContext(AuthContext);
+    const accessToken = localStorage.getItem("access-token");
     const location = useLocation();
-    
-    if (user) {
+
+    if (accessToken) {
         return children;
     }
 

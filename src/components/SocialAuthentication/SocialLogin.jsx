@@ -35,6 +35,10 @@ const SocialLogin = () => {
                     .then(res => res.json())
                     .then(data => {
                         // console.log("data",data)
+                        const accessToken = localStorage.getItem("access-token");
+                        if (accessToken) {
+                            navigate(from, { replace: true })
+                        }
                         if (data?.status === "success") {
                             navigate(from, { replace: true })
                         }
