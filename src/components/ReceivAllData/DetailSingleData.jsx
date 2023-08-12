@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import useGetAllData from '../../Hooks/useGetAllData';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 // import ImageMagnify from '../../features/ZoomImage/ImageMagnify';
 import ZoomImage from '../../features/ZoomImage/ZoomImage';
 import PriceFormate from '../../features/priceFormate/PriceFormate';
@@ -26,9 +26,12 @@ function DetailSingleData() {
     const [upperImage, setUpperImage] = useState("");
     const [selectedProductImg, setSelectedProductImg] = useState("");
     const queryClient = useQueryClient()
+    const location = useLocation()
+    // console.log(location.state.item)
 
-    const selectedProduct = allProduct?.filter(item => item._id === id);
-    const { _id, name, imageURL, description, price, unit, quantity, status, brand, ratting, categories, prePrice } = selectedProduct[0];
+    const selectedProduct = location.state.item;
+    // const selectedProduct = allProduct?.filter(item => item._id === id);
+    const { _id, name, imageURL, description, price, unit, quantity, status, brand, ratting, categories, prePrice } = selectedProduct;
     const relatedProduct = allProduct?.filter(item => item?.categories == categories)
 
     useEffect(() => {

@@ -70,7 +70,7 @@ const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <DashboardLayout />,
+        element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
         errorElement: <DisplayError></DisplayError>,
         children: [
             {
@@ -87,7 +87,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/My_cart',
-                element: <PrivateRoute><MyCart /></PrivateRoute>
+                element: <MyCart />
             },
             {
                 path: '/dashboard/Check_Out_Route',
