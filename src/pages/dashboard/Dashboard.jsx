@@ -38,8 +38,8 @@ const dashMiniCardData = [
 ]
 
 export default function Dashboard() {
-    const {user} =useAuth()
-    const { background } = DashboardColor;
+    const { user } = useAuth()
+    const { chartBackGradient } = DashboardColor;
 
     return (
         <div className='text-white'>
@@ -83,6 +83,7 @@ export default function Dashboard() {
                             padding: '40px', borderRadius: '20px',
                             maxHeight: '340px',
                             backgroundPosition: 'center',
+                            marginX: { xs: '10px', md: '7px', lg: '0px' },
                         }}
                         >
                             <div className='flex flex-col space-y-12'>
@@ -95,27 +96,34 @@ export default function Dashboard() {
                                     <p>Enjoy the work.</p>
                                 </div>
                                 <div className='mr-0 hover:mr-3'>
-                                    <p>Tap to record <BsArrowRightShort className='inline-block text-2xl' /> </p>
+                                    <p>Tap to record <BsArrowRightShort className='inline-block text-2xl' /></p>
                                 </div>
                             </div>
                         </Box>
                     </Grid>
                     <Grid item xs={12} sm={12} md={3} lg={3}>
                         <Box sx={{
-                            backgroundColor: background.main,
+                            background: chartBackGradient.background,
                             borderRadius: '20px',
-                            maxWidth: '340px',
+                            width: 'full',
                             maxHeight: '340px',
+                            marginX: { xs: '10px', md: '7px', lg: '0px' },
                         }}>
                             <SatisfactionChart />
                         </Box>
                     </Grid>
                     <Grid item xs={12} sm={12} md={4.5} lg={4.5}>
-                    <Box sx={{
-                            backgroundColor: background.main,
+                        <Box sx={{
+                            background: chartBackGradient.background,
                             borderRadius: '20px',
-                            maxHeight: '340px',
+                            width: 'full',
+                            minHeight: '350px',
+                            paddingTop: '20px',
+                            paddingRight: '20px',
+                            color: '#fff',
+                            marginX: { xs: '10px', md: '7px', lg: '7px' },
                         }}>
+                            <p className='text-xl font-bold text-end'>Last week sell</p>
                             <Last7DaysSell />
                         </Box>
                     </Grid>
