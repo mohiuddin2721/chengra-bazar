@@ -8,7 +8,7 @@ import { topNavSocialButtonStyle } from '../../Styles/ComponentStyle';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 function TopNav() {
-    const { user, logOut } = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
     const [currentLang, setCurrentLang] = useState(languages[0]);
     const [currentCur, setCurrentCur] = useState(currencies[0]);
     
@@ -23,7 +23,7 @@ function TopNav() {
                                 topNavItemsLink?.map((item, i) => <Link key={i} href={item.to}>{item.name}</Link>)
                             }
                             <li>
-                                {!user?.uid && <Link href='/signIn'>Login</Link>}
+                                {!user && <Link href='/signIn'>Login</Link>}
                             </li>
                         </ul>
                     </div>

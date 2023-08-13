@@ -4,9 +4,11 @@ import { AiOutlineUsergroupAdd } from 'react-icons/ai';
 import { BiMoney } from 'react-icons/bi';
 import { BsArrowRightShort } from 'react-icons/bs';
 import { FaFirstOrder } from 'react-icons/fa';
-// import { IoHappy } from 'react-icons/lo';
 import { FcSalesPerformance } from 'react-icons/fc';
 import DashboardColor from '../../assets/colors/DashboardColor';
+import useAuth from '../../Hooks/useAuth';
+import SatisfactionChart from '../dashboardChart/SatisfactionChart';
+import Last7DaysSell from '../dashboardChart/Last7DaysSell';
 
 const dashMiniCardData = [
     {
@@ -36,8 +38,8 @@ const dashMiniCardData = [
 ]
 
 export default function Dashboard() {
-    const { gradients } = DashboardColor;
-    const cardContent = gradients;
+    const {user} =useAuth()
+    const { background } = DashboardColor;
 
     return (
         <div className='text-white'>
@@ -86,7 +88,7 @@ export default function Dashboard() {
                             <div className='flex flex-col space-y-12'>
                                 <div>
                                     <p>Welcome back,</p>
-                                    <p className='text-2xl font-extrabold'>Mark Johnson</p>
+                                    <p className='text-2xl font-extrabold'>{user?.displayName}</p>
                                 </div>
                                 <div className='mt-6'>
                                     <p>Glad to see you again!</p>
@@ -99,13 +101,23 @@ export default function Dashboard() {
                         </Box>
                     </Grid>
                     <Grid item xs={12} sm={12} md={3} lg={3}>
-                        {/* bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb */}
-                        
-                        {/* bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb */}
-
+                        <Box sx={{
+                            backgroundColor: background.main,
+                            borderRadius: '20px',
+                            maxWidth: '340px',
+                            maxHeight: '340px',
+                        }}>
+                            <SatisfactionChart />
+                        </Box>
                     </Grid>
                     <Grid item xs={12} sm={12} md={4.5} lg={4.5}>
-                        <p></p>
+                    <Box sx={{
+                            backgroundColor: background.main,
+                            borderRadius: '20px',
+                            maxHeight: '340px',
+                        }}>
+                            <Last7DaysSell />
+                        </Box>
                     </Grid>
                 </Grid>
             </section>

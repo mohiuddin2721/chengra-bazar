@@ -2,6 +2,7 @@
 export default {
   background: {
     default: "#f8f9fa",
+    main: "#0f1239"
   },
 
   sideNav: {
