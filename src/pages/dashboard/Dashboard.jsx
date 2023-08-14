@@ -11,6 +11,7 @@ import SatisfactionChart from '../dashboardChart/SatisfactionChart';
 import Last7DaysSell from '../dashboardChart/Last7DaysSell';
 import CategoryChart from '../dashboardChart/CategoryChart';
 import { useState } from 'react';
+import UserChart from '../dashboardChart/UserChart';
 
 const dashMiniCardData = [
     {
@@ -131,7 +132,18 @@ export default function Dashboard() {
             <section className='mb-4'>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={12} md={5} lg={5}>
-                        <p></p>
+                        <Box sx={{
+                            background: chartBackGradient.background,
+                            borderRadius: '20px',
+                            width: 'full',
+                            // minHeight: { xs: '350px', lg: '320px' },
+                            paddingTop: '20px',
+                            paddingRight: '20px',
+                            // color: '#fff',
+                            marginX: { xs: '10px', md: '7px', lg: '7px' },
+                        }}>
+                            <UserChart />
+                        </Box>
                     </Grid>
                     <Grid item xs={12} sm={12} md={7} lg={7}>
                         <Box sx={{

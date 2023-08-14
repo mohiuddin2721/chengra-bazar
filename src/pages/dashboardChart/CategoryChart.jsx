@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactApexChart from 'react-apexcharts';
 
-const CategoryChart = ({ selectedChartType }) => {
-    console.log(selectedChartType)
+const CategoryChart = () => {
+    
     const options = {
         theme: {
             mode: 'dark',
@@ -57,7 +57,7 @@ const CategoryChart = ({ selectedChartType }) => {
             }
         },
         title: {
-            text: 'Each month sell',
+            text: 'Each month sell - 2023',
             style: {
                 color: '#0f0',
                 fontSize: 20,
