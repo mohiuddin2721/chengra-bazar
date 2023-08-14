@@ -9,6 +9,8 @@ import DashboardColor from '../../assets/colors/DashboardColor';
 import useAuth from '../../Hooks/useAuth';
 import SatisfactionChart from '../dashboardChart/SatisfactionChart';
 import Last7DaysSell from '../dashboardChart/Last7DaysSell';
+import CategoryChart from '../dashboardChart/CategoryChart';
+import { useState } from 'react';
 
 const dashMiniCardData = [
     {
@@ -40,7 +42,6 @@ const dashMiniCardData = [
 export default function Dashboard() {
     const { user } = useAuth()
     const { chartBackGradient } = DashboardColor;
-
     return (
         <div className='text-white'>
             <section className='mb-8'>
@@ -75,7 +76,7 @@ export default function Dashboard() {
                     }
                 </Grid>
             </section>
-            <section>
+            <section className='mb-8'>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={12} md={4.5} lg={4.5}>
                         <Box sx={{
@@ -117,26 +118,34 @@ export default function Dashboard() {
                             background: chartBackGradient.background,
                             borderRadius: '20px',
                             width: 'full',
-                            minHeight: '350px',
+                            minHeight: { xs: '350px', lg: '320px' },
                             paddingTop: '20px',
                             paddingRight: '20px',
-                            color: '#fff',
                             marginX: { xs: '10px', md: '7px', lg: '7px' },
                         }}>
-                            <p className='text-xl font-bold text-end'>Last week sell</p>
                             <Last7DaysSell />
                         </Box>
                     </Grid>
                 </Grid>
             </section>
-            <section>
-                <p>Chart</p>
+            <section className='mb-4'>
                 <Grid container spacing={2}>
-                    <Grid item xs={12} sm={12} md={7} lg={7}>
-                        <p></p>
-                    </Grid>
                     <Grid item xs={12} sm={12} md={5} lg={5}>
                         <p></p>
+                    </Grid>
+                    <Grid item xs={12} sm={12} md={7} lg={7}>
+                        <Box sx={{
+                            background: chartBackGradient.background,
+                            borderRadius: '20px',
+                            width: 'full',
+                            // minHeight: { xs: '350px', lg: '320px' },
+                            paddingTop: '20px',
+                            paddingRight: '20px',
+                            // color: '#fff',
+                            marginX: { xs: '10px', md: '7px', lg: '7px' },
+                        }}>
+                            <CategoryChart />
+                        </Box>
                     </Grid>
                 </Grid>
             </section>

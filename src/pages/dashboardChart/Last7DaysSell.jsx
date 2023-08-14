@@ -9,8 +9,8 @@ const Last7DaysSell = () => {
         chart: {
             width: 380,
             type: 'pie',
+            background: 'transparent',
         },
-        // labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
         labels: customLabels,
         responsive: [
             {
@@ -22,11 +22,27 @@ const Last7DaysSell = () => {
                 },
             },
         ],
+        theme: {
+            mode: 'dark',
+        },
+        title: {
+            text: 'Last week sell',
+            style: {
+                color: '#0f0',
+                fontSize: 20,
+            }
+        },
+        colors: ['#FF5733', '#3366CC', '#33CC99', '#FFCC29', '#9933CC', '#C51605', '#66CC66']
     };
 
     return (
         <div id="chart">
-            <ReactApexChart options={options} series={series} type="pie" width={380} />
+            <ReactApexChart
+                options={options}
+                series={series}
+                type="pie"
+                width={380}
+            />
         </div>
     );
 };

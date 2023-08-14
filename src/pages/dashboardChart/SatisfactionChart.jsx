@@ -8,6 +8,7 @@ const SatisfactionChart = () => {
         chart: {
             height: 150,
             type: 'radialBar',
+            background: 'transparent',
         },
         plotOptions: {
             radialBar: {
@@ -46,14 +47,14 @@ const SatisfactionChart = () => {
                     name: {
                         offsetY: -10,
                         show: true,
-                        color: '#888',
+                        color: '#0b0d76',
                         fontSize: '20px',
                     },
                     value: {
                         formatter: function (val) {
-                            return parseInt(val);
+                            return `${parseInt(val)}%`;
                         },
-                        color: '#111',
+                        color: '#0b0d76',
                         fontSize: '36px',
                         fontWeight: 700,
                         show: true,
@@ -74,6 +75,9 @@ const SatisfactionChart = () => {
                 stops: [0, 100],
             },
         },
+        theme: {
+            mode: 'dark',
+        },
         stroke: {
             lineCap: 'round',
         },
@@ -82,7 +86,12 @@ const SatisfactionChart = () => {
 
     return (
         <div>
-            <ApexCharts options={options} series={options.series} type="radialBar" height={350} />
+            <ApexCharts
+                options={options}
+                series={options.series}
+                type="radialBar"
+                height={350}
+            />
         </div>
     );
 };
