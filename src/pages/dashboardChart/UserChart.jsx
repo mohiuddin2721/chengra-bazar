@@ -42,6 +42,17 @@ const UserChart = () => {
                 color: '#0f0',
                 fontSize: 14,
             }
+        },
+        fill: {
+            type: 'gradient',
+            gradient: {
+                shade: 'dark',
+                shadeIntensity: 0.5,
+                opacityFrom: 1,
+                opacityTo: 0.5,
+                stops: [0, 50, 100],
+                gradientToColors: ['#0e95ff', '#2cd9ff'],
+            }
         }
     }
 
@@ -49,10 +60,12 @@ const UserChart = () => {
     const series = [
         {
             name: 'Sells',
-            data: [107, 80, 134, 115, 280, 345, 475, 608]
+            data: [207, 80, 434, 115, 480, 245, 475, 608],
+            color: '#0e95ff',
         }, {
             name: 'Users',
-            data: [287, 150, 312, 180, 345, 658, 815, 1125]
+            data: [487, 150, 512, 180, 745, 358, 815, 1125],
+            color: '#2cd9ff',
         }
     ];
 
