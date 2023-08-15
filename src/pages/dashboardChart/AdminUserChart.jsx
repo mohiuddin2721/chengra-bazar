@@ -37,9 +37,6 @@ const AdminUserChart = () => {
                 return label + " - " + seriesValue;
             }
         },
-        title: {
-            text: 'Admin & store manager'
-        },
         responsive: [{
             breakpoint: 480,
             options: {

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const tableHead = ['Client / Invoice', 'Amount', 'Issued date', 'Status']
 const tableBody = [
@@ -108,6 +109,13 @@ const DashShortOrderTable = () => {
                             </tbody>
                         </table>
                     </div>
+                </div>
+                <div>
+                    <p className='underline hover:text-green-500 text-end'>
+                        <Link to='/dashboard/history_of_payment'>
+                            see all
+                        </Link>
+                    </p>
                 </div>
             </div>
         </div>

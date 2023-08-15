@@ -14,6 +14,7 @@ import CategoryChart from '../dashboardChart/CategoryChart';
 import UserChart from '../dashboardChart/UserChart';
 import AdminUserChart from '../dashboardChart/AdminUserChart';
 import DashShortOrderTable from './DashShortOrderTable';
+import { Link } from 'react-router-dom';
 
 const dashMiniCardData = [
     {
@@ -180,11 +181,18 @@ export default function Dashboard() {
                             borderRadius: '20px',
                             width: 'full',
                             minHeight: '350px',
-                            paddingTop: '20px',
                             paddingRight: '20px',
                             marginX: { xs: '10px', md: '7px', lg: '7px' },
                         }}>
-                            <AdminUserChart />
+                            <Box>
+                                <p className='py-4 text-xl font-bold ml-3'>Admin & store manager</p>
+                                <AdminUserChart />
+                                <p className='underline hover:text-green-500 text-end pb-2'>
+                                    <Link to='/dashboard/Manage_account'>
+                                        see all
+                                    </Link>
+                                </p>
+                            </Box>
                         </Box>
                     </Grid>
                 </Grid>
