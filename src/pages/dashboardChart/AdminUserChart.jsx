@@ -9,7 +9,7 @@ const AdminUserChart = () => {
             mode: 'dark',
         },
         chart: {
-            height: 350,
+            height: 360,
             type: 'donut',
             background: 'transparent'
         },
@@ -58,7 +58,7 @@ const AdminUserChart = () => {
                 options={options}
                 series={series}
                 type="donut"
-                height={350}
+                height={360}
             />
         </div>
     );

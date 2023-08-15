@@ -1,5 +1,6 @@
-import { Box, Grid } from '@mui/material';
 import React from 'react';
+import dashBack from '../../assets/dashBack.png'
+import { Box, Grid } from '@mui/material';
 import { AiOutlineUsergroupAdd } from 'react-icons/ai';
 import { BiMoney } from 'react-icons/bi';
 import { BsArrowRightShort } from 'react-icons/bs';
@@ -10,9 +11,9 @@ import useAuth from '../../Hooks/useAuth';
 import SatisfactionChart from '../dashboardChart/SatisfactionChart';
 import Last7DaysSell from '../dashboardChart/Last7DaysSell';
 import CategoryChart from '../dashboardChart/CategoryChart';
-import { useState } from 'react';
 import UserChart from '../dashboardChart/UserChart';
 import AdminUserChart from '../dashboardChart/AdminUserChart';
+import DashShortOrderTable from './DashShortOrderTable';
 
 const dashMiniCardData = [
     {
@@ -82,10 +83,9 @@ export default function Dashboard() {
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={12} md={4.5} lg={4.5}>
                         <Box sx={{
-                            backgroundImage: "url('https://demos.creative-tim.com/vision-ui-dashboard-react/static/media/cardimgfree.5771cbbb.png')",
-                            padding: '40px', borderRadius: '20px',
-                            maxHeight: '340px',
-                            backgroundPosition: 'center',
+                            backgroundImage: `url(${dashBack})`,
+                            padding: '40px', borderRadius: '20px', backgroundPosition: 'center',
+                            minHeight: '340px', backgroundRepeat: 'no-repeat',
                             marginX: { xs: '10px', md: '7px', lg: '0px' },
                         }}
                         >
@@ -162,16 +162,26 @@ export default function Dashboard() {
             <section>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={12} md={8} lg={8}>
-                        <p></p>
+                        <Box sx={{
+                            background: chartBackGradient.background,
+                            borderRadius: '20px',
+                            width: 'full',
+                            // maxHeight: '350px',
+                            paddingTop: '20px',
+                            paddingRight: '20px',
+                            marginX: { xs: '10px', md: '7px', lg: '7px' },
+                        }}>
+                            <DashShortOrderTable />
+                        </Box>
                     </Grid>
                     <Grid item xs={12} sm={12} md={4} lg={4}>
                         <Box sx={{
                             background: chartBackGradient.background,
                             borderRadius: '20px',
                             width: 'full',
-                            // minHeight: { xs: '350px', lg: '320px' },
-                            // paddingTop: '20px',
-                            // paddingRight: '20px',
+                            minHeight: '350px',
+                            paddingTop: '20px',
+                            paddingRight: '20px',
                             marginX: { xs: '10px', md: '7px', lg: '7px' },
                         }}>
                             <AdminUserChart />
