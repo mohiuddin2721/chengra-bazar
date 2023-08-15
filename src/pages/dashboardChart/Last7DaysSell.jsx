@@ -28,7 +28,7 @@ const Last7DaysSell = () => {
         title: {
             text: 'Last week sell',
             style: {
-                color: '#0f0',
+                color: '#fff',
                 fontSize: 20,
             }
         },

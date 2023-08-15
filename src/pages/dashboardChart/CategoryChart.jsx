@@ -59,7 +59,7 @@ const CategoryChart = () => {
         title: {
             text: 'Each month sell - 2023',
             style: {
-                color: '#0f0',
+                color: '#fff',
                 fontSize: 20,
             }
         }

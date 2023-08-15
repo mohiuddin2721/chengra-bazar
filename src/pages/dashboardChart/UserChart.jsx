@@ -32,7 +32,7 @@ const UserChart = () => {
         title: {
             text: 'users & sells overview',
             style: {
-                color: '#0f0',
+                color: '#fff',
                 fontSize: 20,
             }
         },

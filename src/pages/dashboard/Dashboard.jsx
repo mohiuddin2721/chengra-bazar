@@ -12,6 +12,7 @@ import Last7DaysSell from '../dashboardChart/Last7DaysSell';
 import CategoryChart from '../dashboardChart/CategoryChart';
 import { useState } from 'react';
 import UserChart from '../dashboardChart/UserChart';
+import AdminUserChart from '../dashboardChart/AdminUserChart';
 
 const dashMiniCardData = [
     {
@@ -139,7 +140,6 @@ export default function Dashboard() {
                             // minHeight: { xs: '350px', lg: '320px' },
                             paddingTop: '20px',
                             paddingRight: '20px',
-                            // color: '#fff',
                             marginX: { xs: '10px', md: '7px', lg: '7px' },
                         }}>
                             <UserChart />
@@ -150,10 +150,8 @@ export default function Dashboard() {
                             background: chartBackGradient.background,
                             borderRadius: '20px',
                             width: 'full',
-                            // minHeight: { xs: '350px', lg: '320px' },
                             paddingTop: '20px',
                             paddingRight: '20px',
-                            // color: '#fff',
                             marginX: { xs: '10px', md: '7px', lg: '7px' },
                         }}>
                             <CategoryChart />
@@ -162,13 +160,22 @@ export default function Dashboard() {
                 </Grid>
             </section>
             <section>
-                <p>Projects</p>
                 <Grid container spacing={2}>
-                    <Grid item xs={12} sm={12} md={8} lg={4}>
+                    <Grid item xs={12} sm={12} md={8} lg={8}>
                         <p></p>
                     </Grid>
-                    <Grid item xs={12} sm={12} md={8} lg={4}>
-                        <p></p>
+                    <Grid item xs={12} sm={12} md={4} lg={4}>
+                        <Box sx={{
+                            background: chartBackGradient.background,
+                            borderRadius: '20px',
+                            width: 'full',
+                            // minHeight: { xs: '350px', lg: '320px' },
+                            // paddingTop: '20px',
+                            // paddingRight: '20px',
+                            marginX: { xs: '10px', md: '7px', lg: '7px' },
+                        }}>
+                            <AdminUserChart />
+                        </Box>
                     </Grid>
                 </Grid>
             </section>
