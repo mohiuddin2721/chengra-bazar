@@ -1,5 +1,6 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import useAuth from '../../Hooks/useAuth';
 import useCart from '../../Hooks/useCart';
@@ -18,6 +19,7 @@ const CheckOutForm = ({ price }) => {
     const [processing, setProcessing] = useState(false);
     const [transactionId, setTransactionId] = useState("");
     const { totalQuantityOrder } = useContext(CartContext)
+    const navigate = useNavigate();
 
     console.log("price", price)
     // console.log("price", cart)
@@ -106,6 +108,7 @@ const CheckOutForm = ({ price }) => {
                             showConfirmButton: false,
                             timer: 1500
                           })
+                          navigate("/dashboard/My_order")
                     }
                 })
         }
