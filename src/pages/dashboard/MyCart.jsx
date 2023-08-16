@@ -20,7 +20,7 @@ const MyCart = () => {
         />)
     const noCartData = <p
         className='text-white font-bold flex h-full justify-center items-center'>
-        No product here yet, <Link to="/productsFilter"><span className='ml-2 underline'>select your product</span></Link>
+        Your cart is empty, <Link to="/productsFilter"><span className='ml-2 underline hover:text-green-500'>select your product</span></Link>
     </p>
 
     return (

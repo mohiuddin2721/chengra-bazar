@@ -1,36 +1,13 @@
 import React from 'react';
-import { BiDetail } from 'react-icons/bi';
-import Swal from 'sweetalert2';
 
-const tableHead = ['Email', 'Amount', 'Issued date', 'Status']
+const tableHead = ['Email', 'Quantity', 'Amount', 'Issued date', 'Status']
 
-const MyOrderTable = ({ orderData }) => {
-    // console.log(orderData)
-
-    const handleDetails = (data) => {
-        // console.log("data",data)
-        const imageElements = data?.itemImages?.map(link => `<img src="http://localhost:5000/${link}" alt="Image"  style="max-width: 300px; max-height: 300px; margin-right: 10px" /><br>`).join('');
-
-        Swal.fire({
-            title: `<strong>Items: ${data?.quantity}</strong>`,
-            html:
-                `<div style="margin-bottom: 15px;">
-                <p style="color: green;">your transaction id: ${data?.transactionId}</p>
-            </div>`
-                +
-                `<p style="color: blue; margin-bottom: 15px;">your product picture</p>`
-                +
-                `<div style="display: flex">${imageElements}</div>`,
-            showCloseButton: true,
-            focusConfirm: false,
-        })
-    }
-
+const PaymentHistoryTable = ({ paymentData, turnover }) => {
     return (
         <div className="container mx-auto px-4 sm:px-8">
             <div className="py-8">
                 <div>
-                    <h2 className="text-2xl text-white font-semibold leading-tight">All of orders</h2>
+                    <h2 className="text-2xl text-white font-semibold leading-tight">Turnover: <span className='text-green-500 text-sm'>(total - ${turnover})</span> </h2>
                 </div>
                 <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
                     <div
@@ -52,25 +29,23 @@ const MyOrderTable = ({ orderData }) => {
                             </thead>
                             <tbody>
                                 {
-                                    orderData?.map((item) =>
+                                    paymentData?.map((item) =>
                                         <tr key={item?._id} className='hover:bg-black'>
                                             <td className="px-5 py-5 border-b border-gray-200 text-sm">
                                                 <div className="flex items-center">
-                                                    <p
-                                                        onClick={() => handleDetails(item)}
-                                                        className='underline text-green-400 font-bold cursor-pointer text-xl'><BiDetail /></p>
-                                                    <div className="ml-3">
-                                                        <p className="text-white whitespace-no-wrap">
-                                                            {item?.email}
-                                                        </p>
-                                                    </div>
+                                                    <p className="text-white ">
+                                                        {item?.email}
+                                                    </p>
                                                 </div>
                                             </td>
                                             <td className="px-5 py-5 border-b border-gray-200 text-sm">
-                                                <p className=" whitespace-no-wrap text-green-400 font-bold">${item.totalPrice}</p>
+                                                <p className="  text-white font-bold">{item?.quantity}</p>
+                                            </td>
+                                            <td className="px-5 py-5 border-b border-gray-200 text-sm">
+                                                <p className="text-green-400 font-bold">${item?.totalPrice}</p>
                                             </td>
                                             <td className="px-5 py-5 border-b border-gray-200 text-white text-sm">
-                                                <p className=" whitespace-no-wrap">{new Date(item?.updatedAt).toLocaleString()}</p>
+                                                <p className=" ">{new Date(item?.updatedAt).toLocaleString()}</p>
                                             </td>
                                             <td className="px-5 py-5 border-b border-gray-200 text-sm">
                                                 <span
@@ -80,13 +55,26 @@ const MyOrderTable = ({ orderData }) => {
                                                         aria-hidden
                                                         className="absolute inset-0 bg-red-300 opacity-50 rounded-full"
                                                     ></span>
-                                                    <span className="relative text-gray-300">{item.status}</span>
+                                                    <span className="relative text-gray-300">{item?.status}</span>
                                                 </span>
                                             </td>
                                         </tr>
                                     )
                                 }
                             </tbody>
+                            <thead>
+                                <tr>
+                                    {
+                                        tableHead.map((item, i) =>
+                                            <th key={i}
+                                                className="px-5 py-3 border-b-2 border-gray-200 text-white text-left text-xs font-semibold uppercase tracking-wider"
+                                            >
+                                                {item}
+                                            </th>
+                                        )
+                                    }
+                                </tr>
+                            </thead>
                         </table>
                     </div>
                 </div>
@@ -95,4 +83,4 @@ const MyOrderTable = ({ orderData }) => {
     );
 };
 
-export default MyOrderTable;
+export default PaymentHistoryTable;
