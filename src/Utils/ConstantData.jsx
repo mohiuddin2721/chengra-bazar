@@ -5,6 +5,10 @@ import por from '../assets/POR.svg';
 import ger from '../assets/GER.svg';
 import { format } from 'date-fns';
 import { TbReplace, TbTruckDelivery } from 'react-icons/tb';
+import { FaFirstOrder, FaComments, FaShare, FaUserFriends  } from 'react-icons/fa';
+import { FcSalesPerformance } from 'react-icons/fc';
+import { AiOutlineUsergroupAdd, AiFillLike } from 'react-icons/ai';
+import { BiMoney } from 'react-icons/bi';
 const today = format(new Date(), 'MMM dd').split(' ');
 
 export const languages = [
@@ -653,3 +657,57 @@ export const toastConfig = {
     draggable: true,
     progress: undefined,
 }
+
+export const dashMiniCardData = [
+    {
+        name: "Today's Money",
+        value: "$15,240",
+        percent: 40,
+        icon: <BiMoney />,
+    },
+    {
+        name: "Total Users",
+        value: "2015",
+        percent: 4,
+        icon: <AiOutlineUsergroupAdd />,
+    },
+    {
+        name: "Total Sales",
+        value: "45078",
+        percent: 11,
+        icon: <FcSalesPerformance />,
+    },
+    {
+        name: "Today's Order",
+        value: "245",
+        percent: 13,
+        icon: <FaFirstOrder />,
+    },
+]
+
+export const userDashMiniCardData = [
+    {
+        name: "Total comments",
+        value: "34125",
+        percent: 23,
+        icon: <FaComments />,
+    },
+    {
+        name: "Our customers",
+        value: "210000",
+        percent: 37,
+        icon: <FaUserFriends />,
+    },
+    {
+        name: "Total likes",
+        value: "425041",
+        percent: 42,
+        icon: <AiFillLike />,
+    },
+    {
+        name: "Total share",
+        value: "54210",
+        percent: 21,
+        icon: <FaShare />,
+    },
+]

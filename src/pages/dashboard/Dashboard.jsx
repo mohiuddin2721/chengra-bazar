@@ -1,11 +1,7 @@
 import React from 'react';
 import dashBack from '../../assets/dashBack.png'
 import { Box, Grid } from '@mui/material';
-import { AiOutlineUsergroupAdd } from 'react-icons/ai';
-import { BiMoney } from 'react-icons/bi';
 import { BsArrowRightShort } from 'react-icons/bs';
-import { FaFirstOrder } from 'react-icons/fa';
-import { FcSalesPerformance } from 'react-icons/fc';
 import DashboardColor from '../../assets/colors/DashboardColor';
 import useAuth from '../../Hooks/useAuth';
 import SatisfactionChart from '../dashboardChart/SatisfactionChart';
@@ -15,33 +11,7 @@ import UserChart from '../dashboardChart/UserChart';
 import AdminUserChart from '../dashboardChart/AdminUserChart';
 import DashShortOrderTable from './DashShortOrderTable';
 import { Link } from 'react-router-dom';
-
-const dashMiniCardData = [
-    {
-        name: "Today's Money",
-        value: "$15,240",
-        percent: 40,
-        icon: <BiMoney />,
-    },
-    {
-        name: "Total Users",
-        value: "2015",
-        percent: 4,
-        icon: <AiOutlineUsergroupAdd />,
-    },
-    {
-        name: "Total Sales",
-        value: "45078",
-        percent: 11,
-        icon: <FcSalesPerformance />,
-    },
-    {
-        name: "Today's Order",
-        value: "245",
-        percent: 13,
-        icon: <FaFirstOrder />,
-    },
-]
+import { dashMiniCardData } from '../../Utils/ConstantData';
 
 export default function Dashboard() {
     const { user } = useAuth()
@@ -198,7 +168,7 @@ export default function Dashboard() {
                 </Grid>
             </section>
             <section>
-                <p>chart 2nd</p>
+                {/* <p>chart 2nd</p> */}
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={12} md={5} lg={5}>
                         <p></p>
@@ -209,7 +179,7 @@ export default function Dashboard() {
                 </Grid>
             </section>
             <section>
-                <p>Small footer</p>
+                {/* <p>Small footer</p> */}
             </section>
         </div>
     );
