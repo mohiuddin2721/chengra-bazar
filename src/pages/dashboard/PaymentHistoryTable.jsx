@@ -19,7 +19,7 @@ const PaymentHistoryTable = ({ paymentData, turnover }) => {
                                     {
                                         tableHead.map((item, i) =>
                                             <th key={i}
-                                                className="px-5 py-3 border-b-2 border-gray-200 text-white text-left text-xs font-semibold uppercase tracking-wider"
+                                                className="px-5 py-3 border-b-4 border-green-500 text-white text-left text-xs font-semibold uppercase tracking-wider"
                                             >
                                                 {item}
                                             </th>
@@ -42,7 +42,8 @@ const PaymentHistoryTable = ({ paymentData, turnover }) => {
                                                 <p className="  text-white font-bold">{item?.quantity}</p>
                                             </td>
                                             <td className="px-5 py-5 border-b border-gray-200 text-sm">
-                                                <p className="text-green-400 font-bold">${item?.totalPrice}</p>
+                                                <p className={`font-bold ${item?.totalPrice >= 65 ? 'text-red-400' : 'text-green-400'}`}>${item?.totalPrice}</p>
+                                                {/* <p className="text-green-400 font-bold">${item?.totalPrice}</p> */}
                                             </td>
                                             <td className="px-5 py-5 border-b border-gray-200 text-white text-sm">
                                                 <p className=" ">{new Date(item?.updatedAt).toLocaleString()}</p>
@@ -67,7 +68,7 @@ const PaymentHistoryTable = ({ paymentData, turnover }) => {
                                     {
                                         tableHead.map((item, i) =>
                                             <th key={i}
-                                                className="px-5 py-3 border-b-2 border-gray-200 text-white text-left text-xs font-semibold uppercase tracking-wider"
+                                                className="px-5 py-3 border-b-4 border-green-500 text-white text-left text-xs font-semibold uppercase tracking-wider"
                                             >
                                                 {item}
                                             </th>

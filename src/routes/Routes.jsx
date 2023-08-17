@@ -22,6 +22,8 @@ import SendMail from "../pages/dashboard/SendMail";
 import CheckOut from "../pages/payment/CheckOut";
 import PaymentHistory from "../pages/dashboard/PaymentHistory";
 import SpecialOffer from "../components/specialOffer/SpecialOffer";
+import AdminRoute from "./AdminRoute";
+import StoreManagerRoute from "./StoreManagerRoute";
 
 
 const router = createBrowserRouter([
@@ -103,7 +105,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/Management',
-                element: <Management />
+                element: <StoreManagerRoute><Management /></StoreManagerRoute>
             },
             {
                 path: '/dashboard/Send_mail',
@@ -111,7 +113,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/history_of_payment',
-                element: <PaymentHistory />
+                element: <AdminRoute><PaymentHistory /></AdminRoute>
             },
         ]
     }
