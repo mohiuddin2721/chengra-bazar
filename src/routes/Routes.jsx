@@ -24,6 +24,7 @@ import PaymentHistory from "../pages/dashboard/PaymentHistory";
 import SpecialOffer from "../components/specialOffer/SpecialOffer";
 import AdminRoute from "./AdminRoute";
 import StoreManagerRoute from "./StoreManagerRoute";
+import UserDashboard from "../pages/dashboard/UserDashboard";
 
 
 const router = createBrowserRouter([
@@ -80,8 +81,12 @@ const router = createBrowserRouter([
                 element: <Dashboard />
             },
             {
+                path: '/dashboard/userDash',
+                element: <UserDashboard />
+            },
+            {
                 path: '/dashboard/Manage_account',
-                element: <ManageAccount />
+                element: <AdminRoute><ManageAccount /></AdminRoute>
             },
             {
                 path: '/dashboard/My_order',
@@ -97,11 +102,11 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/Upload_&_Update',
-                element: <Upload_Update />
+                element: <AdminRoute><Upload_Update /></AdminRoute>
             },
             {
                 path: '/dashboard/Administration',
-                element: <Administration />
+                element: <StoreManagerRoute><Administration /></StoreManagerRoute>
             },
             {
                 path: '/dashboard/Management',

@@ -12,7 +12,7 @@ import { Avatar, Badge, Box, ListItemIcon, Divider, IconButton, Tooltip, Collaps
 import { categories } from '../../Utils/ConstantData';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SideCartProduct from './SideCartProduct';
 import useCart from '../../Hooks/useCart';
 import { CartContext } from '../../contexts/CartProvider';
@@ -29,9 +29,13 @@ const MiddleNav = () => {
     const [openCollapseMenu1, setCollapseMenu1] = useState(false);
     const [cart, isLoading, refetch] = useCart()
     const { totalQuantityOrder, totalPrice } = useContext(CartContext)
-    // console.log(user?.photoURL)
-
     const [anchorEl, setAnchorEl] = useState(null);
+    const navigate = useNavigate()
+
+    const goCheckOutPage = () => {
+        navigate("/dashboard/Check_Out_Route", { state: { totalPrice: totalPrice, totalQuantityOrder: totalQuantityOrder } })
+    }
+    // console.log(user?.photoURL)
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -289,11 +293,14 @@ const MiddleNav = () => {
                                         VIEW CART
                                     </button>
                                 </Link>
-                                <Link to='/dashboard/Check_Out_Route'>
-                                    <button className='bg-[#222529] hover:bg-[#34393F] text-white duration-500 text-[12px] font-semibold py-[14px] leading-[16px] tracking-wide rounded-sm px-[25px]'>
-                                        CHECKOUT
-                                    </button>
-                                </Link>
+                                {/* <Link to='/dashboard/Check_Out_Route'> */}
+                                <button
+                                    onClick={goCheckOutPage}
+                                    className='bg-[#222529] hover:bg-[#34393F] text-white duration-500 text-[12px] font-semibold py-[14px] leading-[16px] tracking-wide rounded-sm px-[25px]'
+                                >
+                                    CHECKOUT
+                                </button>
+                                {/* </Link> */}
                             </div>
                         </Box>
                     </Drawer>

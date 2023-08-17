@@ -14,6 +14,7 @@ import { SiAmericanexpress, SiPayoneer } from 'react-icons/si';
 import { CartContext } from '../../contexts/CartProvider';
 import Headline from '../../components/Headline/Headline';
 import PriceFormate from '../../features/priceFormate/PriceFormate';
+import { useLocation } from 'react-router-dom';
 
 
 const stripePromise = loadStripe(import.meta.env.VITE_REACT_STRIPE_KEY);
@@ -22,8 +23,11 @@ const CheckOut = () => {
     const [userAddress, isLoading] = useAddress();
     const [zip, setZip] = useState(null)
     const [selectedPaymentOption, setSelectedPaymentOption] = useState(null);
-    const { totalPrice, totalQuantityOrder } = useContext(CartContext)
+    // const { totalPrice, totalQuantityOrder } = useContext(CartContext)
+    const location = useLocation();
     const [priceToPay, setPriceToPay] = useState(0)
+    const totalPrice = location?.state?.totalPrice;
+    const totalQuantityOrder = location?.state?.totalQuantityOrder;
 
     useEffect(() => {
         const total = (totalQuantityOrder * 5) + totalPrice;
