@@ -1,33 +1,24 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import { Country } from 'country-state-city';
 import PhoneInput from 'react-phone-input-2'
 import Select from 'react-select';
 import 'react-phone-input-2/lib/style.css'
-import { AuthContext } from '../../contexts/AuthProvider';
 import useAddress from '../../Hooks/useAddress';
 import Loader from '../../components/Loader/Loader';
 import { toast } from 'react-toastify';
 import { useQueryClient } from '@tanstack/react-query';
+import { toastConfig } from '../../Utils/ConstantData';
+import useAuth from '../../Hooks/useAuth';
 
 const UpdateAddressForm = ({ closeAddress, setZip }) => {
-    const { user } = useContext(AuthContext)
+    const { user } = useAuth();
     const [userAddress, isLoading] = useAddress();
     const [phoneNumber, setPhoneNumber] = useState('');
     const countryData = Country.getAllCountries();
     const [country, setCountry] = useState(countryData[230]);
     const [id, setId] = useState(userAddress?.data[0]?._id)
     const queryClient = useQueryClient()
-
-    const toastConfig = {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-    }
 
     if (isLoading) {
         return <Loader />
