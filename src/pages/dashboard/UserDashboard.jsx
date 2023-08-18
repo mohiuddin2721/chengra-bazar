@@ -6,15 +6,19 @@ import UserDashChart from './UserDashChart';
 import useAddress from '../../Hooks/useAddress';
 import Loader from '../../components/Loader/Loader';
 import { BsFillPencilFill } from 'react-icons/bs';
+import UpdateAddressForm from '../payment/UpdateAddressForm';
 
 const UserDashboard = () => {
     const { user } = useAuth();
     const [userAddress, isLoading, refetch] = useAddress();
-    const [updateAddress, setUpdateAddress]=useState(false)
+    const [zip, setZip] = useState(null)
     // console.log(userAddress?.data?.[0])
 
     const handleAddress = () => {
-        setUpdateAddress(true)
+        setZip(true)
+    }
+    const closeAddress = () => {
+        setZip(false);
     }
 
     if (isLoading) {
@@ -99,19 +103,20 @@ const UserDashboard = () => {
                     style={{
                         clipPath: "polygon(0% 0%, 100% 0%, 100% 75%, 75% 75%, 75% 100%, 50% 75%, 0% 75%)"
                     }}
-                    className='w-[96%] md:w-[40%] min-h-[50vh] mx-auto bg-[#260c29] relative'
+                    className='w-[96%] md:w-[40%] min-h-[50vh] mx-auto bg-[#260c29] relative rounded-md'
                 >
                     <div className='w-full p-4'>
                         <div className='flex justify-center items-center'>
                             {
                                 userAddress?.data?.map(item => <div key={item?._id} className='text-white'>
-                                    <p className='font-bold text-white text-xl underline mb-3'>Your shipping address:</p>
+                                    <p className='font-bold text-white text-xl underline my-3'>Your shipping address:</p>
                                     <p className="font-bold mb-2"> Name: <span className='text-green-500 ml-1'>{item?.name || user?.displayName}</span></p>
                                     <p>Phone: <span className='text-green-500 ml-1'>{item?.phone || "click change to update"}</span></p>
                                     <p>Email: <span className='text-green-500 ml-1'>{item?.email || "click change to update"}</span></p>
                                     <p>Road N.: <span className='text-green-500 ml-1'>{item?.address || "click change to update"}</span></p>
                                     <p>Zip: <span className='text-green-500 ml-1'>{item?.zipCode || "click change to update"}</span></p>
-                                    <p>Country: <span className='text-green-500 ml-1'>{item?.country || "click change to update"}, {item?.state || "click change to update"}</span></p>
+                                    <p>State: <span className='text-green-500 ml-1'>{item?.state || "click change to update"}</span></p>
+                                    <p>Country: <span className='text-green-500 ml-1'>{item?.country || "click change to update"}</span></p>
                                 </div>
                                 )
                             }
@@ -123,6 +128,11 @@ const UserDashboard = () => {
                         change <BsFillPencilFill className='ml-2' />
                     </span>
                 </div>
+            </section>
+            <section className='mt-[15px]'>
+                {
+                    zip && <UpdateAddressForm closeAddress={closeAddress} setZip={setZip}  />
+                }
             </section>
             <section className='h-[20vh]'>
                 <svg width="100%" height="100%" viewBox="0 0 1000 1000" preserveAspectRatio="none" overflow="auto" shapeRendering="auto" fill="#ffffff">
