@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
 
-const Last7DaysSell = () => {
-    const [series, setSeries] = useState([44, 55, 13, 43, 47, 61, 34]);
-    const customLabels = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+const UserDashChart = () => {
+    const [series, setSeries] = useState([18, 6, 30, 15]);
+    const customLabels = ['Products', 'Category', 'Upcoming', 'best_product'];
 
     const options = {
         chart: {
@@ -26,7 +27,7 @@ const Last7DaysSell = () => {
             mode: 'dark',
         },
         title: {
-            text: 'Last week sell',
+            text: 'Overview',
             style: {
                 color: '#fff',
                 fontSize: 20,
@@ -34,7 +35,6 @@ const Last7DaysSell = () => {
         },
         colors: ['#FF5733', '#3366CC', '#33CC99', '#FFCC29', '#9933CC', '#C51605', '#66CC66']
     };
-
     return (
         <div>
             <ReactApexChart
@@ -47,4 +47,4 @@ const Last7DaysSell = () => {
     );
 };
 
-export default Last7DaysSell;
+export default UserDashChart;
