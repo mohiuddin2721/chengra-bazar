@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AddressForm from './AddressForm';
 import Address from './Address';
 import UpdateAddressForm from './UpdateAddressForm';
@@ -11,7 +11,7 @@ import CheckOutForm from './CheckOutForm';
 import { loadStripe } from '@stripe/stripe-js';
 import { FaCcMastercard, FaCcPaypal, FaCcVisa } from 'react-icons/fa';
 import { SiAmericanexpress, SiPayoneer } from 'react-icons/si';
-import { CartContext } from '../../contexts/CartProvider';
+// import { CartContext } from '../../contexts/CartProvider';
 import Headline from '../../components/Headline/Headline';
 import PriceFormate from '../../features/priceFormate/PriceFormate';
 import { useLocation } from 'react-router-dom';
