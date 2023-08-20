@@ -3,22 +3,22 @@ import DataTable from 'react-data-table-component';
 import { AiFillDelete } from 'react-icons/ai';
 import Headline from '../../components/Headline/Headline';
 import { toast } from 'react-toastify';
-import { toastConfig } from '../../Utils/ConstantData';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import { useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import { FaImage } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
+import { toastConfig } from '../../Utils/ConstantData';
 
 const Administration = () => {
     const [search, setSearch] = useState("")
     const [users, setUsers] = useState([])
     const [filteredUsers, setFilteredUsers] = useState([])
-    const [axiosSecure] = useAxiosSecure()
-    const queryClient = useQueryClient()
+    const navigate = useNavigate()
     // console.log(filteredUsers)
 
-    const getUsers = async () => {
+    const getProducts = async () => {
         try {
             const response = await axios.get("http://localhost:5000/api/v1/products");
             setUsers(response.data.data.products);
@@ -30,12 +30,25 @@ const Administration = () => {
     };
 
     const handleDeleteProduct = (id) => {
-        console.log(id)
+        fetch(`http://localhost:5000/api/v1/products/${id}`, {
+            method: 'DELETE',
+        })
+            .then(res => res.json())
+            .then(data => {
+                // console.log(data.data.acknowledged);
+                if (data?.data?.acknowledged) {
+                    getProducts()
+                    toast.success('Product deleted successfully', toastConfig)
+                }
+                else {
+                    toast.error('Something went wrong', toastConfig)
+                }
+            })
     }
 
-    const updateProduct = (id) => {
-
-        console.log(id)
+    const updateProduct = (data) => {
+        navigate("/dashboard/Product_Update", { state: { selectedDataToUpdate: data } })
+        // console.log(data)
     }
     const showImages = (data) => {
         const imageElements = data?.map(link => `<img src="http://localhost:5000/${link}" alt="Image"  style="max-width: 200px; max-height: 200px; margin-right: 10px" /><br>`).join('');
@@ -93,7 +106,7 @@ const Administration = () => {
                 <div className='flex h-full items-center'>
                     <button
                         className="block mr-1 text-white p-1 rounded-md bg-green-500 hover:bg-green-300"
-                        onClick={() => updateProduct(row._id)}
+                        onClick={() => updateProduct(row)}
                     >
                         Update
                     </button>
@@ -128,7 +141,7 @@ const Administration = () => {
     };
 
     useEffect(() => {
-        getUsers()
+        getProducts()
     }, [])
 
     useEffect(() => {

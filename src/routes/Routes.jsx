@@ -25,6 +25,7 @@ import SpecialOffer from "../components/specialOffer/SpecialOffer";
 import AdminRoute from "./AdminRoute";
 import StoreManagerRoute from "./StoreManagerRoute";
 import UserDashboard from "../pages/dashboard/UserDashboard";
+import ProductUpdate from "../pages/dashboard/ProductUpdate";
 
 
 const router = createBrowserRouter([
@@ -103,6 +104,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/Upload_&_Update',
                 element: <AdminRoute><Upload_Update /></AdminRoute>
+            },
+            {
+                path: '/dashboard/Product_Update',
+                element: <StoreManagerRoute><ProductUpdate /></StoreManagerRoute>
             },
             {
                 path: '/dashboard/Administration',

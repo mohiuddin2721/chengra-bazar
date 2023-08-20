@@ -33,7 +33,7 @@ const ManageAccount = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log("data.acknowledged", data.data.acknowledged);
+                // console.log("data.acknowledged", data.data.acknowledged);
                 if (data?.data?.acknowledged) {
                     getUsers()
                     toast.success('User deleted successfully', toastConfig)
