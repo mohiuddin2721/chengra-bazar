@@ -4,6 +4,7 @@ import useCart from '../../Hooks/useCart';
 import { CartContext } from '../../contexts/CartProvider';
 import { Link, useNavigate } from 'react-router-dom';
 import PriceFormate from '../../features/priceFormate/PriceFormate';
+import Headline from '../../components/Headline/Headline';
 
 const MyCart = () => {
     const [cart, isLoading, refetch] = useCart()
@@ -30,8 +31,10 @@ const MyCart = () => {
 
     return (
         <div>
+            <div className='flex justify-center'>
+                <Headline headline={"Shopping cart"} margin_Y={"4"} />
+            </div>
             <div className='flex w-full justify-around items-center'>
-                <p className='text-white text-xl hidden md:flex'>Shopping Cart</p>
                 <p className='text-white flex md:hidden mr-2'>Item: <span className='font-bold text-green-400'>{totalQuantityOrder}</span></p>
                 <p className='text-white flex md:hidden mx-2'><span className='font-bold text-green-400'><PriceFormate price={(totalQuantityOrder * 5) + totalPrice} /></span></p>
                 {/* <Link to="/dashboard/Check_Out_Route"> */}

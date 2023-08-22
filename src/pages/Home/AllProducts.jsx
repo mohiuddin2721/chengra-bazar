@@ -3,10 +3,8 @@ import { Box, Grid, Pagination, Typography } from '@mui/material';
 import { component_container } from '../../Styles/ComponentStyle';
 import SingleData from '../../components/ReceivAllData/SingleData';
 import axios from 'axios';
-import useGetAllData from '../../Hooks/useGetAllData';
 
 function AllProducts() {
-  const { allProduct } = useGetAllData();
   const [currentPage, setCurrentPage] = useState(1);
   const [pageCount, setPageCount] = useState(5);
   const [products, setProducts] = useState([]);

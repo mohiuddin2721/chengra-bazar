@@ -21,6 +21,7 @@
 .login-form {
     text-align: left;
     margin-top: 30px;
+    height: auto;
 }
 
 .login-container label,

@@ -2,20 +2,21 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './SignIn.css';
 import SocialLogin from '../components/SocialAuthentication/SocialLogin';
-import { useForm } from 'react-hook-form';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { AuthContext } from '../contexts/AuthProvider';
-import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
+import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 
 const SignIn = () => {
-    // const { register, formState: { errors }, handleSubmit } = useForm();
     const [showPassword, setShowPassword] = useState(false);
     const [disableLoginButton, setDisableLoginButton] = useState(true)
     const captchaRef = useRef(null)
     const { signIn } = useContext(AuthContext)
     const [loginError, setLoginError] = useState('');
+    const [googleCaptchaValue, setGoogleCaptchaValue] = useState(false)
+    const [getCaptcha, setGetCaptcha] = useState(false)
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const location = useLocation();
     const navigate = useNavigate();
@@ -25,6 +26,13 @@ const SignIn = () => {
     useEffect(() => {
         loadCaptchaEnginge(6)
     }, [])
+    useEffect(() => {
+        if (googleCaptchaValue && getCaptcha) {
+            setDisableLoginButton(false)
+        } else {
+            setDisableLoginButton(true)
+        }
+    }, [googleCaptchaValue, getCaptcha])
 
     const handleLogin = (event) => {
         event.preventDefault();
@@ -47,9 +55,18 @@ const SignIn = () => {
     const handleValidateCaptcha = () => {
         const user_captcha_value = captchaRef.current.value
         if (validateCaptcha(user_captcha_value)) {
-            setDisableLoginButton(false)
+            setGetCaptcha(true)
         } else {
-            setDisableLoginButton(true)
+            setGetCaptcha(false)
+        }
+    }
+
+    const handleGoogleImageReCaptcha = (value) => {
+        // console.log("Captcha value:", value);
+        if (value) {
+            setGoogleCaptchaValue(true)
+        } else {
+            setGoogleCaptchaValue(false)
         }
     }
 
@@ -98,9 +115,16 @@ const SignIn = () => {
                     <div className='w-full'>
                         <p
                             onClick={handleValidateCaptcha}
-                            className='text-[#140267] text-sm font-bold underline text-end cursor-pointer'>
+                            className={`text-sm font-bold underline text-end cursor-pointer ${getCaptcha ? 'text-green-500' : 'text-[#140267]'}`}
+                        >
                             validate captcha
                         </p>
+                    </div>
+                    <div>
+                        <ReCAPTCHA
+                            sitekey="6LfSlsYnAAAAAJACTyO02edCMFsykoMVq35talOU"
+                            onChange={handleGoogleImageReCaptcha}
+                        />
                     </div>
                     <div>
                         {loginError && <p className='text-red-500 text-xs'>{loginError}</p>}
@@ -131,48 +155,3 @@ const SignIn = () => {
 };
 
 export default SignIn;
-
-
-{/* <form
-    className="login-form"
-    onSubmit={handleSubmit(handleLogin)}
->
-    <label>Your Email</label>
-    <input
-        type="email"
-        name='email'
-        placeholder="Your Email"
-        {...register("email", { required: 'valid email is required' })}
-    />
-    {errors?.email && <p role="alert" className='text-red-500'>{errors.email?.message}</p>}
-    <label>
-        Your Password
-        <span onClick={handleClickShowPassword}>
-            {
-                showPassword
-                    ?
-                    <RemoveRedEyeIcon className='text-[#70a2d4] ml-1' />
-                    :
-                    <VisibilityOffIcon className='text-[#70a2d4] ml-1' />
-            }
-        </span>
-    </label>
-    <input
-        type={showPassword ? 'text' : 'password'}
-        placeholder="password"
-        {...register("password", { required: 'valid password is required' })}
-    />
-    {errors?.password && <p role="alert" className='text-red-500'>{errors.password?.message}</p>}
-    <p className='text-[#140267] text-sm font-bold text-end underline cursor-pointer'>
-        Forget Password
-    </p>
-    <div>
-        {loginError && <p className='text-red-500 text-xs'>{loginError}</p>}
-    </div>
-    <button
-        type='submit'
-        className='bg-[#140267] hover:bg-[#140267b4]'
-    >
-        Login
-    </button>
-</form> */}
