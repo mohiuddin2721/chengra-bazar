@@ -7,6 +7,8 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { AuthContext } from '../contexts/AuthProvider';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import ReCAPTCHA from 'react-google-recaptcha';
+import { toast } from 'react-toastify';
+import { toastConfig } from '../Utils/ConstantData';
 
 
 const SignIn = () => {
@@ -56,8 +58,10 @@ const SignIn = () => {
         const user_captcha_value = captchaRef.current.value
         if (validateCaptcha(user_captcha_value)) {
             setGetCaptcha(true)
+            toast.success("successfully validated", toastConfig)
         } else {
             setGetCaptcha(false)
+            toast.error("not validate, try again", toastConfig)
         }
     }
 

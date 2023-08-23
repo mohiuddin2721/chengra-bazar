@@ -12,7 +12,7 @@ import { Avatar, Badge, Box, ListItemIcon, Divider, IconButton, Tooltip, Collaps
 import { categories } from '../../Utils/ConstantData';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SideCartProduct from './SideCartProduct';
 import useCart from '../../Hooks/useCart';
 import { CartContext } from '../../contexts/CartProvider';
@@ -31,11 +31,13 @@ const MiddleNav = () => {
     const { totalQuantityOrder, totalPrice } = useContext(CartContext)
     const [anchorEl, setAnchorEl] = useState(null);
     const navigate = useNavigate()
+    const location = useLocation()
+    console.log(location.pathname)
 
     const goCheckOutPage = () => {
         navigate("/dashboard/Check_Out_Route", { state: { totalPrice: totalPrice, totalQuantityOrder: totalQuantityOrder } })
     }
-    // console.log(user?.photoURL)
+    // console.log(getSearchValue)
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -119,6 +121,13 @@ const MiddleNav = () => {
         toast.error("Must need to be logged in")
     }
 
+    const handleSearchValue = (e) => {
+        navigate("/productsFilter")
+    }
+    const navigateWithSearchValue = (e) => {
+        navigate("/productsFilter")
+    }
+
     return (
         <>
             <div className={`border-t  border-b lg:border-b-0 duration-500 z-20 bg-white left-0 right-0 border-[#E7E7E7]`}>
@@ -136,12 +145,26 @@ const MiddleNav = () => {
                             </Link>
                         </div>
                         <div className='w-full flex gap-[30px] text-[13px] justify-end lg:justify-start  text-[#8d8d8d]'>
-                            <div className='w-full h-[40px] hidden lg:flex items-center rounded-[50px] bg-[#f1f1f1]'>
-                                <input placeholder='Search...' type="text" className='h-full w-[95%] outline-none px-[20px] py-[10px]  bg-transparent rounded-tl-[50px] rounded-bl-[50px]' />
-                                <div className='w-[5%] flex items-center'>
-                                    <BsSearch className='text-[#222529] text-lg cursor-pointer' />
-                                </div>
-                            </div>
+                            {
+                                location.pathname != "/productsFilter" ?
+                                    <div className='w-full h-[40px] hidden lg:flex items-center rounded-[50px] bg-[#f1f1f1]'>
+                                        <input
+                                            type="text"
+                                            placeholder='Search...'
+                                            onChange={handleSearchValue}
+                                            className='h-full w-[95%] outline-none px-[20px] py-[10px]  bg-transparent rounded-tl-[50px] rounded-bl-[50px]' />
+                                        <div className='w-[5%] flex items-center'>
+                                            <BsSearch
+                                                onClick={navigateWithSearchValue}
+                                                className='text-[#222529] text-lg cursor-pointer' />
+                                        </div>
+                                    </div>
+                                    :
+                                    <div className='w-full h-[40px] hidden lg:flex items-center rounded-[50px] bg-[#f1f1f1]'>
+
+                                    </div>
+
+                            }
                             <div className='hidden lg:flex items-center'>
                                 <FiPhoneCall className='text-[30px] mr-[7px]' />
                                 <div className='flex flex-col'>
@@ -240,7 +263,7 @@ const MiddleNav = () => {
                                             </Menu>
                                         </>
                                         :
-                                        <AiOutlineUser onClick={handleNoUserPic} className='text-[#222529] hidden lg:block' />
+                                        <AiOutlineUser onClick={handleNoUserPic} className='text-[#222529] hidden lg:block cursor-pointer' />
                                 }
                                 <FiHeart className='text-[#222529] hidden lg:block' />
                                 <button

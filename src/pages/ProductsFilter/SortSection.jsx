@@ -19,7 +19,6 @@ const SortSection = () => {
         gridView,
         listView,
     } = useContext(ProductFilterContext)
-    // console.log(selectedPriceValue)
 
     const getInputProductSearchingValue = (e) => {
         setSearchResults([])

@@ -10,7 +10,6 @@ export const ProductFilterContext = createContext()
 const ProductsFilter = () => {
     const [isOpenFilterDrawer, setIsOpenFilterDrawer] = useState(false);
     const [filterBgColor, setFilterBgColor] = useState('bg-[#024160]');
-    const [searchValue, setSearchValue] = useState("");
     const [searchResults, setSearchResults] = useState([]);
     const [selectedPriceValue, setSelectedPriceValue] = useState('');
     const [checkedCategory, setCheckedCategory] = useState([]);
@@ -18,7 +17,9 @@ const ProductsFilter = () => {
     const [priceSlideValue, setPriceSlideValue] = useState([5, 60]);
     const [rattingValue, setRattingValue] = useState();
     const [grid_listView, setGrid_listView] = useState('grid')
-    // console.log(checkedBrand)
+    const [searchValue, setSearchValue] = useState();
+    // console.log(searchResults)
+
     const gridView = () => {
         setGrid_listView("grid")
     }
@@ -29,7 +30,6 @@ const ProductsFilter = () => {
     const handleColor = (clr) => {
         setFilterBgColor(clr)
     }
-    // console.log(grid_listView)
 
     const filterFunction = {
         gridView, listView,
