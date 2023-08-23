@@ -26,6 +26,7 @@ import AdminRoute from "./AdminRoute";
 import StoreManagerRoute from "./StoreManagerRoute";
 import UserDashboard from "../pages/dashboard/UserDashboard";
 import ProductUpdate from "../pages/dashboard/ProductUpdate";
+import OfferRoute from "../pages/Home/OfferRoute";
 
 
 const router = createBrowserRouter([
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
             {
                 path: '/productsFilter',
                 element: <ProductsFilter></ProductsFilter>
+            },
+            {
+                path: '/offerProducts',
+                element: <OfferRoute></OfferRoute>
             },
             {
                 path: '/catagories/:id',
