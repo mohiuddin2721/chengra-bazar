@@ -1,0 +1,34 @@
+import React from 'react';
+import '../../Styles/offerSection.css';
+import offerBG from '../../assets/offerBG-1.jpg'
+import { useNavigate } from 'react-router-dom';
+
+const OffersSection = () => {
+    const navigate = useNavigate()
+
+    const handleOffer = () => {
+        navigate("")
+    }
+    return (
+        <div
+            style={{
+                position: 'relative'
+            }}
+            onClick={handleOffer}
+            className='relative my-[40px] cursor-pointer'>
+            <div>
+                <img className='w-full h-[250px]' src={offerBG} alt="" />
+            </div>
+            <span className='absolute top-[50%] right-[50%]'>
+                <p className='text-white text-3xl font-bold'><span className='text-[10px]'>(upto)</span>70% off</p>
+            </span>
+            <div class="custom-shape-divider-bottom-1692787727">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M598.97 114.72L0 0 0 120 1200 120 1200 0 598.97 114.72z" class="shape-fill"></path>
+                </svg>
+            </div>
+        </div>
+    );
+};
+
+export default OffersSection;

@@ -32,7 +32,7 @@ const MiddleNav = () => {
     const [anchorEl, setAnchorEl] = useState(null);
     const navigate = useNavigate()
     const location = useLocation()
-    console.log(location.pathname)
+    // console.log(location.pathname)
 
     const goCheckOutPage = () => {
         navigate("/dashboard/Check_Out_Route", { state: { totalPrice: totalPrice, totalQuantityOrder: totalQuantityOrder } })
