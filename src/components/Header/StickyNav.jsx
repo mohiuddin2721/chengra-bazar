@@ -64,7 +64,7 @@ const StickyNav = () => {
                 </Tabs>
                 <MenuList>
                     <MenuItem sx={{ fontSize: '12px', color: '#960000', fontWeight: '700' }}>
-                        <Link to='special_offer'>Special offer</Link>
+                        <Link to='offerProducts'>Special offer</Link>
                     </MenuItem>
                 </MenuList>
             </Box>

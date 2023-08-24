@@ -376,7 +376,7 @@ const MiddleNav = () => {
                                             </List>
                                         </Collapse>
                                         <ListItemButton sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
-                                            <Link to="/">
+                                            <Link to="/offerProducts">
                                                 <ListItemText primary="Special offer!" />
                                             </Link>
                                         </ListItemButton>

@@ -16,7 +16,7 @@ const OffersSection = () => {
                 position: 'relative'
             }}
             onClick={handleOffer}
-            className='relative my-[40px] cursor-pointer'>
+            className='relative my-[40px] cursor-pointer w-full md:w-[90%] mx-auto'>
             <div>
                 <img className='w-full h-[250px]' src={offerBG} alt="" />
             </div>

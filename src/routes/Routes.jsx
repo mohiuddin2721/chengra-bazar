@@ -21,12 +21,12 @@ import Management from "../pages/dashboard/Management";
 import SendMail from "../pages/dashboard/SendMail";
 import CheckOut from "../pages/payment/CheckOut";
 import PaymentHistory from "../pages/dashboard/PaymentHistory";
-import SpecialOffer from "../components/specialOffer/SpecialOffer";
 import AdminRoute from "./AdminRoute";
 import StoreManagerRoute from "./StoreManagerRoute";
 import UserDashboard from "../pages/dashboard/UserDashboard";
 import ProductUpdate from "../pages/dashboard/ProductUpdate";
 import OfferRoute from "../pages/Home/OfferRoute";
+import UpcomingProducts from "../pages/Home/UpcomingProducts";
 
 
 const router = createBrowserRouter([
@@ -38,10 +38,6 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>
-            },
-            {
-                path: '/special_offer',
-                element: <SpecialOffer></SpecialOffer>
             },
             {
                 path: '/Customer_care',
@@ -66,6 +62,10 @@ const router = createBrowserRouter([
             {
                 path: '/offerProducts',
                 element: <OfferRoute></OfferRoute>
+            },
+            {
+                path: '/upcoming_products',
+                element: <UpcomingProducts></UpcomingProducts>
             },
             {
                 path: '/catagories/:id',

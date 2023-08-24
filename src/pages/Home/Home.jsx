@@ -6,6 +6,7 @@ import Categories from './Categories'
 import AllProducts from './AllProducts'
 import { PuffLoader } from 'react-spinners'
 import OffersSection from './OffersSection'
+import UpcomingSector from './UpcomingSector'
 
 function Home() {
   return (
@@ -15,6 +16,7 @@ function Home() {
       <ShortCart />
       <Categories />
       <AllProducts />
+      <UpcomingSector />
       <FeatureSlider />
       {/* <PuffLoader color="#36d7b7" /> */}
     </div>
