@@ -3,8 +3,14 @@ import { Box, Grid, Typography } from '@mui/material';
 import { topSliderNewArrivalData } from '../../Utils/AllSliderData';
 import Banner from '../../components/Banner/Banner';
 import { component_container, topSliderBoxInMapSx } from '../../Styles/ComponentStyle';
+import { useNavigate } from 'react-router-dom';
 
 function TopSlider() {
+    const navigation = useNavigate()
+
+    const topSliderLink = (data) => {
+        navigation(`${data}`)
+    }
     return (
         <Box style={{ marginTop: '20px' }} sx={component_container}>
             <Grid container
@@ -23,7 +29,9 @@ function TopSlider() {
                         {
                             topSliderNewArrivalData?.map((data, i) =>
                                 <Grid key={i} item xs={6}>
-                                    <Box sx={topSliderBoxInMapSx}
+                                    <Box
+                                        sx={topSliderBoxInMapSx}
+                                        onClick={() => topSliderLink(data?.link)}
                                     >
                                         <img src={data?.imageLink} className='rounded-md' alt="" />
                                         <Typography sx={{ position: 'absolute', top: 20, left: 20, color: 'red' }}>

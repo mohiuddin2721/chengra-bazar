@@ -21,6 +21,7 @@ export const topSliderBoxInMapSx = {
         sm: '150px',
         md: '200px',
     },
+    cursor: 'pointer',
 };
 
 // shortCart.jsx component

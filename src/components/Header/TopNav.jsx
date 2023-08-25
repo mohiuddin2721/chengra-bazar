@@ -29,27 +29,27 @@ function TopNav() {
                     </div>
                     <div>
                         <ul className='flex gap-1 sm:gap-4 items-center'>
-                            <li className={`px-[5px] w-[80px] flex gap-[5px] items-center relative ${styles['lang-title']}`}>
+                            <li className={`px-[5px] w-[80px] flex gap-[5px] cursor-pointer items-center relative ${styles['lang-title']}`}>
                                 <img src={currentLang.icon} alt="" />
                                 <span>{currentLang.name}</span>
                                 <MdKeyboardArrowDown />
-                                <ul className={`absolute z-1 left-0 right-0 text-[#1976d2] shadow-md duration-500 ${styles['lang-dropdown']}`}>
-                                    {languages.filter(item => item.id !== currentLang.id).map((item, i) => <li onClick={() => setCurrentLang(item)} className='flex gap-[5px] items-center' key={i}>
+                                <ul className={`absolute z-1 left-0 right-0 text-[#1976d2] cursor-pointer shadow-md duration-500 ${styles['lang-dropdown']}`}>
+                                    {languages.filter(item => item.id !== currentLang.id).map((item, i) => <li onClick={() => setCurrentLang(item)} className='flex gap-[5px] items-center cursor-pointer' key={i}>
                                         <img src={item.icon} alt="" />
                                         <span>{item.name}</span>
                                     </li>)}
                                 </ul>
                             </li>
-                            <li className={`px-[5px] w-[80px] flex gap-[5px] items-center relative ${styles['lang-title']}`}>
+                            <li className={`px-[5px] w-[80px] flex gap-[5px] cursor-pointer items-center relative ${styles['lang-title']}`}>
                                 <span>{currentCur.symbol}</span>
                                 <span>{currentCur.name}</span>
                                 <MdKeyboardArrowDown />
-                                <ul className={`absolute z-1 left-0 right-0 shadow-md duration-500 ${styles['lang-dropdown']}`}>
+                                <ul className={`absolute z-1 left-0 right-0 cursor-pointer shadow-md duration-500 ${styles['lang-dropdown']}`}>
                                     {currencies.filter(item => item.id !== currentCur.id)
                                         .map((item, i) => <li onClick={() => {
                                             setCurrentCur(item);
                                         }}
-                                            key={i} className='flex gap-[5px] items-center' >
+                                            key={i} className='flex gap-[5px] items-center cursor-pointer' >
                                             <span>{item.symbol}</span>
                                             <span className='text-[#1976d2]'>{item.name}</span>
                                         </li>)}
