@@ -17,8 +17,8 @@ function AllProducts() {
   const getProducts = async () => {
     try {
       const result = await axios.get(`http://localhost:5000/api/v1/products?page=${currentPage}&limit=8`)
-      setPageCount(result.data.data.pageCount);
-      setProducts(result.data.data.products);
+      setPageCount(result?.data?.data?.pageCount);
+      setProducts(result?.data?.data?.products);
     } catch (error) {
       console.log(error)
     }

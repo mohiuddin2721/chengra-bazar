@@ -3,7 +3,6 @@ import { FiPhoneCall } from 'react-icons/fi';
 import { AiOutlineUser, AiOutlineShopping } from 'react-icons/ai';
 import { FiHeart } from 'react-icons/fi';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
 import styles from '../../Styles/MiddleNav.module.css';
 import { BsSearch } from 'react-icons/bs';
@@ -20,10 +19,12 @@ import { AuthContext } from '../../contexts/AuthProvider';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 import Logout from '@mui/icons-material/Logout';
+import useUserRole from '../../Hooks/useUserRole';
 
 
 const MiddleNav = () => {
     const { user, logOut } = useContext(AuthContext)
+    const [userRole] = useUserRole()
     const [isOpenMenuDrawer, setIsOpenMenuDrawer] = useState(false);
     const [isOpenCartDrawer, setIsOpenCartDrawer] = useState(false);
     const [openCollapseMenu1, setCollapseMenu1] = useState(false);
@@ -33,6 +34,7 @@ const MiddleNav = () => {
     const navigate = useNavigate()
     const location = useLocation()
     // console.log(location.pathname)
+    // console.log(userRole)
 
     const goCheckOutPage = () => {
         navigate("/dashboard/Check_Out_Route", { state: { totalPrice: totalPrice, totalQuantityOrder: totalQuantityOrder } })
@@ -132,16 +134,15 @@ const MiddleNav = () => {
         <>
             <div className={`border-t border-b lg:border-b-0 duration-500 z-20 bg-white left-0 right-0 border-[#E7E7E7] ${location.pathname == "/offerProducts" ? 'hidden' : 'block'}`}>
                 <div className='max-w-[1200px] mx-auto'>
-                    <div className='px-[10px] flex  items-center gap-[40px]'>
-                        <div className='flex items-center justify-between w-[300px] gap-3 xs:w-[200px] lg:w-[120px] h-[57px]'>
-                            <div className='w-[15%] lg:hidden block'>
-                                <button onClick={() => setIsOpenMenuDrawer(true)}>
-                                    <GiHamburgerMenu className='text-[#0088CC] font-bold text-2xl' />
-                                </button>
-                            </div>
-                            {/* <img src={logo} alt="" className='w-[85%] lg:w-full h-full' /> */}
+                    <div className='px-[10px] flex items-center gap-[40px]'>
+                        <div className='w-[10%] lg:hidden block'>
+                            <button onClick={() => setIsOpenMenuDrawer(true)}>
+                                <GiHamburgerMenu className='text-[#0088CC] font-bold text-2xl' />
+                            </button>
+                        </div>
+                        <div className='hidden md:flex'>
                             <Link to='/'>
-                                <AiOutlineShoppingCart className='text-[35px]' />
+                                <p className='font-bold capitalize text-[#4a31b1]'>chengra_Bazar</p>
                             </Link>
                         </div>
                         <div className='w-full flex gap-[30px] text-[13px] justify-end lg:justify-start  text-[#8d8d8d]'>
@@ -174,24 +175,22 @@ const MiddleNav = () => {
                             </div>
                             <div className='flex gap-3 sm:gap-5 text-2xl items-center'>
                                 <div className='relative block lg:hidden'>
-                                    {openSearch ? <MdOutlineClose onClick={(e) => {
-                                        e.stopPropagation();
-                                        setOpenSearch(false);
+                                    {
+                                        location.pathname != "/productsFilter" ?
+                                            <div className='flex md:hidden'>
+                                                <input
+                                                    type="text"
+                                                    placeholder='Searchs...'
+                                                    className='h-full w-[88%]'
+                                                    onChange={handleSearchValue}
+                                                />
+                                            </div>
+                                            :
+                                            <div className='w-full h-[40px] hidden lg:flex items-center rounded-[50px] bg-[#f1f1f1]'>
 
-                                    }} className='text-[#222529] relative right-6 xs:right-0 hover:text-[#08c] duration-500  cursor-pointer' /> : <BsSearch onClick={(e) => {
+                                            </div>
+                                    }
 
-                                        e.stopPropagation();
-                                        setOpenSearch(true);
-                                    }} className='text-[#222529] relative right-6 xs:right-0 hover:text-[#08c] duration-500  cursor-pointer' />}
-                                    <div
-                                        onClick={(e) => e.stopPropagation()}
-                                        className={`w-[320px] xs:w-[360px]  xs:-left-[305px] -left-[289px] duration-500 text-[13px] flex ${openSearch ? ' top-[45px] opacity-100 z-20' : 'opacity-0 top-[0px] -z-50'} absolute items-center h-[50px] rounded-[50px] bg-[#f1f1f1] border-[5px] border-[#08C]`}>
-                                        <span className={`${styles['custom-arrow']} duration-500 right-[23px]`}></span>
-                                        <input placeholder='Search...' type="text" className='h-full w-[88%] outline-none px-[20px] py-[10px]  bg-transparent rounded-tl-[50px] rounded-bl-[50px]' />
-                                        <div className='w-[12%] h-[40px] flex justify-center items-center'>
-                                            <BsSearch className='text-[#222529] text-lg cursor-pointer' />
-                                        </div>
-                                    </div>
                                 </div>
                                 {
                                     user?.photoURL ?
@@ -245,8 +244,28 @@ const MiddleNav = () => {
                                                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                                                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                                             >
+                                                {/* {
+                                                    isAdmin &&
+                                                    <div>
+                                                        <MenuItem onClick={handleClose}>
+                                                            <Link to='/dashboard'>Dashboard</Link>
+                                                        </MenuItem>
+                                                    </div>
+                                                }
+                                                {
+                                                    !isAdmin &&
+                                                    <div>
+                                                        <MenuItem onClick={handleClose}>
+                                                            <Link to='/dashboard/userDash'>Profile</Link>
+                                                        </MenuItem>
+                                                        <MenuItem onClick={handleClose}>
+                                                            <Link to='/dashboard/My_cart'>My cart</Link>
+                                                        </MenuItem>
+                                                    </div>
+                                                } */}
                                                 <MenuItem onClick={handleClose}>
-                                                    <Link to='/dashboard'>Profile</Link>
+                                                    <Link to={userRole === "admin" ? '/dashboard' : '/dashboard/userDash'}>Dashboard</Link>
+                                                    {/* <Link to='/dashboard'>Dashboard</Link> */}
                                                 </MenuItem>
                                                 <MenuItem onClick={handleClose}>
                                                     <Link to='/dashboard/My_cart'>My cart</Link>
@@ -316,14 +335,12 @@ const MiddleNav = () => {
                                         VIEW CART
                                     </button>
                                 </Link>
-                                {/* <Link to='/dashboard/Check_Out_Route'> */}
                                 <button
                                     onClick={goCheckOutPage}
                                     className='bg-[#222529] hover:bg-[#34393F] text-white duration-500 text-[12px] font-semibold py-[14px] leading-[16px] tracking-wide rounded-sm px-[25px]'
                                 >
                                     CHECKOUT
                                 </button>
-                                {/* </Link> */}
                             </div>
                         </Box>
                     </Drawer>
@@ -347,7 +364,6 @@ const MiddleNav = () => {
                             <CloseOutlinedIcon sx={{ width: '100%', alignItems: 'end', mt: 2, fontSize: 35 }}
                                 onClick={handleDrawerClose1} />
                             <div className='mt-[20px] mb-[30px]'>
-
                                 <div>
                                     <List
                                         component="nav"

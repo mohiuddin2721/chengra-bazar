@@ -6,12 +6,13 @@ import { currencies, languages, topNavItemsLink } from '../../Utils/ConstantData
 import { Link } from '@mui/material';
 import { topNavSocialButtonStyle } from '../../Styles/ComponentStyle';
 import { AuthContext } from '../../contexts/AuthProvider';
+import { NavLink } from 'react-router-dom';
 
 function TopNav() {
     const { user } = useContext(AuthContext)
     const [currentLang, setCurrentLang] = useState(languages[0]);
     const [currentCur, setCurrentCur] = useState(currencies[0]);
-    
+
     return (
         <div className='py-2 bg-[#240838] text-[#bab8b8] text-[11px] font-semibold tracking-wide leading-6 top-nav'>
             <div className='max-w-[1200px] mx-auto px-[10px] flex justify-between items-center'>
@@ -20,7 +21,19 @@ function TopNav() {
                     <div className='hidden lg:block'>
                         <ul className='flex tracking-wide leading-4 items-center gap-6'>
                             {
-                                topNavItemsLink?.map((item, i) => <Link key={i} href={item.to}>{item.name}</Link>)
+                                topNavItemsLink?.map((item, i) =>
+                                    <NavLink
+                                        key={i}
+                                        to={item.to}
+                                        className={({ isActive, isPending }) =>
+                                            isActive
+                                                ? "text-green-500 font-bold underline"
+                                                : "text-white"
+                                        }
+                                    >
+                                        {item.name}
+                                    </NavLink>
+                                )
                             }
                             <li>
                                 {!user && <Link href='/signIn'>Login</Link>}

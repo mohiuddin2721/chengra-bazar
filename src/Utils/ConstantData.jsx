@@ -591,7 +591,7 @@ export const topNavItemsLink = [
         to: 'Customer_care',
     },
     {
-        name: 'Track My Order',
+        name: 'Home',
         to: '/',
     },
     {
