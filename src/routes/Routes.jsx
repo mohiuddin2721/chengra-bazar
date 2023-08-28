@@ -124,7 +124,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/Send_mail',
-                element: <SendMail />
+                element: <AdminRoute><SendMail /></AdminRoute>
             },
             {
                 path: '/dashboard/history_of_payment',

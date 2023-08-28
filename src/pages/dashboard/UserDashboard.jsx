@@ -7,7 +7,6 @@ import useAddress from '../../Hooks/useAddress';
 import Loader from '../../components/Loader/Loader';
 import { BsFillPencilFill } from 'react-icons/bs';
 import UpdateAddressForm from '../payment/UpdateAddressForm';
-import SmallFooter from './SmallFooter';
 
 const UserDashboard = () => {
     const { user } = useAuth();
@@ -134,9 +133,6 @@ const UserDashboard = () => {
                 {
                     zip && <UpdateAddressForm closeAddress={closeAddress} setZip={setZip}  />
                 }
-            </section>
-            <section className='h-[20vh]'>
-                <SmallFooter />
             </section>
         </div>
     );

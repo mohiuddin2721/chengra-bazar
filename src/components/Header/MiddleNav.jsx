@@ -132,7 +132,7 @@ const MiddleNav = () => {
 
     return (
         <>
-            <div className={`border-t border-b lg:border-b-0 duration-500 z-20 bg-white left-0 right-0 border-[#E7E7E7] ${location.pathname == "/offerProducts" ? 'hidden' : 'block'}`}>
+            <div className={`border-t border-b lg:border-b-0 duration-500 z-20 bg-white left-0 right-0 border-[#E7E7E7]`}>
                 <div className='max-w-[1200px] mx-auto'>
                     <div className='px-[10px] flex items-center gap-[40px]'>
                         <div className='w-[10%] lg:hidden block'>
@@ -244,32 +244,15 @@ const MiddleNav = () => {
                                                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                                                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                                             >
-                                                {/* {
-                                                    isAdmin &&
-                                                    <div>
-                                                        <MenuItem onClick={handleClose}>
-                                                            <Link to='/dashboard'>Dashboard</Link>
-                                                        </MenuItem>
-                                                    </div>
-                                                }
-                                                {
-                                                    !isAdmin &&
-                                                    <div>
-                                                        <MenuItem onClick={handleClose}>
-                                                            <Link to='/dashboard/userDash'>Profile</Link>
-                                                        </MenuItem>
-                                                        <MenuItem onClick={handleClose}>
-                                                            <Link to='/dashboard/My_cart'>My cart</Link>
-                                                        </MenuItem>
-                                                    </div>
-                                                } */}
                                                 <MenuItem onClick={handleClose}>
                                                     <Link to={userRole === "admin" ? '/dashboard' : '/dashboard/userDash'}>Dashboard</Link>
-                                                    {/* <Link to='/dashboard'>Dashboard</Link> */}
                                                 </MenuItem>
-                                                <MenuItem onClick={handleClose}>
-                                                    <Link to='/dashboard/My_cart'>My cart</Link>
-                                                </MenuItem>
+                                                {
+                                                    userRole != "admin" &&
+                                                    <MenuItem onClick={handleClose}>
+                                                        <Link to='/dashboard/My_cart'>My cart</Link>
+                                                    </MenuItem>
+                                                }
                                                 <Divider />
                                                 <MenuItem onClick={handleClose}>
                                                     <Box onClick={handleLogout} sx={{ display: 'flex' }}>
@@ -397,11 +380,6 @@ const MiddleNav = () => {
                                             </Link>
                                         </ListItemButton>
                                         <ListItemButton sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
-                                            <Link to="/">
-                                                <ListItemText primary="My account" />
-                                            </Link>
-                                        </ListItemButton>
-                                        <ListItemButton sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
                                             <Link to="/productsFilter">
                                                 <ListItemText primary="Filter product" />
                                             </Link>
@@ -417,10 +395,21 @@ const MiddleNav = () => {
                                             </Link>
                                         </ListItemButton>
                                         <ListItemButton sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
-                                            <Link to="/signIn">
-                                                <ListItemText primary="Log in" />
+                                            <Link to={userRole === "admin" ? '/dashboard' : '/dashboard/userDash'}>
+                                                <ListItemText primary="Dashboard" />
                                             </Link>
                                         </ListItemButton>
+                                        {user ?
+                                            <Box onClick={handleLogout} sx={{ marginLeft: '15px' }}>
+                                                Logout
+                                            </Box>
+                                            :
+                                            <ListItemButton sx={{ '&:hover': { borderBottom: '1px solid red' } }}>
+                                                <Link to="/signIn">
+                                                    <ListItemText primary="Log in" />
+                                                </Link>
+                                            </ListItemButton>
+                                        }
                                     </List>
                                 </div>
                                 <div className='flex justify-center gap-[10px]'>

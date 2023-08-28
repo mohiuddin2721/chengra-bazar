@@ -7,9 +7,11 @@ import { Link } from '@mui/material';
 import { topNavSocialButtonStyle } from '../../Styles/ComponentStyle';
 import { AuthContext } from '../../contexts/AuthProvider';
 import { NavLink } from 'react-router-dom';
+import useUserRole from '../../Hooks/useUserRole';
 
 function TopNav() {
     const { user } = useContext(AuthContext)
+    const [userRole] = useUserRole()
     const [currentLang, setCurrentLang] = useState(languages[0]);
     const [currentCur, setCurrentCur] = useState(currencies[0]);
 
@@ -35,6 +37,29 @@ function TopNav() {
                                     </NavLink>
                                 )
                             }
+                            {
+                                userRole != "admin" &&
+                                <NavLink
+                                    to='/dashboard/My_cart'
+                                    className={({ isActive, isPending }) =>
+                                        isActive
+                                            ? "text-green-500 font-bold underline"
+                                            : "text-white"
+                                    }
+                                >
+                                    My cart
+                                </NavLink>
+                            }
+                            {/* <NavLink
+                                to={userRole === "admin" ? '/dashboard' : '/dashboard/userDash'}
+                                className={({ isActive, isPending }) =>
+                                    isActive
+                                        ? "text-green-500 font-bold underline"
+                                        : "text-white"
+                                }
+                            >
+                                Dashboard
+                            </NavLink> */}
                             <li>
                                 {!user && <Link href='/signIn'>Login</Link>}
                             </li>

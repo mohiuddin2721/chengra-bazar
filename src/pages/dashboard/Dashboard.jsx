@@ -12,7 +12,6 @@ import AdminUserChart from '../dashboardChart/AdminUserChart';
 import DashShortOrderTable from './DashShortOrderTable';
 import { Link } from 'react-router-dom';
 import { dashMiniCardData } from '../../Utils/ConstantData';
-import SmallFooter from './SmallFooter';
 
 export default function Dashboard() {
     const { user } = useAuth()
@@ -178,9 +177,6 @@ export default function Dashboard() {
                         <p></p>
                     </Grid>
                 </Grid>
-            </section>
-            <section className='h-[20vh]'>
-                <SmallFooter />
             </section>
         </div>
     );

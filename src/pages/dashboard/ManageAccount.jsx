@@ -93,6 +93,7 @@ const ManageAccount = () => {
         const UpdatedRole = {
             role: data
         }
+        // console.log(UpdatedRole)
         fetch(`http://localhost:5000/api/v1/users/${id}`, {
             method: "PATCH",
             headers: { 'Content-Type': "application/json" },
@@ -155,12 +156,12 @@ const ManageAccount = () => {
                     }
 
                     {
-                        row.role != "store-manager" &&
+                        row.role != "storeManager" &&
                         <button
                             className='block ml-1 text-white p-1 rounded-md bg-green-500 hover:bg-green-300'
-                            onClick={() => giveStoreManagerRole("store-manager", row._id)}
+                            onClick={() => giveStoreManagerRole("storeManager", row._id)}
                         >
-                            Store-manager
+                            StoreManager
                         </button>
                     }
 
@@ -209,7 +210,7 @@ const ManageAccount = () => {
     }, [search])
 
     return (
-        <div className='text-white'>
+        <div className='text-white min-h-[70vh]'>
             <div className='flex justify-center'>
                 <Headline headline={"User management"} margin_Y={"4"} />
             </div>

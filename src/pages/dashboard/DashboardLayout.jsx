@@ -16,28 +16,15 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
 import BackupIcon from '@mui/icons-material/Backup';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { MdTipsAndUpdates, MdDashboard, MdManageAccounts, MdAdminPanelSettings, MdNotifications } from 'react-icons/md';
-import { BiMailSend } from 'react-icons/bi';
-import { FaCartArrowDown, FaPaypal } from 'react-icons/fa';
+import { MdNotifications } from 'react-icons/md';
 import { TbSlash } from 'react-icons/tb';
-import { FcManager } from 'react-icons/fc';
 import { AiTwotoneSetting } from 'react-icons/ai';
 import { AuthContext } from '../../contexts/AuthProvider';
-
-const dashboardLink = [
-    { name: 'Manage account', to: '/dashboard/Manage_account', icon: <MdManageAccounts /> },
-    { name: 'My order', to: '/dashboard/My_order', icon: <InboxIcon /> },
-    { name: 'My cart', to: '/dashboard/My_cart', icon: <FaCartArrowDown /> },
-    { name: 'Dashboard', to: '/dashboard', icon: <MdDashboard /> },
-    { name: 'Upload & Update', to: '/dashboard/Upload_&_Update', icon: <MdTipsAndUpdates /> },
-    { name: 'Administration', to: '/dashboard/Administration', icon: <MdAdminPanelSettings /> },
-    { name: 'Management', to: '/dashboard/Management', icon: <FcManager /> },
-    { name: 'Payment history', to: '/dashboard/history_of_payment', icon: <FaPaypal /> },
-    { name: 'Send mail', to: '/dashboard/Send_mail', icon: <BiMailSend /> },
-]
+import { dashboardLink } from '../../Utils/ConstantData';
+import useUserRole from '../../Hooks/useUserRole';
+import SmallFooter from './SmallFooter';
 
 const drawerWidth = 240;
 
@@ -109,6 +96,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 export default function DashboardLayout() {
     const { user } = useContext(AuthContext)
+    const [userRole] = useUserRole();
     let location = useLocation();
     const path = (location?.pathname?.split('/')[2])
     const theme = useTheme();
@@ -208,14 +196,13 @@ export default function DashboardLayout() {
                         <img
                             alt="Remy Sharp"
                             src={user?.photoURL}
-                            // src="https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg?w=1060&t=st=1687550957~exp=1687551557~hmac=c9a037492cac003c0d33ce479cf2a7bf740ae39e41af8628f4cefaa1776aad1e"
                             className='w-full'
                             style={{ borderRadius: "159px 159px 0px 0px" }}
                         />
                     </Box>
                     <List>
                         {
-                            dashboardLink?.slice(0, 3).map((link, index) => (
+                            dashboardLink?.[userRole]?.map((link, index) => (
                                 <ListItem key={index} disablePadding sx={{ display: 'block' }}>
                                     <Link to={`${link?.to}`}>
                                         <ListItemButton
@@ -243,9 +230,9 @@ export default function DashboardLayout() {
                         }
                     </List>
                     <Divider />
-                    <List>
+                    {/* <List>
                         {
-                            dashboardLink?.slice(3).map((link, index) => (
+                            dashboardLink?.forUser?.map((link, index) => (
                                 <ListItem key={index} disablePadding sx={{ display: 'block' }}>
                                     <Link to={`${link?.to}`}>
                                         <ListItemButton
@@ -270,7 +257,7 @@ export default function DashboardLayout() {
                                 </ListItem>
                             ))
                         }
-                    </List>
+                    </List> */}
                     <div className="pyramid-loader mb-[20px]">
                         <div className="pyramid_wrapper">
                             <span className="pyramid_side pyramid_side1"></span>
@@ -286,9 +273,9 @@ export default function DashboardLayout() {
                 <DrawerHeader />
                 <Outlet />
             </div>
-            <div>
-                {/* <Footer /> */}
-            </div>
+            <section className='h-[20vh]'>
+                <SmallFooter />
+            </section>
         </Box>
     );
 }

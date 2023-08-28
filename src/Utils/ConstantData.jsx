@@ -5,10 +5,12 @@ import por from '../assets/POR.svg';
 import ger from '../assets/GER.svg';
 import { format } from 'date-fns';
 import { TbReplace, TbTruckDelivery } from 'react-icons/tb';
-import { FaFirstOrder, FaComments, FaShare, FaUserFriends } from 'react-icons/fa';
-import { FcSalesPerformance } from 'react-icons/fc';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import { FaFirstOrder, FaComments, FaShare, FaUserFriends, FaCartArrowDown, FaPaypal } from 'react-icons/fa';
+import { FcManager, FcSalesPerformance } from 'react-icons/fc';
 import { AiOutlineUsergroupAdd, AiFillLike } from 'react-icons/ai';
-import { BiMoney } from 'react-icons/bi';
+import { BiMailSend, BiMoney } from 'react-icons/bi';
+import { MdAdminPanelSettings, MdDashboard, MdManageAccounts, MdTipsAndUpdates } from 'react-icons/md';
 const today = format(new Date(), 'MMM dd').split(' ');
 
 export const languages = [
@@ -594,14 +596,6 @@ export const topNavItemsLink = [
         name: 'Home',
         to: '/',
     },
-    {
-        name: 'Cart',
-        to: '/dashboard/My_cart',
-    },
-    {
-        name: 'Dashboard',
-        to: '/dashboard',
-    },
 ]
 
 export const filterSectionBgColor = [
@@ -721,3 +715,27 @@ export const bannerPic = [
     { id: 6, pic: 'https://as2.ftcdn.net/v2/jpg/01/38/53/99/1000_F_138539919_c8vb5eC9112n4kxLBB4pU4ez6NC6G77i.jpg' },
     { id: 7, pic: 'https://as2.ftcdn.net/v2/jpg/01/41/03/45/1000_F_141034518_wXdy3QxcL9vA1H5VY6Jl5PTNul4YLsE7.jpg' },
 ]
+
+export const dashboardLink = {
+    buyer: [
+        { name: 'Dashboard', to: '/dashboard/userDash', icon: <MdDashboard /> },
+        { name: 'My order', to: '/dashboard/My_order', icon: <InboxIcon /> },
+        { name: 'My cart', to: '/dashboard/My_cart', icon: <FaCartArrowDown /> },
+    ],
+    admin: [
+        { name: 'Dashboard', to: '/dashboard', icon: <MdDashboard /> },
+        { name: 'Manage account', to: '/dashboard/Manage_account', icon: <MdManageAccounts /> },
+        { name: 'Upload & Update', to: '/dashboard/Upload_&_Update', icon: <MdTipsAndUpdates /> },
+        { name: 'Administration', to: '/dashboard/Administration', icon: <MdAdminPanelSettings /> },
+        { name: 'Management', to: '/dashboard/Management', icon: <FcManager /> },
+        { name: 'Payment history', to: '/dashboard/history_of_payment', icon: <FaPaypal /> },
+        { name: 'Send mail', to: '/dashboard/Send_mail', icon: <BiMailSend /> },
+    ],
+    storeManager: [
+        { name: 'Dashboard', to: '/dashboard/userDash', icon: <MdDashboard /> },
+        { name: 'My order', to: '/dashboard/My_order', icon: <InboxIcon /> },
+        { name: 'My cart', to: '/dashboard/My_cart', icon: <FaCartArrowDown /> },
+        { name: 'Administration', to: '/dashboard/Administration', icon: <MdAdminPanelSettings /> },
+        { name: 'Management', to: '/dashboard/Management', icon: <FcManager /> },
+    ],
+}

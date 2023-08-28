@@ -23,7 +23,7 @@ const MyOrder = () => {
     }
 
     return (
-        <div>
+        <div className='min-h-[100vh]'>
             <div className='flex justify-center'>
                 <Headline headline={"My Order"} margin_Y={"4"} />
             </div>
