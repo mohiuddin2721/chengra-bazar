@@ -7,11 +7,14 @@ import useAddress from '../../Hooks/useAddress';
 import Loader from '../../components/Loader/Loader';
 import { BsFillPencilFill } from 'react-icons/bs';
 import UpdateAddressForm from '../payment/UpdateAddressForm';
+import AddressForm from '../payment/AddressForm';
+import { AiOutlineCloseCircle } from 'react-icons/ai';
 
 const UserDashboard = () => {
     const { user } = useAuth();
     const [userAddress, isLoading, refetch] = useAddress();
     const [zip, setZip] = useState(null)
+    const [addressSection, setAddressSection] = useState(null)
     // console.log(userAddress?.data?.[0])
 
     const handleAddress = () => {
@@ -19,6 +22,12 @@ const UserDashboard = () => {
     }
     const closeAddress = () => {
         setZip(false);
+    }
+    const addAddress = () => {
+        setAddressSection(true);
+    }
+    const closeAddressForm = () => {
+        setAddressSection(false);
     }
 
     if (isLoading) {
@@ -122,16 +131,46 @@ const UserDashboard = () => {
                             }
                         </div>
                     </div>
-                    <span
-                        onClick={handleAddress}
-                        className='absolute top-4 right-4 flex cursor-pointer text-green-500 hover:text-green-300 underline'>
-                        change <BsFillPencilFill className='ml-2' />
-                    </span>
+                    {
+                        userAddress?.data?.length === 0 &&
+                        <div className='w-full p-4'>
+                            <div className='flex justify-center items-center'>
+                                <div className='text-white'>
+                                    <p className="font-bold mb-2"> Name: <span className='text-green-500 ml-1'>{user?.displayName}</span></p>
+                                    <p
+                                        onClick={addAddress}
+                                        className='text-green-500 my-8 underline cursor-pointer'>Add your address</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    {
+                        userAddress?.data != 0 &&
+                        <span
+                            onClick={handleAddress}
+                            className='absolute top-4 right-4 flex cursor-pointer text-green-500 hover:text-green-300 underline'>
+                            change <BsFillPencilFill className='ml-2' />
+                        </span>
+                    }
                 </div>
             </section>
             <section className='mt-[15px]'>
                 {
-                    zip && <UpdateAddressForm closeAddress={closeAddress} setZip={setZip}  />
+                    zip && <UpdateAddressForm closeAddress={closeAddress} setZip={setZip} />
+                }
+            </section>
+            <section className='mt-[15px] relative'>
+                {
+                    addressSection && <AddressForm />
+                }
+                {
+                    addressSection &&
+                    <span>
+                        <AiOutlineCloseCircle
+                            onClick={closeAddressForm}
+                            className='text-3xl md:text-4xl text-green-500 bg-[#1c0202] rounded-md cursor-pointer absolute top-1 right-5 md:right-60'
+                        />
+                    </span>
                 }
             </section>
         </div>
