@@ -91,10 +91,6 @@ const router = createBrowserRouter([
                 element: <UserDashboard />
             },
             {
-                path: '/dashboard/Manage_account',
-                element: <AdminRoute><ManageAccount /></AdminRoute>
-            },
-            {
                 path: '/dashboard/My_order',
                 element: <MyOrder />
             },
@@ -105,6 +101,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/Check_Out_Route',
                 element: <CheckOut />
+            },
+            {
+                path: '/dashboard/Manage_account',
+                element: <AdminRoute><ManageAccount /></AdminRoute>
             },
             {
                 path: '/dashboard/Upload_&_Update',

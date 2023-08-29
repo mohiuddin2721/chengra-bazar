@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Card, CardContent, Grid } from '@mui/material';
+import { Box, Button, Card, CardContent, Grid } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Stars from '../stars/Stars';
 import { FaDollarSign } from 'react-icons/fa';
@@ -47,24 +47,18 @@ function SingleData({ item, xs, sm, md, lg }) {
                     <Box onClick={handleDetailsOfProduct}>
                         <img
                             src={isHovered ? `http://localhost:5000/${secondImage}` : `http://localhost:5000/${firstImage}`}
-                            className='w-full h-[200px] mx-auto'
+                            className='w-full h-[220px] mx-auto'
                             alt={item?.name} />
                     </Box>
-                    {/* <Link to={`/products/${item?._id}`}>
-                        <img
-                            src={isHovered ? `http://localhost:5000/${secondImage}` : `http://localhost:5000/${firstImage}`}
-                            className='w-full h-[200px] mx-auto'
-                            alt={item?.name} />
-                    </Link> */}
                     <CardContent sx={{ padding: 0 }}>
                         <p className='text-center font-bold py-2'>{item?.name}</p>
-                        <div className='flex ml-2'>
+                        <div className='flex justify-center ml-2'>
                             <p className='text-xs font-thin flex'>
                                 <span className='font-bold text-xl ml-1'><PriceFormate price={item?.price} /></span>
                             </p>
                             {item?.prePrice && <p className='text-xs line-through ml-3'> {item?.prePrice} <FaDollarSign className='inline text-xs' /></p>}
                         </div>
-                        <div className="flex mb-1 ml-2">
+                        <div className="flex justify-center mb-1 ml-2">
                             <Stars ratting={item?.ratting} />
                         </div>
                     </CardContent>

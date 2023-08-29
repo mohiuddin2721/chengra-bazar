@@ -17,7 +17,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import BackupIcon from '@mui/icons-material/Backup';
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { MdNotifications } from 'react-icons/md';
 import { TbSlash } from 'react-icons/tb';
 import { AiTwotoneSetting } from 'react-icons/ai';
@@ -102,7 +102,7 @@ export default function DashboardLayout() {
     const theme = useTheme();
     const [open, setOpen] = useState(false);
     const [outletMargin, setOutletMargin] = useState(false)
-    // console.log(user)
+    // console.log(location)
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -204,7 +204,14 @@ export default function DashboardLayout() {
                         {
                             dashboardLink?.[userRole]?.map((link, index) => (
                                 <ListItem key={index} disablePadding sx={{ display: 'block' }}>
-                                    <Link to={`${link?.to}`}>
+                                    <NavLink
+                                        to={`${link?.to}`}
+                                        className={({ isActive, isPending }) =>
+                                            isActive
+                                                ? "text-green-500 font-bold underline"
+                                                : "text-white"
+                                        }
+                                    >
                                         <ListItemButton
                                             sx={{
                                                 minHeight: 48,
@@ -213,51 +220,23 @@ export default function DashboardLayout() {
                                             }}
                                         >
                                             <ListItemIcon
-
                                                 sx={{
                                                     minWidth: 0,
                                                     mr: open ? 3 : 'auto',
                                                     justifyContent: 'center',
                                                 }}
                                             >
-                                                <i className='text-2xl text-white'>{link?.icon}</i>
+                                                <i className={`text-2xl ${location?.pathname === link?.to ? 'text-green-500' : 'text-white'}`}>{link?.icon}</i>
+                                                {/* <i className='text-2xl text-white'>{link?.icon}</i> */}
                                             </ListItemIcon>
                                             <ListItemText primary={link.name} sx={{ opacity: open ? 1 : 0 }} />
                                         </ListItemButton>
-                                    </Link>
+                                    </NavLink>
                                 </ListItem>
                             ))
                         }
                     </List>
                     <Divider />
-                    {/* <List>
-                        {
-                            dashboardLink?.forUser?.map((link, index) => (
-                                <ListItem key={index} disablePadding sx={{ display: 'block' }}>
-                                    <Link to={`${link?.to}`}>
-                                        <ListItemButton
-                                            sx={{
-                                                minHeight: 48,
-                                                justifyContent: open ? 'initial' : 'center',
-                                                px: 2.5,
-                                            }}
-                                        >
-                                            <ListItemIcon
-                                                sx={{
-                                                    minWidth: 0,
-                                                    mr: open ? 3 : 'auto',
-                                                    justifyContent: 'center',
-                                                }}
-                                            >
-                                                <i className='text-2xl text-white'>{link?.icon}</i>
-                                            </ListItemIcon>
-                                            <ListItemText primary={link?.name} sx={{ opacity: open ? 1 : 0 }} />
-                                        </ListItemButton>
-                                    </Link>
-                                </ListItem>
-                            ))
-                        }
-                    </List> */}
                     <div className="pyramid-loader mb-[20px]">
                         <div className="pyramid_wrapper">
                             <span className="pyramid_side pyramid_side1"></span>

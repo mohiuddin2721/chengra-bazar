@@ -30,21 +30,20 @@ const MyCart = () => {
     </p>
 
     return (
-        <div>
+        <div className='min-h-[70vh]'>
             <div className='flex justify-center'>
                 <Headline headline={"Shopping cart"} margin_Y={"4"} />
             </div>
             <div className='flex w-full justify-around items-center'>
                 <p className='text-white flex md:hidden mr-2'>Item: <span className='font-bold text-green-400'>{totalQuantityOrder}</span></p>
                 <p className='text-white flex md:hidden mx-2'><span className='font-bold text-green-400'><PriceFormate price={(totalQuantityOrder * 5) + totalPrice} /></span></p>
-                {/* <Link to="/dashboard/Check_Out_Route"> */}
+                
                 <button
                     onClick={goCheckOutPage}
                     className='text-white flex md:hidden font-bold my-4 mx-auto px-3 bg-green-500 hover:bg-green-700 rounded'
                 >
                     Pay
                 </button>
-                {/* </Link> */}
             </div>
             <hr />
             <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mt-4">
@@ -72,14 +71,12 @@ const MyCart = () => {
                                 <p>Total:</p>
                                 <p className='my-2 font-bold text-green-400'>{(totalQuantityOrder * 5) + totalPrice} <span className='text-xs'>SUD</span></p>
                             </div>
-                            {/* <Link to="/dashboard/Check_Out_Route"> */}
                             <button
                                 onClick={goCheckOutPage}
                                 className='w-full text-white font-bold my-4 px-3 bg-green-500 hover:bg-green-700 rounded'
                             >
                                 Proceed to buy
                             </button>
-                            {/* </Link> */}
                         </div>
                     }
                 </div>
