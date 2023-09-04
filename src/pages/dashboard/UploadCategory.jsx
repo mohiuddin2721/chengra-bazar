@@ -3,17 +3,17 @@ import Swal from 'sweetalert2';
 
 const UploadCategory = () => {
     const [selectedCategoryImage, setSelectedCategoryImage] = useState(null);
-    // console.log(imageHostKey)
+    const imgStorKey = import.meta.env.VITE_REACT_IMGBB_SECRET_KEY;
+    // console.log(selectedCategoryImage)
 
     function handleFileChange(event) {
         setSelectedCategoryImage(event.target.files[0])
     }
-    const handleCategory = (event) => {
+    const handleCategory = async (event) => {
         event.preventDefault();
         const formData = new FormData();
 
         if (!selectedCategoryImage) {
-            // return window.alert("Must upload maximum 4 photos")
             return Swal.fire({
                 icon: 'error',
                 title: 'Image',
@@ -21,39 +21,102 @@ const UploadCategory = () => {
             })
         }
 
-        const data = {
-            name: event.target.name.value,
-        }
-        Object.keys(data).forEach(prop => {
-            formData.append(`${prop}`, data[prop])
-        })
-
         formData.append('image', selectedCategoryImage)
 
-        fetch("http://localhost:5000/api/v1/category", {
-            method: "POST",
-            body: formData
+        const url = `https://api.imgbb.com/1/upload?key=${imgStorKey}`;
+        fetch(url, {
+            method: 'POST',
+            body: formData,
         })
             .then(res => res.json())
-            .then(data => {
-                // console.log(data)
-                if (data.status === 'fail') {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: 'Category is not inserted. please try again',
+            .then(result => {
+                // console.log(result)
+                if (result.success) {
+                    const imgLink = result.data.url;
+                    const data = {
+                        name: event.target.name.value,
+                        photo: imgLink,
+                    }
+
+                    fetch("http://localhost:5000/api/v1/category", {
+                        method: "POST",
+                        headers: {
+                            'content-type' : 'application/json'
+                        },
+                        body: JSON.stringify(data)
                     })
-                } else {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Successful',
-                        text: 'Category data Successfully updated',
-                    })
-                    setSelectedCategoryImage(null)
-                    event.target.reset();
+                        .then(res => res.json())
+                        .then(data => {
+                            // console.log("data", data)
+                            if (data.status === 'fail') {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error',
+                                    text: 'Category is not inserted. please try again',
+                                })
+                            } else {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Successful',
+                                    text: 'Category data Successfully updated',
+                                })
+                                setSelectedCategoryImage(null)
+                                event.target.reset();
+                            }
+                        })
                 }
             })
+
     };
+
+    // if i want to store image in local server
+    // const handleCategory = (event) => {
+    //     event.preventDefault();
+    //     const formData = new FormData();
+
+    //     if (!selectedCategoryImage) {
+    //         // return window.alert("Must upload maximum 4 photos")
+    //         return Swal.fire({
+    //             icon: 'error',
+    //             title: 'Image',
+    //             text: 'Must upload a photos',
+    //         })
+    //     }
+
+    // const data = {
+    //     name: event.target.name.value,
+    // }
+    // Object.keys(data).forEach(prop => {
+    //     formData.append(`${prop}`, data[prop])
+    // })
+
+    //     formData.append('image', selectedCategoryImage)
+
+    // fetch("http://localhost:5000/api/v1/category", {
+    //     method: "POST",
+    //     body: formData
+    // })
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         // console.log(data)
+    //         if (data.status === 'fail') {
+    //             Swal.fire({
+    //                 icon: 'error',
+    //                 title: 'Error',
+    //                 text: 'Category is not inserted. please try again',
+    //             })
+    //         } else {
+    //             Swal.fire({
+    //                 icon: 'success',
+    //                 title: 'Successful',
+    //                 text: 'Category data Successfully updated',
+    //             })
+    //             setSelectedCategoryImage(null)
+    //             event.target.reset();
+    //         }
+    //     })
+    // };
+
 
     function deleteCategoryImage() {
         setSelectedCategoryImage(null)
