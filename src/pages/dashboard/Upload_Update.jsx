@@ -11,10 +11,12 @@ const Upload_Update = () => {
     const [imageWarning, setImageWarning] = useState("")
     const fileInputRef = useRef(null);
     const warningText = "Please select maximum 4 photos"
+    const imgStorKey = import.meta.env.VITE_REACT_IMGBB_SECRET_KEY;
 
     function selectFiles() {
         fileInputRef.current.click();
     }
+
     function onFileSelect(event) {
         const files = event.target.files;
         // console.log(files)
@@ -87,10 +89,8 @@ const Upload_Update = () => {
         setIsHovered_2(false);
     };
 
-    const handleProductSubmit = (e) => {
+    const handleProductSubmit = async (e) => {
         e.preventDefault();
-        const formData = new FormData();
-
         if (!images.length) {
             return Swal.fire({
                 icon: 'error',
@@ -98,53 +98,71 @@ const Upload_Update = () => {
                 text: 'Must upload maximum 4 photos',
             })
         }
-
-        const data = {
-            name: e.target.name.value,
-            quantity: +e.target.quantity.value,
-            // color: e.target.color.value,
-            unit: e.target.unit.value,
-            status: e.target.status.value,
-            categories: e.target.categories.value,
-            prePrice: +e.target.prePrice.value,
-            price: +e.target.price.value,
-            brand: e.target.brand.value,
-            ratting: +e.target.ratting.value,
-            description: e.target.description.value,
-        }
-
-        images.forEach(prop => {
-            formData.append("image", prop)
-        })
-
-        Object.keys(data).forEach(prop => {
-            formData.append(`${prop}`, data[prop])
-        })
-
-        fetch("http://localhost:5000/api/v1/products", {
-            method: "POST",
-            body: formData
-        })
-            .then(res => res.json())
-            .then(posted => {
-                // console.log("posted", posted)
-                if (posted.status === 'fail') {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: 'Product is not inserted. please try again',
-                    })
-                } else {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Successful',
-                        text: 'Product data Successfully updated',
-                    })
-                }
-                setImages([])
-                e.target.reset();
+        const imgUploadPromises = images?.map(file => {
+            const formData = new FormData();
+            formData.append('image', file);
+            const url = `https://api.imgbb.com/1/upload?key=${imgStorKey}`;
+            return fetch(url, {
+                method: 'POST',
+                body: formData
             })
-        // console.log("formdata", formData)
+                .then((res) => res.json())
+                .then((result) => {
+                    return result.data.url;
+                })
+        })
+
+        try {
+            const uploadedImageLink = await Promise.all(imgUploadPromises)
+            // console.log("uploadedImageLink", uploadedImageLink)
+            const data = {
+                name: e.target.name.value,
+                quantity: +e.target.quantity.value,
+                unit: e.target.unit.value,
+                status: e.target.status.value,
+                categories: e.target.categories.value,
+                prePrice: +e.target.prePrice.value,
+                price: +e.target.price.value,
+                brand: e.target.brand.value,
+                ratting: +e.target.ratting.value,
+                description: e.target.description.value,
+                imageURL: uploadedImageLink
+            }
+
+            fetch("http://localhost:5000/api/v1/products", {
+                method: "POST",
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(res => res.json())
+                .then(posted => {
+                    // console.log("posted", posted)
+                    if (posted.status === 'fail') {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Product is not inserted. please try again',
+                        })
+                    } else {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Successful',
+                            text: 'Product data Successfully updated',
+                        })
+                    }
+                    setImages([])
+                    e.target.reset();
+                })
+        } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: "Image doesn't uploaded. please try again",
+            })
+            console.error('Error uploading images:', error);
+        }
     };
 
     return (
