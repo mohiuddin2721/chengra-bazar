@@ -102,7 +102,7 @@ export default function DashboardLayout() {
     const theme = useTheme();
     const [open, setOpen] = useState(false);
     const [outletMargin, setOutletMargin] = useState(false)
-    // console.log(location)
+    // console.log(userRole)
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -147,7 +147,7 @@ export default function DashboardLayout() {
                                 <MenuIcon />
                             </IconButton>
 
-                            <Link to='/dashboard'>
+                            <Link to={userRole == "admin" ? "/dashboard" : "/dashboard/userDash"}>
                                 <BackupIcon /> <TbSlash className='inline text-xl font-bold' />
                             </Link>
                             <Typography variant='h8' sx={{ display: 'block' }}>{path ? path : 'Dashboard'}</Typography>
@@ -159,9 +159,11 @@ export default function DashboardLayout() {
                             }}
                         >
                             <Link to='/' className='underline'> Home </Link>
-                            <p className='mx-4'>
-                                <AiTwotoneSetting className='cursor-pointer' />
-                            </p>
+                            <Box>
+                                <AiTwotoneSetting
+                                    className='cursor-pointer text-white mx-4'
+                                />
+                            </Box>
                             <p>
                                 <MdNotifications className='cursor-pointer' />
                             </p>
@@ -247,6 +249,7 @@ export default function DashboardLayout() {
                         </div>
                     </div>
                 </Drawer>
+
             </Box>
             <div className={outletMargin ? 'ml-[0px] md:ml-[260px] transition-all duration-300 ease-in-out' : 'ml-[0px] md:ml-[90px] transition-all duration-300 ease-in-out'}>
                 <DrawerHeader />

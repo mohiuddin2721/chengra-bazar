@@ -95,13 +95,23 @@ const MiddleNav = () => {
         setIsOpenCartDrawer(false);
     };
     const handleLogout = () => {
-        logOut()
-            .then(() => {
-
-            }).catch((err) => {
-                console.log(err)
-            })
-    }
+        Swal.fire({
+          title: 'Logout',
+          text: 'Are you sure you want to log out?',
+          icon: 'question',
+          showCancelButton: true,
+          confirmButtonText: 'Logout',
+          cancelButtonText: 'Cancel',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // User clicked "Logout," perform logout action
+            logOut();
+            toast.success('Logged out successfully');
+          } else {
+            // User clicked "Cancel" or closed the popup
+          }
+        });
+      };
     const handleNoUserPic = () => {
         Swal.fire({
             position: 'top-middle',

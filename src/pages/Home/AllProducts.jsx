@@ -3,6 +3,7 @@ import { Box, Grid, Pagination, Typography } from '@mui/material';
 import { component_container } from '../../Styles/ComponentStyle';
 import SingleData from '../../components/ReceivAllData/SingleData';
 import axios from 'axios';
+import Loader from '../../components/Loader/Loader';
 
 function AllProducts() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -27,6 +28,10 @@ function AllProducts() {
   useEffect(() => {
     getProducts()
   }, [currentPage])
+
+  if(products.length === 0) {
+    return <Loader />
+  }
 
   return (
     <Box sx={component_container} className='my-10 delay-500 mx-auto'>
