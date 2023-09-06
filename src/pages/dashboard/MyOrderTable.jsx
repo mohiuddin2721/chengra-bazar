@@ -9,7 +9,7 @@ const MyOrderTable = ({ orderData }) => {
 
     const handleDetails = (data) => {
         // console.log("data",data)
-        const imageElements = data?.itemImages?.map(link => `<img src="http://localhost:5000/${link}" alt="Image"  style="max-width: 300px; max-height: 300px; margin-right: 10px" /><br>`).join('');
+        const imageElements = data?.itemImages?.map(link => `<img src=${link} alt="Image"  style="max-width: 300px; max-height: 300px; margin-right: 10px" /><br>`).join('');
 
         Swal.fire({
             title: `<strong>Items: ${data?.quantity}</strong>`,

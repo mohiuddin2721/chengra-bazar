@@ -21,9 +21,6 @@ const CheckOutForm = ({ price }) => {
     const { totalQuantityOrder } = useContext(CartContext)
     const navigate = useNavigate();
 
-    console.log("price", price)
-    // console.log("price", cart)
-
     useEffect(() => {
         if (price > 0) {
             axiosSecure.post('/payment/create-payment-intent', { price })

@@ -36,13 +36,17 @@ function DetailSingleData() {
 
     useEffect(() => {
         window.scrollTo(top)
-        setUpperImage(`http://localhost:5000/${imageURL[0][0]}`)
+        setUpperImage(imageURL[0][0])
         setSelectedProductImg("")
     }, [id])
 
     const handleSelectProductImg = (event) => {
         setSelectedProductImg(event.target.value);
-        setUpperImage(`http://localhost:5000/${event.target.value}`)
+        setUpperImage(event.target.value)
+    };
+
+    const handleUpperImage = (pic) => {
+        setUpperImage(pic)
     };
 
     const handle_delivery_replacement = (d) => {
@@ -73,7 +77,7 @@ function DetailSingleData() {
                 cancelButtonText: 'Cancel',
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = '/signIn'; 
+                    window.location.href = '/signIn';
                 }
             });
         }
@@ -149,10 +153,10 @@ function DetailSingleData() {
                                 imageURL[0]?.map((pic, index) =>
                                     <div key={index} className='border border-red-500 hover:border-green-500 mr-2'>
                                         <img
-                                            onClick={() => setUpperImage(`http://localhost:5000/${pic}`)}
+                                            onClick={() => handleUpperImage(pic)}
                                             alt="ecommerce"
                                             className="w-[100%] h-[100%]"
-                                            src={`http://localhost:5000/${pic}`} />
+                                            src={pic} />
                                     </div>
                                 )
                             }
@@ -213,7 +217,7 @@ function DetailSingleData() {
                                                 key={index}
                                                 value={data}
                                                 control={<Radio />}
-                                                label={<img src={`http://localhost:5000/${data}`} alt={`Image`} width="100" />}
+                                                label={<img src={data} alt={`Image`} width="100" />}
                                             />
                                         )
                                     }

@@ -12,7 +12,7 @@ function SideCartProduct({ item, refetch }) {
                 <p className='text-[#696969] leading-[18px] text-[13px]'>{item?.quantityOrder} x {item?.price} <span className='text-xs'>BDT</span></p>
             </div>
             <figure className='w-[30%] h-[78px] border relative border-[#f4f4f4]'>
-                <img src={`http://localhost:5000/${item?.selectedProductImg}`} alt="" className='w-full h-full' />
+                <img src={item?.selectedProductImg} alt="" className='w-full h-full' />
                 <span 
                 onClick={()=> deleteCartProduct(item?._id, refetch)}
                 className='absolute h-[20px] group w-[20px] rounded-full bg-white shadow-[0_2px_6px_0px_rgb(0,0,0,0.5)] top-[-10px] right-[-10px] flex justify-center items-center cursor-pointer'>

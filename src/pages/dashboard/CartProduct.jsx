@@ -31,7 +31,7 @@ const CartProduct = ({ item, refetch }) => {
                 <div className='w-[80%] mx-auto mb-1'>
                     <img
                         className='w-full'
-                        src={`http://localhost:5000/${item.selectedProductImg}`}
+                        src={item.selectedProductImg}
                         alt={item?.name}
                         style={{
                             border: '5px outset #ffff',

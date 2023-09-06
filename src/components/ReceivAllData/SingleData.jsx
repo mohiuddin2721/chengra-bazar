@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Button, Card, CardContent, Grid } from '@mui/material';
+import { Box, Card, CardContent, Grid } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Stars from '../stars/Stars';
 import { FaDollarSign } from 'react-icons/fa';
@@ -46,7 +46,7 @@ function SingleData({ item, xs, sm, md, lg }) {
                 }}>
                     <Box onClick={handleDetailsOfProduct}>
                         <img
-                            src={isHovered ? `http://localhost:5000/${secondImage}` : `http://localhost:5000/${firstImage}`}
+                            src={isHovered ? `${secondImage}` : `${firstImage}`}
                             className='w-full h-[220px] mx-auto'
                             alt={item?.name} />
                     </Box>

@@ -51,7 +51,7 @@ const Administration = () => {
         // console.log(data)
     }
     const showImages = (data) => {
-        const imageElements = data?.map(link => `<img src="http://localhost:5000/${link}" alt="Image"  style="max-width: 200px; max-height: 200px; margin-right: 10px" /><br>`).join('');
+        const imageElements = data?.map(link => `<img src=${link} alt="Image"  style="max-width: 200px; max-height: 200px; margin-right: 10px" /><br>`);
 
         Swal.fire({
             html:
