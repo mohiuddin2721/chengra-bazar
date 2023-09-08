@@ -16,6 +16,7 @@ import { AuthContext } from '../../contexts/AuthProvider';
 import { toast } from 'react-toastify';
 import { useQueryClient } from '@tanstack/react-query';
 import { FaDollarSign } from 'react-icons/fa';
+import CommentsSection from './CommentsSection';
 
 
 function DetailSingleData() {
@@ -278,6 +279,13 @@ function DetailSingleData() {
                         </div>
                     </div>
                 </div>
+            </div>
+
+            {/* All comments of the product */}
+            <div className='w-[98%] md:w-[90%] lg:w-[84%] mx-auto'>
+                <CommentsSection
+                    productName={name}
+                />
             </div>
 
             {/* related products bellow */}
