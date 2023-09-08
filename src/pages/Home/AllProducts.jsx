@@ -17,7 +17,7 @@ function AllProducts() {
 
   const getProducts = async () => {
     try {
-      const result = await axios.get(`http://localhost:5000/api/v1/products?page=${currentPage}&limit=8`)
+      const result = await axios.get(`https://test-server-ten-psi.vercel.app/api/v1/products?page=${currentPage}&limit=8`)
       setPageCount(result?.data?.data?.pageCount);
       setProducts(result?.data?.data?.products);
     } catch (error) {

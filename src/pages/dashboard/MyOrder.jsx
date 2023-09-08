@@ -13,7 +13,7 @@ const MyOrder = () => {
     const { data: orderData, isLoading } = useQuery({
         queryKey: ['myAllOrder', user?.email],
         queryFn: async () => {
-            const res = await axiosSecure.get(`http://localhost:5000/api/v1/payment/email?email=${user?.email}`)
+            const res = await axiosSecure.get(`https://test-server-ten-psi.vercel.app/api/v1/payment/email?email=${user?.email}`)
             return res.data.data;
         }
     })

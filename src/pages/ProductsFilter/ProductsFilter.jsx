@@ -49,7 +49,7 @@ const ProductsFilter = () => {
             try {
                 setSearchResults([])
                 // Construct the dynamic URL with query parameters
-                let url = "http://localhost:5000/api/v1/products?";
+                let url = "https://test-server-ten-psi.vercel.app/api/v1/products?";
                 if (checkedCategory) {
                     {
                         checkedCategory?.map((category) => url += `categories=${category}&`)

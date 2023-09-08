@@ -27,7 +27,7 @@ const SocialLogin = () => {
                 const loggedUser = result.user;
                 // console.log(loggedUser)
                 const userData = { name: loggedUser?.displayName, email: loggedUser?.email }
-                fetch("http://localhost:5000/api/v1/users", {
+                fetch("https://test-server-ten-psi.vercel.app/api/v1/users", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(userData)

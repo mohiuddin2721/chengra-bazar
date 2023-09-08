@@ -15,7 +15,7 @@ const CartProvider = ({ children }) => {
     const increaseQuantity = (quantityOrder, setQuantityOrder, id, price, refetch) => {
         const updatedQuantity = quantityOrder + 1;
         // console.log("updatedQuantity", updatedQuantity)
-        fetch(`http://localhost:5000/api/v1/addCart/${id}`, {
+        fetch(`https://test-server-ten-psi.vercel.app/api/v1/addCart/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ const CartProvider = ({ children }) => {
     const decreaseQuantity = async (quantityOrder, setQuantityOrder, id, price, refetch) => {
         const updatedQuantity = quantityOrder - 1;
         // console.log("updatedQuantity", updatedQuantity)
-        fetch(`http://localhost:5000/api/v1/addCart/${id}`, {
+        fetch(`https://test-server-ten-psi.vercel.app/api/v1/addCart/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ const CartProvider = ({ children }) => {
     }
     const deleteCartProduct = (id, refetch) => {
         // console.log(id)
-        fetch(`http://localhost:5000/api/v1/addCart/${id}`, {
+        fetch(`https://test-server-ten-psi.vercel.app/api/v1/addCart/${id}`, {
             method: 'DELETE',
         })
             .then(res => res.json())

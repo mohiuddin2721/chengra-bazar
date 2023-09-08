@@ -28,7 +28,7 @@ const ManageAccount = () => {
 
     const handleDeleteUser = (id) => {
         // console.log(id)
-        fetch(`http://localhost:5000/api/v1/users/${id}`, {
+        fetch(`https://test-server-ten-psi.vercel.app/api/v1/users/${id}`, {
             method: 'DELETE',
         })
             .then(res => res.json())
@@ -48,7 +48,7 @@ const ManageAccount = () => {
         const UpdatedRole = {
             role: data
         }
-        fetch(`http://localhost:5000/api/v1/users/${id}`, {
+        fetch(`https://test-server-ten-psi.vercel.app/api/v1/users/${id}`, {
             method: "PATCH",
             headers: { 'Content-Type': "application/json" },
             body: JSON.stringify(UpdatedRole)
@@ -71,7 +71,7 @@ const ManageAccount = () => {
         const UpdatedRole = {
             role: data
         }
-        fetch(`http://localhost:5000/api/v1/users/${id}`, {
+        fetch(`https://test-server-ten-psi.vercel.app/api/v1/users/${id}`, {
             method: "PATCH",
             headers: { 'Content-Type': "application/json" },
             body: JSON.stringify(UpdatedRole)
@@ -94,7 +94,7 @@ const ManageAccount = () => {
             role: data
         }
         // console.log(UpdatedRole)
-        fetch(`http://localhost:5000/api/v1/users/${id}`, {
+        fetch(`https://test-server-ten-psi.vercel.app/api/v1/users/${id}`, {
             method: "PATCH",
             headers: { 'Content-Type': "application/json" },
             body: JSON.stringify(UpdatedRole)

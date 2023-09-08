@@ -9,7 +9,7 @@ const useUserRole = () => {
         queryKey: ['userRole', user?.email],
         queryFn: async () => {
             if (user?.email) {
-                const res = await axios.get(`http://localhost:5000/api/v1/users/roll?email=${user?.email}`);
+                const res = await axios.get(`https://test-server-ten-psi.vercel.app/api/v1/users/roll?email=${user?.email}`);
                 return res.data.data;
             }
         }

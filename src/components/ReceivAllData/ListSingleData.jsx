@@ -33,7 +33,7 @@ export const ListSingleData = ({ item }) => {
                         <Link to={`/products/${item?._id}`}>
                             <img
                                 className='w-full'
-                                src={isHovered ? `http://localhost:5000/${secondImg}` : `http://localhost:5000/${firstImg}`}
+                                src={isHovered ? `https://test-server-ten-psi.vercel.app/${secondImg}` : `https://test-server-ten-psi.vercel.app/${firstImg}`}
                                 alt=""
                                 style={{
                                     border: '5px outset #3665A4',

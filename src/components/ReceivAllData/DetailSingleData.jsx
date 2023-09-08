@@ -111,7 +111,7 @@ function DetailSingleData() {
         })
         // console.log(cartData)
         try {
-            const response = await fetch("http://localhost:5000/api/v1/addCart", {
+            const response = await fetch("https://test-server-ten-psi.vercel.app/api/v1/addCart", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

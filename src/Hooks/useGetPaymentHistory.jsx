@@ -6,7 +6,7 @@ const useGetPaymentHistory = () => {
     const { data: paymentData, isLoading, refetch } = useQuery({
         queryKey: ['allPaymentHistory'],
         queryFn: async () => {
-            const res = await axiosSecure.get("http://localhost:5000/api/v1/payment")
+            const res = await axiosSecure.get("https://test-server-ten-psi.vercel.app/api/v1/payment")
             return res.data.data;
         }
     })

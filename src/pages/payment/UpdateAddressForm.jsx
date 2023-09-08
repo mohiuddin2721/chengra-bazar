@@ -46,7 +46,7 @@ const UpdateAddressForm = ({ closeAddress, setZip }) => {
             email: user?.email,
         }
 
-        fetch(`http://localhost:5000/api/v1/address/${id}`, {
+        fetch(`https://test-server-ten-psi.vercel.app/api/v1/address/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',

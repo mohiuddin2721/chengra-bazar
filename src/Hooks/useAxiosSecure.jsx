@@ -4,7 +4,7 @@ import axios from 'axios';
 import useAuth from './useAuth';
 
 const axiosSecure = axios.create({
-    baseURL: "http://localhost:5000/api/v1",
+    baseURL: "https://test-server-ten-psi.vercel.app/api/v1",
 });
 
 const useAxiosSecure = () => {

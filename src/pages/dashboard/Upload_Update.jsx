@@ -129,7 +129,7 @@ const Upload_Update = () => {
                 imageURL: uploadedImageLink
             }
 
-            fetch("http://localhost:5000/api/v1/products", {
+            fetch("https://test-server-ten-psi.vercel.app/api/v1/products", {
                 method: "POST",
                 headers: {
                     'content-type': 'application/json'

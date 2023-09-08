@@ -32,7 +32,7 @@ const AddressForm = () => {
             email: user?.email,
         }
 
-        fetch("http://localhost:5000/api/v1/address", {
+        fetch("https://test-server-ten-psi.vercel.app/api/v1/address", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

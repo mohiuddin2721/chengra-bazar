@@ -32,7 +32,7 @@ const SignUp = () => {
                 updateUserProfile(data.full_name, "https://drive.google.com/file/d/11dmGbBab_Wvd5BgaHHEA59yVVzgutkhX/view?usp=sharing")
                     .then(() => {
                         const userData = { name: data.full_name, email: data.email }
-                        fetch("http://localhost:5000/api/v1/users", {
+                        fetch("https://test-server-ten-psi.vercel.app/api/v1/users", {
                             method: "POST",
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify(userData)

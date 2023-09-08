@@ -20,7 +20,7 @@ const Administration = () => {
 
     const getProducts = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/api/v1/products");
+            const response = await axios.get("https://test-server-ten-psi.vercel.app/api/v1/products");
             setUsers(response.data.data.products);
             setFilteredUsers(response.data.data.products);
             // console.log(response.data.data)
@@ -30,7 +30,7 @@ const Administration = () => {
     };
 
     const handleDeleteProduct = (id) => {
-        fetch(`http://localhost:5000/api/v1/products/${id}`, {
+        fetch(`https://test-server-ten-psi.vercel.app/api/v1/products/${id}`, {
             method: 'DELETE',
         })
             .then(res => res.json())

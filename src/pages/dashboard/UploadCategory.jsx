@@ -38,7 +38,7 @@ const UploadCategory = () => {
                         photo: imgLink,
                     }
 
-                    fetch("http://localhost:5000/api/v1/category", {
+                    fetch("https://test-server-ten-psi.vercel.app/api/v1/category", {
                         method: "POST",
                         headers: {
                             'content-type' : 'application/json'
@@ -92,7 +92,7 @@ const UploadCategory = () => {
 
     //     formData.append('image', selectedCategoryImage)
 
-    // fetch("http://localhost:5000/api/v1/category", {
+    // fetch("https://test-server-ten-psi.vercel.app/api/v1/category", {
     //     method: "POST",
     //     body: formData
     // })
