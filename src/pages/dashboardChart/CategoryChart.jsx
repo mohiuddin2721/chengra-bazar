@@ -2,7 +2,7 @@ import React from 'react';
 import ReactApexChart from 'react-apexcharts';
 
 const CategoryChart = () => {
-    
+
     const options = {
         theme: {
             mode: 'dark',
@@ -57,7 +57,7 @@ const CategoryChart = () => {
             }
         },
         title: {
-            text: 'Each month sell - 2023',
+            text: 'sell - 2023',
             style: {
                 color: '#fff',
                 fontSize: 20,

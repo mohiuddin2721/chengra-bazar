@@ -20,7 +20,7 @@ const CommentsSection = ({ productName, id }) => {
     const { isLoading: commentsLoading, data: commentsFromDB, refetch } = useQuery({
         queryKey: ['comments', id],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/api/v1/comments_hub?productId=${id}`)
+            const res = await axios.get(`https://test-server-ten-psi.vercel.app/api/v1/comments_hub?productId=${id}`)
             return res.data.data;
         }
     })
@@ -36,7 +36,7 @@ const CommentsSection = ({ productName, id }) => {
                 userPhoto: user?.photoURL
             }
             // console.log(commentData)
-            const url = "http://localhost:5000/api/v1/comments_hub";
+            const url = "https://test-server-ten-psi.vercel.app/api/v1/comments_hub";
             fetch(url, {
                 method: "POST",
                 headers: {

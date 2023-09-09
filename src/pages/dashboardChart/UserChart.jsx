@@ -22,7 +22,6 @@ const UserChart = () => {
         xaxis: {
             type: 'month',
             categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
-            // categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
         },
         tooltip: {
             x: {
@@ -30,17 +29,17 @@ const UserChart = () => {
             },
         },
         title: {
-            text: 'users & sells overview',
-            style: {
-                color: '#fff',
-                fontSize: 20,
-            }
-        },
-        subtitle: {
             text: '7% more in 2023',
             style: {
                 color: '#0f0',
                 fontSize: 14,
+            }
+        },
+        subtitle: {
+            text: 'users & sells overview',
+            style: {
+                color: '#fff',
+                fontSize: 20,
             }
         },
         fill: {
