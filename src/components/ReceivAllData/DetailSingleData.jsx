@@ -31,7 +31,6 @@ function DetailSingleData() {
     // console.log(location.state.item)
 
     const selectedProduct = location.state.item;
-    // const selectedProduct = allProduct?.filter(item => item._id === id);
     const { _id, name, imageURL, description, price, unit, quantity, status, brand, ratting, categories, prePrice } = selectedProduct;
     const relatedProduct = allProduct?.filter(item => item?.categories == categories)
 
@@ -285,6 +284,7 @@ function DetailSingleData() {
             <div className='w-[98%] md:w-[90%] lg:w-[84%] mx-auto'>
                 <CommentsSection
                     productName={name}
+                    id={_id}
                 />
             </div>
 
