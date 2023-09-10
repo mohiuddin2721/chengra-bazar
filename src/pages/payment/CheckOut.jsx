@@ -29,6 +29,7 @@ const CheckOut = () => {
     const [priceToPay, setPriceToPay] = useState(0)
     const totalPrice = location?.state?.totalPrice;
     const totalQuantityOrder = location?.state?.totalQuantityOrder;
+    console.log(location)
 
     useEffect(() => {
         const total = (totalQuantityOrder * 5) + totalPrice;
