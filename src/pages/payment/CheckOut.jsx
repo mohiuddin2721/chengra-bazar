@@ -20,6 +20,7 @@ import { useLocation } from 'react-router-dom';
 const stripePromise = loadStripe(import.meta.env.VITE_REACT_STRIPE_KEY);
 
 const CheckOut = () => {
+    console.log('reached to checkout page')
     const [userAddress, isLoading] = useAddress();
     const [zip, setZip] = useState(null)
     const [selectedPaymentOption, setSelectedPaymentOption] = useState(null);
@@ -89,7 +90,8 @@ const CheckOut = () => {
                     </div>
                 }
             </div>
-            {selectedPaymentOption === "mastercard" &&
+            {
+                selectedPaymentOption === "mastercard" &&
                 <div className='min-h-[40vh] mt-4 bg-white w-full md:w-[60%] mx-auto relative border-dashed hover:border-solid border-b-2 border-[rgb(169,51,94)] hover:border-green-400 rounded-lg p-8'>
                     <div>
                         <p className="text-center text-blue-500 font-bold">International master / visa card</p>
@@ -116,11 +118,6 @@ const CheckOut = () => {
                     <p className="text-center text-white font-bold">bkash</p>
                 </div>
             }
-            <div className='h-[20vh]'>
-
-            </div>
-
-
         </div>
     );
 };
