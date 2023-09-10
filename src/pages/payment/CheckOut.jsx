@@ -24,20 +24,14 @@ const CheckOut = () => {
     const [userAddress, isLoading] = useAddress();
     const [zip, setZip] = useState(null)
     const [selectedPaymentOption, setSelectedPaymentOption] = useState(null);
-    // const { totalPrice, totalQuantityOrder } = useContext(CartContext)
     const location = useLocation();
     const [priceToPay, setPriceToPay] = useState(0)
     const totalPrice = location?.state?.totalPrice;
     const totalQuantityOrder = location?.state?.totalQuantityOrder;
-    console.log(location)
+    console.log("location", location)
+    console.log("userAddress", userAddress)
+    console.log("priceToPay", priceToPay)
 
-    useEffect(() => {
-        const total = (totalQuantityOrder * 5) + totalPrice;
-        const price = parseFloat(total.toFixed(2))
-        setPriceToPay(price)
-    }, [])
-
-    // console.log(priceToPay)
     if (isLoading) {
         return <Loader />
     }
@@ -48,6 +42,12 @@ const CheckOut = () => {
     const closeAddress = () => {
         setZip(false);
     }
+
+    useEffect(() => {
+        const total = (totalQuantityOrder * 5) + totalPrice;
+        const price = parseFloat(total.toFixed(2))
+        setPriceToPay(price)
+    }, [])
 
     return (
         <div>
