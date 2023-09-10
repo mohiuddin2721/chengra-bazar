@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
+import "./i18n"
 import './index.css'
 import {
   QueryClient,
@@ -24,12 +25,4 @@ root.render(
       </AuthProvider>
     </QueryClientProvider>
   </React.StrictMode>
-
-  //   <BrowserRouter>
-  //     <QueryClientProvider client={queryClient}>
-  //       <AuthProvider>
-  //         <App />
-  //       </AuthProvider>
-  //     </QueryClientProvider>
-  //   </BrowserRouter>
 )
