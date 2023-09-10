@@ -28,13 +28,13 @@ const CheckOut = () => {
     const [priceToPay, setPriceToPay] = useState(0)
     const totalPrice = location?.state?.totalPrice;
     const totalQuantityOrder = location?.state?.totalQuantityOrder;
+    console.log("totalPrice", totalPrice)
+    console.log("totalQuantityOrder", totalQuantityOrder)
     console.log("location", location)
     console.log("userAddress", userAddress)
-    console.log("priceToPay", priceToPay)
+    console.log("priceToPay1", priceToPay)
 
-    if (isLoading) {
-        return <Loader />
-    }
+
 
     const handleAddress = () => {
         setZip(true)
@@ -45,9 +45,17 @@ const CheckOut = () => {
 
     useEffect(() => {
         const total = (totalQuantityOrder * 5) + totalPrice;
+        console.log("total", total)
         const price = parseFloat(total.toFixed(2))
         setPriceToPay(price)
+        console.log("priceInsideUseEffect", price)
     }, [])
+
+    console.log("priceToPayUnderUseEffect", priceToPay)
+
+    if (isLoading) {
+        return <Loader />
+    }
 
     return (
         <div>
@@ -114,7 +122,8 @@ const CheckOut = () => {
                     </div>
                 </div>
             }
-            {selectedPaymentOption === "bkash" &&
+            {
+                selectedPaymentOption === "bkash" &&
                 <div className='h-[40vh] mt-4 bg-[#e2136e] w-full md:w-[60%] mx-auto block md:flex relative border-dashed hover:border-solid border-b-2 border-[#ffffffab] hover:border-green-400 rounded-lg p-8'>
                     <p className="text-center text-white font-bold">bkash</p>
                 </div>
