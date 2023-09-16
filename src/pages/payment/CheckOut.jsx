@@ -22,17 +22,18 @@ const stripePromise = loadStripe(import.meta.env.VITE_REACT_STRIPE_KEY);
 const CheckOut = () => {
     console.log('reached to checkout page')
     const [userAddress, isLoading] = useAddress();
+    const location = useLocation();
     const [zip, setZip] = useState(null)
     const [selectedPaymentOption, setSelectedPaymentOption] = useState(null);
-    const location = useLocation();
+    
     const [priceToPay, setPriceToPay] = useState(0)
     const totalPrice = location?.state?.totalPrice;
     const totalQuantityOrder = location?.state?.totalQuantityOrder;
-    console.log("totalPrice", totalPrice)
-    console.log("totalQuantityOrder", totalQuantityOrder)
-    console.log("location", location)
-    console.log("userAddress", userAddress)
-    console.log("priceToPay1", priceToPay)
+    // console.log("totalPrice", totalPrice)
+    // console.log("totalQuantityOrder", totalQuantityOrder)
+    // console.log("location", location)
+    // console.log("userAddress", userAddress)
+    // console.log("priceToPay1", priceToPay)
 
 
 
@@ -45,10 +46,10 @@ const CheckOut = () => {
 
     useEffect(() => {
         const total = (totalQuantityOrder * 5) + totalPrice;
-        console.log("total", total)
+        // console.log("total", total)
         const price = parseFloat(total.toFixed(2))
         setPriceToPay(price)
-        console.log("priceInsideUseEffect", price)
+        // console.log("priceInsideUseEffect", price)
     }, [])
 
     console.log("priceToPayUnderUseEffect", priceToPay)
