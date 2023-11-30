@@ -4,6 +4,7 @@ import axios from "axios";
 
 const useUserRole = () => {
     const { user } = useAuth()
+    // console.log(user)
 
     const { data: userRole, isLoading: userRoleLoading } = useQuery({
         queryKey: ['userRole', user?.email],
